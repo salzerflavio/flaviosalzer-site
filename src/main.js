@@ -25,6 +25,50 @@
     lenis = new Lenis({ autoRaf: true, lerp: 0.15, wheelMultiplier: 1 });
   }
 
+
+  // loading bar (top, like Elvis' site) + hold scroll until the first screen is ready
+  (() => {
+    const bar = document.createElement('div'); bar.className = 'loadbar'; bar.innerHTML = '<i></i>';
+    document.body.appendChild(bar);
+    const fill = bar.firstChild;
+    const root = document.documentElement;
+    root.classList.add('loading');
+    if (lenis) lenis.stop();
+    const limit = innerHeight * 1.6;
+    const near = el => { const r = el.getBoundingClientRect(); return r.width && r.top < limit && r.bottom > -10; };
+    const waits = [];
+    document.querySelectorAll('img').forEach(im => {
+      if (!near(im) || im.complete) return;
+      im.loading = 'eager';
+      waits.push(new Promise(res => { im.addEventListener('load', res, { once: true }); im.addEventListener('error', res, { once: true }); }));
+    });
+    document.querySelectorAll('.p-body video, .about video').forEach(v => {
+      if (!near(v)) return;
+      load(v);
+      if (v.readyState >= 2) return;
+      waits.push(new Promise(res => { v.addEventListener('loadeddata', res, { once: true }); v.addEventListener('error', res, { once: true }); }));
+    });
+    document.querySelectorAll('.vplayer iframe').forEach(f => {
+      if (!near(f)) return;
+      if (!f.src) f.src = f.dataset.src;
+      waits.push(new Promise(res => f.addEventListener('load', res, { once: true })));
+    });
+    const total = waits.length || 1;
+    let done = 0, shown = 0.08, target = 0.08;
+    const tick = () => { shown += (target - shown) * 0.18; fill.style.transform = `scaleX(${shown})`; if (!finished) requestAnimationFrame(tick); };
+    let finished = false;
+    requestAnimationFrame(tick);
+    waits.forEach(p => p.then(() => { done++; target = 0.08 + 0.92 * (done / total); }));
+    const trickle = setInterval(() => { if (target < 0.9) target += 0.01; }, 200);
+    const finish = () => {
+      if (finished) return; finished = true; clearInterval(trickle);
+      fill.style.transition = 'transform .35s ease-out'; fill.style.transform = 'scaleX(1)';
+      setTimeout(() => { bar.classList.add('done'); root.classList.remove('loading'); if (lenis) lenis.start(); }, 380);
+      setTimeout(() => bar.remove(), 1200);
+    };
+    Promise.race([Promise.all(waits), new Promise(r => setTimeout(r, 7000))]).then(() => setTimeout(finish, 150));
+  })();
+
   // titles: split into lines and reveal line by line
   const splitLines = el => {
     const words = el.textContent.trim().split(/\s+/);
@@ -46,7 +90,7 @@
     document.querySelectorAll('.vplayer').forEach(v => {
       const f = v.querySelector('iframe'), b = v.querySelector('.vp-hit'), lab = v.querySelector('.vp-label');
       let pl = null;
-      const ensure = () => { if (!pl) { f.src = f.dataset.src; pl = new Vimeo.Player(f); } return pl; };
+      const ensure = () => { if (!pl) { if (!f.src) f.src = f.dataset.src; pl = new Vimeo.Player(f); } return pl; };
       new IntersectionObserver(es => es.forEach(e => {
         if (e.isIntersecting) { ensure().play().catch(() => {}); }
         else if (pl) { pl.pause().catch(() => {}); }
