@@ -110,7 +110,7 @@ figure{margin:0}
 @media (max-width:800px){.a-row{flex-direction:column;gap:var(--s2)}.about{gap:var(--s3)}}
 
 /* ---------- rodapé ---------- */
-.site-foot{display:flex;justify-content:space-between;padding:var(--s3) var(--edge) var(--edge);font:500 var(--fs-ui)/1 var(--f);color:var(--hi)}
+.site-foot{display:flex;justify-content:flex-end;padding:var(--s3) var(--edge) var(--edge);font:500 var(--fs-ui)/1 var(--f);color:var(--hi)}
 .site-foot span{display:flex;gap:18px}
 .site-foot a{opacity:.85}.site-foot a:hover{opacity:1}
 .nf{padding:var(--s4) var(--edge)}

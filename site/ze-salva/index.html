@@ -128,7 +128,7 @@ figure{margin:0}
 @media (max-width:800px){.a-row{flex-direction:column;gap:var(--s2)}.about{gap:var(--s3)}}
 
 /* ---------- rodapé ---------- */
-.site-foot{display:flex;justify-content:space-between;padding:var(--s3) var(--edge) var(--edge);font:500 var(--fs-ui)/1 var(--f);color:var(--hi)}
+.site-foot{display:flex;justify-content:flex-end;padding:var(--s3) var(--edge) var(--edge);font:500 var(--fs-ui)/1 var(--f);color:var(--hi)}
 .site-foot span{display:flex;gap:18px}
 .site-foot a{opacity:.85}.site-foot a:hover{opacity:1}
 .nf{padding:var(--s4) var(--edge)}
@@ -288,7 +288,6 @@ html.view-list .pg-home .plist{display:block}
 <figure class="mod img reveal-m"><img class="m " src="/media/c9b34128-1f4d-49fe-b054-8cac97f855c6_rw_3840.webp" width="3840" height="2160" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRqgAAABXRUJQVlA4IJwAAABQBACdASoUAAsAPu1iqU2ppaOiMAgBMB2JbACdMoKAAAlYsWjhD2ZOAAHAAP3Z0olNyFQvaTfeFAQpCfmdi9MwlptgHAnOrX7WMT0ZOSW9kRauOUmMbqoixeUxwpzELWTBfceioZpWBNTs5cjjhG4Bxfxk6LhxZLQyq3a4uTECWHzf5CMDFloiu7pD90XCX5YrlsT5aJ6JuKSeYAA=)"></figure></div><nav class="pn" aria-label="More projects"><a href="/hh-virtual-skol/" rel="prev">← Previous</a><a href="/the-smallest-launch/" rel="next">Next →</a></nav></article>
 </main>
 <footer class="site-foot">
-  <a href="#top" class="totop">↑ back to top</a>
   <span class="social"><a href="https://www.linkedin.com/in/flaviosalzer" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ic ic-li"></i></a><a href="https://instagram.com/flaviosalzer" target="_blank" rel="noopener" aria-label="Instagram"><i class="ic ic-ig"></i></a></span>
 </footer>
 <script src="/js/lenis.min.js"></script>
@@ -343,16 +342,17 @@ html.view-list .pg-home .plist{display:block}
       if (v.readyState >= 2) return;
       waits.push(new Promise(res => { v.addEventListener('loadeddata', res, { once: true }); v.addEventListener('error', res, { once: true }); }));
     });
-    // films: every one on the page has to be playing before the page scrolls
+    // films: all start loading now (so they're ready further down); only the ones on the first screen hold the scroll
     if (window.Vimeo) document.querySelectorAll('.vplayer').forEach(v => {
       const f = v.querySelector('iframe');
       if (!f.src) f.src = f.dataset.src;
       const pl = f._pl || (f._pl = new Vimeo.Player(f));
-      waits.push(new Promise(res => {
+      const p = (new Promise(res => {
         const ok = () => { v.classList.add('ready'); res(); };
         pl.on('play', ok); pl.on('playing', ok);
         pl.ready().then(() => pl.getPaused()).then(p => { if (!p) ok(); }).catch(ok);
       }));
+      if (near(v)) waits.push(p);
     });
     const total = waits.length || 1;
     let done = 0, shown = 0.08, target = 0.08;
@@ -367,7 +367,7 @@ html.view-list .pg-home .plist{display:block}
       setTimeout(() => { bar.classList.add('done'); root.classList.remove('loading'); if (lenis) lenis.start(); }, 380);
       setTimeout(() => bar.remove(), 1200);
     };
-    Promise.race([Promise.all(waits), new Promise(r => setTimeout(r, 15000))]).then(() => setTimeout(finish, 150));
+    Promise.race([Promise.all(waits), new Promise(r => setTimeout(r, 8000))]).then(() => setTimeout(finish, 150));
   })();
 
   // titles: split into lines and reveal line by line

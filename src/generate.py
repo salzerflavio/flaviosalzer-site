@@ -298,7 +298,6 @@ def page(title, body, cls='', desc='Flávio Salzer — Creative and Art Director
 {body}
 </main>
 <footer class="site-foot">
-  <a href="#top" class="totop">↑ back to top</a>
   <span class="social"><a href="https://www.linkedin.com/in/flaviosalzer" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ic ic-li"></i></a><a href="https://instagram.com/flaviosalzer" target="_blank" rel="noopener" aria-label="Instagram"><i class="ic ic-ig"></i></a></span>
 </footer>
 <script src="/js/lenis.min.js"></script>

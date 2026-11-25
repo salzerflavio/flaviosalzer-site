@@ -48,16 +48,17 @@
       if (v.readyState >= 2) return;
       waits.push(new Promise(res => { v.addEventListener('loadeddata', res, { once: true }); v.addEventListener('error', res, { once: true }); }));
     });
-    // films: every one on the page has to be playing before the page scrolls
+    // films: all start loading now (so they're ready further down); only the ones on the first screen hold the scroll
     if (window.Vimeo) document.querySelectorAll('.vplayer').forEach(v => {
       const f = v.querySelector('iframe');
       if (!f.src) f.src = f.dataset.src;
       const pl = f._pl || (f._pl = new Vimeo.Player(f));
-      waits.push(new Promise(res => {
+      const p = (new Promise(res => {
         const ok = () => { v.classList.add('ready'); res(); };
         pl.on('play', ok); pl.on('playing', ok);
         pl.ready().then(() => pl.getPaused()).then(p => { if (!p) ok(); }).catch(ok);
       }));
+      if (near(v)) waits.push(p);
     });
     const total = waits.length || 1;
     let done = 0, shown = 0.08, target = 0.08;
@@ -72,7 +73,7 @@
       setTimeout(() => { bar.classList.add('done'); root.classList.remove('loading'); if (lenis) lenis.start(); }, 380);
       setTimeout(() => bar.remove(), 1200);
     };
-    Promise.race([Promise.all(waits), new Promise(r => setTimeout(r, 15000))]).then(() => setTimeout(finish, 150));
+    Promise.race([Promise.all(waits), new Promise(r => setTimeout(r, 8000))]).then(() => setTimeout(finish, 150));
   })();
 
   // titles: split into lines and reveal line by line
