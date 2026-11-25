@@ -210,6 +210,11 @@ html:not(.js) .split .ln>span{transform:none}
 .loadbar.done{opacity:0}
 html.loading,html.loading body{overflow:hidden}
 .vplayer iframe{background:#0b0b0b}
+
+/* camadas: imagens largas "param" no fim e o bloco seguinte desliza por cima, cobrindo */
+.p-body>.mod{position:relative;z-index:1;background:var(--bg)}
+.p-body>.mod.pin{position:sticky;z-index:0}
+.p-body>.mod.pin:last-child{position:relative}
 </style>
 </head>
 <body class="pg-home" id="top">
@@ -336,6 +341,11 @@ html.loading,html.loading body{overflow:hidden}
       });
     });
   }
+
+  // layered scroll: a pinned image sticks once its bottom reaches the bottom of the screen
+  const pins = [...document.querySelectorAll('.p-body>.mod.pin')];
+  const setPins = () => pins.forEach(p => { p.style.top = Math.min(0, innerHeight - p.offsetHeight) + 'px'; });
+  if (pins.length) { setPins(); addEventListener('resize', setPins); const pinRO = new ResizeObserver(setPins); pins.forEach(p => pinRO.observe(p)); }
 
   // in-page loops (ex-GIFs): load + play only while on screen
   const vidObs = new IntersectionObserver(es => {

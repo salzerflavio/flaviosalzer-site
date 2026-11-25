@@ -109,6 +109,11 @@
     });
   }
 
+  // layered scroll: a pinned image sticks once its bottom reaches the bottom of the screen
+  const pins = [...document.querySelectorAll('.p-body>.mod.pin')];
+  const setPins = () => pins.forEach(p => { p.style.top = Math.min(0, innerHeight - p.offsetHeight) + 'px'; });
+  if (pins.length) { setPins(); addEventListener('resize', setPins); const pinRO = new ResizeObserver(setPins); pins.forEach(p => pinRO.observe(p)); }
+
   // in-page loops (ex-GIFs): load + play only while on screen
   const vidObs = new IntersectionObserver(es => {
     es.forEach(e => { const v = e.target; e.isIntersecting ? play(v) : v.pause(); });

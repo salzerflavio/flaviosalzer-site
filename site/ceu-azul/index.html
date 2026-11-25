@@ -210,6 +210,11 @@ html:not(.js) .split .ln>span{transform:none}
 .loadbar.done{opacity:0}
 html.loading,html.loading body{overflow:hidden}
 .vplayer iframe{background:#0b0b0b}
+
+/* camadas: imagens largas "param" no fim e o bloco seguinte desliza por cima, cobrindo */
+.p-body>.mod{position:relative;z-index:1;background:var(--bg)}
+.p-body>.mod.pin{position:sticky;z-index:0}
+.p-body>.mod.pin:last-child{position:relative}
 </style>
 </head>
 <body class="proj" id="top">
@@ -224,9 +229,9 @@ html.loading,html.loading body{overflow:hidden}
 <div class="mod statement reveal-t"><p><span class="t-lg">To make the journey even more exclusive, we launched the Azul Brasil Guide, an A.I. – powered platform with award-winning destinations and secret routes for Azul customers only.</span></p></div>
 <div class="mod vplayer reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe data-src="https://player.vimeo.com/video/1118370815?h=94b6e5e318&amp;background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Film"></iframe></div><button class="vp-hit" type="button" aria-label="Play with sound"><span class="vp-label">Play with sound</span></button></div>
 <div class="mod statement reveal-t"><p><span class="t-lg">And on the streets, when the skies over the capitals weren’t blue, we displayed the skies of our destinations live, with special offers on out-of-home media.</span></p></div>
-<figure class="mod img reveal-m"><img class="m " src="/media/3c35ae9a-3ed3-4898-913a-a7d90f9b297c_rw_1920.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAACwAwCdASoUAAsAPu1iqU2ppaQiMAgBMB2JQBOgAxXNJFIJ0OmAAAD+37O9wVO51r8JvZ+ygjyL+ynUoeHWoc549d8i6AbGSwKtH/6B8aLC/QDH9XHMEv5nEzBRzgU68F3as+xyEQAAAA==)"></figure>
+<figure class="mod img reveal-m pin"><img class="m " src="/media/3c35ae9a-3ed3-4898-913a-a7d90f9b297c_rw_1920.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAACwAwCdASoUAAsAPu1iqU2ppaQiMAgBMB2JQBOgAxXNJFIJ0OmAAAD+37O9wVO51r8JvZ+ygjyL+ynUoeHWoc549d8i6AbGSwKtH/6B8aLC/QDH9XHMEv5nEzBRzgU68F3as+xyEQAAAA==)"></figure>
 <div class="mod embed reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe src="https://www.youtube.com/embed/ZPWp2oCXvUU?autoplay=1&amp;mute=1&amp;controls=0&amp;loop=1&amp;playlist=ZPWp2oCXvUU&amp;modestbranding=1&amp;rel=0" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></div>
-<figure class="mod img reveal-m"><img class="m " src="/media/6230cd3f-06a3-4ecb-9268-4e8ab4283a9e_rw_1920.webp" width="1919" height="1080" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAADQAwCdASoUAAsAPu1iqk2ppaQiMAgBMB2JaAAALhiX43Y7WGoMRwAA/tHJE+dLhQfGsyGib2xD0dAXWn6HFwXR/VUsmm0qi5Z1FBUtT3gWum0pJPrvZY+UL3x6Su1J0AJLxuPGTY+4PR2BicA4gnpXQECoacAAAAA=)"></figure>
+<figure class="mod img reveal-m pin"><img class="m " src="/media/6230cd3f-06a3-4ecb-9268-4e8ab4283a9e_rw_1920.webp" width="1919" height="1080" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAADQAwCdASoUAAsAPu1iqk2ppaQiMAgBMB2JaAAALhiX43Y7WGoMRwAA/tHJE+dLhQfGsyGib2xD0dAXWn6HFwXR/VUsmm0qi5Z1FBUtT3gWum0pJPrvZY+UL3x6Su1J0AJLxuPGTY+4PR2BicA4gnpXQECoacAAAAA=)"></figure>
 <div class="mod embed reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe src="https://www.youtube.com/embed/xr1dCU71e7A?autoplay=1&amp;mute=1&amp;controls=0&amp;loop=1&amp;playlist=xr1dCU71e7A&amp;modestbranding=1&amp;rel=0" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></div></div><nav class="pn" aria-label="More projects"><a href="/shadow-delivery/" rel="prev">← Previous</a><a href="/perrengue/" rel="next">Next →</a></nav></article>
 </main>
 <footer class="site-foot">
@@ -345,6 +350,11 @@ html.loading,html.loading body{overflow:hidden}
       });
     });
   }
+
+  // layered scroll: a pinned image sticks once its bottom reaches the bottom of the screen
+  const pins = [...document.querySelectorAll('.p-body>.mod.pin')];
+  const setPins = () => pins.forEach(p => { p.style.top = Math.min(0, innerHeight - p.offsetHeight) + 'px'; });
+  if (pins.length) { setPins(); addEventListener('resize', setPins); const pinRO = new ResizeObserver(setPins); pins.forEach(p => pinRO.observe(p)); }
 
   // in-page loops (ex-GIFs): load + play only while on screen
   const vidObs = new IntersectionObserver(es => {

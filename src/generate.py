@@ -112,7 +112,8 @@ def render_image(m):
         return ''
     full = a['w'] >= 1500
     style = '' if full else f' style="max-width:{a["w"]}px"'
-    return f'<figure class="mod img reveal-m"{style}>{media_tag(m["big"])}</figure>'
+    pin = ' pin' if full and a['h'] > a['w'] * 0.25 else ''
+    return f'<figure class="mod img reveal-m{pin}"{style}>{media_tag(m["big"])}</figure>'
 
 def render_grid(m):
     items = [i for i in m['items'] if asset(i['src'])]

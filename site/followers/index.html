@@ -210,6 +210,11 @@ html:not(.js) .split .ln>span{transform:none}
 .loadbar.done{opacity:0}
 html.loading,html.loading body{overflow:hidden}
 .vplayer iframe{background:#0b0b0b}
+
+/* camadas: imagens largas "param" no fim e o bloco seguinte desliza por cima, cobrindo */
+.p-body>.mod{position:relative;z-index:1;background:var(--bg)}
+.p-body>.mod.pin{position:sticky;z-index:0}
+.p-body>.mod.pin:last-child{position:relative}
 </style>
 </head>
 <body class="proj" id="top">
@@ -226,7 +231,7 @@ html.loading,html.loading body{overflow:hidden}
 <div class="mod statement reveal-t"><p><span class="t-lg">And these insane visuals.</span></p></div>
 <div class="mod grid"><div class="row"><div class="cell reveal-m" style="flex:1.7863 1 0;transition-delay:0ms"><video class="m " data-src="/media/df26689b-5c36-4699-9fd9-672e91fb041a_rw_1920.mp4" poster="/media/df26689b-5c36-4699-9fd9-672e91fb041a_rw_1920.webp" width="1304" height="730" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAADwAwCdASoUAAsAPu1iqk2ppaQiMAgBMB2JbACdACHgApfvcOee24AAAP7cU6wmldfOxQacWcFaoGzXziVZgwBX0worFN7pzFtPUPbWYNjMZGyfqHFXGe5AHoPl6T9a/OvAAA==)"></video></div><div class="cell reveal-m" style="flex:1.7863 1 0;transition-delay:90ms"><video class="m " data-src="/media/3b12d9f8-b8d8-46fe-9f33-41bf936287ec_rw_1920.mp4" poster="/media/3b12d9f8-b8d8-46fe-9f33-41bf936287ec_rw_1920.webp" width="1304" height="730" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAADQAwCdASoUAAsAPu1iqU2ppaOiMAgBMB2JagCdABxYEPUHXgwZ1aQA/qus3JlERTu/UCwcHjxEHJM+O4Fbb9OvDGrLIX8MQ6q8niceAo4h5X6WT6Dxz4Uqco3USpG+yKtYYAAA)"></video></div><div class="cell reveal-m" style="flex:1.7778 1 0;transition-delay:180ms"><video class="m " data-src="/media/2b67873e-e322-46a1-9104-0e55badfc577_rw_1200.mp4" poster="/media/2b67873e-e322-46a1-9104-0e55badfc577_rw_1200.webp" width="960" height="540" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAACwAwCdASoUAAsAPu1iqU2ppaOiMAgBMB2JQBOgAx1zOWxhRDqVeAD+228lZFhvTe1+M+g/jGzOmX+eERJrJnONFcAgmhhieWVhWZ2B5jPrhDK8ZeqwV2tebh+fY4uRMSU8nySFgB04UQAA)"></video></div></div></div>
 <div class="mod grid"><div class="row"><div class="cell reveal-m" style="flex:0.7072 1 0;transition-delay:0ms"><img class="m " src="/media/d1194fbf-1994-400a-8c14-ea4a7bdf10f9_rw_1920.webp" width="1920" height="2715" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAADQBACdASoUABwAPu1wsFIppiSiqAgBMB2JagCdL9SA0e2bmdMLtsAJwBPJkO5iMAD+8N/G3FbArk/0cC0G2ctf7DertyRjZJyMzzLtGeDBEK1IVpE8ny3ROEXWjmMZ2dYNrj+LFJyv8+PYcGLLbUwEdrTzDPfZgAA=)"></div><div class="cell reveal-m" style="flex:0.7073 1 0;transition-delay:90ms"><video class="m " data-src="/media/32176a8f-0e2f-428e-bb70-f025c6e13d9c_rw_1920.mp4" poster="/media/32176a8f-0e2f-428e-bb70-f025c6e13d9c_rw_1920.webp" width="1358" height="1920" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAADQAwCdASoUABwAPu1sqlGppaOiqAqpMB2JYgAALnULI3Dxv9kJHIAA/vQl3qgpjqB8GDr66IHEcGSly01wVZsdN68Nlltc9gGtLqOGiILYAnAF+gqYcUou2rwJpGEcgrlB3fhCwAA=)"></video></div></div></div>
-<figure class="mod img reveal-m"><img class="m " src="/media/f88b57d4-6fe3-4c3e-9694-46e1b9462486_rw_1920.webp" width="1920" height="898" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRjgAAABXRUJQVlA4ICwAAADQAgCdASoUAAkAPu1iqU2ppaOiMAgBMB2JZwAAe/QAAP7xDFGyRc3hIawAAA==)"></figure></div><nav class="pn" aria-label="More projects"><a href="/delivery-pool/" rel="prev">← Previous</a><a href="/the-ze-theory/" rel="next">Next →</a></nav></article>
+<figure class="mod img reveal-m pin"><img class="m " src="/media/f88b57d4-6fe3-4c3e-9694-46e1b9462486_rw_1920.webp" width="1920" height="898" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRjgAAABXRUJQVlA4ICwAAADQAgCdASoUAAkAPu1iqU2ppaOiMAgBMB2JZwAAe/QAAP7xDFGyRc3hIawAAA==)"></figure></div><nav class="pn" aria-label="More projects"><a href="/delivery-pool/" rel="prev">← Previous</a><a href="/the-ze-theory/" rel="next">Next →</a></nav></article>
 </main>
 <footer class="site-foot">
   <a href="#top" class="totop">↑ back to top</a>
@@ -344,6 +349,11 @@ html.loading,html.loading body{overflow:hidden}
       });
     });
   }
+
+  // layered scroll: a pinned image sticks once its bottom reaches the bottom of the screen
+  const pins = [...document.querySelectorAll('.p-body>.mod.pin')];
+  const setPins = () => pins.forEach(p => { p.style.top = Math.min(0, innerHeight - p.offsetHeight) + 'px'; });
+  if (pins.length) { setPins(); addEventListener('resize', setPins); const pinRO = new ResizeObserver(setPins); pins.forEach(p => pinRO.observe(p)); }
 
   // in-page loops (ex-GIFs): load + play only while on screen
   const vidObs = new IntersectionObserver(es => {
