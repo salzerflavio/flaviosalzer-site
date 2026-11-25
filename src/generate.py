@@ -224,7 +224,7 @@ def thumb(c, i, ratio=None):
         hover = f'<img class="m hover" src="/media/{hv["src"]}" loading="lazy" alt="">'
     st = f' style="aspect-ratio:{ratio:.4f}"' if ratio else ''
     return (f'<a class="thumb" href="/{c["slug"]}/" style="--i:{i}">'
-            f'<div class="frame"{st}>{img}{hover}<i class="glow"></i></div>'
+            f'<div class="frame"{st}>{img}{hover}</div>'
             f'<span class="t-title">{html.escape(title)}</span></a>')
 
 STD = 1891 / 1479
