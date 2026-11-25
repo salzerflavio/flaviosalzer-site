@@ -1,0 +1,220 @@
+{
+ "insert_after": "copia-de-iphone-17pro-x-mercado-libre",
+ "cover": {
+  "slug": "skol-zero-zero",
+  "title": "Skol Zero Zero",
+  "normal": "local:skolzero-cover",
+  "hover": "local:skolzero-hover"
+ },
+ "page": {
+  "url": "https://flaviosalzer.com/skol-zero-zero",
+  "title": "Skol Zero Zero",
+  "mods": [
+   {
+    "type": "tree",
+    "children": [
+     {
+      "flex": "101 1 0%",
+      "mods": [
+       {
+        "type": "text",
+        "html": "<big><b>SKOL ZERO ZERO</b></big>\nSkol Zero Zero is the first beer in Brazil with zero alcohol and zero sugar, without giving up the lightness and refreshing taste that made Skol one of the country’s favorite beers.\nThe launch had to say all of that at once, in a language as light, bright and summery as the beer itself.",
+        "align": "left"
+       }
+      ]
+     },
+     {
+      "flex": "99 1 0%",
+      "mods": [
+       {
+        "type": "text",
+        "html": "<small><b>Role</b><br>Creative Direction, Art Direction<br><br><b>With</b><br>Bruno Brux, Rainor Marinho, Gabriel Padilha, Vitor Sotero, Samoel Junqueira</small><br><br><small><b>Production</b><br>Lightfarm Studios</small><br><br><small><b>Agency</b><br>GUT<br><br><b>Client</b><br>Skol<br><br><b>Year</b><br>2026</small>",
+        "align": ""
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "type": "embed",
+    "src": "https://player.vimeo.com/video/1230714388",
+    "ratio": "56.25%"
+   },
+   {
+    "type": "image",
+    "big": "local:skolzero-kv",
+    "w": 1920
+   },
+   {
+    "type": "text",
+    "html": "<big>Zero alcohol. Zero sugar. Zero giving up on what makes a Skol a Skol.</big>",
+    "align": "center"
+   },
+   {
+    "type": "grid",
+    "items": [
+     {
+      "w": 1600,
+      "h": 900,
+      "src": "local:skolzero-girl"
+     },
+     {
+      "w": 1600,
+      "h": 900,
+      "src": "local:skolzero-guy"
+     }
+    ]
+   },
+   {
+    "type": "embed",
+    "src": "https://player.vimeo.com/video/1230718028",
+    "ratio": "56.25%"
+   },
+   {
+    "type": "grid",
+    "items": [
+     {
+      "w": 1600,
+      "h": 900,
+      "src": "local:skolzero-splash"
+     },
+     {
+      "w": 1600,
+      "h": 900,
+      "src": "local:skolzero-foam"
+     }
+    ]
+   },
+   {
+    "type": "text",
+    "html": "<big>Golden hour, ice-cold bottles and a splash in every frame: the most refreshing sip of the summer, minus the hangover. ↴</big>",
+    "align": "center"
+   },
+   {
+    "type": "embed",
+    "src": "https://player.vimeo.com/video/1230714648",
+    "ratio": "56.25%"
+   },
+   {
+    "type": "image",
+    "big": "local:skolzero-header",
+    "w": 1600
+   },
+   {
+    "type": "grid",
+    "items": [
+     {
+      "w": 1920,
+      "h": 1080,
+      "src": "local:skolzero-still-guy"
+     },
+     {
+      "w": 1920,
+      "h": 1080,
+      "src": "local:skolzero-still-girl"
+     }
+    ]
+   },
+   {
+    "type": "image",
+    "big": "local:skolzero-bottles",
+    "w": 1600
+   }
+  ]
+ },
+ "nameMap": {
+  "local:skolzero-cover": "skolzero-cover",
+  "local:skolzero-hover": "skolzero-hover",
+  "local:skolzero-girl": "skolzero-girl",
+  "local:skolzero-guy": "skolzero-guy",
+  "local:skolzero-splash": "skolzero-splash",
+  "local:skolzero-foam": "skolzero-foam",
+  "local:skolzero-bottles": "skolzero-bottles",
+  "local:skolzero-header": "skolzero-header",
+  "local:skolzero-kv": "skolzero-kv",
+  "local:skolzero-still-guy": "skolzero-still-guy",
+  "local:skolzero-still-girl": "skolzero-still-girl",
+  "local:skolzero-still-foam": "skolzero-still-foam"
+ },
+ "manifest": {
+  "skolzero-cover": {
+   "type": "image",
+   "src": "skolzero-cover.webp",
+   "w": 1280,
+   "h": 1001
+  },
+  "skolzero-hover": {
+   "type": "video",
+   "src": "skolzero-hover.mp4",
+   "poster": "skolzero-hover.webp",
+   "w": 1000,
+   "h": 782
+  },
+  "skolzero-girl": {
+   "type": "video",
+   "src": "skolzero-girl.mp4",
+   "poster": "skolzero-girl.webp",
+   "w": 1600,
+   "h": 900
+  },
+  "skolzero-guy": {
+   "type": "video",
+   "src": "skolzero-guy.mp4",
+   "poster": "skolzero-guy.webp",
+   "w": 1600,
+   "h": 900
+  },
+  "skolzero-splash": {
+   "type": "video",
+   "src": "skolzero-splash.mp4",
+   "poster": "skolzero-splash.webp",
+   "w": 1600,
+   "h": 900
+  },
+  "skolzero-foam": {
+   "type": "video",
+   "src": "skolzero-foam.mp4",
+   "poster": "skolzero-foam.webp",
+   "w": 1600,
+   "h": 900
+  },
+  "skolzero-bottles": {
+   "type": "video",
+   "src": "skolzero-bottles.mp4",
+   "poster": "skolzero-bottles.webp",
+   "w": 1600,
+   "h": 900
+  },
+  "skolzero-header": {
+   "type": "video",
+   "src": "skolzero-header.mp4",
+   "poster": "skolzero-header.webp",
+   "w": 1600,
+   "h": 680
+  },
+  "skolzero-kv": {
+   "type": "image",
+   "src": "skolzero-kv.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  "skolzero-still-guy": {
+   "type": "image",
+   "src": "skolzero-still-guy.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  "skolzero-still-girl": {
+   "type": "image",
+   "src": "skolzero-still-girl.webp",
+   "w": 1920,
+   "h": 1080
+  },
+  "skolzero-still-foam": {
+   "type": "image",
+   "src": "skolzero-still-foam.webp",
+   "w": 1920,
+   "h": 1080
+  }
+ }
+}

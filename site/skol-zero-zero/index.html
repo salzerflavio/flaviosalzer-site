@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skol Zero Zero — Flávio Salzer</title>
+<meta name="description" content="Skol Zero Zero is the first beer in Brazil with zero alcohol and zero sugar, without giving up the lightness and refreshing taste that made Skol one of the country’s favorite beers">
+<meta property="og:title" content="Skol Zero Zero — Flávio Salzer">
+<meta property="og:description" content="Skol Zero Zero is the first beer in Brazil with zero alcohol and zero sugar, without giving up the lightness and refreshing taste that made Skol one of the country’s favorite beers">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://flaviosalzer.com/skol-zero-zero/">
+<meta property="og:image" content="https://flaviosalzer.com/og/skol-zero-zero.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://flaviosalzer.com/skol-zero-zero/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🫀</text></svg>">
+<script>document.documentElement.classList.add('js');try{if(localStorage.getItem('fs-view')==='list'||location.hash==='#list')document.documentElement.classList.add('view-list')}catch(e){}</script>
+<style>/* ==========================================================
+   f* — GUIA PADRÃO
+   COR      fundo #000 · texto #bcbcbc · destaque #eeeeee
+   FONTE    Helvetica Neue (fallback Helvetica, Arial)
+   PESOS    700 título de projeto · 500 título de página e UI
+            400 textos do projeto · 400/700 textos pequenos (valor/rótulo)
+   TAMANHOS 78 título de projeto · 32 título de página · 26 frase de destaque
+            16 texto corrido · 14 UI (menu, thumbs) · 13 textos pequenos
+   CRÉDITOS rótulo 700 / valor 400, sem linhas
+   ESPAÇO   10 gutter · 20 · 40 · 80 · 120
+   ========================================================== */
+:root{
+  --bg:#000; --tx:#bcbcbc; --hi:#eeeeee;
+  --f:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --fs-xl:clamp(46px,5.4vw,78px);
+  --fs-lg:clamp(24px,2.3vw,32px);
+  --fs-md:clamp(20px,1.85vw,26px);
+  --fs-body:16px; --fs-ui:14px; --fs-sm:13px;
+  --g:10px; --edge:35px; --s1:20px; --s2:40px; --s3:80px; --s4:120px;
+  --ease:cubic-bezier(.2,.7,.1,1);
+  color-scheme:dark;
+}
+*{box-sizing:border-box;min-width:0}
+html{background:var(--bg);scroll-behavior:smooth;scrollbar-gutter:stable}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 var(--fs-body)/1.5 var(--f);-webkit-font-smoothing:antialiased;overflow-x:clip}
+a{color:inherit;text-decoration:none}
+p{margin:0}
+strong{font-weight:700;color:var(--hi)}
+img,video{display:block;max-width:100%}
+.m{width:100%;height:auto;background:#0b0b0b}
+
+/* ---------- topo (igual ao atual) ---------- */
+.site-head{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:0 var(--edge);height:80px;mix-blend-mode:difference;pointer-events:none}
+.site-head a{pointer-events:auto}
+main{padding-top:80px}
+.logo{font:700 19.5px/1 var(--f);color:var(--hi);letter-spacing:-.01em}
+.site-head nav{display:flex;gap:22px;font:400 17px/1 var(--f);color:var(--hi)}
+.site-head nav a{opacity:.85;transition:opacity .2s}
+.site-head nav a:hover{opacity:1}
+body.pg-home .site-head nav a[href="/"],body.pg-about .site-head nav a[href="/flavio/"]{opacity:1;font-weight:500;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+
+/* ---------- home: 2 colunas intercaladas, sem respiro ---------- */
+.masonry{display:flex}
+.masonry.m2{display:none}
+@media (max-width:1000px){.masonry.m3{display:none}.masonry.m2{display:flex}}
+.mcol{flex:1 1 0;display:flex;flex-direction:column}
+.stack{display:none}
+.thumb{position:relative;display:block;overflow:hidden}
+.thumb .frame{position:relative;aspect-ratio:1891/1479;overflow:hidden;background:#000;margin-bottom:-1px}
+.thumb .m{position:absolute;inset:-2px;width:calc(100% + 4px);height:calc(100% + 4px);max-width:none;object-position:left top;object-fit:cover;transition:transform 1.2s var(--ease),opacity .35s;transform-origin:left top}
+.thumb .hover{opacity:0}
+.thumb:hover .hover,.thumb.playing .hover{opacity:1}
+.t-title{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;text-align:left;padding:var(--s1) 24px 22px;font:500 var(--fs-ui)/1.3 var(--f);color:#fff;
+  background:rgba(0,0,0,.4);opacity:0;transition:opacity .35s var(--ease)}
+.thumb:hover .t-title,.thumb:focus-visible .t-title{opacity:1}
+.thumb .hover{transition:opacity .3s ease-out}
+.t-title b{font-weight:500;color:#fff;font-size:clamp(17px,1.5vw,22px);line-height:1.2;margin-bottom:2px}
+.t-title i{font-style:normal;font-weight:400;color:rgba(255,255,255,.75)}
+.t-title{z-index:2}
+@media (max-width:700px){
+  :root{--edge:20px}
+  .masonry,.masonry.m2{display:none}
+  .stack{display:block}
+  .thumb.playing .t-title{opacity:1}
+}
+
+/* ---------- projeto ---------- */
+.p-head{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:'b b' 't .' 'd c';gap:var(--s1) var(--s2);padding:var(--s2) var(--edge) var(--s3)}
+.p-intro{display:contents}
+.p-head h1{grid-area:t}.p-head .back{position:fixed;z-index:50;top:104px;left:var(--edge);display:block;padding:8px 0;color:#fff;mix-blend-mode:difference;transition:transform .3s var(--ease)}
+.p-head .back .arr{display:block;fill:currentColor}.p-head .back:hover{transform:translateX(-6px)}
+.p-head::before{content:"";grid-area:b;height:41px;margin-bottom:var(--s1)}.p-desc{grid-area:d}.credits{grid-area:c}
+.p-head h1{margin:0;align-self:end;font:700 var(--fs-xl)/1.02 var(--f);color:var(--hi);letter-spacing:-.015em;text-wrap:balance}
+.p-desc{max-width:60ch;display:grid;gap:1em}
+.credits{margin:0;display:grid;gap:14px;align-content:start;font-size:var(--fs-sm);line-height:1.45}
+.credits div{break-inside:avoid}
+.credits dt{font-weight:700;color:var(--hi)}
+.credits dd{margin:0}
+.p-body{display:flex;flex-direction:column;gap:var(--g);padding:0 var(--g)}
+.mod{margin:0}
+.reveal-m,.thumb .frame{overflow:hidden}
+figure{margin:0}
+.mod.img{width:100%;margin-inline:auto}
+.grid .row{display:flex;gap:var(--g)}
+.grid .row+.row{margin-top:var(--g)}
+.grid .cell .m{width:100%}
+.embed .ratio{position:relative;height:0}
+.embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.statement{padding:var(--s3) var(--edge);text-align:center;max-width:900px;margin:0 auto;display:grid;gap:.5em}
+.statement p,.t-lg{font-size:var(--fs-md);line-height:1.25;font-weight:400;text-wrap:balance}
+.statement strong{font-weight:700}
+.t-sm{font-size:var(--fs-sm);line-height:1.45}
+.prose{padding:var(--s2) var(--edge);max-width:760px;margin:0 auto;display:grid;gap:1em}
+.cols{display:flex;gap:var(--g)}
+@media (max-width:800px){
+  .p-head{grid-template-columns:1fr;grid-template-areas:'b' 't' 'd' 'c';gap:var(--s1);padding-bottom:var(--s2)}.credits{margin-top:var(--s1)}
+  .grid .row{flex-wrap:wrap}
+  .grid .row .cell{flex-basis:calc(50% - var(--g)/2)!important}
+  .statement{padding:var(--s2) var(--edge)}
+  .cols{flex-direction:column}
+}
+
+/* ---------- about ---------- */
+.about{padding:var(--s2) var(--edge) 0;display:flex;flex-direction:column;gap:var(--s4)}
+.a-row{display:flex;gap:var(--s3);align-items:flex-start}
+.a-row .col{display:flex;flex-direction:column;gap:1em}
+.about .a-title{margin:0 0 var(--s2);font:700 var(--fs-xl)/1.02 var(--f);color:var(--hi);letter-spacing:-.015em}
+.about h2{margin:0 0 var(--s1);font:500 var(--fs-lg)/1.05 var(--f);color:var(--hi);text-transform:uppercase;letter-spacing:-.01em}
+.about .col>p .t-lg:first-child{display:block}
+@media (max-width:800px){.a-row{flex-direction:column;gap:var(--s2)}.about{gap:var(--s3)}}
+
+/* ---------- rodapé ---------- */
+.site-foot{display:flex;justify-content:flex-end;padding:var(--s3) var(--edge) var(--edge);font:500 var(--fs-ui)/1 var(--f);color:var(--hi)}
+.site-foot span{display:flex;gap:18px}
+.site-foot a{opacity:.85}.site-foot a:hover{opacity:1}
+.nf{padding:var(--s4) var(--edge)}
+.nf h1{font:700 var(--fs-xl)/1 var(--f);color:var(--hi);margin:0 0 var(--s1)}
+
+/* ---------- animações de scroll ---------- */
+.js .reveal-t{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform 1.1s var(--ease)}
+.js .reveal-m{opacity:0;transform:translateY(40px);transition:transform 1s ease-in-out,opacity .8s ease-in-out}
+.js .thumb .frame{clip-path:inset(0 0 100% 0);transition:clip-path 1.1s var(--ease);transition-delay:calc(var(--d,0) * 90ms)}
+.js .thumb .cover{transform:scale(1.08)}
+.js .in.reveal-t{opacity:1;transform:none}
+.js .in.reveal-m{opacity:1;transform:none}
+.js .thumb.in .frame{clip-path:inset(0)}
+.js .thumb.in .cover{transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .reveal-t,.js .reveal-m,.js .thumb .frame{opacity:1!important;transform:none!important;clip-path:none!important;transition:none!important}
+  .js .thumb .cover{transform:none!important}
+}
+
+/* cursor: asterisco do logo, contorno branco; preenchido sobre links */
+@media (hover:hover) and (pointer:fine){
+  html.has-cur,html.has-cur *{cursor:none!important}
+  html.has-cur iframe{cursor:auto!important}
+}
+.cur{view-transition-name:cursor;position:fixed;left:0;top:0;z-index:9999;pointer-events:none;opacity:0;transition:opacity .2s;will-change:transform}
+.cur svg{display:block;overflow:visible}
+.cur.on{opacity:1}
+.cur path{fill:#fff;fill-rule:evenodd;transition:opacity .18s ease}
+.cur .f{opacity:0}
+.cur.link .f{opacity:1}
+.cur.link .o{opacity:0}
+
+/* transição entre páginas (como a do Elvis): a página atual sobe e a nova entra de baixo */
+@view-transition{navigation:auto}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.9s;animation-timing-function:cubic-bezier(.87,0,.13,1);animation-fill-mode:both;mix-blend-mode:normal}
+::view-transition-old(root){animation-name:vt-out}
+::view-transition-new(root){animation-name:vt-in}
+::view-transition-group(root){background:#000}
+@keyframes vt-out{to{transform:translateY(-100%)}}
+@keyframes vt-in{from{transform:translateY(100%)}}
+@media (prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root){animation:none}}
+::view-transition-group(cursor){animation:none}
+
+/* imagens: versão desfocada da própria imagem enquanto carrega */
+.m[style*="background-image"]{background-size:cover;background-position:center;background-color:#0b0b0b}
+
+/* títulos entrando por linha */
+.split .ln{display:block;overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
+.split .ln>span{display:block;transform:translateY(105%);transition:transform 1.1s var(--ease);transition-delay:calc(var(--l,0) * 90ms + 80ms)}
+.split.in .ln>span{transform:none}
+html:not(.js) .split .ln>span{transform:none}
+
+/* player próprio */
+.vplayer{position:relative;background:#0b0b0b}
+.vplayer iframe{pointer-events:none}
+.vp-hit{position:absolute;inset:0;width:100%;border:0;padding:0;background:transparent;color:#fff;display:flex;align-items:flex-end;justify-content:flex-start}
+.vp-label{margin:0 0 22px 24px;font:500 var(--fs-ui)/1 var(--f);padding:10px 14px;border-radius:99px;background:rgba(0,0,0,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:opacity .3s}
+.vplayer.sound .vp-label{opacity:0}
+.vplayer.sound:hover .vp-label{opacity:1}
+
+/* anterior / próximo: discreto, no pé do case */
+.pn{display:flex;justify-content:space-between;padding:var(--s4) var(--edge) 0;font:400 var(--fs-ui)/1 var(--f)}
+.pn a{color:var(--tx);transition:color .2s}
+.pn a:hover{color:var(--hi)}
+@media (prefers-reduced-motion:reduce){.split .ln>span{transform:none!important;transition:none!important}}
+.vplayer .ratio{position:relative;height:0}
+.vplayer iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+/* ícones sociais (arquivos do Flavio) */
+.social{align-items:center}
+.ic{display:block;width:18px;height:18px;background:currentColor;-webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat}
+.ic-li{--i:url(/img/linkedin.png)}
+.ic-ig{--i:url(/img/instagram.png)}
+
+/* barra de carregamento no topo; a página só rola quando o primeiro trecho está pronto */
+.loadbar{position:fixed;top:0;left:0;right:0;height:2px;z-index:10000;pointer-events:none;transition:opacity .5s .1s}
+.loadbar i{display:block;height:100%;background:#fff;transform-origin:0 50%;transform:scaleX(0)}
+.loadbar.done{opacity:0}
+html.loading,html.loading body{overflow:hidden}
+.vplayer iframe{background:#0b0b0b}
+
+
+/* alternar mosaico / lista */
+.site-head nav{align-items:center}
+.vt{pointer-events:auto;display:block;padding:0;margin:0;border:0;background:none;color:inherit;opacity:.85;transition:opacity .2s}
+.vt:hover{opacity:1}
+.vt svg{display:block;fill:currentColor}
+.vt .i-grid{display:none}
+html.view-list .vt .i-grid{display:block}
+html.view-list .vt .i-list{display:none}
+.plist{display:none;padding:var(--s2) var(--edge) var(--s3)}
+html.view-list .pg-home .masonry,html.view-list .pg-home .stack{display:none!important}
+html.view-list .pg-home .plist{display:block}
+.prow{display:grid;grid-template-columns:minmax(0,15%) minmax(0,1fr) 190px 48px 28px;align-items:center;gap:24px;padding:16px 0;border-top:1px solid rgba(255,255,255,.22);color:var(--tx);transition:color .25s}
+.pr-client{font:400 var(--fs-ui)/1.3 var(--f)}
+.pr-name{font:500 clamp(28px,3.4vw,50px)/1.05 var(--f);letter-spacing:-.015em;color:var(--hi);opacity:.55;transition:opacity .25s,transform .4s var(--ease)}
+.pr-year{font:400 var(--fs-ui)/1 var(--f);text-align:right}
+.pr-arr{font:400 22px/1 var(--f);text-align:right;opacity:0;transform:translateX(-8px);transition:opacity .25s,transform .3s var(--ease)}
+.prow:hover .pr-name{opacity:1;transform:translateX(8px)}
+.prow:hover .pr-arr{opacity:1;transform:none}
+.prow:hover{color:var(--hi)}
+.pv{position:fixed;left:0;top:0;z-index:40;width:min(28vw,420px);aspect-ratio:1891/1479;pointer-events:none;opacity:0;transform:scale(.92);transition:opacity .25s,transform .35s var(--ease);overflow:hidden}
+.pv.on{opacity:1;transform:scale(1)}
+.pv img{width:100%;height:100%;object-fit:cover;object-position:left top;display:block}
+@media (max-width:700px){
+  .prow{grid-template-columns:1fr auto;gap:6px 12px}
+  .pr-client{grid-column:1/-1;order:-1}
+  .pr-arr{display:none}
+  .pr-name{opacity:1}
+  .pv{display:none}
+}
+
+.pr-bd{display:flex;align-items:center;justify-content:flex-end;gap:14px}
+.prow:last-child{border-bottom:1px solid rgba(255,255,255,.22)}
+.bd{display:block;height:26px;background:currentColor;-webkit-mask:var(--b) center/contain no-repeat;mask:var(--b) center/contain no-repeat;opacity:.6;transition:opacity .25s}
+.prow:hover .bd{opacity:1}
+.bd-lion{--b:url(/img/badge-lion.png);aspect-ratio:88/96}
+.bd-effie{--b:url(/img/badge-effie.png);aspect-ratio:96/87}
+.bd-head{--b:url(/img/badge-head.png);aspect-ratio:82/96}
+.bd-clube{--b:url(/img/badge-clube.png);aspect-ratio:96/92;height:24px}
+@media (max-width:700px){.pr-bd{grid-column:1/-1;order:3;justify-content:flex-start}.bd{height:20px}}
+
+/* respiro entre o menu e o mosaico */
+.pg-home main{padding-top:120px}
+.pg-home .plist{padding-top:0}
+
+/* linha do tempo dos filmes: branca, simples, clicável e arrastável */
+.vp-tl{position:relative;height:18px;margin-top:2px;cursor:pointer;touch-action:none}
+.vp-tl::before{content:"";position:absolute;left:0;right:0;top:8px;height:2px;background:rgba(255,255,255,.25)}
+.vp-tl i{position:absolute;left:0;top:8px;height:2px;width:calc(var(--p,0) * 100%);background:#fff}
+.vp-tl:hover::before,.vp-tl:hover i{top:7px;height:4px}
+.vplayer iframe{opacity:0;transition:opacity .4s}
+.vplayer.ready iframe{opacity:1}
+</style>
+</head>
+<body class="proj" id="top">
+<header class="site-head">
+  <a class="logo" href="/">f*</a>
+  <nav><a href="/">Work</a><a href="/flavio/">☺ About</a><button class="vt" type="button" aria-label="Show as list"><svg class="i-list" viewBox="0 0 20 20" width="17" height="17"><rect x="2" y="4" width="16" height="1.6"/><rect x="2" y="9.2" width="16" height="1.6"/><rect x="2" y="14.4" width="16" height="1.6"/></svg><svg class="i-grid" viewBox="0 0 20 20" width="17" height="17"><rect x="2" y="2" width="7" height="7"/><rect x="11" y="2" width="7" height="7"/><rect x="2" y="11" width="7" height="7"/><rect x="11" y="11" width="7" height="7"/></svg></button></nav>
+</header>
+<main>
+<article class="project"><header class="p-head"><div class="p-intro"><a class="back" href="/" aria-label="Back to work"><svg class="arr" viewBox="486 353 250 95" width="66" height="25" aria-hidden="true"><polygon points="534.41 445.79 488.14 401.58 532.35 355.3 536.69 359.45 496.62 401.38 538.55 441.45 534.41 445.79"/><rect x="492.38" y="398.48" width="241.62" height="6"/></svg></a><h1 class="split">Skol Zero Zero</h1><div class="p-desc reveal-t"><p>Skol Zero Zero is the first beer in Brazil with zero alcohol and zero sugar, without giving up the lightness and refreshing taste that made Skol one of the country’s favorite beers.</p><p>The launch had to say all of that at once, in a language as light, bright and summery as the beer itself.</p></div></div><dl class="credits reveal-t"><div><dt>Role</dt><dd>Creative Direction, Art Direction</dd></div><div><dt>With</dt><dd>Bruno Brux, Rainor Marinho, Gabriel Padilha, Vitor Sotero, Samoel Junqueira</dd></div><div><dt>Production</dt><dd>Lightfarm Studios</dd></div><div><dt>Agency</dt><dd>GUT</dd></div><div><dt>Client</dt><dd>Skol</dd></div><div><dt>Year</dt><dd>2026</dd></div></dl></header><div class="p-body"><div class="mod vplayer reveal-m"><div class="ratio" style="padding-bottom:56.25%"><iframe data-src="https://player.vimeo.com/video/1230714388?background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Film"></iframe><button class="vp-hit" type="button" aria-label="Play with sound"><span class="vp-label">Play with sound</span></button></div><div class="vp-tl" role="slider" aria-label="Seek" tabindex="0"><i></i></div></div>
+<figure class="mod img reveal-m"><img class="m " src="/media/skolzero-kv.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRoAAAABXRUJQVlA4IHQAAADwAwCdASoUAAsAPu1iqU2ppaQiMAgBMB2JbACdMoR3ACmoDblppBkAAMtEF40bYHHxZ4W6zskgetiXEA//ouTp7+Vp4tl9UfyTbK3dh6bNAeSJpnuCA21RfEaYrKMxMAgr/KQvymWZ88SqGwlfIkZDCYgAAA==)"></figure>
+<div class="mod statement reveal-t"><p><span class="t-lg">Zero alcohol. Zero sugar. Zero giving up on what makes a Skol a Skol.</span></p></div>
+<div class="mod grid"><div class="row"><div class="cell reveal-m" style="flex:1.7778 1 0;transition-delay:0ms"><video class="m " data-src="/media/skolzero-girl.mp4" poster="/media/skolzero-girl.webp" width="1600" height="900" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRn4AAABXRUJQVlA4IHIAAABQBACdASoUAAsAPu1iqU2ppaOiMAgBMB2JbACdMoACwY8nsND3UP5TJwwAAMtEYpqgMmgvYcfLMuGGnTt793H7tOvlwJHd8mLTq/1tEaCm9isysfwLeyRlQW0gDilS4kARkUlPn2jbrQffcCxXwFzvAAA=)"></video></div><div class="cell reveal-m" style="flex:1.7778 1 0;transition-delay:90ms"><video class="m " data-src="/media/skolzero-guy.mp4" poster="/media/skolzero-guy.webp" width="1600" height="900" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRn4AAABXRUJQVlA4IHIAAAAQBACdASoUAAsAPu1iqU2ppaOiMAgBMB2JbACdMoAC75mMdpbn8HxpZAD+J2x/6AueAbrLXrMC1CBEc7yZ296j+4EdVxn9Vk0kb6K19k5BSKcPZXjLaC6X++NDDzlAkZkFg6xaQw5LnE2LlEk86BZEAAA=)"></video></div></div></div>
+<div class="mod vplayer reveal-m"><div class="ratio" style="padding-bottom:56.25%"><iframe data-src="https://player.vimeo.com/video/1230718028?background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Film"></iframe><button class="vp-hit" type="button" aria-label="Play with sound"><span class="vp-label">Play with sound</span></button></div><div class="vp-tl" role="slider" aria-label="Seek" tabindex="0"><i></i></div></div>
+<div class="mod grid"><div class="row"><div class="cell reveal-m" style="flex:1.7778 1 0;transition-delay:0ms"><video class="m " data-src="/media/skolzero-splash.mp4" poster="/media/skolzero-splash.webp" width="1600" height="900" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRoAAAABXRUJQVlA4IHQAAABwBACdASoUAAsAPu1iqU2ppaOiMAgBMB2JbACdMoRwACxv4xBmCYwKqjfmgAD+kXILfKbTKClVg2DaIPYjbQEsvM6uvrgbid22949f7DR6Jn22uVcN+FJ06RUTRdW27/uYZr55ALroVaRjsL7jrf9pNb5gAA==)"></video></div><div class="cell reveal-m" style="flex:1.7778 1 0;transition-delay:90ms"><video class="m " data-src="/media/skolzero-foam.mp4" poster="/media/skolzero-foam.webp" width="1600" height="900" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRn4AAABXRUJQVlA4IHIAAABQBACdASoUAAsAPu1iqU2ppaOiMAgBMB2JbACdMoMYAEFMH4m3pdQZXL0AAP6xh0EbM+k8H66AidErtRYNYOwkOitCs5X4e/lxgj1qDcZh3cnQbMgQh8aW5gVsLk8nx/SnGC/nQKbP1BLi8tE1jO/uAAA=)"></video></div></div></div>
+<div class="mod statement reveal-t"><p><span class="t-lg">Golden hour, ice-cold bottles and a splash in every frame: the most refreshing sip of the summer, minus the hangover. ↴</span></p></div>
+<div class="mod vplayer reveal-m"><div class="ratio" style="padding-bottom:56.25%"><iframe data-src="https://player.vimeo.com/video/1230714648?background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Film"></iframe><button class="vp-hit" type="button" aria-label="Play with sound"><span class="vp-label">Play with sound</span></button></div><div class="vp-tl" role="slider" aria-label="Seek" tabindex="0"><i></i></div></div>
+<figure class="mod img reveal-m"><video class="m " data-src="/media/skolzero-header.mp4" poster="/media/skolzero-header.webp" width="1600" height="680" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAACQBACdASoUAAgAPu1iqk2ppaQiMAgBMB2JbACdMoRwHuAAStsFHYm8jtXmBAAA/luAl3OCoUmz7bmP47gBFMB78rHLxaBWsbIOFXHNPzF1MO1cwvJKX2qcyOmN4iQbOksOV2z8aRY5rBYAAAA=)"></video></figure>
+<div class="mod grid"><div class="row"><div class="cell reveal-m" style="flex:1.7778 1 0;transition-delay:0ms"><img class="m " src="/media/skolzero-still-guy.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRn4AAABXRUJQVlA4IHIAAABwBACdASoUAAsAPu1iqU2ppaQiMAgBMB2JbACdMoMYAEtAm3CoSJdGdvE/AAD+vHHZxJ00rF6/G4P16UQuZhaMjn0zXGtvzzV0OGEm7U7U3xPdAjl4Vgu3RNoZLuyJjp7x4WfAMCj7O/6eBHIs+ZXQoAA=)"></div><div class="cell reveal-m" style="flex:1.7778 1 0;transition-delay:90ms"><img class="m " src="/media/skolzero-still-girl.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAABwBACdASoUAAsAPu1iqU2ppaOiMAgBMB2JbACdMoR4Lf/gPHEglTIlU4TOeAD+vHGUWNsdchoQk/jWzVSfkFX+vPnNaeqSZpk+bNVJExf5v6pAWIoFHrvaMeRL3TY0bH3Agz+gCv3VF1c6CAxzmoIA)"></div></div></div>
+<figure class="mod img reveal-m"><video class="m " data-src="/media/skolzero-bottles.mp4" poster="/media/skolzero-bottles.webp" width="1600" height="900" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAABwBACdASoUAAsAPu1iqU2ppaOiMAgBMB2JbACdMoR4PoACX5aQ/x0LYsnUAAD+sW6UY8q0dPpwdAoD1bLH+8F3+h+06d313C5nzKYp5DMJr5ELrUOR9uFwODGrKajs767TaN6cxR4AAA==)"></video></figure></div><nav class="pn" aria-label="More projects"><a href="/copia-de-iphone-17pro-x-mercado-libre/" rel="prev">← Previous</a><a href="/mercadolibrexapple/" rel="next">Next →</a></nav></article>
+</main>
+<footer class="site-foot">
+  <span class="social"><a href="https://www.linkedin.com/in/flaviosalzer" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ic ic-li"></i></a><a href="https://instagram.com/flaviosalzer" target="_blank" rel="noopener" aria-label="Instagram"><i class="ic ic-ig"></i></a></span>
+</footer>
+<script src="/js/lenis.min.js"></script>
+<script src="/js/player.min.js"></script>
+<script>{
+  document.documentElement.classList.add('js');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const noHover = matchMedia('(hover: none)').matches;
+
+  const load = v => { if (v.dataset.src && !v.src) { v.src = v.dataset.src; } };
+  const play = v => { load(v); const p = v.play(); if (p) p.catch(() => {}); };
+
+  // reveal on scroll
+  const revealObs = new IntersectionObserver(es => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); } });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+  document.querySelectorAll('.reveal-t,.reveal-m,.thumb').forEach((el) => {
+    if (el.classList.contains('thumb')) {
+      const col = el.parentElement.classList.contains('mcol') ? [...el.parentElement.parentElement.children].indexOf(el.parentElement) : 0;
+      el.style.setProperty('--d', col);
+    }
+    reduce ? el.classList.add('in') : revealObs.observe(el);
+  });
+
+
+  // smooth (inertial) scrolling
+  let lenis = null;
+  if (!reduce && window.Lenis && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    lenis = new Lenis({ autoRaf: true, lerp: 0.15, wheelMultiplier: 1 });
+  }
+
+
+  // loading bar (top, like Elvis' site) + hold scroll until the first screen is ready
+  (() => {
+    const bar = document.createElement('div'); bar.className = 'loadbar'; bar.innerHTML = '<i></i>';
+    document.body.appendChild(bar);
+    const fill = bar.firstChild;
+    const root = document.documentElement;
+    root.classList.add('loading');
+    if (lenis) lenis.stop();
+    const limit = innerHeight * 1.6;
+    const near = el => { const r = el.getBoundingClientRect(); return r.width && r.top < limit && r.bottom > -10; };
+    const waits = [];
+    document.querySelectorAll('img').forEach(im => {
+      if (!near(im) || im.complete) return;
+      im.loading = 'eager';
+      waits.push(new Promise(res => { im.addEventListener('load', res, { once: true }); im.addEventListener('error', res, { once: true }); }));
+    });
+    document.querySelectorAll('.p-body video, .about video').forEach(v => {
+      if (!near(v)) return;
+      load(v);
+      if (v.readyState >= 2) return;
+      waits.push(new Promise(res => { v.addEventListener('loadeddata', res, { once: true }); v.addEventListener('error', res, { once: true }); }));
+    });
+    // films: all start loading now (so they're ready further down); only the ones on the first screen hold the scroll
+    if (window.Vimeo) document.querySelectorAll('.vplayer').forEach(v => {
+      const f = v.querySelector('iframe');
+      if (!f.src) f.src = f.dataset.src;
+      const pl = f._pl || (f._pl = new Vimeo.Player(f));
+      const p = (new Promise(res => {
+        const ok = () => { v.classList.add('ready'); res(); };
+        pl.on('play', ok); pl.on('playing', ok);
+        pl.ready().then(() => pl.getPaused()).then(p => { if (!p) ok(); }).catch(ok);
+      }));
+      if (near(v)) waits.push(p);
+    });
+    const total = waits.length || 1;
+    let done = 0, shown = 0.08, target = 0.08;
+    const tick = () => { shown += (target - shown) * 0.18; fill.style.transform = `scaleX(${shown})`; if (!finished) requestAnimationFrame(tick); };
+    let finished = false;
+    requestAnimationFrame(tick);
+    waits.forEach(p => p.then(() => { done++; target = 0.08 + 0.92 * (done / total); }));
+    const trickle = setInterval(() => { if (target < 0.9) target += 0.01; }, 200);
+    const finish = () => {
+      if (finished) return; finished = true; clearInterval(trickle);
+      fill.style.transition = 'transform .35s ease-out'; fill.style.transform = 'scaleX(1)';
+      setTimeout(() => { bar.classList.add('done'); root.classList.remove('loading'); if (lenis) lenis.start(); }, 380);
+      setTimeout(() => bar.remove(), 1200);
+    };
+    Promise.race([Promise.all(waits), new Promise(r => setTimeout(r, 8000))]).then(() => setTimeout(finish, 150));
+  })();
+
+  // titles: split into lines and reveal line by line
+  const splitLines = el => {
+    const words = el.textContent.trim().split(/\s+/);
+    el.innerHTML = words.map(w => `<span class="w">${w.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))}</span>`).join(' ');
+    const lines = []; let top = null;
+    el.querySelectorAll('.w').forEach(w => { if (w.offsetTop !== top) { lines.push([]); top = w.offsetTop; } lines[lines.length - 1].push(w.textContent); });
+    el.innerHTML = lines.map((l, i) => `<span class="ln" style="--l:${i}"><span>${l.join(' ')}</span></span>`).join('');
+  };
+  const splits = [...document.querySelectorAll('.split')];
+  const doSplit = () => splits.forEach(splitLines);
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => {
+    doSplit();
+    splits.forEach(el => reduce ? el.classList.add('in') : revealObs.observe(el));
+  });
+  let rw; addEventListener('resize', () => { clearTimeout(rw); rw = setTimeout(() => { splits.forEach(el => { const t = [...el.querySelectorAll('.ln')].map(l => l.textContent).join(' '); el.textContent = t; }); doSplit(); }, 200); });
+
+  // own film player: Vimeo in background mode, click for sound, white timeline to scrub
+  if (window.Vimeo) {
+    document.querySelectorAll('.vplayer').forEach(v => {
+      const f = v.querySelector('iframe'), b = v.querySelector('.vp-hit'), lab = v.querySelector('.vp-label'), tl = v.querySelector('.vp-tl');
+      const ensure = () => { if (!f.src) f.src = f.dataset.src; return f._pl || (f._pl = new Vimeo.Player(f)); };
+      const pl = ensure();
+      pl.on('play', () => v.classList.add('ready'));
+      let dur = 0, dragging = false;
+      pl.getDuration().then(d => { dur = d; }).catch(() => {});
+      pl.on('timeupdate', d => { dur = d.duration || dur; if (!dragging) tl.style.setProperty('--p', d.percent.toFixed(4)); });
+      new IntersectionObserver(es => es.forEach(e => {
+        if (e.isIntersecting) pl.play().catch(() => {}); else pl.pause().catch(() => {});
+      }), { rootMargin: '200px 0px' }).observe(v);
+      const seekTo = x => {
+        const r = tl.getBoundingClientRect(); const p = Math.max(0, Math.min(1, (x - r.left) / r.width));
+        tl.style.setProperty('--p', p.toFixed(4));
+        if (dur) pl.setCurrentTime(p * dur * 0.999).catch(() => {});
+      };
+      tl.addEventListener('pointerdown', e => { dragging = true; tl.setPointerCapture(e.pointerId); seekTo(e.clientX); });
+      tl.addEventListener('pointermove', e => { if (dragging) seekTo(e.clientX); });
+      const up = () => { dragging = false; pl.play().catch(() => {}); };
+      tl.addEventListener('pointerup', up); tl.addEventListener('pointercancel', up);
+      tl.addEventListener('keydown', e => {
+        if (!dur) return;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); pl.getCurrentTime().then(t => pl.setCurrentTime(Math.max(0, Math.min(dur - .1, t + (e.key === 'ArrowRight' ? 5 : -5))))); }
+      });
+      b.addEventListener('click', async () => {
+        if (v.classList.contains('sound')) {
+          v.classList.remove('sound'); lab.textContent = 'Play with sound'; b.setAttribute('aria-label', 'Play with sound');
+          try { await pl.setMuted(true); } catch (e) {}
+        } else {
+          document.querySelectorAll('.vplayer.sound .vp-hit').forEach(o => o.click());
+          v.classList.add('sound'); lab.textContent = 'Mute'; b.setAttribute('aria-label', 'Mute');
+          try { await pl.setCurrentTime(0); await pl.setMuted(false); await pl.setVolume(1); await pl.play(); } catch (e) {}
+        }
+      });
+    });
+  }
+
+
+  // grid / list toggle (home); elsewhere it opens the home in the chosen view
+  const vt = document.querySelector('.vt');
+  if (vt) {
+    const root = document.documentElement;
+    const label = () => vt.setAttribute('aria-label', root.classList.contains('view-list') ? 'Show as grid' : 'Show as list');
+    label();
+    vt.addEventListener('click', () => {
+      const list = !root.classList.contains('view-list');
+      try { localStorage.setItem('fs-view', list ? 'list' : 'grid'); } catch (e) {}
+      if (!document.body.classList.contains('pg-home')) { location.href = '/' + (list ? '#list' : ''); return; }
+      const swap = () => { root.classList.toggle('view-list', list); label(); scrollTo(0, 0); if (lenis) lenis.scrollTo(0, { immediate: true }); };
+      document.startViewTransition && !reduce ? document.startViewTransition(swap) : swap();
+    });
+  }
+  // list hover preview follows the cursor
+  const pv = document.querySelector('.pv');
+  if (pv && matchMedia('(hover: hover)').matches) {
+    const pimg = pv.querySelector('img');
+    let px = 0, py = 0, tx = 0, ty = 0, run = false;
+    const loop = () => { px += (tx - px) * 0.2; py += (ty - py) * 0.2; pv.style.translate = `${px + 28}px ${py - pv.offsetHeight / 2}px`; if (run) requestAnimationFrame(loop); };
+    document.querySelectorAll('.prow').forEach(r => {
+      r.addEventListener('mouseenter', e => { if (r.dataset.pv) pimg.src = r.dataset.pv; pv.classList.add('on'); if (!run) { px = tx = e.clientX; py = ty = e.clientY; run = true; loop(); } });
+      r.addEventListener('mouseleave', () => { pv.classList.remove('on'); setTimeout(() => { if (!pv.classList.contains('on')) run = false; }, 400); });
+    });
+    addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; }, { passive: true });
+    // warm the cache so previews pop instantly
+    setTimeout(() => document.querySelectorAll('.prow[data-pv]').forEach(r => { const i = new Image(); i.src = r.dataset.pv; }), 2500);
+  }
+
+  // in-page loops (ex-GIFs): load + play only while on screen
+  const vidObs = new IntersectionObserver(es => {
+    es.forEach(e => { const v = e.target; e.isIntersecting ? play(v) : v.pause(); });
+  }, { rootMargin: '200px 0px' });
+  document.querySelectorAll('.p-body video, .about video').forEach(v => vidObs.observe(v));
+
+  // cover hover loops
+  document.querySelectorAll('.thumb').forEach(t => {
+    const v = t.querySelector('video.hover');
+    if (!v) return;
+    if (noHover) return;
+    let off;
+    const on = () => { clearTimeout(off); play(v); };
+    const stop = () => { clearTimeout(off); off = setTimeout(() => v.pause(), 350); };
+    t.addEventListener('mouseenter', on);
+    t.addEventListener('mouseleave', stop);
+    t.addEventListener('focus', on);
+    t.addEventListener('blur', stop);
+  });
+
+  // preload cover loops as thumbs come into view
+  const preObs = new IntersectionObserver(es => {
+    es.forEach(e => { if (!e.isIntersecting) return; const v = e.target.querySelector('video.hover'); if (v) { v.preload = 'auto'; load(v); } preObs.unobserve(e.target); });
+  }, { rootMargin: '300px 0px' });
+  document.querySelectorAll('.thumb').forEach(t => preObs.observe(t));
+
+  // touch screens: the thumb in the middle of the screen plays its loop
+  if (noHover) {
+    const midObs = new IntersectionObserver(es => {
+      es.forEach(e => {
+        const v = e.target.querySelector('video.hover');
+        if (!v) return;
+        if (e.isIntersecting) { e.target.classList.add('playing'); play(v); }
+        else { e.target.classList.remove('playing'); v.pause(); }
+      });
+    }, { rootMargin: '-35% 0px -35% 0px' });
+    document.querySelectorAll('.stack .thumb').forEach(t => midObs.observe(t));
+  }
+
+  // custom cursor: Inter's asterisk, outline; filled over links
+  if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    const c = document.createElement('div'); c.className = 'cur'; c.setAttribute('aria-hidden', 'true');
+    c.innerHTML = '<svg viewBox="-54 -59 108 118" width="25" height="27"><path class="o" transform="translate(-786.7 -420.5)" d="M789.4,364.41c1.9,0,3.17,1.27,3.17,3.17v41.2c0,.71.53,1.07,1.07,1.07.18,0,.36-.04.51-.12l37.08-21.23c.51-.31,1.05-.45,1.58-.45,1.12,0,2.21.64,2.85,1.71l2.22,4.44c.95,1.58.32,3.48-1.26,4.44l-36.76,20.91c-.64.32-.64,1.58,0,1.9l36.76,20.91c1.58.96,2.21,2.86,1.26,4.44l-2.22,4.44c-.64,1.07-1.73,1.71-2.85,1.71-.53,0-1.07-.14-1.58-.44l-37.08-21.24c-.15-.08-.33-.11-.51-.11-.54,0-1.07.35-1.07,1.06v41.2c0,1.9-1.27,3.17-3.17,3.17h-5.39c-1.9,0-3.17-1.27-3.17-3.17v-41.2c0-.71-.53-1.06-1.06-1.06-.18,0-.36.03-.52.11l-36.76,21.24c-.51.3-1.05.44-1.58.44-1.12,0-2.21-.64-2.85-1.71l-2.54-4.44c-.95-1.58-.32-3.48,1.27-4.44l36.76-20.91c.63-.32.63-1.58,0-1.9l-36.76-20.91c-1.59-.96-2.22-2.86-1.27-4.44l2.54-4.44c.64-1.07,1.73-1.71,2.85-1.71.53,0,1.07.14,1.58.45l36.76,21.23c.16.08.34.12.52.12.53,0,1.06-.36,1.06-1.07v-41.2c0-1.9,1.27-3.17,3.17-3.17H789.4ZM789.4,362.41h-5.39c-2.99,0-5.17,2.18-5.17,5.17v39.6l-35.34-20.42c-.77-.46-1.67-.71-2.58-.71-1.85,0-3.56,1-4.57,2.68l-2.56,4.48c-1.46,2.44-.6,5.59,1.98,7.14l35.41,20.15-35.37,20.13c-2.62,1.57-3.48,4.72-1.99,7.2l2.51,4.4c1.03,1.72,2.74,2.72,4.59,2.72.91,0,1.81-.25,2.61-.73l35.31-20.4v39.6c0,2.99,2.18,5.17,5.17,5.17h5.39c3,0,5.17-2.18,5.17-5.17v-39.6l35.66,20.42c.77.46,1.67.71,2.58.71,1.85,0,3.56-1,4.57-2.68l.04-.07.03-.07,2.19-4.37c1.43-2.47.56-5.58-1.99-7.11l-35.42-20.15,35.38-20.13c2.59-1.55,3.46-4.66,2.03-7.13l-2.19-4.37-.03-.07-.04-.07c-1.01-1.68-2.72-2.68-4.57-2.68-.91,0-1.81.25-2.61.73l-35.63,20.4v-39.6C794.57,364.59,792.4,362.41,789.4,362.41H789.4Z"/><path class="f" transform="translate(-403.8 -420.5)" d="M397.93,473.42v-41.2c0-.95-.95-1.26-1.58-.95l-36.76,21.24c-1.58.95-3.48.31-4.43-1.27l-2.54-4.44c-.95-1.58-.32-3.48,1.27-4.44l36.76-20.91c.63-.32.63-1.58,0-1.9l-36.76-20.91c-1.59-.96-2.22-2.86-1.27-4.44l2.54-4.44c.95-1.58,2.85-2.22,4.43-1.26l36.76,21.23c.63.31,1.58,0,1.58-.95v-41.2c0-1.9,1.27-3.17,3.17-3.17h5.39c1.9,0,3.17,1.27,3.17,3.17v41.2c0,.95.95,1.26,1.58.95l37.08-21.23c1.58-.96,3.48-.32,4.43,1.26l2.22,4.44c.95,1.58.32,3.48-1.26,4.44l-36.76,20.91c-.64.32-.64,1.58,0,1.9l36.76,20.91c1.58.96,2.21,2.86,1.26,4.44l-2.22,4.44c-.95,1.58-2.85,2.22-4.43,1.27l-37.08-21.24c-.63-.31-1.58,0-1.58.95v41.2c0,1.9-1.27,3.17-3.17,3.17h-5.39C399.2,476.59,397.93,475.32,397.93,473.42Z"/></svg>';
+    document.body.appendChild(c);
+    document.documentElement.classList.add('has-cur');
+    let x = -100, y = -100, raf = 0;
+    const draw = () => { raf = 0; c.style.transform = `translate3d(${x - 12.5}px,${y - 13.5}px,0)`; };
+    addEventListener('mousemove', e => {
+      x = e.clientX; y = e.clientY; c.classList.add('on');
+      c.classList.toggle('link', !!e.target.closest('a,button'));
+      if (!raf) raf = requestAnimationFrame(draw);
+    }, { passive: true });
+    document.addEventListener('mouseleave', () => c.classList.remove('on'));
+    addEventListener('blur', () => c.classList.remove('on'));
+  }
+
+  document.querySelectorAll('a[href="#top"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); lenis ? lenis.scrollTo(0) : scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); }));
+}
+</script>
+</body>
+</html>

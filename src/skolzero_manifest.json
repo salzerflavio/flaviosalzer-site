@@ -1,0 +1,81 @@
+{
+ "skolzero-cover": {
+  "type": "image",
+  "src": "skolzero-cover.webp",
+  "w": 1280,
+  "h": 1001
+ },
+ "skolzero-hover": {
+  "type": "video",
+  "src": "skolzero-hover.mp4",
+  "poster": "skolzero-hover.webp",
+  "w": 1000,
+  "h": 782
+ },
+ "skolzero-girl": {
+  "type": "video",
+  "src": "skolzero-girl.mp4",
+  "poster": "skolzero-girl.webp",
+  "w": 1600,
+  "h": 900
+ },
+ "skolzero-guy": {
+  "type": "video",
+  "src": "skolzero-guy.mp4",
+  "poster": "skolzero-guy.webp",
+  "w": 1600,
+  "h": 900
+ },
+ "skolzero-splash": {
+  "type": "video",
+  "src": "skolzero-splash.mp4",
+  "poster": "skolzero-splash.webp",
+  "w": 1600,
+  "h": 900
+ },
+ "skolzero-foam": {
+  "type": "video",
+  "src": "skolzero-foam.mp4",
+  "poster": "skolzero-foam.webp",
+  "w": 1600,
+  "h": 900
+ },
+ "skolzero-bottles": {
+  "type": "video",
+  "src": "skolzero-bottles.mp4",
+  "poster": "skolzero-bottles.webp",
+  "w": 1600,
+  "h": 900
+ },
+ "skolzero-header": {
+  "type": "video",
+  "src": "skolzero-header.mp4",
+  "poster": "skolzero-header.webp",
+  "w": 1600,
+  "h": 680
+ },
+ "skolzero-kv": {
+  "type": "image",
+  "src": "skolzero-kv.webp",
+  "w": 1920,
+  "h": 1080
+ },
+ "skolzero-still-guy": {
+  "type": "image",
+  "src": "skolzero-still-guy.webp",
+  "w": 1920,
+  "h": 1080
+ },
+ "skolzero-still-girl": {
+  "type": "image",
+  "src": "skolzero-still-girl.webp",
+  "w": 1920,
+  "h": 1080
+ },
+ "skolzero-still-foam": {
+  "type": "image",
+  "src": "skolzero-still-foam.webp",
+  "w": 1920,
+  "h": 1080
+ }
+}

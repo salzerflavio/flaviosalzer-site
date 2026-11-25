@@ -3,6 +3,17 @@ import json, re, os, html, shutil
 D = json.load(open('data.json'))
 M = json.load(open('manifest.json'))
 NM = D['nameMap']
+# extra projects added after the migration (assets already in site/media)
+import glob as _glob
+for _f in sorted(_glob.glob('extra_*.json')):
+    _x = json.load(open(_f))
+    NM.update(_x['nameMap'])
+    for _k, _v in _x['manifest'].items(): M[_k] = _v
+    _slugs = [c['slug'] for c in D['covers']]
+    if _x['cover']['slug'] not in _slugs:
+        _i = _slugs.index(_x['insert_after']) + 1 if _x.get('insert_after') in _slugs else len(_slugs)
+        D['covers'].insert(_i, _x['cover'])
+        D['pages'].append(_x['page'])
 OUT = 'site'
 
 def asset(url):
@@ -201,6 +212,7 @@ NAMES = {
     'ze-salva': 'Zé Saves',
     'the-smallest-launch': 'The Smallest Launch in the World',
     'delivery-pool': 'Pool Delivery',
+    'skol-zero-zero': 'Skol Zero Zero',
 }
 
 SMALL = {'a','an','and','as','at','by','for','from','in','of','on','or','the','to','with','x','e','do','da','de','é'}
@@ -268,7 +280,7 @@ def next_block(slug):
 CSS = open('style.css').read()
 JS = open('main.js').read()
 
-def page(title, body, cls='', desc='Flávio Salzer — Creative and Art Director.', path='/', og='og/home.jpg', vimeo=False):
+def page(title, body, cls='', desc='Flávio Salzer is a Creative and Art Director based in São Paulo. Former LePub and Africa, now back at GUT. Selected work for Zé Delivery, Heineken, New Balance, Skol and more.', path='/', og='og/home.jpg', vimeo=False):
     return f'''<!DOCTYPE html>
 <html lang="en">
 <head>
