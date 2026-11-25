@@ -15,7 +15,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://flaviosalzer.com/ai-assisted/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🫀</text></svg>">
-<script>document.documentElement.classList.add('js')</script>
+<script>document.documentElement.classList.add('js');try{if(localStorage.getItem('fs-view')==='list'||location.hash==='#list')document.documentElement.classList.add('view-list')}catch(e){}</script>
 <style>/* ==========================================================
    f* — GUIA PADRÃO
    COR      fundo #000 · texto #bcbcbc · destaque #eeeeee
@@ -211,28 +211,54 @@ html:not(.js) .split .ln>span{transform:none}
 html.loading,html.loading body{overflow:hidden}
 .vplayer iframe{background:#0b0b0b}
 
-/* camadas: imagens largas "param" no fim e o bloco seguinte desliza por cima, cobrindo */
-.p-body>.mod{position:relative;z-index:1;background:var(--bg)}
-.p-body>.mod.pin{position:sticky;z-index:0}
-.p-body>.mod.pin:last-child{position:relative}
+
+/* alternar mosaico / lista */
+.site-head nav{align-items:center}
+.vt{pointer-events:auto;display:block;padding:0;margin:0;border:0;background:none;color:inherit;opacity:.85;transition:opacity .2s}
+.vt:hover{opacity:1}
+.vt svg{display:block;fill:currentColor}
+.vt .i-grid{display:none}
+html.view-list .vt .i-grid{display:block}
+html.view-list .vt .i-list{display:none}
+.plist{display:none;padding:var(--s2) var(--edge) var(--s3)}
+html.view-list .pg-home .masonry,html.view-list .pg-home .stack{display:none!important}
+html.view-list .pg-home .plist{display:block}
+.prow{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,4fr) auto auto;align-items:baseline;gap:var(--s2);padding:14px 0;color:var(--tx);transition:color .25s}
+.pr-client{font:400 var(--fs-ui)/1.3 var(--f)}
+.pr-name{font:500 clamp(30px,3.9vw,56px)/1.05 var(--f);letter-spacing:-.015em;color:var(--hi);opacity:.55;transition:opacity .25s,transform .4s var(--ease)}
+.pr-year{font:400 var(--fs-ui)/1 var(--f)}
+.pr-arr{font:400 22px/1 var(--f);opacity:0;transform:translateX(-8px);transition:opacity .25s,transform .3s var(--ease)}
+.prow:hover .pr-name{opacity:1;transform:translateX(8px)}
+.prow:hover .pr-arr{opacity:1;transform:none}
+.prow:hover{color:var(--hi)}
+.pv{position:fixed;left:0;top:0;z-index:40;width:min(28vw,420px);aspect-ratio:1891/1479;pointer-events:none;opacity:0;transform:scale(.92);transition:opacity .25s,transform .35s var(--ease);overflow:hidden}
+.pv.on{opacity:1;transform:scale(1)}
+.pv img{width:100%;height:100%;object-fit:cover;object-position:left top;display:block}
+@media (max-width:700px){
+  .prow{grid-template-columns:1fr auto;gap:4px 12px}
+  .pr-client{grid-column:1/-1;order:-1}
+  .pr-arr{display:none}
+  .pr-name{opacity:1}
+  .pv{display:none}
+}
 </style>
 </head>
 <body class="proj" id="top">
 <header class="site-head">
   <a class="logo" href="/">f*</a>
-  <nav><a href="/">Work</a><a href="/flavio/">☺ About</a></nav>
+  <nav><a href="/">Work</a><a href="/flavio/">☺ About</a><button class="vt" type="button" aria-label="Show as list"><svg class="i-list" viewBox="0 0 20 20" width="20" height="20"><rect x="2" y="4" width="16" height="1.6"/><rect x="2" y="9.2" width="16" height="1.6"/><rect x="2" y="14.4" width="16" height="1.6"/></svg><svg class="i-grid" viewBox="0 0 20 20" width="20" height="20"><rect x="2" y="2" width="7" height="7"/><rect x="11" y="2" width="7" height="7"/><rect x="2" y="11" width="7" height="7"/><rect x="11" y="11" width="7" height="7"/></svg></button></nav>
 </header>
 <main>
 <article class="project"><header class="p-head"><div class="p-intro"><a class="back" href="/" aria-label="Back to work"><svg class="arr" viewBox="486 353 250 95" width="66" height="25" aria-hidden="true"><polygon points="534.41 445.79 488.14 401.58 532.35 355.3 536.69 359.45 496.62 401.38 538.55 441.45 534.41 445.79"/><rect x="492.38" y="398.48" width="241.62" height="6"/></svg></a><h1 class="split">AI-Assisted Software Engineering</h1><div class="p-desc reveal-t"><p>We position Compass UOL as a reference in generative Artificial Intelligence. With the aim of presenting a perspective in which AI can be a great positive transformation for the market, the film illustrates moments in which professionals use technology to optimize their most precious asset: time.</p><p>Compass UOL, a global company focused on digital transformation, offers tools that can transform any technological opportunity into reality and is at the forefront of the main discussions about AI.</p></div></div><dl class="credits reveal-t"><div><dt>Role</dt><dd>Art Direction, Design</dd></div><div><dt>With</dt><dd>Bruno Brux, Murilo Mello, Ju Utsch, Sofia Calvit, Gheisa Lessa, Chico Medeiros, Fill Almeida</dd></div><div><dt>Agency</dt><dd>GUT</dd></div><div><dt>Client</dt><dd>Uol Compass</dd></div><div><dt>Year</dt><dd>2023</dd></div></dl></header><div class="p-body"><div class="mod vplayer reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe data-src="https://player.vimeo.com/video/856552783?h=79ea256596&amp;background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Film"></iframe></div><button class="vp-hit" type="button" aria-label="Play with sound"><span class="vp-label">Play with sound</span></button></div>
 <figure class="mod img reveal-m"><img class="m " src="/media/d3d4dd0e-ac4d-4437-acc7-87e178114368_rw_1920.webp" width="1920" height="5" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAACwAgCdASoUAAEAPu1iqU2ppaOiMAgBMB2JaQAAeyAA/vCfnTzAAAAA)"></figure>
 <div class="mod grid"><div class="row"><div class="cell reveal-m" style="flex:1.0000 1 0;transition-delay:0ms"><video class="m " data-src="/media/3e5ccc15-8d9e-4551-8770-8d0ad6acc62c_rw_600.mp4" poster="/media/3e5ccc15-8d9e-4551-8770-8d0ad6acc62c_rw_600.webp" width="540" height="540" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAAAQBACdASoUABQAPu1qrVCppaQiqAqpMB2JaQAAJdsjTw6xNTT5DbLGgAD+0CyYcOklFcVSbOLWMJhqifySrv31MR20C0itfabeP0bokg5WAAAA)"></video></div><div class="cell reveal-m" style="flex:1.0000 1 0;transition-delay:90ms"><video class="m " data-src="/media/6f09f656-cab2-4ba5-a460-f950e34f3a8e_rw_600.mp4" poster="/media/6f09f656-cab2-4ba5-a460-f950e34f3a8e_rw_600.webp" width="540" height="540" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAADQAgCdASoUABQAPu1wsVKppiSiqAgBMB2JaQAAPaOgAP7vmxrmvgAA)"></video></div><div class="cell reveal-m" style="flex:1.0000 1 0;transition-delay:180ms"><video class="m " data-src="/media/a7146134-cb01-4338-9fcb-b94df74ef156_rw_600.mp4" poster="/media/a7146134-cb01-4338-9fcb-b94df74ef156_rw_600.webp" width="540" height="540" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAACQAwCdASoUABQAPu1sq06ppiOiMBgIATAdiWkAAC51V0lWOsTAAP7udpbn/vYfI01vB1XXxBk/Qfh784/kRbNgGu2MAAAA)"></video></div></div></div>
 <div class="mod grid"><div class="row"><div class="cell reveal-m" style="flex:0.7072 1 0;transition-delay:0ms"><img class="m " src="/media/b34cdcd4-79d9-4473-96a2-93d7a3e225e1_rw_1920.webp" width="1920" height="2716" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRqoAAABXRUJQVlA4IJ4AAAAwBQCdASoUABwAPuVcp02pJSOiMAwBIByJaQAD5mILwNdIkqdmtkqvGXrVSfzvlDtzgAD+6RqwcCRH5dSc6Ua0bvO7xLeru6N+oo0L/jmfKQ/BgXsmQPxHsb3FH7AzCbGbQfHhaBUhoWDtmuEzXl09fVtgzOCZ8YwVPB8xzM7NADhXKDhM918YNNF2BDn2PNPLeTI+K4a7CVRmDAgAAA==)"></div><div class="cell reveal-m" style="flex:0.7072 1 0;transition-delay:90ms"><img class="m " src="/media/0f5fd90a-406d-4064-8e73-6cb29a46dd73_rw_1920.webp" width="1920" height="2716" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRrYAAABXRUJQVlA4IKoAAAAQBQCdASoUABwAPu1krE+ppSQiMBgIATAdiWkAACMBsOnhi3e3EKz1tF+uxitzDqKoAM3bBiHVM/cVv9kZTr/ExFyuV7nJRNgemoMd1DZ7rR+8UzcKIAxEXxCXL5vVX99j/J9+Kurwgs+oUbPcxda1CRhdKEdMv4+pF18tt4HFnRRMmqHuSIq+YcAMrvCwZNDfzsPVWVqjGzDWNwwmIG0cRQvQgGcTYEAAAA==)"></div><div class="cell reveal-m" style="flex:0.7067 1 0;transition-delay:180ms"><img class="m " src="/media/792a62a9-ae4b-41aa-9609-abb3264599f3_rw_1200.webp" width="800" height="1132" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRpAAAABXRUJQVlA4IIQAAADQBACdASoUABwAPu1qr1CppaQiqAqpMB2JaQAAj/UCtZLXJ7c8AqLVF7XG4GtoAAD+3oSHz74X/bYrnoWJyEcRBob1DbtSYxUFfhr0FXbe/azrON26BuAdiotmOSuxDt1EX/6ih7CRo6shPk4m4E6wpEu3BX8FMiE0scEUGbafgwzCgAA=)"></div><div class="cell reveal-m" style="flex:0.7072 1 0;transition-delay:270ms"><img class="m " src="/media/556c0e9f-2c1b-4e60-a315-21f35865adbb_rw_1920.webp" width="1920" height="2716" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRoAAAABXRUJQVlA4IHQAAAAwBQCdASoUABwAPu1cqE2ppKQiN/VYATAdiWkA0FQQ8AMAmtzhKJ06GZSVNmYtySKKWAD8s/KCYm2/oGwZDmGGZVskNOMH9tjCOzyoMtjSbWESxJDCzMIz+EtKAKESStc4H2UlqjdWfXNRIWY3zqdMHcQAAA==)"></div></div></div>
-<figure class="mod img reveal-m pin"><img class="m " src="/media/3dd5ea3d-f228-4ce3-ba19-1074fae88b3e_rw_1920.webp" width="1920" height="890" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRj4AAABXRUJQVlA4IDIAAAAQAwCdASoUAAkAPu1iqU2ppaOiMAgBMB2JaQAAW51RhQAA/vKeAUHvthzTNttQZAAAAA==)"></figure>
-<figure class="mod img reveal-m pin"><img class="m " src="/media/ba52c35d-a798-442d-8393-0e6857c6a6a5_rw_1920.webp" width="1920" height="1173" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRjAAAABXRUJQVlA4ICQAAACwAgCdASoUAAwAPu1iqU2ppaOiMAgBMB2JaQAAeyAA/vA0wAA=)"></figure>
-<figure class="mod img reveal-m pin"><img class="m " src="/media/3ac57c7f-bcb0-4920-92f1-ea75daa571f8_rw_1920.webp" width="1920" height="1342" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAADwAgCdASoUAA4APu1iqU2ppaOiMAgBMB2JaWZAADdYAAD+8G6dTS8OX1jhZxdX/7qGSGYmTZD+D+NpgyQAAA==)"></figure>
-<figure class="mod img reveal-m pin"><img class="m " src="/media/129547ea-9d58-415b-a46d-5e6437bba145_rw_1920.webp" width="1920" height="1409" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRj4AAABXRUJQVlA4IDIAAABQAwCdASoUAA8APu1iqU2ppaOiMAgBMB2JaQAAW+v4c7soAAD+8MlNita46mfX2AAAAA==)"></figure>
-<figure class="mod img reveal-m pin"><img class="m " src="/media/7550f4ee-0b04-42d3-b17c-c393d9b72d18_rw_1920.webp" width="1920" height="1331" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAACwAgCdASoUAA4APu1iqU2ppaOiMAgBMB2JaQAAeyAA/vDLCTsfOc+dmp0P8wGAAAA=)"></figure>
-<figure class="mod img reveal-m pin"><img class="m " src="/media/af3e23df-ae4b-435b-9833-032915dbfe57_rw_1920.webp" width="1920" height="1228" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAABwAwCdASoUAA0APu1iqU2ppaQiMAgBMB2JaQAAW4YTFQK6RkAA/vQm9jx535twe4YbfTP4O3L4kAAA)"></figure></div><nav class="pn" aria-label="More projects"><a href="/flexmode/" rel="prev">← Previous</a><a href="/hh-virtual-skol/" rel="next">Next →</a></nav></article>
+<figure class="mod img reveal-m"><img class="m " src="/media/3dd5ea3d-f228-4ce3-ba19-1074fae88b3e_rw_1920.webp" width="1920" height="890" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRj4AAABXRUJQVlA4IDIAAAAQAwCdASoUAAkAPu1iqU2ppaOiMAgBMB2JaQAAW51RhQAA/vKeAUHvthzTNttQZAAAAA==)"></figure>
+<figure class="mod img reveal-m"><img class="m " src="/media/ba52c35d-a798-442d-8393-0e6857c6a6a5_rw_1920.webp" width="1920" height="1173" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRjAAAABXRUJQVlA4ICQAAACwAgCdASoUAAwAPu1iqU2ppaOiMAgBMB2JaQAAeyAA/vA0wAA=)"></figure>
+<figure class="mod img reveal-m"><img class="m " src="/media/3ac57c7f-bcb0-4920-92f1-ea75daa571f8_rw_1920.webp" width="1920" height="1342" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAADwAgCdASoUAA4APu1iqU2ppaOiMAgBMB2JaWZAADdYAAD+8G6dTS8OX1jhZxdX/7qGSGYmTZD+D+NpgyQAAA==)"></figure>
+<figure class="mod img reveal-m"><img class="m " src="/media/129547ea-9d58-415b-a46d-5e6437bba145_rw_1920.webp" width="1920" height="1409" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRj4AAABXRUJQVlA4IDIAAABQAwCdASoUAA8APu1iqU2ppaOiMAgBMB2JaQAAW+v4c7soAAD+8MlNita46mfX2AAAAA==)"></figure>
+<figure class="mod img reveal-m"><img class="m " src="/media/7550f4ee-0b04-42d3-b17c-c393d9b72d18_rw_1920.webp" width="1920" height="1331" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAACwAgCdASoUAA4APu1iqU2ppaOiMAgBMB2JaQAAeyAA/vDLCTsfOc+dmp0P8wGAAAA=)"></figure>
+<figure class="mod img reveal-m"><img class="m " src="/media/af3e23df-ae4b-435b-9833-032915dbfe57_rw_1920.webp" width="1920" height="1228" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAABwAwCdASoUAA0APu1iqU2ppaQiMAgBMB2JaQAAW4YTFQK6RkAA/vQm9jx535twe4YbfTP4O3L4kAAA)"></figure></div><nav class="pn" aria-label="More projects"><a href="/flexmode/" rel="prev">← Previous</a><a href="/hh-virtual-skol/" rel="next">Next →</a></nav></article>
 </main>
 <footer class="site-foot">
   <a href="#top" class="totop">↑ back to top</a>
@@ -351,10 +377,34 @@ html.loading,html.loading body{overflow:hidden}
     });
   }
 
-  // layered scroll: a pinned image sticks once its bottom reaches the bottom of the screen
-  const pins = [...document.querySelectorAll('.p-body>.mod.pin')];
-  const setPins = () => pins.forEach(p => { p.style.top = Math.min(0, innerHeight - p.offsetHeight) + 'px'; });
-  if (pins.length) { setPins(); addEventListener('resize', setPins); const pinRO = new ResizeObserver(setPins); pins.forEach(p => pinRO.observe(p)); }
+  // grid / list toggle (home); elsewhere it opens the home in the chosen view
+  const vt = document.querySelector('.vt');
+  if (vt) {
+    const root = document.documentElement;
+    const label = () => vt.setAttribute('aria-label', root.classList.contains('view-list') ? 'Show as grid' : 'Show as list');
+    label();
+    vt.addEventListener('click', () => {
+      const list = !root.classList.contains('view-list');
+      try { localStorage.setItem('fs-view', list ? 'list' : 'grid'); } catch (e) {}
+      if (!document.body.classList.contains('pg-home')) { location.href = '/' + (list ? '#list' : ''); return; }
+      const swap = () => { root.classList.toggle('view-list', list); label(); scrollTo(0, 0); if (lenis) lenis.scrollTo(0, { immediate: true }); };
+      document.startViewTransition && !reduce ? document.startViewTransition(swap) : swap();
+    });
+  }
+  // list hover preview follows the cursor
+  const pv = document.querySelector('.pv');
+  if (pv && matchMedia('(hover: hover)').matches) {
+    const pimg = pv.querySelector('img');
+    let px = 0, py = 0, tx = 0, ty = 0, run = false;
+    const loop = () => { px += (tx - px) * 0.2; py += (ty - py) * 0.2; pv.style.translate = `${px + 28}px ${py - pv.offsetHeight / 2}px`; if (run) requestAnimationFrame(loop); };
+    document.querySelectorAll('.prow').forEach(r => {
+      r.addEventListener('mouseenter', e => { if (r.dataset.pv) pimg.src = r.dataset.pv; pv.classList.add('on'); if (!run) { px = tx = e.clientX; py = ty = e.clientY; run = true; loop(); } });
+      r.addEventListener('mouseleave', () => { pv.classList.remove('on'); setTimeout(() => { if (!pv.classList.contains('on')) run = false; }, 400); });
+    });
+    addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; }, { passive: true });
+    // warm the cache so previews pop instantly
+    setTimeout(() => document.querySelectorAll('.prow[data-pv]').forEach(r => { const i = new Image(); i.src = r.dataset.pv; }), 2500);
+  }
 
   // in-page loops (ex-GIFs): load + play only while on screen
   const vidObs = new IntersectionObserver(es => {

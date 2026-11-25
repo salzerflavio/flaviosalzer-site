@@ -15,7 +15,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://flaviosalzer.com/hh-virtual-skol/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🫀</text></svg>">
-<script>document.documentElement.classList.add('js')</script>
+<script>document.documentElement.classList.add('js');try{if(localStorage.getItem('fs-view')==='list'||location.hash==='#list')document.documentElement.classList.add('view-list')}catch(e){}</script>
 <style>/* ==========================================================
    f* — GUIA PADRÃO
    COR      fundo #000 · texto #bcbcbc · destaque #eeeeee
@@ -211,26 +211,52 @@ html:not(.js) .split .ln>span{transform:none}
 html.loading,html.loading body{overflow:hidden}
 .vplayer iframe{background:#0b0b0b}
 
-/* camadas: imagens largas "param" no fim e o bloco seguinte desliza por cima, cobrindo */
-.p-body>.mod{position:relative;z-index:1;background:var(--bg)}
-.p-body>.mod.pin{position:sticky;z-index:0}
-.p-body>.mod.pin:last-child{position:relative}
+
+/* alternar mosaico / lista */
+.site-head nav{align-items:center}
+.vt{pointer-events:auto;display:block;padding:0;margin:0;border:0;background:none;color:inherit;opacity:.85;transition:opacity .2s}
+.vt:hover{opacity:1}
+.vt svg{display:block;fill:currentColor}
+.vt .i-grid{display:none}
+html.view-list .vt .i-grid{display:block}
+html.view-list .vt .i-list{display:none}
+.plist{display:none;padding:var(--s2) var(--edge) var(--s3)}
+html.view-list .pg-home .masonry,html.view-list .pg-home .stack{display:none!important}
+html.view-list .pg-home .plist{display:block}
+.prow{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,4fr) auto auto;align-items:baseline;gap:var(--s2);padding:14px 0;color:var(--tx);transition:color .25s}
+.pr-client{font:400 var(--fs-ui)/1.3 var(--f)}
+.pr-name{font:500 clamp(30px,3.9vw,56px)/1.05 var(--f);letter-spacing:-.015em;color:var(--hi);opacity:.55;transition:opacity .25s,transform .4s var(--ease)}
+.pr-year{font:400 var(--fs-ui)/1 var(--f)}
+.pr-arr{font:400 22px/1 var(--f);opacity:0;transform:translateX(-8px);transition:opacity .25s,transform .3s var(--ease)}
+.prow:hover .pr-name{opacity:1;transform:translateX(8px)}
+.prow:hover .pr-arr{opacity:1;transform:none}
+.prow:hover{color:var(--hi)}
+.pv{position:fixed;left:0;top:0;z-index:40;width:min(28vw,420px);aspect-ratio:1891/1479;pointer-events:none;opacity:0;transform:scale(.92);transition:opacity .25s,transform .35s var(--ease);overflow:hidden}
+.pv.on{opacity:1;transform:scale(1)}
+.pv img{width:100%;height:100%;object-fit:cover;object-position:left top;display:block}
+@media (max-width:700px){
+  .prow{grid-template-columns:1fr auto;gap:4px 12px}
+  .pr-client{grid-column:1/-1;order:-1}
+  .pr-arr{display:none}
+  .pr-name{opacity:1}
+  .pv{display:none}
+}
 </style>
 </head>
 <body class="proj" id="top">
 <header class="site-head">
   <a class="logo" href="/">f*</a>
-  <nav><a href="/">Work</a><a href="/flavio/">☺ About</a></nav>
+  <nav><a href="/">Work</a><a href="/flavio/">☺ About</a><button class="vt" type="button" aria-label="Show as list"><svg class="i-list" viewBox="0 0 20 20" width="20" height="20"><rect x="2" y="4" width="16" height="1.6"/><rect x="2" y="9.2" width="16" height="1.6"/><rect x="2" y="14.4" width="16" height="1.6"/></svg><svg class="i-grid" viewBox="0 0 20 20" width="20" height="20"><rect x="2" y="2" width="7" height="7"/><rect x="11" y="2" width="7" height="7"/><rect x="2" y="11" width="7" height="7"/><rect x="11" y="11" width="7" height="7"/></svg></button></nav>
 </header>
 <main>
 <article class="project"><header class="p-head"><div class="p-intro"><a class="back" href="/" aria-label="Back to work"><svg class="arr" viewBox="486 353 250 95" width="66" height="25" aria-hidden="true"><polygon points="534.41 445.79 488.14 401.58 532.35 355.3 536.69 359.45 496.62 401.38 538.55 441.45 534.41 445.79"/><rect x="492.38" y="398.48" width="241.62" height="6"/></svg></a><h1 class="split">Virtual Happy Hour</h1><div class="p-desc reveal-t"><p>During the pandemic crisis, Skol created a new way to promote the "Happy Hour" between leaders and their employees.</p></div></div><dl class="credits reveal-t"><div><dt>Role</dt><dd>Art Direction, Concept, Idea</dd></div><div><dt>With</dt><dd>Alê Muccillo, Letícia Hanower, Rodrigo Porto, Gui Cruz, Arthur Souza</dd></div><div><dt>Agency</dt><dd>Mutato</dd></div><div><dt>Client</dt><dd>Skol</dd></div><div><dt>Year</dt><dd>2021</dd></div></dl></header><div class="p-body"><div class="mod vplayer reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe data-src="https://player.vimeo.com/video/501251713?title=0&amp;background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Film"></iframe></div><button class="vp-hit" type="button" aria-label="Play with sound"><span class="vp-label">Play with sound</span></button></div>
-<figure class="mod img reveal-m pin"><img class="m " src="/media/b109bc19-df80-4ccf-a556-ee9abc2fdaf1_rw_1920.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRowAAABXRUJQVlA4IIAAAACwAwCdASoUAAsAPu1iqU2ppaOiMAgBMB2JbACdACHE0cy9csur8AD+7eAmcMDq9N9IFL6ukQcxB6EqgscVSRWU7G/tzuk6esVxhpF6SI/4bwZWBifg7EUxDl0lO4umELD/gjePvUdTT6p48dPRe5DBW8/9YHKDqU6vhDw7PYgAAA==)"></figure>
+<figure class="mod img reveal-m"><img class="m " src="/media/b109bc19-df80-4ccf-a556-ee9abc2fdaf1_rw_1920.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRowAAABXRUJQVlA4IIAAAACwAwCdASoUAAsAPu1iqU2ppaOiMAgBMB2JbACdACHE0cy9csur8AD+7eAmcMDq9N9IFL6ukQcxB6EqgscVSRWU7G/tzuk6esVxhpF6SI/4bwZWBifg7EUxDl0lO4umELD/gjePvUdTT6p48dPRe5DBW8/9YHKDqU6vhDw7PYgAAA==)"></figure>
 <div class="mod grid"><div class="row"><div class="cell reveal-m" style="flex:1.4982 1 0;transition-delay:0ms"><img class="m " src="/media/6d6e5827-5c05-4270-a5f2-1834eb45f089_rw_3840.webp" width="3840" height="2563" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAAAQBACdASoUAA0APu1iqU2ppaOiMAgBMB2JaACo9B7BH6tHcUEHtlVHfAD+40Z75FaWQy9OqFrBVXmHDfumFeQulIiifDTFEiGe93Sk3/xR7Uu1IYFAtSLaSLTY5WVNfvIAWGZrkvGBMQV5RLQFwf4uTB2pkvgA)"></div><div class="cell reveal-m" style="flex:1.4982 1 0;transition-delay:90ms"><img class="m " src="/media/84ba786e-95ea-4641-9fc0-a41c44efe605_rw_3840.webp" width="3840" height="2563" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRpAAAABXRUJQVlA4IIQAAAAQBACdASoUAA0APu1iqU2ppaOiMAgBMB2JagC7ACES28OvTCpgOXk6cAD+8Q3NmXK1HSvh3/gs1DZmhuTAF7BCKwmkwd0j3JVnL83i8wQRGTdE9a0AdbkzLNAXrm91a3I5NojCH1FUH9EoBeTPYDdeA2g6MNS4EkdcDDtZfvtkybJQwAA=)"></div></div></div>
-<figure class="mod img reveal-m pin"><img class="m " src="/media/97f01ec3-b63f-47c4-a0df-fc0fc6bf47a0_rw_1920.webp" width="1920" height="1280" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAAAwBACdASoUAA0APu1iqU2ppaOiMAgBMB2JaQAOcAPZiFvRv3dfQGiq8R4AyQpWcSm8Xn0MdNxdLEbXL4iloIKXHX3gWzPuX0HXPNZH5v15OQnYJ2tBWjPij7oAi67QnkJ5TpsGo3iSBvQGKvqPgAAA)"></figure>
+<figure class="mod img reveal-m"><img class="m " src="/media/97f01ec3-b63f-47c4-a0df-fc0fc6bf47a0_rw_1920.webp" width="1920" height="1280" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAAAwBACdASoUAA0APu1iqU2ppaOiMAgBMB2JaQAOcAPZiFvRv3dfQGiq8R4AyQpWcSm8Xn0MdNxdLEbXL4iloIKXHX3gWzPuX0HXPNZH5v15OQnYJ2tBWjPij7oAi67QnkJ5TpsGo3iSBvQGKvqPgAAA)"></figure>
 <figure class="mod img reveal-m" style="max-width:1428px"><video class="m " data-src="/media/19609079-15df-4ed5-b6f2-434f80fc0986_rw_1920.mp4" poster="/media/19609079-15df-4ed5-b6f2-434f80fc0986_rw_1920.webp" width="1428" height="901" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAABQAwCdASoUAA0APu1iqk2ppaQiMAgBMB2JaQAAW+XfC0+6QAD+8i2n87CHbrQoaZr5b9A9D74ZtP4wY9yII9PsegAAAA==)"></video></figure>
-<figure class="mod img reveal-m pin"><img class="m " src="/media/aa250420-69f5-4417-8709-0c093dd00d22_rw_1920.webp" width="1920" height="1449" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRjYAAABXRUJQVlA4ICoAAACwAgCdASoUAA8APu1iqU2ppaOiMAgBMB2JaQAAeyAA/vATXsHBAHD0AAA=)"></figure>
+<figure class="mod img reveal-m"><img class="m " src="/media/aa250420-69f5-4417-8709-0c093dd00d22_rw_1920.webp" width="1920" height="1449" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRjYAAABXRUJQVlA4ICoAAACwAgCdASoUAA8APu1iqU2ppaOiMAgBMB2JaQAAeyAA/vATXsHBAHD0AAA=)"></figure>
 <div class="mod grid"><div class="row"><div class="cell reveal-m" style="flex:1.6000 1 0;transition-delay:0ms"><img class="m " src="/media/70c02858-e3eb-4dcd-a13a-c36fde91dcaf_rw_1920.webp" width="1920" height="1200" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRqgAAABXRUJQVlA4IJwAAABQBACdASoUAAwAPu1iqU2ppaOiMAgBMB2JbACdMoAvQTPoXv1xKAQsNnoAAOIYtmCMNbjwFsKnF1rXgmP3eimJAy2lcD5pgTIanUpaqT9lQveIM1txDFBOUHjaj/+LfEH5nMwiT++X0Yx7D+AlZl2U/zKeRf9T8+/j7UKx2tjAK/9DmUcPzNwv8O/X/8ET3E8QdjOIEYlSW6TQAAA=)"></div><div class="cell reveal-m" style="flex:1.3338 1 0;transition-delay:90ms"><img class="m " src="/media/6ff7e9b1-d1c4-4252-8ccc-34ce73c9d3b3_rw_3840.webp" width="3840" height="2880" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAACwAwCdASoUAA8APu1iqU2ppaOiMAgBMB2JQBhQBDwJqeLNIfAYAAD+78Kn20PuMtn0dkjIfUy6CvskSY1lJlZN1TYoMW4ioyQkeMFfn9cAAA==)"></div></div></div>
-<figure class="mod img reveal-m pin"><img class="m " src="/media/2e86c31d-7c39-4c9e-b721-3d3d95d9a7cd_rw_1920.webp" width="1920" height="1449" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAADwAwCdASoUAA8APu1iqU2ppaOiMAgBMB2JbAC/RiAAJfpphd3jt0YAAP7v10a9RD9dYASzT72hTctBsuZ1UnrXN+vO7JPXitr6sxolJJ14sb2ZxjAAAA==)"></figure>
+<figure class="mod img reveal-m"><img class="m " src="/media/2e86c31d-7c39-4c9e-b721-3d3d95d9a7cd_rw_1920.webp" width="1920" height="1449" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAADwAwCdASoUAA8APu1iqU2ppaOiMAgBMB2JbAC/RiAAJfpphd3jt0YAAP7v10a9RD9dYASzT72hTctBsuZ1UnrXN+vO7JPXitr6sxolJJ14sb2ZxjAAAA==)"></figure>
 <div class="mod grid"><div class="row"><div class="cell reveal-m" style="flex:1.0000 1 0;transition-delay:0ms"><video class="m " data-src="/media/e429a2f1-d029-4dff-b915-aae8cce952ca_rw_1200.mp4" poster="/media/e429a2f1-d029-4dff-b915-aae8cce952ca_rw_1200.webp" width="800" height="800" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRqQAAABXRUJQVlA4IJgAAACQBACdASoUABQAPu1mq0+ppSOiMBgIATAdiWwAsR9aNJeqgCulW+9SZTaz0QAA/uqW+sUChwZBbawS60jmtqRgXm2BKr3UaDz2Rj8bU6FvqcdMi8P/4xbTmxxxuz21tO6a9ruHLjQUBjznPprtAmfxHE945nrb3f+TRNm8e4vETw+XQkzbSMmw3ZcdYI9AMuuz4GUyBfYAAA==)"></video></div><div class="cell reveal-m" style="flex:1.0000 1 0;transition-delay:90ms"><video class="m " data-src="/media/a9b6d03a-22a2-4494-83e3-e6b18490ec65_rw_1200.mp4" poster="/media/a9b6d03a-22a2-4494-83e3-e6b18490ec65_rw_1200.webp" width="800" height="800" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAABwAwCdASoUABQAPu1wsFIppiSiqAgBMB2JQBdgAiOZUbJhQQAA/upoNtNBajeqDRJjxN6Rq0kasaQhUSBZUqsJfV2pFS//nYP/hdh/+H0TjWy87nWMLAgJ1aTR4Hhp6g57Wb8JgAAAAA==)"></video></div></div></div>
 <figure class="mod img reveal-m"><img class="m " src="/media/58c5f487-d7f1-4320-bb34-b91b231293a5_rw_1920.webp" width="1920" height="5" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAACwAgCdASoUAAEAPu1iqU2ppaOiMAgBMB2JaQAAeyAA/vCfnTzAAAAA)"></figure></div><nav class="pn" aria-label="More projects"><a href="/ai-assisted/" rel="prev">← Previous</a><a href="/ze-salva/" rel="next">Next →</a></nav></article>
 </main>
@@ -351,10 +377,34 @@ html.loading,html.loading body{overflow:hidden}
     });
   }
 
-  // layered scroll: a pinned image sticks once its bottom reaches the bottom of the screen
-  const pins = [...document.querySelectorAll('.p-body>.mod.pin')];
-  const setPins = () => pins.forEach(p => { p.style.top = Math.min(0, innerHeight - p.offsetHeight) + 'px'; });
-  if (pins.length) { setPins(); addEventListener('resize', setPins); const pinRO = new ResizeObserver(setPins); pins.forEach(p => pinRO.observe(p)); }
+  // grid / list toggle (home); elsewhere it opens the home in the chosen view
+  const vt = document.querySelector('.vt');
+  if (vt) {
+    const root = document.documentElement;
+    const label = () => vt.setAttribute('aria-label', root.classList.contains('view-list') ? 'Show as grid' : 'Show as list');
+    label();
+    vt.addEventListener('click', () => {
+      const list = !root.classList.contains('view-list');
+      try { localStorage.setItem('fs-view', list ? 'list' : 'grid'); } catch (e) {}
+      if (!document.body.classList.contains('pg-home')) { location.href = '/' + (list ? '#list' : ''); return; }
+      const swap = () => { root.classList.toggle('view-list', list); label(); scrollTo(0, 0); if (lenis) lenis.scrollTo(0, { immediate: true }); };
+      document.startViewTransition && !reduce ? document.startViewTransition(swap) : swap();
+    });
+  }
+  // list hover preview follows the cursor
+  const pv = document.querySelector('.pv');
+  if (pv && matchMedia('(hover: hover)').matches) {
+    const pimg = pv.querySelector('img');
+    let px = 0, py = 0, tx = 0, ty = 0, run = false;
+    const loop = () => { px += (tx - px) * 0.2; py += (ty - py) * 0.2; pv.style.translate = `${px + 28}px ${py - pv.offsetHeight / 2}px`; if (run) requestAnimationFrame(loop); };
+    document.querySelectorAll('.prow').forEach(r => {
+      r.addEventListener('mouseenter', e => { if (r.dataset.pv) pimg.src = r.dataset.pv; pv.classList.add('on'); if (!run) { px = tx = e.clientX; py = ty = e.clientY; run = true; loop(); } });
+      r.addEventListener('mouseleave', () => { pv.classList.remove('on'); setTimeout(() => { if (!pv.classList.contains('on')) run = false; }, 400); });
+    });
+    addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; }, { passive: true });
+    // warm the cache so previews pop instantly
+    setTimeout(() => document.querySelectorAll('.prow[data-pv]').forEach(r => { const i = new Image(); i.src = r.dataset.pv; }), 2500);
+  }
 
   // in-page loops (ex-GIFs): load + play only while on screen
   const vidObs = new IntersectionObserver(es => {

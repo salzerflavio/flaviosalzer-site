@@ -15,7 +15,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://flaviosalzer.com/shadow-delivery/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🫀</text></svg>">
-<script>document.documentElement.classList.add('js')</script>
+<script>document.documentElement.classList.add('js');try{if(localStorage.getItem('fs-view')==='list'||location.hash==='#list')document.documentElement.classList.add('view-list')}catch(e){}</script>
 <style>/* ==========================================================
    f* — GUIA PADRÃO
    COR      fundo #000 · texto #bcbcbc · destaque #eeeeee
@@ -211,21 +211,47 @@ html:not(.js) .split .ln>span{transform:none}
 html.loading,html.loading body{overflow:hidden}
 .vplayer iframe{background:#0b0b0b}
 
-/* camadas: imagens largas "param" no fim e o bloco seguinte desliza por cima, cobrindo */
-.p-body>.mod{position:relative;z-index:1;background:var(--bg)}
-.p-body>.mod.pin{position:sticky;z-index:0}
-.p-body>.mod.pin:last-child{position:relative}
+
+/* alternar mosaico / lista */
+.site-head nav{align-items:center}
+.vt{pointer-events:auto;display:block;padding:0;margin:0;border:0;background:none;color:inherit;opacity:.85;transition:opacity .2s}
+.vt:hover{opacity:1}
+.vt svg{display:block;fill:currentColor}
+.vt .i-grid{display:none}
+html.view-list .vt .i-grid{display:block}
+html.view-list .vt .i-list{display:none}
+.plist{display:none;padding:var(--s2) var(--edge) var(--s3)}
+html.view-list .pg-home .masonry,html.view-list .pg-home .stack{display:none!important}
+html.view-list .pg-home .plist{display:block}
+.prow{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,4fr) auto auto;align-items:baseline;gap:var(--s2);padding:14px 0;color:var(--tx);transition:color .25s}
+.pr-client{font:400 var(--fs-ui)/1.3 var(--f)}
+.pr-name{font:500 clamp(30px,3.9vw,56px)/1.05 var(--f);letter-spacing:-.015em;color:var(--hi);opacity:.55;transition:opacity .25s,transform .4s var(--ease)}
+.pr-year{font:400 var(--fs-ui)/1 var(--f)}
+.pr-arr{font:400 22px/1 var(--f);opacity:0;transform:translateX(-8px);transition:opacity .25s,transform .3s var(--ease)}
+.prow:hover .pr-name{opacity:1;transform:translateX(8px)}
+.prow:hover .pr-arr{opacity:1;transform:none}
+.prow:hover{color:var(--hi)}
+.pv{position:fixed;left:0;top:0;z-index:40;width:min(28vw,420px);aspect-ratio:1891/1479;pointer-events:none;opacity:0;transform:scale(.92);transition:opacity .25s,transform .35s var(--ease);overflow:hidden}
+.pv.on{opacity:1;transform:scale(1)}
+.pv img{width:100%;height:100%;object-fit:cover;object-position:left top;display:block}
+@media (max-width:700px){
+  .prow{grid-template-columns:1fr auto;gap:4px 12px}
+  .pr-client{grid-column:1/-1;order:-1}
+  .pr-arr{display:none}
+  .pr-name{opacity:1}
+  .pv{display:none}
+}
 </style>
 </head>
 <body class="proj" id="top">
 <header class="site-head">
   <a class="logo" href="/">f*</a>
-  <nav><a href="/">Work</a><a href="/flavio/">☺ About</a></nav>
+  <nav><a href="/">Work</a><a href="/flavio/">☺ About</a><button class="vt" type="button" aria-label="Show as list"><svg class="i-list" viewBox="0 0 20 20" width="20" height="20"><rect x="2" y="4" width="16" height="1.6"/><rect x="2" y="9.2" width="16" height="1.6"/><rect x="2" y="14.4" width="16" height="1.6"/></svg><svg class="i-grid" viewBox="0 0 20 20" width="20" height="20"><rect x="2" y="2" width="7" height="7"/><rect x="11" y="2" width="7" height="7"/><rect x="2" y="11" width="7" height="7"/><rect x="11" y="11" width="7" height="7"/></svg></button></nav>
 </header>
 <main>
 <article class="project"><header class="p-head"><div class="p-intro"><a class="back" href="/" aria-label="Back to work"><svg class="arr" viewBox="486 353 250 95" width="66" height="25" aria-hidden="true"><polygon points="534.41 445.79 488.14 401.58 532.35 355.3 536.69 359.45 496.62 401.38 538.55 441.45 534.41 445.79"/><rect x="492.38" y="398.48" width="241.62" height="6"/></svg></a><h1 class="split">Shadow Delivery</h1><div class="p-desc reveal-t"><p>That’s right. A shadow delivery.</p></div></div><dl class="credits reveal-t"><div><dt>Role</dt><dd>Creative Direction, Art Direction, Design</dd></div><div><dt>With</dt><dd>Felipe Cury, Alex Adati, Mihail Aleksandrov, Cauique Johnson, Matheus Távora, Ricardo Millani</dd></div><div><dt>Agency</dt><dd>LePub São Paulo</dd></div><div><dt>Client</dt><dd>Johnnie Walker</dd></div><div><dt>Year</dt><dd>2025</dd></div></dl></header><div class="p-body"><div class="mod vplayer reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe data-src="https://player.vimeo.com/video/1123952668?h=94b6e5e318&amp;background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Film"></iframe></div><button class="vp-hit" type="button" aria-label="Play with sound"><span class="vp-label">Play with sound</span></button></div>
 <div class="mod grid"><div class="row"><div class="cell reveal-m" style="flex:1.7960 1 0;transition-delay:0ms"><video class="m " data-src="/media/fd9f50ab-e715-46b4-9438-536ff7e4b76b_rw_1920.mp4" poster="/media/fd9f50ab-e715-46b4-9438-536ff7e4b76b_rw_1920.webp" width="1796" height="1000" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAADQAwCdASoUAAsAPu1iqk2ppaQiMAgBMB2JagCdABxZWeggAJZhksAA+9d7dp1vk0gG/DDNhqApNkoo/smGdzbkv3EaYGZ4KggVTMg+N1+dy8ibmzSRvO4d/MAL8GnCa2TE+JiT3IFD8nqYTVc3DAAA)"></video></div><div class="cell reveal-m" style="flex:1.7960 1 0;transition-delay:90ms"><video class="m " data-src="/media/e482d0dc-b6f0-4be9-ac67-f523778a6e95_rw_1920.mp4" poster="/media/e482d0dc-b6f0-4be9-ac67-f523778a6e95_rw_1920.webp" width="1796" height="1000" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAADwAwCdASoUAAsAPu1krU6ppaSiMAgBMB2JZQC/OCB0ZyqLA3ESfW4AAP7XFjIuVgaSGn1s90SJxmS3Bv2fpq5gsZsVXvANBnu6oi/BxR57AAAA)"></video></div></div><div class="row"><div class="cell reveal-m" style="flex:1.7960 1 0;transition-delay:0ms"><video class="m " data-src="/media/ff360e5f-4089-4158-bfa0-7751b038832f_rw_1920.mp4" poster="/media/ff360e5f-4089-4158-bfa0-7751b038832f_rw_1920.webp" width="1796" height="1000" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAAAwBACdASoUAAsAPu1iqU2ppaOiMAgBMB2JaACdMoACOYXdCSOJRn2rHAAA8BEHHwlV8E4SUDDhzVjpCHLDYYnb3Hzulb397E+HnJWiGmSvBeXS5e6AUyfKygDEWV7OqnRXqd6yI+s3sdQXHNmlqRX5MAyYOfMgmkzAAA==)"></video></div><div class="cell reveal-m" style="flex:1.7960 1 0;transition-delay:90ms"><video class="m " data-src="/media/f504dd3b-c145-46b4-b49c-4ebc6996a6fb_rw_1920.mp4" poster="/media/f504dd3b-c145-46b4-b49c-4ebc6996a6fb_rw_1920.webp" width="1796" height="1000" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAADQAwCdASoUAAsAPu1kqk4ppaQiMAgBMB2JYwCdABt9XznKzSVf+AAA/ZgIg12NEkUcKjU1Vgb/7n1PkDsHrHHW22kBy32vUlfyxuD1UTL7uPxCNam42REAIfX1o24GYujAMAijY5nm3DVAAAA=)"></video></div></div></div>
-<figure class="mod img reveal-m pin"><img class="m " src="/media/98e13006-98a1-436b-b5b0-996cc02a9635_rw_1920.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRpoAAABXRUJQVlA4II4AAABQBACdASoUAAsAPu1iqU2ppaOiMAgBMB2JbACdMoR4TsAAHgsitrrlIF6QAPnNeSsjAuAqBJQEHPtIKVsvFoBdJ48OPfsadSG2ZqPuzzBP1tDtRnfFF6V5ePD7uHoFbs8A3u6wQ7EIRIoTDQlxV7P8pLxAPzevndBJRvRQSUb41V1vsoNgkEXbh5pqAAAA)"></figure>
+<figure class="mod img reveal-m"><img class="m " src="/media/98e13006-98a1-436b-b5b0-996cc02a9635_rw_1920.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRpoAAABXRUJQVlA4II4AAABQBACdASoUAAsAPu1iqU2ppaOiMAgBMB2JbACdMoR4TsAAHgsitrrlIF6QAPnNeSsjAuAqBJQEHPtIKVsvFoBdJ48OPfsadSG2ZqPuzzBP1tDtRnfFF6V5ePD7uHoFbs8A3u6wQ7EIRIoTDQlxV7P8pLxAPzevndBJRvRQSUb41V1vsoNgkEXbh5pqAAAA)"></figure>
 <figure class="mod img reveal-m"><img class="m " src="/media/dfef0cf7-4ca1-4812-87b5-99cab3cadf52_rw_1920.webp" width="1920" height="5" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAACwAgCdASoUAAEAPu1iqU2ppaOiMAgBMB2JaQAAeyAA/vCfnTzAAAAA)"></figure>
 <div class="mod grid"><div class="row"><div class="cell reveal-m" style="flex:0.7072 1 0;transition-delay:0ms"><img class="m " src="/media/8bb1bcf0-1eae-4689-996c-549dc83cd99f_rw_1920.webp" width="1920" height="2716" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRtQAAABXRUJQVlA4IMgAAADwBACdASoUABwAPu1krE4ppaSiKA1RMB2JbA3CZMDUHimtOgiVDSmFDN1QKYqyPUAA/vAEn9AjpSw1NrntsJVB9F0wemzsJPwuo+6zCtEkBuJ3/wQYD3+X2to+upPlMZH18dwB3El6bZMfuyo28ClLLBtOkZfDq1yicS0dzxNDVSMdDiZV8llAq1D8dayd7q+X93HWI4s2LwyLWjOK5L60JPcmk+AZm/J5xc/jyiNV5/Y2zQph5ciDvYLBxZtOwo53EJ8tTSAAAA==)"></div><div class="cell reveal-m" style="flex:0.7072 1 0;transition-delay:90ms"><img class="m " src="/media/fc609876-fce9-4471-b599-4c93ef651e95_rw_1920.webp" width="1920" height="2716" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAABwAwCdASoUABwAPu1irVAppSQisBgIATAdiUAXZdAACRoR/AAA/uuAJPk6TnI7JNzkPh6Bd8//ME/X7588HhumXmnkZCdVWz8/QFgw6KFScAAAAAA=)"></div><div class="cell reveal-m" style="flex:0.7072 1 0;transition-delay:180ms"><img class="m " src="/media/0259020b-9580-4e2d-9c7f-a54508486e90_rw_1920.webp" width="1920" height="2716" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRtoAAABXRUJQVlA4IM4AAABwBQCdASoUABwAPu1mpk2ppiMiMBgMATAdiWwAnTLVQVYVUBkJX12hqqzdF7KCtfGOUKcQAP7ZZ9FwJ6uhF49UAxl6OO7VH6xe5Z7e0ALX/V0lY4Dc5ch5fvS73Ky/aP7iUJZP160pAXEszQxnxDv515XK9uV/0HaUIRL+oAnK0vSgePuigTU3aZM5Oex4qg0fpRXESZFoz0P/S7UuHd/i9WHiVI0rytcs0ve8SNZJ51ZMQF5xWBdw/7B/xAff/5ZJ+tHQGV3BWOWM5KLAAA==)"></div><div class="cell reveal-m" style="flex:0.7072 1 0;transition-delay:270ms"><img class="m " src="/media/6c8d5b05-c8b9-4f13-9016-fa8048ae7b52_rw_1920.webp" width="1920" height="2716" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRkYBAABXRUJQVlA4IDoBAABwBwCdASoUABwAPuVcpU2pJSOiMAwBIByJbACdMoRwN7HTFcADCqtMd3lHybiZ3F+MtoEhNKSjQzBBtwzFWzp9guUwAAD+xAoKDVph5nTAALAGqoW5E+/2t+Fqkjo1oupiAFIr5qPlvA9p7lRz/yHohgwwK3P7u7ulVod87EcdID1vBqPS62n6WZtha4Wvc1Wd30pr3Hrg///3FwDSRFpI9DCKkOeYkk8lO0u0SUMMXrzORxzGJAfs3r5dWnM1j5erRVKjryrGIPWsSt9rO+N+hX0DWemBgfmBdN3DkgMkM/OaodVzn/TJdvbL6l/TJ6zHRt037fljErI/8/qPcLix/XcL+4Cc6S4F0AQCw8EvrMA/gE40ZbaBh6P9HNz/830DDTf3B+o5fY/8Y5SczNvB9SaB3EvNjqoAAA==)"></div></div><div class="row"><div class="cell reveal-m" style="flex:0.7072 1 0;transition-delay:0ms"><img class="m " src="/media/2289feae-ba71-4fa9-8208-c48d2bd5071e_rw_1920.webp" width="1920" height="2715" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRj4BAABXRUJQVlA4IDIBAAAQBwCdASoUABwAPu1mq0+ppSOiMBgIATAdiWwAnTKEem8DqZ3ZKR7R1nspWVsboIz8m/WOhIUh7F0Sv9ahY3gGAAD+6PbXoHlEqP0Z8YULTsDP+EPFZjDpOGJ75lbtizjViCpsB6LOGA1A4ceRB4GL/7gINjFRe/4r+AoP/uPPMzznmmcCBT/VnPakDVZMOM8uKTxlj/qEEGrxIKp0rwCP62/hS8P9Z49aRYf/WS6FSinyYK/uNwno1JkwRlTpuUDASInhkCjqZrSY6mniLXOTY28MzBTjIwXJQA7XvzP9obI2SlV2k1ZkvHUYm0djAa/vB1xFp2WKRCJfQ6EXI5qFDfxAx/KtjvmiiJpApgq2JOUNvzygiE99ILmJHcN1TlTms0DIMMWQPZHUB0IOM3LYAAA=)"></div><div class="cell reveal-m" style="flex:0.7072 1 0;transition-delay:90ms"><img class="m " src="/media/8a97cf57-6e56-4939-9def-f89c00426cf9_rw_1920.webp" width="1920" height="2716" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRhABAABXRUJQVlA4IAQBAAAQBwCdASoUABwAPu1qrVCppaQiqAqpMB2JbACdMuN1d7NbhIaOmAbyZ+1SRAClmvSPBRx438BJfFKhDJ/9ncggAAD+sO/z9oK2vyf+DrzzV6GZKclzc9PEtaGO8n4HQL6YWVSe+eVn+cbe1lZKBntZQutmcZUl2tTBYVcRZi2yJrJ+wvDwq/Ywh/6Kw/qrn6sK61pP/irKsz5D8sKo1EcZiluJL8o1CDPsflGVRVxHLev2a6CyWy/hmTZkYcCRKWNnFOkO35vBLhJBCgW/rzxkzxswED4z/SwaOk7LvnEhpJjVuje81votGFGCwbCCKnXxtxmd+zhlyHI6TUYG0mIVJZwAAA==)"></div></div></div></div><nav class="pn" aria-label="More projects"><a href="/maradona/" rel="prev">← Previous</a><a href="/ceu-azul/" rel="next">Next →</a></nav></article>
 </main>
@@ -346,10 +372,34 @@ html.loading,html.loading body{overflow:hidden}
     });
   }
 
-  // layered scroll: a pinned image sticks once its bottom reaches the bottom of the screen
-  const pins = [...document.querySelectorAll('.p-body>.mod.pin')];
-  const setPins = () => pins.forEach(p => { p.style.top = Math.min(0, innerHeight - p.offsetHeight) + 'px'; });
-  if (pins.length) { setPins(); addEventListener('resize', setPins); const pinRO = new ResizeObserver(setPins); pins.forEach(p => pinRO.observe(p)); }
+  // grid / list toggle (home); elsewhere it opens the home in the chosen view
+  const vt = document.querySelector('.vt');
+  if (vt) {
+    const root = document.documentElement;
+    const label = () => vt.setAttribute('aria-label', root.classList.contains('view-list') ? 'Show as grid' : 'Show as list');
+    label();
+    vt.addEventListener('click', () => {
+      const list = !root.classList.contains('view-list');
+      try { localStorage.setItem('fs-view', list ? 'list' : 'grid'); } catch (e) {}
+      if (!document.body.classList.contains('pg-home')) { location.href = '/' + (list ? '#list' : ''); return; }
+      const swap = () => { root.classList.toggle('view-list', list); label(); scrollTo(0, 0); if (lenis) lenis.scrollTo(0, { immediate: true }); };
+      document.startViewTransition && !reduce ? document.startViewTransition(swap) : swap();
+    });
+  }
+  // list hover preview follows the cursor
+  const pv = document.querySelector('.pv');
+  if (pv && matchMedia('(hover: hover)').matches) {
+    const pimg = pv.querySelector('img');
+    let px = 0, py = 0, tx = 0, ty = 0, run = false;
+    const loop = () => { px += (tx - px) * 0.2; py += (ty - py) * 0.2; pv.style.translate = `${px + 28}px ${py - pv.offsetHeight / 2}px`; if (run) requestAnimationFrame(loop); };
+    document.querySelectorAll('.prow').forEach(r => {
+      r.addEventListener('mouseenter', e => { if (r.dataset.pv) pimg.src = r.dataset.pv; pv.classList.add('on'); if (!run) { px = tx = e.clientX; py = ty = e.clientY; run = true; loop(); } });
+      r.addEventListener('mouseleave', () => { pv.classList.remove('on'); setTimeout(() => { if (!pv.classList.contains('on')) run = false; }, 400); });
+    });
+    addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; }, { passive: true });
+    // warm the cache so previews pop instantly
+    setTimeout(() => document.querySelectorAll('.prow[data-pv]').forEach(r => { const i = new Image(); i.src = r.dataset.pv; }), 2500);
+  }
 
   // in-page loops (ex-GIFs): load + play only while on screen
   const vidObs = new IntersectionObserver(es => {

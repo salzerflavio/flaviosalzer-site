@@ -15,7 +15,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://flaviosalzer.com/the-smallest-launch/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🫀</text></svg>">
-<script>document.documentElement.classList.add('js')</script>
+<script>document.documentElement.classList.add('js');try{if(localStorage.getItem('fs-view')==='list'||location.hash==='#list')document.documentElement.classList.add('view-list')}catch(e){}</script>
 <style>/* ==========================================================
    f* — GUIA PADRÃO
    COR      fundo #000 · texto #bcbcbc · destaque #eeeeee
@@ -211,25 +211,51 @@ html:not(.js) .split .ln>span{transform:none}
 html.loading,html.loading body{overflow:hidden}
 .vplayer iframe{background:#0b0b0b}
 
-/* camadas: imagens largas "param" no fim e o bloco seguinte desliza por cima, cobrindo */
-.p-body>.mod{position:relative;z-index:1;background:var(--bg)}
-.p-body>.mod.pin{position:sticky;z-index:0}
-.p-body>.mod.pin:last-child{position:relative}
+
+/* alternar mosaico / lista */
+.site-head nav{align-items:center}
+.vt{pointer-events:auto;display:block;padding:0;margin:0;border:0;background:none;color:inherit;opacity:.85;transition:opacity .2s}
+.vt:hover{opacity:1}
+.vt svg{display:block;fill:currentColor}
+.vt .i-grid{display:none}
+html.view-list .vt .i-grid{display:block}
+html.view-list .vt .i-list{display:none}
+.plist{display:none;padding:var(--s2) var(--edge) var(--s3)}
+html.view-list .pg-home .masonry,html.view-list .pg-home .stack{display:none!important}
+html.view-list .pg-home .plist{display:block}
+.prow{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,4fr) auto auto;align-items:baseline;gap:var(--s2);padding:14px 0;color:var(--tx);transition:color .25s}
+.pr-client{font:400 var(--fs-ui)/1.3 var(--f)}
+.pr-name{font:500 clamp(30px,3.9vw,56px)/1.05 var(--f);letter-spacing:-.015em;color:var(--hi);opacity:.55;transition:opacity .25s,transform .4s var(--ease)}
+.pr-year{font:400 var(--fs-ui)/1 var(--f)}
+.pr-arr{font:400 22px/1 var(--f);opacity:0;transform:translateX(-8px);transition:opacity .25s,transform .3s var(--ease)}
+.prow:hover .pr-name{opacity:1;transform:translateX(8px)}
+.prow:hover .pr-arr{opacity:1;transform:none}
+.prow:hover{color:var(--hi)}
+.pv{position:fixed;left:0;top:0;z-index:40;width:min(28vw,420px);aspect-ratio:1891/1479;pointer-events:none;opacity:0;transform:scale(.92);transition:opacity .25s,transform .35s var(--ease);overflow:hidden}
+.pv.on{opacity:1;transform:scale(1)}
+.pv img{width:100%;height:100%;object-fit:cover;object-position:left top;display:block}
+@media (max-width:700px){
+  .prow{grid-template-columns:1fr auto;gap:4px 12px}
+  .pr-client{grid-column:1/-1;order:-1}
+  .pr-arr{display:none}
+  .pr-name{opacity:1}
+  .pv{display:none}
+}
 </style>
 </head>
 <body class="proj" id="top">
 <header class="site-head">
   <a class="logo" href="/">f*</a>
-  <nav><a href="/">Work</a><a href="/flavio/">☺ About</a></nav>
+  <nav><a href="/">Work</a><a href="/flavio/">☺ About</a><button class="vt" type="button" aria-label="Show as list"><svg class="i-list" viewBox="0 0 20 20" width="20" height="20"><rect x="2" y="4" width="16" height="1.6"/><rect x="2" y="9.2" width="16" height="1.6"/><rect x="2" y="14.4" width="16" height="1.6"/></svg><svg class="i-grid" viewBox="0 0 20 20" width="20" height="20"><rect x="2" y="2" width="7" height="7"/><rect x="11" y="2" width="7" height="7"/><rect x="2" y="11" width="7" height="7"/><rect x="11" y="11" width="7" height="7"/></svg></button></nav>
 </header>
 <main>
 <article class="project"><header class="p-head"><div class="p-intro"><a class="back" href="/" aria-label="Back to work"><svg class="arr" viewBox="486 353 250 95" width="66" height="25" aria-hidden="true"><polygon points="534.41 445.79 488.14 401.58 532.35 355.3 536.69 359.45 496.62 401.38 538.55 441.45 534.41 445.79"/><rect x="492.38" y="398.48" width="241.62" height="6"/></svg></a><h1 class="split">The Smallest Launch in the World</h1><div class="p-desc reveal-t"><p>To celebrate Consumer Day, Skol honored its biggest consumer and collector with an exclusive product and a launch campaign just for him.</p></div></div><dl class="credits reveal-t"><div><dt>Role</dt><dd>Concept, Art Direction, Design</dd></div><div><dt>With</dt><dd>Ícaro Abreu, Yuri Mussoly, Alê Muccillo, Letícia Hanower, Julian Velez, Arthur Souza</dd></div><div><dt>Agency</dt><dd>Mutato</dd></div><div><dt>Client</dt><dd>Skol</dd></div><div><dt>Year</dt><dd>2020</dd></div></dl></header><div class="p-body"><div class="mod vplayer reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe data-src="https://player.vimeo.com/video/713696784?h=3791d4959f&amp;background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Film"></iframe></div><button class="vp-hit" type="button" aria-label="Play with sound"><span class="vp-label">Play with sound</span></button></div>
-<figure class="mod img reveal-m pin"><img class="m " src="/media/e3c48cd2-aa42-4f57-9e64-cf49a6e9d298_rw_1920.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRo4AAABXRUJQVlA4IIIAAAAQBACdASoUAAsAPu1iqU2ppaOiMAgBMB2JbACsLwAByJ5YCWrCg89TwAD+7d/8X7u+wwuZfshWw8wsbFjLM+i8fyAHDvez97pzRYZ6MFRscs4oA8nX9K1fDRStKbxZNOckJrEBZmQBTCNvCVMALqLnEUgv5uwo69rFzokrGEp1AAAA)"></figure>
-<figure class="mod img reveal-m pin"><img class="m " src="/media/ec324854-73a7-4fe5-a571-cf06bd442772_rw_1920.webp" width="1920" height="1406" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRsAAAABXRUJQVlA4ILQAAACQBACdASoUAA8APu1iqU2ppaOiMAgBMB2JbACdMoAvQBm/zgCqehrBqGGbEgQA/sELZVDb17tt70I8V/wAHKxKnxPLElrZCAOzkHCU2ozPwS4mflHanSBFRSxTXFWZmzyryk4Y/9zatJL2VJW/DR4yPMwYRFt5QA6ylzYEfmuWecEABWig7wbYj/e3TrxAedt8qKo8/73D6FSDplPF7Vs44FU8oOY1i/pf2Ubk0Mnv7gmAAAA=)"></figure>
-<figure class="mod img reveal-m pin"><video class="m " data-src="/media/dfb15f9f-4194-464d-8ec4-08e542dfe2cb_rw_1920.mp4" poster="/media/dfb15f9f-4194-464d-8ec4-08e542dfe2cb_rw_1920.webp" width="1920" height="540" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRj4AAABXRUJQVlA4IDIAAADQAgCdASoUAAYAPu1iqU2ppaQiMAgBMB2JZQAAifQAAP7w0fplJl33AVr4H6IocoHgAA==)"></video></figure>
-<figure class="mod img reveal-m pin"><img class="m " src="/media/21e8f182-ff93-4789-a4fa-fa834a21cb0d_rw_1920.webp" width="1920" height="2720" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRtwAAABXRUJQVlA4INAAAACQBQCdASoUABwAPu1qrFEppaQiqAqpMB2JbACdDiAN5oAYtvKUME+9uhXHbe9Lq8v4dBF+AAD+i7IqPtNVPZeysQsbPLhd46ZDJa9oqg6NlfLjtI0LOS/xTp/s2RQfCscr20Alwx53PITmEXoeErd+dQAvhOAB64Ks/7bfjwUp5pU0F5h3uIjEQTk3UQPaLQnhi4lw6HxzUMdoZVzvDqzL+SJBbmt87imxqX44V4Daqorb8Tdf4kowUFh0NU6f74ZI/NCH+KkgwfvDHAERQAAA)"></figure>
-<figure class="mod img reveal-m pin"><img class="m " src="/media/9668e1b1-9252-4a72-a021-93f5ded7b620_rw_1920.webp" width="1920" height="1440" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRqoAAABXRUJQVlA4IJ4AAADQBACdASoUAA8APu1iqU2ppaOiMAgBMB2JbACdMoR8msAA39f3jOLh/AhHXSH3EAD+xEh1NWHUo48txHi88HKY3n7cu+T2ilI6J/mw1VWvq2XQVWRG5hv5OnSFIcHLdYgTqiBrNdfckrsrW1SyXfbDV5qnJB01qyfZQp2c099/gjXO8Ictj/girwE5RutbItWBRwj494luwOK8EVgAAA==)"></figure>
-<figure class="mod img reveal-m pin"><img class="m " src="/media/c433fe61-a318-4888-a537-78f88d379b30_rw_1920.webp" width="1920" height="2515" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRn4AAABXRUJQVlA4IHIAAABwBACdASoUABoAPu1mq06ppaOiKA1RMB2JbADIXBDezBjqRKkYNB0e2zpjAAD+8ECUTfyMPWDsyOEx2AZynKMBvke9t6fWFEBRKFDiXcQq2BKBuhcSAQHy16QISYn1sAwkIR/yJZImZQTZCph18uAAAAA=)"></figure>
+<figure class="mod img reveal-m"><img class="m " src="/media/e3c48cd2-aa42-4f57-9e64-cf49a6e9d298_rw_1920.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRo4AAABXRUJQVlA4IIIAAAAQBACdASoUAAsAPu1iqU2ppaOiMAgBMB2JbACsLwAByJ5YCWrCg89TwAD+7d/8X7u+wwuZfshWw8wsbFjLM+i8fyAHDvez97pzRYZ6MFRscs4oA8nX9K1fDRStKbxZNOckJrEBZmQBTCNvCVMALqLnEUgv5uwo69rFzokrGEp1AAAA)"></figure>
+<figure class="mod img reveal-m"><img class="m " src="/media/ec324854-73a7-4fe5-a571-cf06bd442772_rw_1920.webp" width="1920" height="1406" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRsAAAABXRUJQVlA4ILQAAACQBACdASoUAA8APu1iqU2ppaOiMAgBMB2JbACdMoAvQBm/zgCqehrBqGGbEgQA/sELZVDb17tt70I8V/wAHKxKnxPLElrZCAOzkHCU2ozPwS4mflHanSBFRSxTXFWZmzyryk4Y/9zatJL2VJW/DR4yPMwYRFt5QA6ylzYEfmuWecEABWig7wbYj/e3TrxAedt8qKo8/73D6FSDplPF7Vs44FU8oOY1i/pf2Ubk0Mnv7gmAAAA=)"></figure>
+<figure class="mod img reveal-m"><video class="m " data-src="/media/dfb15f9f-4194-464d-8ec4-08e542dfe2cb_rw_1920.mp4" poster="/media/dfb15f9f-4194-464d-8ec4-08e542dfe2cb_rw_1920.webp" width="1920" height="540" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRj4AAABXRUJQVlA4IDIAAADQAgCdASoUAAYAPu1iqU2ppaQiMAgBMB2JZQAAifQAAP7w0fplJl33AVr4H6IocoHgAA==)"></video></figure>
+<figure class="mod img reveal-m"><img class="m " src="/media/21e8f182-ff93-4789-a4fa-fa834a21cb0d_rw_1920.webp" width="1920" height="2720" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRtwAAABXRUJQVlA4INAAAACQBQCdASoUABwAPu1qrFEppaQiqAqpMB2JbACdDiAN5oAYtvKUME+9uhXHbe9Lq8v4dBF+AAD+i7IqPtNVPZeysQsbPLhd46ZDJa9oqg6NlfLjtI0LOS/xTp/s2RQfCscr20Alwx53PITmEXoeErd+dQAvhOAB64Ks/7bfjwUp5pU0F5h3uIjEQTk3UQPaLQnhi4lw6HxzUMdoZVzvDqzL+SJBbmt87imxqX44V4Daqorb8Tdf4kowUFh0NU6f74ZI/NCH+KkgwfvDHAERQAAA)"></figure>
+<figure class="mod img reveal-m"><img class="m " src="/media/9668e1b1-9252-4a72-a021-93f5ded7b620_rw_1920.webp" width="1920" height="1440" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRqoAAABXRUJQVlA4IJ4AAADQBACdASoUAA8APu1iqU2ppaOiMAgBMB2JbACdMoR8msAA39f3jOLh/AhHXSH3EAD+xEh1NWHUo48txHi88HKY3n7cu+T2ilI6J/mw1VWvq2XQVWRG5hv5OnSFIcHLdYgTqiBrNdfckrsrW1SyXfbDV5qnJB01qyfZQp2c099/gjXO8Ictj/girwE5RutbItWBRwj494luwOK8EVgAAA==)"></figure>
+<figure class="mod img reveal-m"><img class="m " src="/media/c433fe61-a318-4888-a537-78f88d379b30_rw_1920.webp" width="1920" height="2515" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRn4AAABXRUJQVlA4IHIAAABwBACdASoUABoAPu1mq06ppaOiKA1RMB2JbADIXBDezBjqRKkYNB0e2zpjAAD+8ECUTfyMPWDsyOEx2AZynKMBvke9t6fWFEBRKFDiXcQq2BKBuhcSAQHy16QISYn1sAwkIR/yJZImZQTZCph18uAAAAA=)"></figure>
 <figure class="mod img reveal-m"><img class="m " src="/media/87560180-873b-48ce-906e-0167dd6e9c66_rw_1920.webp" width="1920" height="5" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAACwAgCdASoUAAEAPu1iqU2ppaOiMAgBMB2JaQAAeyAA/vCfnTzAAAAA)"></figure></div><nav class="pn" aria-label="More projects"><a href="/ze-salva/" rel="prev">← Previous</a><a href="/delivery-pool/" rel="next">Next →</a></nav></article>
 </main>
 <footer class="site-foot">
@@ -349,10 +375,34 @@ html.loading,html.loading body{overflow:hidden}
     });
   }
 
-  // layered scroll: a pinned image sticks once its bottom reaches the bottom of the screen
-  const pins = [...document.querySelectorAll('.p-body>.mod.pin')];
-  const setPins = () => pins.forEach(p => { p.style.top = Math.min(0, innerHeight - p.offsetHeight) + 'px'; });
-  if (pins.length) { setPins(); addEventListener('resize', setPins); const pinRO = new ResizeObserver(setPins); pins.forEach(p => pinRO.observe(p)); }
+  // grid / list toggle (home); elsewhere it opens the home in the chosen view
+  const vt = document.querySelector('.vt');
+  if (vt) {
+    const root = document.documentElement;
+    const label = () => vt.setAttribute('aria-label', root.classList.contains('view-list') ? 'Show as grid' : 'Show as list');
+    label();
+    vt.addEventListener('click', () => {
+      const list = !root.classList.contains('view-list');
+      try { localStorage.setItem('fs-view', list ? 'list' : 'grid'); } catch (e) {}
+      if (!document.body.classList.contains('pg-home')) { location.href = '/' + (list ? '#list' : ''); return; }
+      const swap = () => { root.classList.toggle('view-list', list); label(); scrollTo(0, 0); if (lenis) lenis.scrollTo(0, { immediate: true }); };
+      document.startViewTransition && !reduce ? document.startViewTransition(swap) : swap();
+    });
+  }
+  // list hover preview follows the cursor
+  const pv = document.querySelector('.pv');
+  if (pv && matchMedia('(hover: hover)').matches) {
+    const pimg = pv.querySelector('img');
+    let px = 0, py = 0, tx = 0, ty = 0, run = false;
+    const loop = () => { px += (tx - px) * 0.2; py += (ty - py) * 0.2; pv.style.translate = `${px + 28}px ${py - pv.offsetHeight / 2}px`; if (run) requestAnimationFrame(loop); };
+    document.querySelectorAll('.prow').forEach(r => {
+      r.addEventListener('mouseenter', e => { if (r.dataset.pv) pimg.src = r.dataset.pv; pv.classList.add('on'); if (!run) { px = tx = e.clientX; py = ty = e.clientY; run = true; loop(); } });
+      r.addEventListener('mouseleave', () => { pv.classList.remove('on'); setTimeout(() => { if (!pv.classList.contains('on')) run = false; }, 400); });
+    });
+    addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; }, { passive: true });
+    // warm the cache so previews pop instantly
+    setTimeout(() => document.querySelectorAll('.prow[data-pv]').forEach(r => { const i = new Image(); i.src = r.dataset.pv; }), 2500);
+  }
 
   // in-page loops (ex-GIFs): load + play only while on screen
   const vidObs = new IntersectionObserver(es => {

@@ -109,10 +109,34 @@
     });
   }
 
-  // layered scroll: a pinned image sticks once its bottom reaches the bottom of the screen
-  const pins = [...document.querySelectorAll('.p-body>.mod.pin')];
-  const setPins = () => pins.forEach(p => { p.style.top = Math.min(0, innerHeight - p.offsetHeight) + 'px'; });
-  if (pins.length) { setPins(); addEventListener('resize', setPins); const pinRO = new ResizeObserver(setPins); pins.forEach(p => pinRO.observe(p)); }
+  // grid / list toggle (home); elsewhere it opens the home in the chosen view
+  const vt = document.querySelector('.vt');
+  if (vt) {
+    const root = document.documentElement;
+    const label = () => vt.setAttribute('aria-label', root.classList.contains('view-list') ? 'Show as grid' : 'Show as list');
+    label();
+    vt.addEventListener('click', () => {
+      const list = !root.classList.contains('view-list');
+      try { localStorage.setItem('fs-view', list ? 'list' : 'grid'); } catch (e) {}
+      if (!document.body.classList.contains('pg-home')) { location.href = '/' + (list ? '#list' : ''); return; }
+      const swap = () => { root.classList.toggle('view-list', list); label(); scrollTo(0, 0); if (lenis) lenis.scrollTo(0, { immediate: true }); };
+      document.startViewTransition && !reduce ? document.startViewTransition(swap) : swap();
+    });
+  }
+  // list hover preview follows the cursor
+  const pv = document.querySelector('.pv');
+  if (pv && matchMedia('(hover: hover)').matches) {
+    const pimg = pv.querySelector('img');
+    let px = 0, py = 0, tx = 0, ty = 0, run = false;
+    const loop = () => { px += (tx - px) * 0.2; py += (ty - py) * 0.2; pv.style.translate = `${px + 28}px ${py - pv.offsetHeight / 2}px`; if (run) requestAnimationFrame(loop); };
+    document.querySelectorAll('.prow').forEach(r => {
+      r.addEventListener('mouseenter', e => { if (r.dataset.pv) pimg.src = r.dataset.pv; pv.classList.add('on'); if (!run) { px = tx = e.clientX; py = ty = e.clientY; run = true; loop(); } });
+      r.addEventListener('mouseleave', () => { pv.classList.remove('on'); setTimeout(() => { if (!pv.classList.contains('on')) run = false; }, 400); });
+    });
+    addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; }, { passive: true });
+    // warm the cache so previews pop instantly
+    setTimeout(() => document.querySelectorAll('.prow[data-pv]').forEach(r => { const i = new Image(); i.src = r.dataset.pv; }), 2500);
+  }
 
   // in-page loops (ex-GIFs): load + play only while on screen
   const vidObs = new IntersectionObserver(es => {

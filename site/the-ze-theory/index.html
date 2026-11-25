@@ -15,7 +15,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://flaviosalzer.com/the-ze-theory/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🫀</text></svg>">
-<script>document.documentElement.classList.add('js')</script>
+<script>document.documentElement.classList.add('js');try{if(localStorage.getItem('fs-view')==='list'||location.hash==='#list')document.documentElement.classList.add('view-list')}catch(e){}</script>
 <style>/* ==========================================================
    f* — GUIA PADRÃO
    COR      fundo #000 · texto #bcbcbc · destaque #eeeeee
@@ -211,33 +211,59 @@ html:not(.js) .split .ln>span{transform:none}
 html.loading,html.loading body{overflow:hidden}
 .vplayer iframe{background:#0b0b0b}
 
-/* camadas: imagens largas "param" no fim e o bloco seguinte desliza por cima, cobrindo */
-.p-body>.mod{position:relative;z-index:1;background:var(--bg)}
-.p-body>.mod.pin{position:sticky;z-index:0}
-.p-body>.mod.pin:last-child{position:relative}
+
+/* alternar mosaico / lista */
+.site-head nav{align-items:center}
+.vt{pointer-events:auto;display:block;padding:0;margin:0;border:0;background:none;color:inherit;opacity:.85;transition:opacity .2s}
+.vt:hover{opacity:1}
+.vt svg{display:block;fill:currentColor}
+.vt .i-grid{display:none}
+html.view-list .vt .i-grid{display:block}
+html.view-list .vt .i-list{display:none}
+.plist{display:none;padding:var(--s2) var(--edge) var(--s3)}
+html.view-list .pg-home .masonry,html.view-list .pg-home .stack{display:none!important}
+html.view-list .pg-home .plist{display:block}
+.prow{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,4fr) auto auto;align-items:baseline;gap:var(--s2);padding:14px 0;color:var(--tx);transition:color .25s}
+.pr-client{font:400 var(--fs-ui)/1.3 var(--f)}
+.pr-name{font:500 clamp(30px,3.9vw,56px)/1.05 var(--f);letter-spacing:-.015em;color:var(--hi);opacity:.55;transition:opacity .25s,transform .4s var(--ease)}
+.pr-year{font:400 var(--fs-ui)/1 var(--f)}
+.pr-arr{font:400 22px/1 var(--f);opacity:0;transform:translateX(-8px);transition:opacity .25s,transform .3s var(--ease)}
+.prow:hover .pr-name{opacity:1;transform:translateX(8px)}
+.prow:hover .pr-arr{opacity:1;transform:none}
+.prow:hover{color:var(--hi)}
+.pv{position:fixed;left:0;top:0;z-index:40;width:min(28vw,420px);aspect-ratio:1891/1479;pointer-events:none;opacity:0;transform:scale(.92);transition:opacity .25s,transform .35s var(--ease);overflow:hidden}
+.pv.on{opacity:1;transform:scale(1)}
+.pv img{width:100%;height:100%;object-fit:cover;object-position:left top;display:block}
+@media (max-width:700px){
+  .prow{grid-template-columns:1fr auto;gap:4px 12px}
+  .pr-client{grid-column:1/-1;order:-1}
+  .pr-arr{display:none}
+  .pr-name{opacity:1}
+  .pv{display:none}
+}
 </style>
 </head>
 <body class="proj" id="top">
 <header class="site-head">
   <a class="logo" href="/">f*</a>
-  <nav><a href="/">Work</a><a href="/flavio/">☺ About</a></nav>
+  <nav><a href="/">Work</a><a href="/flavio/">☺ About</a><button class="vt" type="button" aria-label="Show as list"><svg class="i-list" viewBox="0 0 20 20" width="20" height="20"><rect x="2" y="4" width="16" height="1.6"/><rect x="2" y="9.2" width="16" height="1.6"/><rect x="2" y="14.4" width="16" height="1.6"/></svg><svg class="i-grid" viewBox="0 0 20 20" width="20" height="20"><rect x="2" y="2" width="7" height="7"/><rect x="11" y="2" width="7" height="7"/><rect x="2" y="11" width="7" height="7"/><rect x="11" y="11" width="7" height="7"/></svg></button></nav>
 </header>
 <main>
 <article class="project"><header class="p-head"><div class="p-intro"><a class="back" href="/" aria-label="Back to work"><svg class="arr" viewBox="486 353 250 95" width="66" height="25" aria-hidden="true"><polygon points="534.41 445.79 488.14 401.58 532.35 355.3 536.69 359.45 496.62 401.38 538.55 441.45 534.41 445.79"/><rect x="492.38" y="398.48" width="241.62" height="6"/></svg></a><h1 class="split">The Zé Theory</h1><div class="p-desc reveal-t"><p>In 2022 we had the Fifa World Cup, the biggest event in the universe for soccer lovers. And, in Brazil, soccer is a big deal. Our country stops to watch the national team playing. Soccer is almost a religion for Brazilian people, surrounded by rituals and beliefs.</p><p>Here it is impossible to tear soccer and superstition apart. And, in 2022, we discovered one really important thing: every time that Brazil won a World Cup, there was a player named "Zé" in the pitch.</p><p>Wooooow! People needed to know that, and who is better to announce that than a brand with "Zé" in its name?</p><p>But wait, in 2022, was there a Zé on the team?</p></div></div><dl class="credits reveal-t"><div><dt>Role</dt><dd>Art Direction, Digital Content</dd></div><div><dt>With</dt><dd>Bruno Brux, Murilo Mello, Ju Utsch, Sofia Calvit, Cauique Johnson, Daniel Achucarro, Deborah Ferreira, Vitinho Chagas</dd></div><div><dt>Agency</dt><dd>GUT</dd></div><div><dt>Client</dt><dd>Zé Delivery</dd></div><div><dt>Year</dt><dd>2022</dd></div></dl></header><div class="p-body"><div class="mod vplayer reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe data-src="https://player.vimeo.com/video/827802570?h=451729e20b&amp;background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Film"></iframe></div><button class="vp-hit" type="button" aria-label="Play with sound"><span class="vp-label">Play with sound</span></button></div>
 <figure class="mod img reveal-m"><img class="m " src="/media/62a339d2-ff44-4cf3-b86b-78dd0f469d65_rw_1920.webp" width="1920" height="5" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAACwAgCdASoUAAEAPu1iqU2ppaOiMAgBMB2JaQAAeyAA/vCfnTzAAAAA)"></figure>
-<figure class="mod img reveal-m pin"><img class="m " src="/media/ce0e8817-1c38-455f-bdb3-6d2e0bbf56ab_rw_1920.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAADwAwCdASoUAAsAPu1iqU2ppaOiMAgBMB2JbACdMoADE3uhwxlYgImAAP6X8HZ799n2LqiyXA8pTrxvy6pjc8gYzFU0K9861TyNI8xN35Ny1b459al4fj/y3TYZgIUS/ssVsOCKWYbDkxwJLq8oOSmV2h7BfdAA)"></figure>
-<figure class="mod img reveal-m pin"><img class="m " src="/media/056490ad-a19d-41ba-9d20-b31a4b3e5f0a_rw_1920.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRooAAABXRUJQVlA4IH4AAAAQBACdASoUAAsAPu1iqU2ppaQiMAgBMB2JZgCdACFUUOWh2/zRPIml4AD+wNSMGkN1ASThdjLInjWDrLr/ZP8pptI9+7RdcqFqDPAw2ErUDvUjekcojQACLxgMo3cLfxl3u7MQlidtyRxKoVBI3ZotmHhwZsIdz/GBacP+AAA=)"></figure>
-<figure class="mod img reveal-m pin"><video class="m " data-src="/media/0101f5a5-edd5-4ebf-8c10-0b2f04d00171_rw_1920.mp4" poster="/media/0101f5a5-edd5-4ebf-8c10-0b2f04d00171_rw_1920.webp" width="1920" height="1080" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAAAwBACdASoUAAsAPu1iqU2ppaOiMAgBMB2JZAC06CKuRE5ZGKs6CJUuz4AA/trV2zML9tTUjh8kLxXm5pqOXg9AEXXJn5FOYs7YAi7GDoPe4zyXw6V5VcXTSZ24X7M4vc+2ED9e/XDHWe9ioFoWce2N9bOIgAAA)"></video></figure>
-<figure class="mod img reveal-m pin"><img class="m " src="/media/5bb94601-1421-4e41-a28b-2694babf0a88_rw_1920.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRn4AAABXRUJQVlA4IHIAAABQBACdASoUAAsAPu1iqU2ppaOiMAgBMB2JbACdMoGv/gK2361Tb8mBzyvQAP7QOjxzsm7pt8oJaSZ6NaCOhdRpkJbzZGFUG7DdaM0/jXlE8+uksdmNUVcGn4OQ3a95osTaghj8P5wCd4KVgsQtgDMGUAA=)"></figure>
+<figure class="mod img reveal-m"><img class="m " src="/media/ce0e8817-1c38-455f-bdb3-6d2e0bbf56ab_rw_1920.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAADwAwCdASoUAAsAPu1iqU2ppaOiMAgBMB2JbACdMoADE3uhwxlYgImAAP6X8HZ799n2LqiyXA8pTrxvy6pjc8gYzFU0K9861TyNI8xN35Ny1b459al4fj/y3TYZgIUS/ssVsOCKWYbDkxwJLq8oOSmV2h7BfdAA)"></figure>
+<figure class="mod img reveal-m"><img class="m " src="/media/056490ad-a19d-41ba-9d20-b31a4b3e5f0a_rw_1920.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRooAAABXRUJQVlA4IH4AAAAQBACdASoUAAsAPu1iqU2ppaQiMAgBMB2JZgCdACFUUOWh2/zRPIml4AD+wNSMGkN1ASThdjLInjWDrLr/ZP8pptI9+7RdcqFqDPAw2ErUDvUjekcojQACLxgMo3cLfxl3u7MQlidtyRxKoVBI3ZotmHhwZsIdz/GBacP+AAA=)"></figure>
+<figure class="mod img reveal-m"><video class="m " data-src="/media/0101f5a5-edd5-4ebf-8c10-0b2f04d00171_rw_1920.mp4" poster="/media/0101f5a5-edd5-4ebf-8c10-0b2f04d00171_rw_1920.webp" width="1920" height="1080" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAAAwBACdASoUAAsAPu1iqU2ppaOiMAgBMB2JZAC06CKuRE5ZGKs6CJUuz4AA/trV2zML9tTUjh8kLxXm5pqOXg9AEXXJn5FOYs7YAi7GDoPe4zyXw6V5VcXTSZ24X7M4vc+2ED9e/XDHWe9ioFoWce2N9bOIgAAA)"></video></figure>
+<figure class="mod img reveal-m"><img class="m " src="/media/5bb94601-1421-4e41-a28b-2694babf0a88_rw_1920.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRn4AAABXRUJQVlA4IHIAAABQBACdASoUAAsAPu1iqU2ppaOiMAgBMB2JbACdMoGv/gK2361Tb8mBzyvQAP7QOjxzsm7pt8oJaSZ6NaCOhdRpkJbzZGFUG7DdaM0/jXlE8+uksdmNUVcGn4OQ3a95osTaghj8P5wCd4KVgsQtgDMGUAA=)"></figure>
 <div class="mod vplayer reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe data-src="https://player.vimeo.com/video/788047390?h=d18d51498d&amp;background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Film"></iframe></div><button class="vp-hit" type="button" aria-label="Play with sound"><span class="vp-label">Play with sound</span></button></div>
-<figure class="mod img reveal-m pin"><video class="m " data-src="/media/33948474-4112-4a2a-8ec6-d6f50f2d706b_rw_1920.mp4" poster="/media/33948474-4112-4a2a-8ec6-d6f50f2d706b_rw_1920.webp" width="1920" height="1080" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRjAAAABXRUJQVlA4ICQAAACwAgCdASoUAAsAPu1iqU2ppaOiMAgBMB2JaQAAeyAA/vCtoAA=)"></video></figure>
-<figure class="mod img reveal-m pin"><img class="m " src="/media/0ddb266f-2fc6-46f8-811c-9b6ec60f5272_rw_1920.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRpYAAABXRUJQVlA4IIoAAACQAwCdASoUAAsAPu1iqU2ppaQiMAgBMB2JagCsAA8CgexpH5UAAP7NBfMWg2U6ikR9u3dibe/5re7aPqOP4TW/cYYOTO7EICV4gVNDCqnPJ5TZviozXu7/7PaYLT35D29jBgdNrzbvp7neGBOnKYWmkw68pw95VgoAvY2OxfQpmKKPviCNuhgAAAA=)"></figure>
+<figure class="mod img reveal-m"><video class="m " data-src="/media/33948474-4112-4a2a-8ec6-d6f50f2d706b_rw_1920.mp4" poster="/media/33948474-4112-4a2a-8ec6-d6f50f2d706b_rw_1920.webp" width="1920" height="1080" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRjAAAABXRUJQVlA4ICQAAACwAgCdASoUAAsAPu1iqU2ppaOiMAgBMB2JaQAAeyAA/vCtoAA=)"></video></figure>
+<figure class="mod img reveal-m"><img class="m " src="/media/0ddb266f-2fc6-46f8-811c-9b6ec60f5272_rw_1920.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRpYAAABXRUJQVlA4IIoAAACQAwCdASoUAAsAPu1iqU2ppaQiMAgBMB2JagCsAA8CgexpH5UAAP7NBfMWg2U6ikR9u3dibe/5re7aPqOP4TW/cYYOTO7EICV4gVNDCqnPJ5TZviozXu7/7PaYLT35D29jBgdNrzbvp7neGBOnKYWmkw68pw95VgoAvY2OxfQpmKKPviCNuhgAAAA=)"></figure>
 <div class="mod grid"><div class="row"><div class="cell reveal-m" style="flex:1.7778 1 0;transition-delay:0ms"><video class="m " data-src="/media/b7b0fd2b-023e-44bb-8b01-1529787fc46e_rw_600.mp4" poster="/media/b7b0fd2b-023e-44bb-8b01-1529787fc46e_rw_600.webp" width="384" height="216" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAACQAwCdASoUAAsAPu1iqk4ppaQiMAgBMB2JZQAARcjhc0LH5ybAAP7ARI9IPWpvh4H3k8+Z1g9egYuf0Qe3lXUOH8A6XvrMD7W7Lsj1zhPBxty5VNfkwG3240O1UegAAAA=)"></video></div><div class="cell reveal-m" style="flex:1.7778 1 0;transition-delay:90ms"><video class="m " data-src="/media/c65c39b1-d435-4fb6-b332-987797ae176f_rw_600.mp4" poster="/media/c65c39b1-d435-4fb6-b332-987797ae176f_rw_600.webp" width="384" height="216" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAAAwBACdASoUAAsAPu1iqU2ppaOiMAgBMB2JaAC7ABn3Is4O/2DULPt8koAA3L/C+V+CqC3dZk5/oH8oZpEakqqrdxxA2gGFOcNKaqfUTU24eJXdKqhFiWkJIhfmnRif9Kp6xRQch3AAAA==)"></video></div></div><div class="row"><div class="cell reveal-m" style="flex:1.7778 1 0;transition-delay:0ms"><video class="m " data-src="/media/0fd99301-f95b-498a-84b5-c78ca854503a_rw_600.mp4" poster="/media/0fd99301-f95b-498a-84b5-c78ca854503a_rw_600.webp" width="384" height="216" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAABQBACdASoUAAsAPu1iqU2ppaOiMAgBMB2JagCdEf/gN+bKHZn4JjUuY9CAAP6rzT6QNi9AXvLjsf39TWpIgf++3DSIkn7Q/Q0UNiHPZ8CSGKvSIIP3IJQirh4ugxNlwPafklt6DjTsOQAA)"></video></div><div class="cell reveal-m" style="flex:1.7778 1 0;transition-delay:90ms"><video class="m " data-src="/media/d93fb730-25ff-4821-a5ea-22986911f114_rw_600.mp4" poster="/media/d93fb730-25ff-4821-a5ea-22986911f114_rw_600.webp" width="384" height="216" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAAAQBACdASoUAAsAPu1iqk2ppaQiMAgBMB2JYwDCgB4jPWdxBuetKMGjgAD+waEzos+RRrNu9VFfPt2g0l1huCNDPisfFd4w5tOBcYCzHi4j8X+JnglLOOwSvo6vJp8N/cbjWSk2zlEzBYkq2gAAAA==)"></video></div></div></div>
 <div class="mod vplayer reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe data-src="https://player.vimeo.com/video/788045155?h=5339ebcfe6&amp;background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Film"></iframe></div><button class="vp-hit" type="button" aria-label="Play with sound"><span class="vp-label">Play with sound</span></button></div>
 <div class="mod grid"><div class="row"><div class="cell reveal-m" style="flex:1.7778 1 0;transition-delay:0ms"><video class="m " data-src="/media/d3f47dbc-dc3b-48b1-b634-18ccb1ed5d45_rw_600.mp4" poster="/media/d3f47dbc-dc3b-48b1-b634-18ccb1ed5d45_rw_600.webp" width="576" height="324" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAADQAwCdASoUAAsAPu1iqU2ppaOiMAgBMB2JagCsACB1zw7WZJE0WhwA/uUlgpEEJ3vo8i2kV/mxO5ToFWFDZHNz/zzyOzsH4qTH4YBEZkDigD97Y9GLbFYSI4GffedH9wXBAfzmItjIRouFIHQDyiAYqXB3ZVkTSAA=)"></video></div><div class="cell reveal-m" style="flex:1.7755 1 0;transition-delay:90ms"><video class="m " data-src="/media/f85b710a-0183-4b63-8368-6c3e51733dc3_rw_600.mp4" poster="/media/f85b710a-0183-4b63-8368-6c3e51733dc3_rw_600.webp" width="348" height="196" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRpIAAABXRUJQVlA4IIYAAADwAwCdASoUAAsAPu1iqU2ppaOiMAgBMB2JbAC7ABuRC5JFJorT6+6AAMshtWvCAYM//gVNKrCRf7j0CuXCrLilZJydK27BstVedAeY6iyBQjOicSnwAM3m1U4W1C2pODCxWTzleER+Jc0eIxkitSDKn9MtSHv3C9HIhbnMciZMbb2IGQAAAA==)"></video></div></div></div>
 <div class="mod statement reveal-t"><p><span class="t-lg">And everything went well, until the unthinkable happened: our Zé was taken from the pitch. The result? Brazil was eliminated and Argentina won the World Cup. </span></p><p><span class="t-lg">We hope that you're happy now, Tite.</span></p></div>
 <figure class="mod img reveal-m" style="max-width:984px"><img class="m " src="/media/e838bea1-93ff-4e1f-a967-1ad43fa2ae50_rw_1200.webp" width="984" height="620" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRqQAAABXRUJQVlA4IJgAAADwAwCdASoUAA0APu1iqU2ppaOiMAgBMB2JbACdL144ABbWV9Gb6VHoAP07ls53bPi2XFlQiHIJpOJhmZSB5SNVoL62k73LtL6QZ8NZW/KJpdjB+qMHwlyic2xkzEjKlWNpGq3t9ufFBib85z1oaWCRGU+MOgmpUertgXSlOABbWbMKwuvapj5YyxhESoOlCwq8SCwWxAEAAA==)"></figure>
-<figure class="mod img reveal-m pin"><video class="m " data-src="/media/821b0099-75f3-431d-bf04-545007b52260_rw_1920.mp4" poster="/media/821b0099-75f3-431d-bf04-545007b52260_rw_1920.webp" width="1754" height="1680" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRtIAAABXRUJQVlA4IMYAAABQBQCdASoUABMAPu1ur1IppiQiqAgBMB2JbACdMoSBSA9cFcqXuxEMr9gQ2nlp9so+xAAA/sPhyS4QwPdl/aJy2NtNp2uqKSDoqzYHf7850apygR0/3dgiDpeW8TtL2dt//yKibVcLOSVbOna1hZ8ZyP8QO/g5v8CPcHGvQD1RWncLHW9whRGJDdVxz67Zs5UEGlMm+nMH8i4MN8lTPVdRSzgUCMW2/TZ7yKE0TUDAUUxKSAXqCrstD8ZWq4z291pc0PyGgAA=)"></video></figure></div><nav class="pn" aria-label="More projects"><a href="/followers/" rel="prev">← Previous</a><a href="/skip-the-line/" rel="next">Next →</a></nav></article>
+<figure class="mod img reveal-m"><video class="m " data-src="/media/821b0099-75f3-431d-bf04-545007b52260_rw_1920.mp4" poster="/media/821b0099-75f3-431d-bf04-545007b52260_rw_1920.webp" width="1754" height="1680" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRtIAAABXRUJQVlA4IMYAAABQBQCdASoUABMAPu1ur1IppiQiqAgBMB2JbACdMoSBSA9cFcqXuxEMr9gQ2nlp9so+xAAA/sPhyS4QwPdl/aJy2NtNp2uqKSDoqzYHf7850apygR0/3dgiDpeW8TtL2dt//yKibVcLOSVbOna1hZ8ZyP8QO/g5v8CPcHGvQD1RWncLHW9whRGJDdVxz67Zs5UEGlMm+nMH8i4MN8lTPVdRSzgUCMW2/TZ7yKE0TUDAUUxKSAXqCrstD8ZWq4z291pc0PyGgAA=)"></video></figure></div><nav class="pn" aria-label="More projects"><a href="/followers/" rel="prev">← Previous</a><a href="/skip-the-line/" rel="next">Next →</a></nav></article>
 </main>
 <footer class="site-foot">
   <a href="#top" class="totop">↑ back to top</a>
@@ -356,10 +382,34 @@ html.loading,html.loading body{overflow:hidden}
     });
   }
 
-  // layered scroll: a pinned image sticks once its bottom reaches the bottom of the screen
-  const pins = [...document.querySelectorAll('.p-body>.mod.pin')];
-  const setPins = () => pins.forEach(p => { p.style.top = Math.min(0, innerHeight - p.offsetHeight) + 'px'; });
-  if (pins.length) { setPins(); addEventListener('resize', setPins); const pinRO = new ResizeObserver(setPins); pins.forEach(p => pinRO.observe(p)); }
+  // grid / list toggle (home); elsewhere it opens the home in the chosen view
+  const vt = document.querySelector('.vt');
+  if (vt) {
+    const root = document.documentElement;
+    const label = () => vt.setAttribute('aria-label', root.classList.contains('view-list') ? 'Show as grid' : 'Show as list');
+    label();
+    vt.addEventListener('click', () => {
+      const list = !root.classList.contains('view-list');
+      try { localStorage.setItem('fs-view', list ? 'list' : 'grid'); } catch (e) {}
+      if (!document.body.classList.contains('pg-home')) { location.href = '/' + (list ? '#list' : ''); return; }
+      const swap = () => { root.classList.toggle('view-list', list); label(); scrollTo(0, 0); if (lenis) lenis.scrollTo(0, { immediate: true }); };
+      document.startViewTransition && !reduce ? document.startViewTransition(swap) : swap();
+    });
+  }
+  // list hover preview follows the cursor
+  const pv = document.querySelector('.pv');
+  if (pv && matchMedia('(hover: hover)').matches) {
+    const pimg = pv.querySelector('img');
+    let px = 0, py = 0, tx = 0, ty = 0, run = false;
+    const loop = () => { px += (tx - px) * 0.2; py += (ty - py) * 0.2; pv.style.translate = `${px + 28}px ${py - pv.offsetHeight / 2}px`; if (run) requestAnimationFrame(loop); };
+    document.querySelectorAll('.prow').forEach(r => {
+      r.addEventListener('mouseenter', e => { if (r.dataset.pv) pimg.src = r.dataset.pv; pv.classList.add('on'); if (!run) { px = tx = e.clientX; py = ty = e.clientY; run = true; loop(); } });
+      r.addEventListener('mouseleave', () => { pv.classList.remove('on'); setTimeout(() => { if (!pv.classList.contains('on')) run = false; }, 400); });
+    });
+    addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; }, { passive: true });
+    // warm the cache so previews pop instantly
+    setTimeout(() => document.querySelectorAll('.prow[data-pv]').forEach(r => { const i = new Image(); i.src = r.dataset.pv; }), 2500);
+  }
 
   // in-page loops (ex-GIFs): load + play only while on screen
   const vidObs = new IntersectionObserver(es => {

@@ -112,8 +112,7 @@ def render_image(m):
         return ''
     full = a['w'] >= 1500
     style = '' if full else f' style="max-width:{a["w"]}px"'
-    pin = ' pin' if full and a['h'] > a['w'] * 0.25 else ''
-    return f'<figure class="mod img reveal-m{pin}"{style}>{media_tag(m["big"])}</figure>'
+    return f'<figure class="mod img reveal-m"{style}>{media_tag(m["big"])}</figure>'
 
 def render_grid(m):
     items = [i for i in m['items'] if asset(i['src'])]
@@ -286,13 +285,13 @@ def page(title, body, cls='', desc='Flávio Salzer — Creative and Art Director
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://flaviosalzer.com{path}">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🫀</text></svg>">
-<script>document.documentElement.classList.add('js')</script>
+<script>document.documentElement.classList.add('js');try{{if(localStorage.getItem('fs-view')==='list'||location.hash==='#list')document.documentElement.classList.add('view-list')}}catch(e){{}}</script>
 <style>{CSS}</style>
 </head>
 <body class="{cls}" id="top">
 <header class="site-head">
   <a class="logo" href="/">f*</a>
-  <nav><a href="/">Work</a><a href="/flavio/">☺ About</a></nav>
+  <nav><a href="/">Work</a><a href="/flavio/">☺ About</a><button class="vt" type="button" aria-label="Show as list"><svg class="i-list" viewBox="0 0 20 20" width="20" height="20"><rect x="2" y="4" width="16" height="1.6"/><rect x="2" y="9.2" width="16" height="1.6"/><rect x="2" y="14.4" width="16" height="1.6"/></svg><svg class="i-grid" viewBox="0 0 20 20" width="20" height="20"><rect x="2" y="2" width="7" height="7"/><rect x="11" y="2" width="7" height="7"/><rect x="2" y="11" width="7" height="7"/><rect x="11" y="11" width="7" height="7"/></svg></button></nav>
 </header>
 <main>
 {body}
@@ -356,7 +355,14 @@ def masonry(ncols, first):
     return f'<section class="masonry m{ncols}">{out}</section>'
 
 flat = ''.join(thumb(c, i) for i, c in enumerate(covers))
-home = masonry(3, [1.1, STD, 1.18]) + masonry(2, [1.1, STD]) + f'<section class="stack">{flat}</section>'
+def plist_row(c):
+    name = NAMES.get(c['slug']) or clean_name(c['title']); client, year = project_meta(c['slug'])
+    n = asset(c['normal'])
+    pv = f' data-pv="/media/{n["src"]}"' if n else ''
+    return (f'<a class="prow" href="/{c["slug"]}/"{pv}><span class="pr-client">{html.escape(client)}</span>'
+            f'<span class="pr-name">{html.escape(name)}</span><span class="pr-year">{html.escape(year)}</span><span class="pr-arr">→</span></a>')
+plist = '<section class="plist">' + ''.join(plist_row(c) for c in covers) + '</section><div class="pv" aria-hidden="true"><img alt=""></div>'
+home = masonry(3, [1.1, STD, 1.18]) + masonry(2, [1.1, STD]) + f'<section class="stack">{flat}</section>' + plist
 make_og(asset(covers[0]['normal'])['src'], 'home.jpg')
 write('index.html', page('Flávio Salzer', home, 'pg-home'))
 

@@ -15,7 +15,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://flaviosalzer.com/skip-the-line/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🫀</text></svg>">
-<script>document.documentElement.classList.add('js')</script>
+<script>document.documentElement.classList.add('js');try{if(localStorage.getItem('fs-view')==='list'||location.hash==='#list')document.documentElement.classList.add('view-list')}catch(e){}</script>
 <style>/* ==========================================================
    f* — GUIA PADRÃO
    COR      fundo #000 · texto #bcbcbc · destaque #eeeeee
@@ -211,22 +211,48 @@ html:not(.js) .split .ln>span{transform:none}
 html.loading,html.loading body{overflow:hidden}
 .vplayer iframe{background:#0b0b0b}
 
-/* camadas: imagens largas "param" no fim e o bloco seguinte desliza por cima, cobrindo */
-.p-body>.mod{position:relative;z-index:1;background:var(--bg)}
-.p-body>.mod.pin{position:sticky;z-index:0}
-.p-body>.mod.pin:last-child{position:relative}
+
+/* alternar mosaico / lista */
+.site-head nav{align-items:center}
+.vt{pointer-events:auto;display:block;padding:0;margin:0;border:0;background:none;color:inherit;opacity:.85;transition:opacity .2s}
+.vt:hover{opacity:1}
+.vt svg{display:block;fill:currentColor}
+.vt .i-grid{display:none}
+html.view-list .vt .i-grid{display:block}
+html.view-list .vt .i-list{display:none}
+.plist{display:none;padding:var(--s2) var(--edge) var(--s3)}
+html.view-list .pg-home .masonry,html.view-list .pg-home .stack{display:none!important}
+html.view-list .pg-home .plist{display:block}
+.prow{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,4fr) auto auto;align-items:baseline;gap:var(--s2);padding:14px 0;color:var(--tx);transition:color .25s}
+.pr-client{font:400 var(--fs-ui)/1.3 var(--f)}
+.pr-name{font:500 clamp(30px,3.9vw,56px)/1.05 var(--f);letter-spacing:-.015em;color:var(--hi);opacity:.55;transition:opacity .25s,transform .4s var(--ease)}
+.pr-year{font:400 var(--fs-ui)/1 var(--f)}
+.pr-arr{font:400 22px/1 var(--f);opacity:0;transform:translateX(-8px);transition:opacity .25s,transform .3s var(--ease)}
+.prow:hover .pr-name{opacity:1;transform:translateX(8px)}
+.prow:hover .pr-arr{opacity:1;transform:none}
+.prow:hover{color:var(--hi)}
+.pv{position:fixed;left:0;top:0;z-index:40;width:min(28vw,420px);aspect-ratio:1891/1479;pointer-events:none;opacity:0;transform:scale(.92);transition:opacity .25s,transform .35s var(--ease);overflow:hidden}
+.pv.on{opacity:1;transform:scale(1)}
+.pv img{width:100%;height:100%;object-fit:cover;object-position:left top;display:block}
+@media (max-width:700px){
+  .prow{grid-template-columns:1fr auto;gap:4px 12px}
+  .pr-client{grid-column:1/-1;order:-1}
+  .pr-arr{display:none}
+  .pr-name{opacity:1}
+  .pv{display:none}
+}
 </style>
 </head>
 <body class="proj" id="top">
 <header class="site-head">
   <a class="logo" href="/">f*</a>
-  <nav><a href="/">Work</a><a href="/flavio/">☺ About</a></nav>
+  <nav><a href="/">Work</a><a href="/flavio/">☺ About</a><button class="vt" type="button" aria-label="Show as list"><svg class="i-list" viewBox="0 0 20 20" width="20" height="20"><rect x="2" y="4" width="16" height="1.6"/><rect x="2" y="9.2" width="16" height="1.6"/><rect x="2" y="14.4" width="16" height="1.6"/></svg><svg class="i-grid" viewBox="0 0 20 20" width="20" height="20"><rect x="2" y="2" width="7" height="7"/><rect x="11" y="2" width="7" height="7"/><rect x="2" y="11" width="7" height="7"/><rect x="11" y="11" width="7" height="7"/></svg></button></nav>
 </header>
 <main>
 <article class="project"><header class="p-head"><div class="p-intro"><a class="back" href="/" aria-label="Back to work"><svg class="arr" viewBox="486 353 250 95" width="66" height="25" aria-hidden="true"><polygon points="534.41 445.79 488.14 401.58 532.35 355.3 536.69 359.45 496.62 401.38 538.55 441.45 534.41 445.79"/><rect x="492.38" y="398.48" width="241.62" height="6"/></svg></a><h1 class="split">Skip the Line</h1><div class="p-desc reveal-t"><p>Due to the payment system of Brazilian music festivals, fans need to charge an event card to buy beer.<br>Because of that, they can spend over 40 minutes waiting in bar checkout lines at these festivals. This is not cool. So, as the beer behind more than 2,000 music events, Heineken made a commitment to put an end to these lines.  By moving its bar checkouts from the inside to the outside.</p><p>In partnership with the biggest Brazilian payment solution company, Heineken turned its Out-of-Homes into real bar checkouts. So fans could step into the concert ready to enjoy their favorite band with an ice-cold Heineken.</p></div></div><dl class="credits reveal-t"><div><dt>Role</dt><dd>Creative Direction, Art Direction</dd></div><div><dt>With</dt><dd>Felipe Cury, Alex Adati, Mihail Aleksandrov, Cauique Johnson, Matheus Távora, Ricardo Millani, Ari Segatto</dd></div><div><dt>Agency</dt><dd>LePub São Paulo</dd></div><div><dt>Client</dt><dd>Heineken</dd></div><div><dt>Year</dt><dd>2025</dd></div></dl></header><div class="p-body"><div class="mod vplayer reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe data-src="https://player.vimeo.com/video/1114115754?h=94b6e5e318&amp;background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Film"></iframe></div><button class="vp-hit" type="button" aria-label="Play with sound"><span class="vp-label">Play with sound</span></button></div>
 <figure class="mod img reveal-m"><img class="m " src="/media/70c37597-f5c2-4d64-abb0-cd9515e74eca_rw_1920.webp" width="1920" height="5" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAACwAgCdASoUAAEAPu1iqU2ppaOiMAgBMB2JaQAAeyAA/vCfnTzAAAAA)"></figure>
 <div class="mod grid"><div class="row"><div class="cell reveal-m" style="flex:1.7977 1 0;transition-delay:0ms"><video class="m " data-src="/media/73fdad2c-8354-41fb-8517-a6aa9f07d1dc_rw_1920.mp4" poster="/media/73fdad2c-8354-41fb-8517-a6aa9f07d1dc_rw_1920.webp" width="1582" height="880" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAACwAwCdASoUAAsAPu1iqU2ppaOiMAgBMB2JbAC7ABIxjlgsomXiAAD+0MkGJa47mUu0gb1ItebAdh5VIqR7yddFp+HHWhiOpeHPjLWsota9uxEvonzo2ueSRstUS/eYE6+L2Ark20E6w1G4ALq0qyAA)"></video></div><div class="cell reveal-m" style="flex:1.7977 1 0;transition-delay:90ms"><video class="m " data-src="/media/71d017c0-e8af-4e82-959a-141b62710c00_rw_1920.mp4" poster="/media/71d017c0-e8af-4e82-959a-141b62710c00_rw_1920.webp" width="1582" height="880" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAADwAgCdASoUAAsAPu1iqU2ppaOiMAgBMB2JYwCo9C0kAAD+7v6vJSXS3aDkRAAA)"></video></div></div></div>
-<figure class="mod img reveal-m pin"><img class="m " src="/media/fc8ca006-719c-4d50-8a5e-488e0232b66a_rw_1920.webp" width="1920" height="1090" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAABwAwCdASoUAAsAPu1iqU2ppaOiMAgBMB2JYgCdMoAEYq0uxYAA/vAI6XDC6GNQNWgbpNu1tPT/ZKaD+EjaqVs1LoAAAA==)"></figure>
+<figure class="mod img reveal-m"><img class="m " src="/media/fc8ca006-719c-4d50-8a5e-488e0232b66a_rw_1920.webp" width="1920" height="1090" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAABwAwCdASoUAAsAPu1iqU2ppaOiMAgBMB2JYgCdMoAEYq0uxYAA/vAI6XDC6GNQNWgbpNu1tPT/ZKaD+EjaqVs1LoAAAA==)"></figure>
 <div class="mod grid"><div class="row"><div class="cell reveal-m" style="flex:1.7977 1 0;transition-delay:0ms"><video class="m " data-src="/media/3ce488cf-48f6-4e0f-8805-d5e3264a7220_rw_1920.mp4" poster="/media/3ce488cf-48f6-4e0f-8805-d5e3264a7220_rw_1920.webp" width="1582" height="880" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAADQAwCdASoUAAsAPu1iqU2ppaOiMAgBMB2JZgCdACPw0fp+p3NJk+AA/uw3xk5GB2K5NnFwTGUKTiJnjNCEzqjhZu3toUV4rgAAAA==)"></video></div><div class="cell reveal-m" style="flex:1.7977 1 0;transition-delay:90ms"><video class="m " data-src="/media/dbb35934-ca68-4846-8a80-7966935f9a3b_rw_1920.mp4" poster="/media/dbb35934-ca68-4846-8a80-7966935f9a3b_rw_1920.webp" width="1582" height="880" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAADwAwCdASoUAAsAPu1iqU2ppaQiMAgBMB2JQBdmUAA9dSJ/neQM98OAAP7r/o+XnS73zIlUPA0z5g7CTLmGXARvFHa6W1XS6rwNFNQl4DXgUUMMQIL+fyj2rpglQ1GakM1ksIr4egAAAA==)"></video></div></div></div>
 <div class="mod grid"><div class="row"><div class="cell reveal-m" style="flex:0.7076 1 0;transition-delay:0ms"><img class="m " src="/media/4469af12-dfdb-487c-b143-eb62aeb46a2f_rw_1920.webp" width="1462" height="2066" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAAAwBACdASoUABwAPu1krE+ppSQiMBgIATAdiWIAxNgQ8Aa/T58W7KQV3gAA/vC91Kt6FJJG0QliDCVHTC/LissygNDmEUJ1ySoBeWwYWj1mdCWv9cI1g4vBXpEb4YkljhGnrmy7ROuSjc2DuEJ+IAAA)"></div><div class="cell reveal-m" style="flex:0.7076 1 0;transition-delay:90ms"><img class="m " src="/media/3e76e8d4-dde4-4775-b01d-ae43c43f6d7d_rw_1920.webp" width="1462" height="2066" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAAAwBACdASoUABwAPu1mqk8ppaOiKA1RMB2JYwDCgBEcinZIkbqeYkn4/igA/vC+COQ9AEyoeVJQB3dVjde56D6Rt3/IzJy3khvJwrUSuGV8Zahbb/ggJaIQpcFEfwb4AAA=)"></div><div class="cell reveal-m" style="flex:0.7076 1 0;transition-delay:180ms"><img class="m " src="/media/aa246c44-205d-4f51-9689-d2ee5e33b05e_rw_1920.webp" width="1462" height="2066" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRg4BAABXRUJQVlA4IAIBAAAwBwCdASoUABwAPu1gp02ppSMiMAgBMB2JbACdMoRz78Bbh2mrwDnqrJ0RoAVAyLpy5Pwd0z1ljmQ/OQ5/+o9uUAAA9wgcplkPPdbIv++iQw1i+n7enrvtnb4h70AoAgifOgkX5/8G//ZRj0jfW0O/+VEgKnTuqU3KG4Vox+15n9pIRPhKU21Saun2yuL6falxr3+vtrWCEuFZNDetVIBkY5etcrY7/KjgHlihNA7R/k3pZfQJIzB70yU6znNq81JtjPAYlgAWL7Ou0zOYTDoiKrc/ivfeIdrydfzN+WOEk+sHYQr/j5y7YvIcWyq102whrQfp/+Df9En4rw1wf11cAAA=)"></div><div class="cell reveal-m" style="flex:0.7076 1 0;transition-delay:270ms"><img class="m " src="/media/d597d96d-d9c8-4717-8089-9df56492f0d7_rw_1920.webp" width="1462" height="2066" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRh4BAABXRUJQVlA4IBIBAAAwBwCdASoUABwAPu1ur1IppiQiqAgBMB2JbACdMoR09oLgz9gG2A58XTAOfA9lcBjfVXXbv5A6L4RraDUIn6y5EAAA/ie0+TRAbIvGzHJbw4zss0CXw/PNIth1NmZO0nWcX/7Y8buPpjdIjlHMCckrHkFy6ic/zLE6ksN0bA5Eg+VNh//hoB4+2pbNhQGn7LBIxoYos0833Fp85+awt1dHDcRpssvkgGLqQAp5oj310oG/i3lkSsM+fH1/o0YlGBja/P24uLgGIT22V/l1vn4K0p0ZotiWDNL7/qnaBiA85wNH9ITbjZD3JVbSZCkp2NfrrPqLIaiH/XSTJ5YHKUR3JX5KZoJ9RAKGeJ/4sjdxoAAA)"></div></div></div></div><nav class="pn" aria-label="More projects"><a href="/the-ze-theory/" rel="prev">← Previous</a><a href="/finishline-club/" rel="next">Next →</a></nav></article>
 </main>
@@ -347,10 +373,34 @@ html.loading,html.loading body{overflow:hidden}
     });
   }
 
-  // layered scroll: a pinned image sticks once its bottom reaches the bottom of the screen
-  const pins = [...document.querySelectorAll('.p-body>.mod.pin')];
-  const setPins = () => pins.forEach(p => { p.style.top = Math.min(0, innerHeight - p.offsetHeight) + 'px'; });
-  if (pins.length) { setPins(); addEventListener('resize', setPins); const pinRO = new ResizeObserver(setPins); pins.forEach(p => pinRO.observe(p)); }
+  // grid / list toggle (home); elsewhere it opens the home in the chosen view
+  const vt = document.querySelector('.vt');
+  if (vt) {
+    const root = document.documentElement;
+    const label = () => vt.setAttribute('aria-label', root.classList.contains('view-list') ? 'Show as grid' : 'Show as list');
+    label();
+    vt.addEventListener('click', () => {
+      const list = !root.classList.contains('view-list');
+      try { localStorage.setItem('fs-view', list ? 'list' : 'grid'); } catch (e) {}
+      if (!document.body.classList.contains('pg-home')) { location.href = '/' + (list ? '#list' : ''); return; }
+      const swap = () => { root.classList.toggle('view-list', list); label(); scrollTo(0, 0); if (lenis) lenis.scrollTo(0, { immediate: true }); };
+      document.startViewTransition && !reduce ? document.startViewTransition(swap) : swap();
+    });
+  }
+  // list hover preview follows the cursor
+  const pv = document.querySelector('.pv');
+  if (pv && matchMedia('(hover: hover)').matches) {
+    const pimg = pv.querySelector('img');
+    let px = 0, py = 0, tx = 0, ty = 0, run = false;
+    const loop = () => { px += (tx - px) * 0.2; py += (ty - py) * 0.2; pv.style.translate = `${px + 28}px ${py - pv.offsetHeight / 2}px`; if (run) requestAnimationFrame(loop); };
+    document.querySelectorAll('.prow').forEach(r => {
+      r.addEventListener('mouseenter', e => { if (r.dataset.pv) pimg.src = r.dataset.pv; pv.classList.add('on'); if (!run) { px = tx = e.clientX; py = ty = e.clientY; run = true; loop(); } });
+      r.addEventListener('mouseleave', () => { pv.classList.remove('on'); setTimeout(() => { if (!pv.classList.contains('on')) run = false; }, 400); });
+    });
+    addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; }, { passive: true });
+    // warm the cache so previews pop instantly
+    setTimeout(() => document.querySelectorAll('.prow[data-pv]').forEach(r => { const i = new Image(); i.src = r.dataset.pv; }), 2500);
+  }
 
   // in-page loops (ex-GIFs): load + play only while on screen
   const vidObs = new IntersectionObserver(es => {

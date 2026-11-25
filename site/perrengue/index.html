@@ -15,7 +15,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://flaviosalzer.com/perrengue/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🫀</text></svg>">
-<script>document.documentElement.classList.add('js')</script>
+<script>document.documentElement.classList.add('js');try{if(localStorage.getItem('fs-view')==='list'||location.hash==='#list')document.documentElement.classList.add('view-list')}catch(e){}</script>
 <style>/* ==========================================================
    f* — GUIA PADRÃO
    COR      fundo #000 · texto #bcbcbc · destaque #eeeeee
@@ -211,16 +211,42 @@ html:not(.js) .split .ln>span{transform:none}
 html.loading,html.loading body{overflow:hidden}
 .vplayer iframe{background:#0b0b0b}
 
-/* camadas: imagens largas "param" no fim e o bloco seguinte desliza por cima, cobrindo */
-.p-body>.mod{position:relative;z-index:1;background:var(--bg)}
-.p-body>.mod.pin{position:sticky;z-index:0}
-.p-body>.mod.pin:last-child{position:relative}
+
+/* alternar mosaico / lista */
+.site-head nav{align-items:center}
+.vt{pointer-events:auto;display:block;padding:0;margin:0;border:0;background:none;color:inherit;opacity:.85;transition:opacity .2s}
+.vt:hover{opacity:1}
+.vt svg{display:block;fill:currentColor}
+.vt .i-grid{display:none}
+html.view-list .vt .i-grid{display:block}
+html.view-list .vt .i-list{display:none}
+.plist{display:none;padding:var(--s2) var(--edge) var(--s3)}
+html.view-list .pg-home .masonry,html.view-list .pg-home .stack{display:none!important}
+html.view-list .pg-home .plist{display:block}
+.prow{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,4fr) auto auto;align-items:baseline;gap:var(--s2);padding:14px 0;color:var(--tx);transition:color .25s}
+.pr-client{font:400 var(--fs-ui)/1.3 var(--f)}
+.pr-name{font:500 clamp(30px,3.9vw,56px)/1.05 var(--f);letter-spacing:-.015em;color:var(--hi);opacity:.55;transition:opacity .25s,transform .4s var(--ease)}
+.pr-year{font:400 var(--fs-ui)/1 var(--f)}
+.pr-arr{font:400 22px/1 var(--f);opacity:0;transform:translateX(-8px);transition:opacity .25s,transform .3s var(--ease)}
+.prow:hover .pr-name{opacity:1;transform:translateX(8px)}
+.prow:hover .pr-arr{opacity:1;transform:none}
+.prow:hover{color:var(--hi)}
+.pv{position:fixed;left:0;top:0;z-index:40;width:min(28vw,420px);aspect-ratio:1891/1479;pointer-events:none;opacity:0;transform:scale(.92);transition:opacity .25s,transform .35s var(--ease);overflow:hidden}
+.pv.on{opacity:1;transform:scale(1)}
+.pv img{width:100%;height:100%;object-fit:cover;object-position:left top;display:block}
+@media (max-width:700px){
+  .prow{grid-template-columns:1fr auto;gap:4px 12px}
+  .pr-client{grid-column:1/-1;order:-1}
+  .pr-arr{display:none}
+  .pr-name{opacity:1}
+  .pv{display:none}
+}
 </style>
 </head>
 <body class="proj" id="top">
 <header class="site-head">
   <a class="logo" href="/">f*</a>
-  <nav><a href="/">Work</a><a href="/flavio/">☺ About</a></nav>
+  <nav><a href="/">Work</a><a href="/flavio/">☺ About</a><button class="vt" type="button" aria-label="Show as list"><svg class="i-list" viewBox="0 0 20 20" width="20" height="20"><rect x="2" y="4" width="16" height="1.6"/><rect x="2" y="9.2" width="16" height="1.6"/><rect x="2" y="14.4" width="16" height="1.6"/></svg><svg class="i-grid" viewBox="0 0 20 20" width="20" height="20"><rect x="2" y="2" width="7" height="7"/><rect x="11" y="2" width="7" height="7"/><rect x="2" y="11" width="7" height="7"/><rect x="11" y="11" width="7" height="7"/></svg></button></nav>
 </header>
 <main>
 <article class="project"><header class="p-head"><div class="p-intro"><a class="back" href="/" aria-label="Back to work"><svg class="arr" viewBox="486 353 250 95" width="66" height="25" aria-hidden="true"><polygon points="534.41 445.79 488.14 401.58 532.35 355.3 536.69 359.45 496.62 401.38 538.55 441.45 534.41 445.79"/><rect x="492.38" y="398.48" width="241.62" height="6"/></svg></a><h1 class="split">Trouble Calls for Trouble</h1><div class="p-desc reveal-t"><p>Once you leave your house to buy beer, anything can happen. <br>It's better to order it from the Zé Delivery app.</p></div></div><dl class="credits reveal-t"><div><dt>Role</dt><dd>Art Direction, Concept</dd></div><div><dt>With</dt><dd>Bruno Brux, Ju Utsch, Sofia Calvit, Cauique Johnson, Deborah Ferreira, Vitinho Chagas, Fill Almeida, Gheisa Lessa</dd></div><div><dt>Agency</dt><dd>GUT</dd></div><div><dt>Client</dt><dd>Zé Delivery</dd></div><div><dt>Year</dt><dd>2023</dd></div></dl></header><div class="p-body"><div class="mod vplayer reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe data-src="https://player.vimeo.com/video/921153953?h=94b6e5e318&amp;background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Film"></iframe></div><button class="vp-hit" type="button" aria-label="Play with sound"><span class="vp-label">Play with sound</span></button></div>
@@ -235,8 +261,8 @@ html.loading,html.loading body{overflow:hidden}
 <div class="mod vplayer reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe data-src="https://player.vimeo.com/video/930869814?h=449ab1bedc&amp;background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Film"></iframe></div><button class="vp-hit" type="button" aria-label="Play with sound"><span class="vp-label">Play with sound</span></button></div>
 <div class="mod grid"><div class="row"><div class="cell reveal-m" style="flex:0.7072 1 0;transition-delay:0ms"><img class="m " src="/media/72f4b67d-d6da-4676-90d2-8082a99bf63a_rw_1920.webp" width="1920" height="2715" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRvwAAABXRUJQVlA4IPAAAAAwBgCdASoUABwAPu1kqU2ppaOiMAgBMB2JbACdMoR+H07tuguwBbW/L0sBCGeHHZCLwXd5nWHbX/zUAPRv+5cVdcI6v64hifPYMPfOaxfhyFH2WDQ59svPAjLPoxzAw4A/vCXD0lrisuxAZCkztTupgb3oFMfT8aReGKdvLSfMaLGTbWgUxxsf7xjOPfQGNwl12lAy6i3NrCDnyiksSPISVjG91JmwSw4ER2jwONYKkFToEZzPdTs2l01WN5cb3xOcN/K1pj9aCIiLgcBbQjqWrWcLPN9yxtj5lz362OEwrfvRW9jhvooG2LfF5uAAAAA=)"></div><div class="cell reveal-m" style="flex:0.7072 1 0;transition-delay:90ms"><img class="m " src="/media/49187364-ba6b-414d-9c80-e710fedac7b7_rw_1920.webp" width="1920" height="2715" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRkQBAABXRUJQVlA4IDgBAAAQBwCdASoUABwAPu1irFAppSQisBgIATAdiWwAuzMPlIdYlQSHKH54P2AKpXa9ALTkHLtTS8A1hukmcpcKNhteQAD+7MPqPLoHtM4jBXH7Kc61q29JbDE0vxKub2dQKNa/m75DvQ8Krt2X1C57ERRdSIPWkTfTlBjMOymZolphqt1wABcFUMjtLu01kdldm+T+t2+oLbaa+8O16cH0nJCaEx83vPKihHl+t2qG1/cnpLFWyQnnwbOqo2MkLza/Qdk6Kz0j2GcItasGSqeOF8zdU8Gf8MhOhWkWjU+vT4MffxslIcq19NtUqRns6zeflSjYziV12/9a9Ap8nR8TPwTbNTdwAhCO5pH1kwcW/UPmFboDRoKjmDv6b9q1+f6P8bzd8k0qyOeSPhOswoVDgQB04mSExvgAAAA=)"></div><div class="cell reveal-m" style="flex:0.7072 1 0;transition-delay:180ms"><img class="m " src="/media/2fb8df1b-3e4e-4246-85e0-a0e066b9af07_rw_1920.webp" width="1920" height="2715" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRlIBAABXRUJQVlA4IEYBAACwBwCdASoUABwAPu1oq08ppiOiMBgIATAdiWwAnTKEgXiwKs+fRsm5fggAJVT3UEDhit6BqBp44y5jNT39yjlTFY0hvwMAAP7sBEyxW1pMOJ+Qy19vjhVdnJp5/NiwQL62CSs8myT2gZwPKSD5kGYyth1+I/Pl67qoM6whpAHIDMJz3L/2Sd/i5HP4MD60SpOqmZM5vVIK+UBtqKdowBnIKNKQL8ogPQWkBrfwrhGDa9RVxp9V7WMAm7+TEY9SL5Vb77IRdJUHmscKTr/gyw/Swqs3sUyh5t2IZ0/dT3O2TFUJcb55NTz0LN6nTSJu4d7R4S1OB9bM67/GlvlAqoU5eO3O2828GeCrOYEZu/WbfzBinWENrqDYyiHH18/yRjoolWG0ektBIsv7vdtOEc5xjynfEnX8t7vlAgozXW6EixTLi/JAAA==)"></div><div class="cell reveal-m" style="flex:0.7072 1 0;transition-delay:270ms"><img class="m " src="/media/3a6ed368-4790-47b8-ae44-f081c046cf30_rw_1920.webp" width="1920" height="2715" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRhABAABXRUJQVlA4IAQBAABwBgCdASoUABwAPu1wsFIppiSiqAgBMB2JbACdMoR7T9Ipnz/4tic5n3T6iYPV1Iy5nxz4f/tLV2vQQAAA+GLjQU9d1yJmrGyqTDi6N7sKtUvOPK221Sj3MZFseCxVRcDNKykkQ4AB56HKds/kzgt5aBj8G9/KfFHM3AuDFu5OhoWHnGPd/pTvq0f/aiZ55iwqbEvQGJBRkouLgLCJOCZU1pMVrPHZgVM7Mvd97Z5l3Fx8odMEivdVOnWcrqACLJxHZvkBJJHO11Ib6AQNONt0PV+5eAAmMdc/f7vkwh7xCOnfmQ5/1TWPULVP6vyDd03qg47P8pq9tUtmt+hASaFn3wAAAA==)"></div></div></div>
 <div class="mod statement reveal-t"><p><span class="t-lg">Where we literally drew it out to show that,<br>in the 21st century, there’s no reason to<br>suffer just to buy warm beer.</span></p></div>
-<figure class="mod img reveal-m pin"><img class="m " src="/media/51a7a51e-f033-43d5-a428-40bd9fac8c99_rw_3840.webp" width="3840" height="2160" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRq4AAABXRUJQVlA4IKIAAACQBACdASoUAAsAPu1iqU2ppaOiMAgBMB2JbACdEf/jeBcByMCW6U0ReBwSwGAA/eEnAfThzCiERCkcFSIDa9zUXwTl/2mjexYPm13InuL1mYl/xQc/DYqddSP+ZIgnSOvaX7qzJrj5lGg+jG7l5QKgmwqo7x+hz2tzsgZXHneatSZl3k3C9IOul5g59jgE0QXAAC0uBMdpViI/wO3SGMXQ6AA=)"></figure>
-<figure class="mod img reveal-m pin"><img class="m " src="/media/9cdeb276-2000-4374-97d1-3f43b8bedb9a_rw_1920.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAABwAwCdASoUAAsAPu1kqU2ppaOiMAgBMB2JZwAAUcfhyXZqhUAA/uRi3ipsNcEt9QnHM0E5sAYdjVIlCVdHftGj52C6Q+43liGXrCDTPYxR6mIH4w16/RlhDaj+d3xn7NTf1AgA)"></figure>
+<figure class="mod img reveal-m"><img class="m " src="/media/51a7a51e-f033-43d5-a428-40bd9fac8c99_rw_3840.webp" width="3840" height="2160" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRq4AAABXRUJQVlA4IKIAAACQBACdASoUAAsAPu1iqU2ppaOiMAgBMB2JbACdEf/jeBcByMCW6U0ReBwSwGAA/eEnAfThzCiERCkcFSIDa9zUXwTl/2mjexYPm13InuL1mYl/xQc/DYqddSP+ZIgnSOvaX7qzJrj5lGg+jG7l5QKgmwqo7x+hz2tzsgZXHneatSZl3k3C9IOul5g59jgE0QXAAC0uBMdpViI/wO3SGMXQ6AA=)"></figure>
+<figure class="mod img reveal-m"><img class="m " src="/media/9cdeb276-2000-4374-97d1-3f43b8bedb9a_rw_1920.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAABwAwCdASoUAAsAPu1kqU2ppaOiMAgBMB2JZwAAUcfhyXZqhUAA/uRi3ipsNcEt9QnHM0E5sAYdjVIlCVdHftGj52C6Q+43liGXrCDTPYxR6mIH4w16/RlhDaj+d3xn7NTf1AgA)"></figure>
 <div class="mod grid"><div class="row"><div class="cell reveal-m" style="flex:1.7792 1 0;transition-delay:0ms"><video class="m " data-src="/media/e4332dbc-4d4f-4a5b-a4fe-3c3d6fbdb504_rw_1200.mp4" poster="/media/e4332dbc-4d4f-4a5b-a4fe-3c3d6fbdb504_rw_1200.webp" width="854" height="480" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRpwAAABXRUJQVlA4IJAAAABQBACdASoUAAsAPu1iqU2ppaOiMAgBMB2JZACdMoMzGDTm54gk9ZvQQz6YAP7N0XVTlJ5EFU/832tEvT/xfztZ7Ab0TNQ4GueNZOn9xJ+6Eq5oj+Wqt780j3oiUGG4BegvfRBUOJus4mqq8ffHTDNa4msvmabCmREqDGcYEhzBA0DCcMf/OgdBF4AulkAAAAA=)"></video></div></div></div></div><nav class="pn" aria-label="More projects"><a href="/ceu-azul/" rel="prev">← Previous</a><a href="/regeneracao/" rel="next">Next →</a></nav></article>
 </main>
 <footer class="site-foot">
@@ -356,10 +382,34 @@ html.loading,html.loading body{overflow:hidden}
     });
   }
 
-  // layered scroll: a pinned image sticks once its bottom reaches the bottom of the screen
-  const pins = [...document.querySelectorAll('.p-body>.mod.pin')];
-  const setPins = () => pins.forEach(p => { p.style.top = Math.min(0, innerHeight - p.offsetHeight) + 'px'; });
-  if (pins.length) { setPins(); addEventListener('resize', setPins); const pinRO = new ResizeObserver(setPins); pins.forEach(p => pinRO.observe(p)); }
+  // grid / list toggle (home); elsewhere it opens the home in the chosen view
+  const vt = document.querySelector('.vt');
+  if (vt) {
+    const root = document.documentElement;
+    const label = () => vt.setAttribute('aria-label', root.classList.contains('view-list') ? 'Show as grid' : 'Show as list');
+    label();
+    vt.addEventListener('click', () => {
+      const list = !root.classList.contains('view-list');
+      try { localStorage.setItem('fs-view', list ? 'list' : 'grid'); } catch (e) {}
+      if (!document.body.classList.contains('pg-home')) { location.href = '/' + (list ? '#list' : ''); return; }
+      const swap = () => { root.classList.toggle('view-list', list); label(); scrollTo(0, 0); if (lenis) lenis.scrollTo(0, { immediate: true }); };
+      document.startViewTransition && !reduce ? document.startViewTransition(swap) : swap();
+    });
+  }
+  // list hover preview follows the cursor
+  const pv = document.querySelector('.pv');
+  if (pv && matchMedia('(hover: hover)').matches) {
+    const pimg = pv.querySelector('img');
+    let px = 0, py = 0, tx = 0, ty = 0, run = false;
+    const loop = () => { px += (tx - px) * 0.2; py += (ty - py) * 0.2; pv.style.translate = `${px + 28}px ${py - pv.offsetHeight / 2}px`; if (run) requestAnimationFrame(loop); };
+    document.querySelectorAll('.prow').forEach(r => {
+      r.addEventListener('mouseenter', e => { if (r.dataset.pv) pimg.src = r.dataset.pv; pv.classList.add('on'); if (!run) { px = tx = e.clientX; py = ty = e.clientY; run = true; loop(); } });
+      r.addEventListener('mouseleave', () => { pv.classList.remove('on'); setTimeout(() => { if (!pv.classList.contains('on')) run = false; }, 400); });
+    });
+    addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; }, { passive: true });
+    // warm the cache so previews pop instantly
+    setTimeout(() => document.querySelectorAll('.prow[data-pv]').forEach(r => { const i = new Image(); i.src = r.dataset.pv; }), 2500);
+  }
 
   // in-page loops (ex-GIFs): load + play only while on screen
   const vidObs = new IntersectionObserver(es => {
