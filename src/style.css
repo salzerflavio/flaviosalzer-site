@@ -68,7 +68,6 @@ body.pg-home .site-head nav a[href="/"],body.pg-about .site-head nav a[href="/fl
 .thumb .frame::after{z-index:2}
 .thumb:hover .frame::before,.thumb.playing .frame::before,.thumb:focus-visible .frame::before{opacity:1}
 .thumb:hover .hover,.thumb.playing .hover{transform:scale(1.035);transform-origin:50% 50%}
-.thumb:hover .t-title,.thumb.playing .t-title{text-shadow:0 0 8px rgba(255,255,255,.45),0 0 2px rgba(255,255,255,.6)}
 .t-title{z-index:3}
 
 /* bloom: os pontos claros ganham um halo (backdrop desfocado + screen) */
