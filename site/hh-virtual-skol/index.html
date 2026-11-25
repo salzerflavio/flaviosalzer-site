@@ -59,30 +59,10 @@ body.pg-home .site-head nav a[href="/"],body.pg-about .site-head nav a[href="/fl
 .thumb .hover{opacity:0}
 .thumb:hover .hover,.thumb.playing .hover{opacity:1}
 .t-title{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:var(--s1);font:500 var(--fs-ui)/1.3 var(--f);color:#fff;
-  background:rgba(0,0,0,.22);opacity:0;transition:opacity .35s var(--ease)}
+  background:rgba(0,0,0,.4);opacity:0;transition:opacity .35s var(--ease)}
 .thumb:hover .t-title,.thumb:focus-visible .t-title{opacity:1}
-/* hover CRT: retícula RGB fininha + scanlines rolando + vinheta */
-.thumb .frame::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .35s var(--ease);
-  background:
-    repeating-linear-gradient(0deg,rgba(0,0,0,.12) 0 1px,transparent 1px 3px),
-    repeating-linear-gradient(90deg,rgba(255,40,40,.04) 0 1px,rgba(40,255,40,.04) 1px 2px,rgba(40,80,255,.04) 2px 3px);
-  background-size:100% 3px,3px 100%;}
-.thumb:hover .frame::after,.thumb.playing .frame::after,.thumb:focus-visible .frame::after{opacity:1}
-.thumb:hover .hover,.thumb.playing .hover{filter:contrast(1.04) saturate(1.08)}
-
-/* volume do tubo: vidro curvo (sombra interna + reflexo) e leve bojo na imagem */
-.thumb .frame::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .35s var(--ease);
-  background:radial-gradient(120% 90% at 30% 18%,rgba(255,255,255,.13),rgba(255,255,255,.03) 38%,transparent 60%)}
-.thumb .frame::after{z-index:2}
-.thumb:hover .frame::before,.thumb.playing .frame::before,.thumb:focus-visible .frame::before{opacity:1}
-.thumb .hover{transform-origin:50% 50%;transition:opacity .3s ease-out,transform 0s linear .3s}
-.thumb:hover .hover,.thumb.playing .hover{transform:scale(1.035);transition:opacity .3s ease-out,transform 0s}
-.t-title{z-index:3}
-
-.thumb .frame::before{z-index:2}.thumb .frame::after{z-index:3}.t-title{z-index:4}
-
-
-.thumb:focus-visible{outline:2px solid var(--hi);outline-offset:-2px}
+.thumb .hover{transition:opacity .3s ease-out}
+.t-title{z-index:2}
 @media (max-width:700px){
   :root{--edge:20px}
   .masonry,.masonry.m2{display:none}
