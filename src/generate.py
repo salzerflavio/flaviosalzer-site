@@ -492,6 +492,12 @@ if _pimg: make_og(_pimg['src'], 'about.jpg', focus_left=False)
 write('flavio/index.html', page('About — Flávio Salzer', f'<article class="about">{"".join(parts)}</article>', 'pg-about', path='/flavio/', og='og/about.jpg' if _pimg else 'og/home.jpg'))
 
 # ---------- netlify config ----------
+# GitHub Pages: custom domain, no Jekyll, and HTML redirects in place of Netlify's _redirects
+open(os.path.join(OUT, 'CNAME'), 'w').write('flaviosalzer.com\n')
+open(os.path.join(OUT, '.nojekyll'), 'w').write('')
+for _from, _to in (('work', '/'), ('about', '/flavio/')):
+    os.makedirs(os.path.join(OUT, _from), exist_ok=True)
+    open(os.path.join(OUT, _from, 'index.html'), 'w').write(f'<!doctype html><meta charset="utf-8"><title>Redirecting…</title><link rel="canonical" href="https://flaviosalzer.com{_to}"><meta http-equiv="refresh" content="0;url={_to}"><script>location.replace("{_to}")</script>')
 open(os.path.join(OUT, '_redirects'), 'w').write('/work / 301\n/work/ / 301\n/about /flavio/ 301\n')
 open(os.path.join(OUT, '_headers'), 'w').write('/media/*\n  Cache-Control: public, max-age=31536000, immutable\n')
 write('404.html', page('Not found — Flávio Salzer', '<div class="nf"><h1>Not found.</h1><p><a href="/">← back to work</a></p></div>', 'proj'))
