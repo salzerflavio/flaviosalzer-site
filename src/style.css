@@ -69,13 +69,13 @@ body.pg-home .site-head nav a[href="/"],body.pg-about .site-head nav a[href="/fl
 .p-intro{display:contents}
 .p-head h1{grid-area:t}.p-head .back{position:fixed;z-index:50;top:104px;left:var(--edge);display:block;padding:8px 0;color:#fff;mix-blend-mode:difference;transition:transform .3s var(--ease)}
 .p-head .back .arr{display:block;fill:currentColor}.p-head .back:hover{transform:translateX(-6px)}
-.p-head::before{content:"";grid-area:b;height:61px;border-bottom:1px solid rgba(255,255,255,.14);margin-bottom:var(--s3)}.p-desc{grid-area:d}.credits{grid-area:c}
+.p-head::before{content:"";grid-area:b;height:61px;border-bottom:1px solid #fff;margin-bottom:var(--s3)}.p-desc{grid-area:d}.credits{grid-area:c}
 .p-head h1{margin:0;align-self:end;font:700 var(--fs-xl)/1.02 var(--f);color:var(--hi);letter-spacing:-.015em;text-wrap:balance}
 .p-desc{max-width:60ch;display:grid;gap:1em}
 .credits{margin:0;display:grid;gap:12px;align-content:start;font-size:var(--fs-sm);line-height:1.45}
 .credits div{break-inside:avoid}
 .credits dt{font-weight:700;color:var(--hi)}
-.credits div+div{border-top:1px solid rgba(255,255,255,.14);padding-top:12px}
+.credits div+div{border-top:1px solid #fff;padding-top:12px}
 .credits dd{margin:0}
 .p-body{display:flex;flex-direction:column;gap:var(--g);padding:0 var(--g)}
 .mod{margin:0}
