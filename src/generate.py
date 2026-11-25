@@ -376,7 +376,10 @@ def plist_row(c):
             f'<span class="pr-name">{html.escape(name)}</span><span class="pr-bd">{badges(c["slug"])}</span><span class="pr-year">{html.escape(year)}</span><span class="pr-arr">→</span></a>')
 plist = '<section class="plist">' + ''.join(plist_row(c) for c in covers) + '</section><div class="pv" aria-hidden="true"><img alt=""></div>'
 home = masonry(3, [1.1, STD, 1.18]) + masonry(2, [1.1, STD]) + f'<section class="stack">{flat}</section>' + plist
-make_og(asset(covers[0]['normal'])['src'], 'home.jpg')
+if os.path.exists('og-home.jpg'):
+    os.makedirs(os.path.join(OUT, 'og'), exist_ok=True); shutil.copy('og-home.jpg', os.path.join(OUT, 'og', 'home.jpg'))
+else:
+    make_og(asset(covers[0]['normal'])['src'], 'home.jpg')
 write('index.html', page('Flávio Salzer', home, 'pg-home'))
 
 # ---------- projects ----------
