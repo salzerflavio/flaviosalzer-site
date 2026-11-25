@@ -38,7 +38,7 @@ FIXES = [
     ('OTHERS FESTIVALS', 'OTHER FESTIVALS'),
     ('Mihail Alexandrov', 'Mihail Aleksandrov'),
     ('- Filme - Look for The Earth', '- Film - Look to the Earth'),
-    ('Filme - Look', 'Film - Look'),
+    ('Filme', 'Film'),
     ('Look for The Earth', 'Look to the Earth'),
     ('Trouble calls for trouble', 'Trouble Calls for Trouble'),
     ('Zero a Zé - Modo Sacooler', 'From Zero to Zé - Sacooler Mode'),
