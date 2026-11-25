@@ -199,7 +199,7 @@ def project_header(tree, cover_name=''):
     creds = parse_credits(right)
     dl = ''.join(f'<div><dt>{html.escape(k)}</dt><dd>{v}</dd></div>' for k, v in creds)
     return title, (f'<header class="p-head">'
-                   f'<div class="p-intro"><a class="back reveal-t" href="/" aria-label="Back to work">←</a><h1 class="reveal-t">{html.escape(title)}</h1><div class="p-desc reveal-t">{desc_ps}</div></div>'
+                   f'<div class="p-intro"><a class="back" href="/" aria-label="Back to work">←</a><h1 class="reveal-t">{html.escape(title)}</h1><div class="p-desc reveal-t">{desc_ps}</div></div>'
                    f'<dl class="credits reveal-t">{dl}</dl></header>')
 
 def render_mods(mods):

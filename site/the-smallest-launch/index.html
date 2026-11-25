@@ -40,7 +40,9 @@ img,video{display:block;max-width:100%}
 .m{width:100%;height:auto;background:#0b0b0b}
 
 /* ---------- topo (igual ao atual) ---------- */
-.site-head{display:flex;justify-content:space-between;align-items:center;padding:0 var(--edge);height:80px}
+.site-head{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:0 var(--edge);height:80px;mix-blend-mode:difference;pointer-events:none}
+.site-head a{pointer-events:auto}
+main{padding-top:80px}
 .logo{font:700 24px/1 var(--f);color:var(--hi);letter-spacing:-.01em}
 .site-head nav{display:flex;gap:26px;font:500 21px/1 var(--f);color:var(--hi)}
 .site-head nav a{opacity:.85;transition:opacity .2s}
@@ -75,7 +77,8 @@ body.pg-home .site-head nav a[href="/"],body.pg-about .site-head nav a[href="/fl
 /* ---------- projeto ---------- */
 .p-head{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:'b .' 't .' 'd c';gap:var(--s1) var(--s2);padding:var(--s2) var(--edge) var(--s3)}
 .p-intro{display:contents}
-.p-head h1{grid-area:t}.p-head .back{grid-area:b;justify-self:start;font:400 55px/1 var(--f);color:var(--hi);margin-bottom:var(--s1);transition:transform .3s var(--ease)}.p-head .back:hover{transform:translateX(-6px)}.p-desc{grid-area:d}.credits{grid-area:c}
+.p-head h1{grid-area:t}.p-head .back{position:fixed;z-index:50;top:96px;left:var(--edge);font:400 55px/1 var(--f);color:#fff;mix-blend-mode:difference;transition:transform .3s var(--ease)}.p-head .back:hover{transform:translateX(-6px)}
+.p-head::before{content:"";grid-area:b;height:55px;margin-bottom:var(--s1)}.p-desc{grid-area:d}.credits{grid-area:c}
 .p-head h1{margin:0;align-self:end;font:700 var(--fs-xl)/1.02 var(--f);color:var(--hi);letter-spacing:-.015em;text-wrap:balance}
 .p-desc{max-width:60ch;display:grid;gap:1em}
 .credits{margin:0;display:grid;gap:var(--s1);max-width:560px;align-content:start;font-size:var(--fs-sm);line-height:1.45}
@@ -169,7 +172,7 @@ figure{margin:0}
   <nav><a href="/">Work</a><a href="/flavio/">☺ About</a></nav>
 </header>
 <main>
-<article class="project"><header class="p-head"><div class="p-intro"><a class="back reveal-t" href="/" aria-label="Back to work">←</a><h1 class="reveal-t">The Smallest Launch in the World</h1><div class="p-desc reveal-t"><p>To celebrate Consumer Day, Skol honored its biggest consumer and collector with an exclusive product and a launch campaign just for him.</p></div></div><dl class="credits reveal-t"><div><dt>Role</dt><dd>Concept, Art Direction, Design</dd></div><div><dt>With</dt><dd>Ícaro Abreu, Yuri Mussoly, Alê Muccillo, Letícia Hanower, Julian Velez, Arthur Souza</dd></div><div><dt>Agency</dt><dd>Mutato</dd></div><div><dt>Client</dt><dd>Skol</dd></div><div><dt>Year</dt><dd>2020</dd></div></dl></header><div class="p-body"><div class="mod embed reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe src="https://player.vimeo.com/video/713696784?h=3791d4959f&amp;title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></div>
+<article class="project"><header class="p-head"><div class="p-intro"><a class="back" href="/" aria-label="Back to work">←</a><h1 class="reveal-t">The Smallest Launch in the World</h1><div class="p-desc reveal-t"><p>To celebrate Consumer Day, Skol honored its biggest consumer and collector with an exclusive product and a launch campaign just for him.</p></div></div><dl class="credits reveal-t"><div><dt>Role</dt><dd>Concept, Art Direction, Design</dd></div><div><dt>With</dt><dd>Ícaro Abreu, Yuri Mussoly, Alê Muccillo, Letícia Hanower, Julian Velez, Arthur Souza</dd></div><div><dt>Agency</dt><dd>Mutato</dd></div><div><dt>Client</dt><dd>Skol</dd></div><div><dt>Year</dt><dd>2020</dd></div></dl></header><div class="p-body"><div class="mod embed reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe src="https://player.vimeo.com/video/713696784?h=3791d4959f&amp;title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></div>
 <figure class="mod img reveal-m"><img class="m " src="/media/e3c48cd2-aa42-4f57-9e64-cf49a6e9d298_rw_1920.webp" width="1920" height="1080" loading="lazy" decoding="async" alt=""></figure>
 <figure class="mod img reveal-m"><img class="m " src="/media/ec324854-73a7-4fe5-a571-cf06bd442772_rw_1920.webp" width="1920" height="1406" loading="lazy" decoding="async" alt=""></figure>
 <figure class="mod img reveal-m"><video class="m " data-src="/media/dfb15f9f-4194-464d-8ec4-08e542dfe2cb_rw_1920.mp4" poster="/media/dfb15f9f-4194-464d-8ec4-08e542dfe2cb_rw_1920.webp" width="1920" height="540" muted loop playsinline preload="none"></video></figure>
