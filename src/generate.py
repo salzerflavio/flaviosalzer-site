@@ -325,7 +325,11 @@ def about_block(text_html):
     m = re.match(r'\s*<span class="t-lg">\s*(?:<strong>)?(.*?)(?:</strong>)?\s*</span>', h, re.S)
     head = ''
     if m and len(strip_tags(m.group(1))) < 30:
-        head = f'<h2 class="reveal-t">{strip_tags(m.group(1)).strip()}</h2>'
+        txt = strip_tags(m.group(1)).strip()
+        if 'ABOUT' in txt.upper():
+            head = '<h1 class="a-title reveal-t">About</h1>'
+        else:
+            head = f'<h2 class="reveal-t">{txt}</h2>'
         h = h[m.end():]
     ps = paragraphs(h)
     return head + ''.join(f'<p class="reveal-t">{p}</p>' for p in ps)

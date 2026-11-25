@@ -33,10 +33,10 @@ img,video{display:block;max-width:100%}
 .site-head a{pointer-events:auto}
 main{padding-top:80px}
 .logo{font:700 24px/1 var(--f);color:var(--hi);letter-spacing:-.01em}
-.site-head nav{display:flex;gap:26px;font:500 21px/1 var(--f);color:var(--hi)}
+.site-head nav{display:flex;gap:26px;font:400 21px/1 var(--f);color:var(--hi)}
 .site-head nav a{opacity:.85;transition:opacity .2s}
 .site-head nav a:hover{opacity:1}
-body.pg-home .site-head nav a[href="/"],body.pg-about .site-head nav a[href="/flavio/"]{opacity:1;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+body.pg-home .site-head nav a[href="/"],body.pg-about .site-head nav a[href="/flavio/"]{opacity:1;font-weight:500;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
 
 /* ---------- home: 2 colunas intercaladas, sem respiro ---------- */
 .masonry{display:flex}
@@ -102,6 +102,7 @@ figure{margin:0}
 .about{padding:var(--s2) var(--edge) 0;display:flex;flex-direction:column;gap:var(--s4)}
 .a-row{display:flex;gap:var(--s3);align-items:flex-start}
 .a-row .col{display:flex;flex-direction:column;gap:1em}
+.about .a-title{margin:0 0 var(--s2);font:700 var(--fs-xl)/1.02 var(--f);color:var(--hi);letter-spacing:-.015em}
 .about h2{margin:0 0 var(--s1);font:500 var(--fs-lg)/1.05 var(--f);color:var(--hi);text-transform:uppercase;letter-spacing:-.01em}
 .about .col>p .t-lg:first-child{display:block}
 @media (max-width:800px){.a-row{flex-direction:column;gap:var(--s2)}.about{gap:var(--s3)}}
