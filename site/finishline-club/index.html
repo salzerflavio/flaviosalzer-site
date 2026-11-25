@@ -7,6 +7,13 @@
 <meta name="description" content="The best part of the run is the finish line.">
 <meta property="og:title" content="Finish Line Club — Flávio Salzer">
 <meta property="og:description" content="The best part of the run is the finish line.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://flaviosalzer.com/finishline-club/">
+<meta property="og:image" content="https://flaviosalzer.com/og/finishline-club.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://flaviosalzer.com/finishline-club/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🫀</text></svg>">
 <script>document.documentElement.classList.add('js')</script>
 <style>/* ==========================================================
@@ -169,6 +176,37 @@ figure{margin:0}
 @keyframes vt-in{from{transform:translateY(100%)}}
 @media (prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root){animation:none}}
 ::view-transition-group(cursor){animation:none}
+
+/* imagens: versão desfocada da própria imagem enquanto carrega */
+.m[style*="background-image"]{background-size:cover;background-position:center;background-color:#0b0b0b}
+
+/* títulos entrando por linha */
+.split .ln{display:block;overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
+.split .ln>span{display:block;transform:translateY(105%);transition:transform 1.1s var(--ease);transition-delay:calc(var(--l,0) * 90ms + 80ms)}
+.split.in .ln>span{transform:none}
+html:not(.js) .split .ln>span{transform:none}
+
+/* player próprio */
+.vplayer{position:relative;background:#0b0b0b}
+.vplayer iframe{pointer-events:none}
+.vp-hit{position:absolute;inset:0;width:100%;border:0;padding:0;background:transparent;color:#fff;display:flex;align-items:flex-end;justify-content:flex-start}
+.vp-label{margin:0 0 22px 24px;font:500 var(--fs-ui)/1 var(--f);padding:10px 14px;border-radius:99px;background:rgba(0,0,0,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:opacity .3s}
+.vplayer.sound .vp-label{opacity:0}
+.vplayer.sound:hover .vp-label{opacity:1}
+
+/* próximo projeto */
+.next{display:block;margin-top:var(--s4);padding:var(--s3) var(--edge) 0;color:var(--hi)}
+.next-label{display:block;font:400 var(--fs-ui)/1 var(--f);color:var(--tx);margin-bottom:var(--s1)}
+.next-title{display:block;font:700 var(--fs-xl)/1.02 var(--f);letter-spacing:-.015em}
+.next-sub{display:block;margin-top:10px;font:400 var(--fs-body)/1.4 var(--f);color:var(--tx)}
+.next-img{display:block;position:relative;margin:var(--s2) calc(var(--edge) * -1 + var(--g)) 0;aspect-ratio:21/9;overflow:hidden}
+.next-img .m{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.next:hover .next-img .m{transform:scale(1.03)}
+.next-bar{display:block;height:2px;margin:0 calc(var(--edge) * -1 + var(--g));background:rgba(255,255,255,.12)}
+.next-bar i{display:block;height:100%;width:calc(var(--np,0) * 100%);background:#fff}
+@media (prefers-reduced-motion:reduce){.split .ln>span{transform:none!important;transition:none!important}}
+.vplayer .ratio{position:relative;height:0}
+.vplayer iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 </style>
 </head>
 <body class="proj" id="top">
@@ -177,28 +215,30 @@ figure{margin:0}
   <nav><a href="/">Work</a><a href="/flavio/">☺ About</a></nav>
 </header>
 <main>
-<article class="project"><header class="p-head"><div class="p-intro"><a class="back" href="/" aria-label="Back to work"><svg class="arr" viewBox="486 353 250 95" width="66" height="25" aria-hidden="true"><polygon points="534.41 445.79 488.14 401.58 532.35 355.3 536.69 359.45 496.62 401.38 538.55 441.45 534.41 445.79"/><rect x="492.38" y="398.48" width="241.62" height="6"/></svg></a><h1 class="reveal-t">Finish Line Club</h1><div class="p-desc reveal-t"><p>The best part of the run is the finish line.</p></div></div><dl class="credits reveal-t"><div><dt>Role</dt><dd>Creative Direction, Design</dd></div><div><dt>With</dt><dd>Gregory Kickow, Alex Adati, Yan Prado, Yan Esteves, Cauique Johnson, Leandro Villas-boas, Samoel Junqueira, Vitor Sotero, Andreza Mantovani</dd></div><div><dt>Photo</dt><dd>Maltchique</dd></div><div><dt>Agency</dt><dd>LePub São Paulo</dd></div><div><dt>Client</dt><dd>Heineken</dd></div><div><dt>Year</dt><dd>2025</dd></div></dl></header><div class="p-body"><figure class="mod img reveal-m"><img class="m " src="/media/341531e4-df5d-4d54-bb41-84bb354011be_rw_1920.webp" width="1920" height="993" loading="lazy" decoding="async" alt=""></figure>
+<article class="project"><header class="p-head"><div class="p-intro"><a class="back" href="/" aria-label="Back to work"><svg class="arr" viewBox="486 353 250 95" width="66" height="25" aria-hidden="true"><polygon points="534.41 445.79 488.14 401.58 532.35 355.3 536.69 359.45 496.62 401.38 538.55 441.45 534.41 445.79"/><rect x="492.38" y="398.48" width="241.62" height="6"/></svg></a><h1 class="split">Finish Line Club</h1><div class="p-desc reveal-t"><p>The best part of the run is the finish line.</p></div></div><dl class="credits reveal-t"><div><dt>Role</dt><dd>Creative Direction, Design</dd></div><div><dt>With</dt><dd>Gregory Kickow, Alex Adati, Yan Prado, Yan Esteves, Cauique Johnson, Leandro Villas-boas, Samoel Junqueira, Vitor Sotero, Andreza Mantovani</dd></div><div><dt>Photo</dt><dd>Maltchique</dd></div><div><dt>Agency</dt><dd>LePub São Paulo</dd></div><div><dt>Client</dt><dd>Heineken</dd></div><div><dt>Year</dt><dd>2025</dd></div></dl></header><div class="p-body"><figure class="mod img reveal-m"><img class="m " src="/media/341531e4-df5d-4d54-bb41-84bb354011be_rw_1920.webp" width="1920" height="993" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAACQAwCdASoUAAoAPu1iqU2ppaOiMAgBMB2JZACdMoEUAAWUkfWwAP7jTaYIw0ZxlNjlUYjDALpv6P2U72qGWeTqmdZ+TSXPnrFetamLk8AAAA==)"></figure>
 <div class="mod statement reveal-t"><p><span class="t-lg"> BesSpoke films. Produced by Kaus. Directed by Cris Streciwik. Sound by Evil Twin.</span></p><p><span class="t-lg"> See The Look.</span></p></div>
-<div class="mod embed reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe src="https://player.vimeo.com/video/1199576713?h=94b6e5e318&amp;title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></div>
-<figure class="mod img reveal-m"><img class="m " src="/media/3f5b966a-9559-422f-a987-14461b18e9b5_rw_1920.webp" width="1920" height="5" loading="lazy" decoding="async" alt=""></figure>
-<div class="mod embed reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe src="https://player.vimeo.com/video/1199576714?h=94b6e5e318&amp;title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></div>
-<div class="mod embed reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe src="https://player.vimeo.com/video/1199576712?h=94b6e5e318&amp;title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></div>
+<div class="mod vplayer reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe data-src="https://player.vimeo.com/video/1199576713?h=94b6e5e318&amp;background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Film"></iframe></div><button class="vp-hit" type="button" aria-label="Play with sound"><span class="vp-label">Play with sound</span></button></div>
+<figure class="mod img reveal-m"><img class="m " src="/media/3f5b966a-9559-422f-a987-14461b18e9b5_rw_1920.webp" width="1920" height="5" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAACwAgCdASoUAAEAPu1iqU2ppaOiMAgBMB2JaQAAeyAA/vCfnTzAAAAA)"></figure>
+<div class="mod vplayer reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe data-src="https://player.vimeo.com/video/1199576714?h=94b6e5e318&amp;background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Film"></iframe></div><button class="vp-hit" type="button" aria-label="Play with sound"><span class="vp-label">Play with sound</span></button></div>
+<div class="mod vplayer reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe data-src="https://player.vimeo.com/video/1199576712?h=94b6e5e318&amp;background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Film"></iframe></div><button class="vp-hit" type="button" aria-label="Play with sound"><span class="vp-label">Play with sound</span></button></div>
 <div class="mod statement reveal-t"><p><span class="t-lg">Our visual and imagery system is based on the social moments after the run.</span></p></div>
-<div class="mod embed reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe src="https://player.vimeo.com/video/1200572926?h=94b6e5e318&amp;title=0&amp;byline=0&amp;portrait=0&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></div>
-<div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:0.6668 1 0"><img class="m " src="/media/24fa54a4-c300-47eb-aa87-aa22f6b794ae_rw_1920.webp" width="1575" height="2362" loading="lazy" decoding="async" alt=""></div><div class="cell" style="flex:0.6667 1 0"><img class="m " src="/media/1ad4a37b-cee9-4d81-b73a-3c91d7d4e4c8_rw_1920.webp" width="1500" height="2250" loading="lazy" decoding="async" alt=""></div><div class="cell" style="flex:0.6667 1 0"><img class="m " src="/media/f7f6a2c9-c7e3-4ac3-9460-1c508969c766_rw_1920.webp" width="1500" height="2250" loading="lazy" decoding="async" alt=""></div><div class="cell" style="flex:0.6667 1 0"><img class="m " src="/media/b0c9b55d-0e30-48bf-9293-b5d3e2522d70_rw_1920.webp" width="1500" height="2250" loading="lazy" decoding="async" alt=""></div></div></div>
-<figure class="mod img reveal-m"><img class="m " src="/media/6d745f9f-b5ff-45b4-9d4b-2768583f86c6_rw_1920.webp" width="1920" height="1071" loading="lazy" decoding="async" alt=""></figure>
-<figure class="mod img reveal-m"><img class="m " src="/media/25820319-bf17-4639-a819-d9b16f9d99cc_rw_1920.webp" width="1500" height="2250" loading="lazy" decoding="async" alt=""></figure>
-<div class="mod embed reveal-m"><div class="ratio" style="padding-bottom:20.83%"><iframe src="https://player.vimeo.com/video/1198084110?h=94b6e5e318&amp;title=0&amp;byline=0&amp;portrait=0&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></div>
-<div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:0.6667 1 0"><img class="m " src="/media/d84062e1-07eb-4e8d-945f-c6ed7b3cc61f_rw_1920.webp" width="1500" height="2250" loading="lazy" decoding="async" alt=""></div><div class="cell" style="flex:0.6667 1 0"><img class="m " src="/media/5cc88176-10ca-4ca2-bbb3-97c7c31a55d7_rw_1920.webp" width="1500" height="2250" loading="lazy" decoding="async" alt=""></div><div class="cell" style="flex:0.6667 1 0"><img class="m " src="/media/461d5500-f689-4aab-aef1-d6d2ccfd9a76_rw_1920.webp" width="1500" height="2250" loading="lazy" decoding="async" alt=""></div><div class="cell" style="flex:0.6667 1 0"><img class="m " src="/media/d25330c7-74c9-43d0-8045-3857f3a9f3f0_rw_1920.webp" width="1500" height="2250" loading="lazy" decoding="async" alt=""></div></div></div>
-<figure class="mod img reveal-m"><img class="m " src="/media/866a27a3-e614-438a-ba52-14bbe7a65e42_rw_1920.webp" width="1920" height="1277" loading="lazy" decoding="async" alt=""></figure>
-<figure class="mod img reveal-m"><img class="m " src="/media/d2c5bb34-a996-408e-9367-a2a92428528e_rw_1920.webp" width="1920" height="984" loading="lazy" decoding="async" alt=""></figure>
-<figure class="mod img reveal-m"><img class="m " src="/media/9a9067a9-8ca9-4967-bb46-3409351b8b49_rw_1920.webp" width="1920" height="1282" loading="lazy" decoding="async" alt=""></figure>
-<div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:1.5000 1 0"><img class="m " src="/media/67aabc7f-0ad1-42fb-8c0b-b2f0da82d1c3_rw_1920.webp" width="1920" height="1280" loading="lazy" decoding="async" alt=""></div><div class="cell" style="flex:0.8000 1 0"><img class="m " src="/media/dddec9cc-dde2-4388-a66c-ee458e3540af_rw_1920.webp" width="1500" height="1875" loading="lazy" decoding="async" alt=""></div><div class="cell" style="flex:0.8000 1 0"><img class="m " src="/media/c98a9a9e-055a-467d-be92-c47df340122a_rw_1920.webp" width="1500" height="1875" loading="lazy" decoding="async" alt=""></div><div class="cell" style="flex:0.8198 1 0"><img class="m " src="/media/5e4c8f98-766b-4c7f-9540-8ffa47cea6cf_rw_1920.webp" width="1920" height="2342" loading="lazy" decoding="async" alt=""></div></div><div class="row"><div class="cell" style="flex:1.5000 1 0"><img class="m " src="/media/372263cf-b33f-4c70-ab73-e87bb589a08c_rw_1920.webp" width="1920" height="1280" loading="lazy" decoding="async" alt=""></div><div class="cell" style="flex:0.8000 1 0"><img class="m " src="/media/0b7c300e-7741-43dd-a623-9af76230b807_rw_1920.webp" width="1500" height="1875" loading="lazy" decoding="async" alt=""></div><div class="cell" style="flex:0.8000 1 0"><img class="m " src="/media/3b0877f3-b6ed-4797-a345-9786c1ee114f_rw_1920.webp" width="1500" height="1875" loading="lazy" decoding="async" alt=""></div><div class="cell" style="flex:1.5000 1 0"><img class="m " src="/media/a02f2924-cdea-4f82-8240-0dee88d6d12f_rw_1920.webp" width="1920" height="1280" loading="lazy" decoding="async" alt=""></div></div></div></div></article>
+<div class="mod vplayer reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe data-src="https://player.vimeo.com/video/1200572926?h=94b6e5e318&amp;background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Film"></iframe></div><button class="vp-hit" type="button" aria-label="Play with sound"><span class="vp-label">Play with sound</span></button></div>
+<div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:0.6668 1 0"><img class="m " src="/media/24fa54a4-c300-47eb-aa87-aa22f6b794ae_rw_1920.webp" width="1575" height="2362" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRvoAAABXRUJQVlA4IO4AAACwBQCdASoUAB4APu1irFAppSQisBgIATAdiWwAnTOFBCPE/tLEiPYffCFGS7F9zK1VPXWHigAA/uc1W81dK3WFQWjOCScngZWqgo4EQXwpvF+ExH5esA6gxYeNE1Lmd28EDgdClLxytmVwXu1/cEPJ5ZYkdRYddRNp+3E/KYtVRk8DiPuErJQGmPIuaBwY9nxBEzH2A8jvgF0UEAfmVHBXLCseRoHuQACsK2vrePQSsEhT2iSrHEIWloQcPjZKgQxfLOgmnBB3LEETMUCe6bxoS4ATeU45hWRaiUeuILavtirruVSKXf/itSuKhEAA)"></div><div class="cell" style="flex:0.6667 1 0"><img class="m " src="/media/1ad4a37b-cee9-4d81-b73a-3c91d7d4e4c8_rw_1920.webp" width="1500" height="2250" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRhQBAABXRUJQVlA4IAgBAADQBgCdASoUAB4APu1iqU2ppaOiMAgBMB2JbACdOUFS3jTNOtnjPBNICBxMCNnfkjiTiHt4PEc09vP79UOhoIAA/SHFOXx3njZqh4dEJ6NCDWTg9DCLqXaiQSjD7Sy4tOkLmN1tnDha1AeHDALPAl6nkDV24xaxlvePZuLwGGEHqBh+LlCk36bXfCunnObUbjw4ROYwppSt+8C3aIsjFuowRkh1E941VRsgFtHf0EpUUckhAtjyu7EcYbkjwCJlKS7RhD3jxBfN9Pst9YSDyY0I/qdr8dGPV18F4HHMlNNwFE5gaIytPItMw7gDVLscpu9rQSGOPoSKiANjFXV46FKE+IwEQhRNUAA=)"></div><div class="cell" style="flex:0.6667 1 0"><img class="m " src="/media/f7f6a2c9-c7e3-4ac3-9460-1c508969c766_rw_1920.webp" width="1500" height="2250" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRrwAAABXRUJQVlA4ILAAAABQBQCdASoUAB4APu1kq0+ppSOiMBgIATAdiWoArDNofgJID3mDx567Q2jsaXTsWDvKfsgA/uNDObRtOE44KTOB8lbmrXhSNxCuIDPArXdc7O1SK2YRlw8Kcb1l3wvm24gteRZ/kkNYPrr463A5QDfvRM1dKnWoO0mKnMUyZ/4+yiTQ0WuFOfSdGfYmoZwrL3V1HrakHmiRAHhQl9zA1Yu16amL9kRHL9fDECntQBfgAA==)"></div><div class="cell" style="flex:0.6667 1 0"><img class="m " src="/media/b0c9b55d-0e30-48bf-9293-b5d3e2522d70_rw_1920.webp" width="1500" height="2250" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRowAAABXRUJQVlA4IIAAAABwBACdASoUAB4APu1mqE2ppaOiMBgMATAdiUAXYAId8veJ+BiIWKiI4cCzNAD+2O9ju2I4yca5YrjE/AQBGmWpCiJ+q5a5Zo/0f93/qSojrjc3XjXacZhswWpeJOPGuN839d6MeyAU6RMPgCqd1Zz5hcR4nExlKscrKQxgZwAAAA==)"></div></div></div>
+<figure class="mod img reveal-m"><img class="m " src="/media/6d745f9f-b5ff-45b4-9d4b-2768583f86c6_rw_1920.webp" width="1920" height="1071" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAAAQBACdASoUAAsAPu1iqU2ppaOiMAgBMB2JYgCuHBxtXw95uoS4eAgFAAD+8rDABOXhwFB0T9jbThKW2nkWW+X8mmRjTGyAhguPUTRnny4RwZDuksI7WDy76SW1/6SWo32ZL6R7yjx/qY7vQAA=)"></figure>
+<figure class="mod img reveal-m"><img class="m " src="/media/25820319-bf17-4639-a819-d9b16f9d99cc_rw_1920.webp" width="1500" height="2250" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRqoAAABXRUJQVlA4IJ4AAADQBACdASoUAB4APu1opU2ppqMiMBgMATAdiWYAxvRX7+BTHdJ2ExbzbLfgUxb+fAD++yhBwCYMt+En3KMci2jQhikIaHnv48xpF7fqrawQigCPD+4fapMBm4dPwLl9uv3mwJal0m3U/2n7abphfXh00RoFnlgvdgS9FW5ut/ff1muLWQdvH75q1Kx19w8Yjmb+PEnbXBl8fJqLPgAAAA==)"></figure>
+<div class="mod vplayer reveal-m"><div class="ratio" style="padding-bottom:20.83%"><iframe data-src="https://player.vimeo.com/video/1198084110?h=94b6e5e318&amp;background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Film"></iframe></div><button class="vp-hit" type="button" aria-label="Play with sound"><span class="vp-label">Play with sound</span></button></div>
+<div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:0.6667 1 0"><img class="m " src="/media/d84062e1-07eb-4e8d-945f-c6ed7b3cc61f_rw_1920.webp" width="1500" height="2250" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRg4BAABXRUJQVlA4IAIBAAAwBgCdASoUAB4APu1mqk2ppaQiMAgBMB2JbACdOUFS1RIeUAU3Hgs+LopkAPqLKbXQptZXjSuc8beAAN1EUXLh5BPDNgQiT8vBWwjzAzy+1s4h5CFkiRWuIPQTy3RxS0th8x5qnxTXKyb9rtTmecMX0kykUnDabPMAZ+tx+00ZgfNcD4tZn/J8TwEoBgDWAHslmfapD6PH06UVDDmCXAPPep0VH8476ys635i3xImsPmz9UNkV4X1jKqbIJxcqdXcvTgbzpU2nuiiM89IAVbafe/XFYBFteI9dFvcTVXvqtIeatzoDSSUj+NgBytVDb7qAqZFpscgqWbUd+HcJcfAAAAA=)"></div><div class="cell" style="flex:0.6667 1 0"><img class="m " src="/media/5cc88176-10ca-4ca2-bbb3-97c7c31a55d7_rw_1920.webp" width="1500" height="2250" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRtoAAABXRUJQVlA4IM4AAACwBQCdASoUAB4APu1ep06ppKMiMBgMATAdiWwAnTKDKSyZ8+wAV8nJDDwvuZKpQFztI528ueAA/tOWWp6dHW4OaDpdejKvneAe9EQ+CHDcs7LXtPoA/BzEhoptqmeqWJaDD5HC/7v4f4XtQDF4FIKaD3ZmVQwKAD4ECqIUbNmvsOSEpW4Z3bjKzfeGjVOMHtcJdtt0FVszIuq2wttZwg42ofyGhoBWywh7YW+5CbzAXBV2IYpKVeF+TVOcr5mXW6b5Bo8Z03B7Ztm8A+sQAA==)"></div><div class="cell" style="flex:0.6667 1 0"><img class="m " src="/media/461d5500-f689-4aab-aef1-d6d2ccfd9a76_rw_1920.webp" width="1500" height="2250" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAACwBACdASoUAB4APuFeqk2opSQiMAwBEBwJZQDLaCKUeEZ5UdrPtr6VyoInaKIAAP7zijyO9K9O1mI8/xLwhZrMh7J1/LlOVen+IvzQa200Isgm+9PN7sn/1d7ym4DSNhsdUQl/p0BoJbtZRBesnZW/dvTlNcJwAAA=)"></div><div class="cell" style="flex:0.6667 1 0"><img class="m " src="/media/d25330c7-74c9-43d0-8045-3857f3a9f3f0_rw_1920.webp" width="1500" height="2250" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRrAAAABXRUJQVlA4IKQAAABQBQCdASoUAB4APu1qq08ppiOiMBgIATAdiWgAtRsOpbkk/ZjtuYWIxwNsXPO19wY+ifgA/vTfQv9PHg0v2IUgZXUqCwQKG73S5zV+TL38WifAA7XxGVeAcpyGb7OQFeWL9Te9KKA8VuqyJ/QEJ10+VFReAd+KtmBA3om+80wJq6kMmeHELv04KqUE5vNt+V/ug1lrUkUT2aHz02W5HEQCwzAAAA==)"></div></div></div>
+<figure class="mod img reveal-m"><img class="m " src="/media/866a27a3-e614-438a-ba52-14bbe7a65e42_rw_1920.webp" width="1920" height="1277" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRoAAAABXRUJQVlA4IHQAAAAQBACdASoUAA0APu1iqU2ppaOiMAgBMB2JbF2ARhYhZhUgAJenobX7AAD+6Z2vPB23+jxXeHHtFOvCrOQtSgfHaZUryHALWDH0Kj7Oeu2Xb4kDuKXfyCxrz6XerGKxb7EpupkLClzG8CwWdagibNAtWgAAAA==)"></figure>
+<figure class="mod img reveal-m"><img class="m " src="/media/d2c5bb34-a996-408e-9367-a2a92428528e_rw_1920.webp" width="1920" height="984" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAACwAwCdASoUAAoAPu1iqU2ppaOiMAgBMB2JagC06BoxQcGAy9SeNADJ64Kkes440clpi7C1166vnWackUzC6aOP+7EFh0GVUblLgp8u+cwo4/ReNA5cObx9hAm+cS/hLX/AAA==)"></figure>
+<figure class="mod img reveal-m"><img class="m " src="/media/9a9067a9-8ca9-4967-bb46-3409351b8b49_rw_1920.webp" width="1920" height="1282" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAACQAwCdASoUAA0APu1iqU2ppaOiMAgBMB2JZwAAYYNx92qsO9AAAP7ysNoO7OGsCPTwa9LqRBLGf+evuKNZ8o0Ce7ApK4o4dx7jyCc0HYPwO//lRH6j5zAFAAA=)"></figure>
+<div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:1.5000 1 0"><img class="m " src="/media/67aabc7f-0ad1-42fb-8c0b-b2f0da82d1c3_rw_1920.webp" width="1920" height="1280" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRq4AAABXRUJQVlA4IKIAAAAwBACdASoUAA0APu1iqU2ppaOiMAgBMB2JbACdACK3kgyCe5wmaYHVpQAA/ugjCpaTBGr+HUnTWhu976F5sLjQzg+3jOujAXC53KDcjcDXO0+j+1MQ9l5QAb/255RtgFQxacRHxWJY4EsJjJHwjttCc4d9f9GdD7PobcDj9B7uwfUDjjZK9zKc2czjLj1zdBR2UTv5MOsk9A+Djj0rZtw6oAA=)"></div><div class="cell" style="flex:0.8000 1 0"><img class="m " src="/media/dddec9cc-dde2-4388-a66c-ee458e3540af_rw_1920.webp" width="1500" height="1875" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRt4AAABXRUJQVlA4INIAAADwBQCdASoUABkAPu1iqk2ppaQiMBgMATAdiWgAnTKDPBUZh5Q2W+xGoVsQgKWkUs3Iy98BoLspAAD+9NuLtLvyNtzUFrgzq4B4ORPhMUHFw3wI6p+wnObXFG6kdIRs1f7hgO2K9mHIuTsq4OlRLscVvDCaUReVCsjh/xG0W8bFrlrIthfOxUgUIQ69ctI8noDLxM5Egi1FddjJyxmscucm9T+BujnApiuyOY8dLRFOLJkYbyU27Ns+ajxjx7W6hVe9vUoCc3hpJAE1PWnwdeKAAAA=)"></div><div class="cell" style="flex:0.8000 1 0"><img class="m " src="/media/c98a9a9e-055a-467d-be92-c47df340122a_rw_1920.webp" width="1500" height="1875" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRuYAAABXRUJQVlA4INoAAADwBACdASoUABkAPu1sq1EppaOiqAqpMB2JQBkasYiJau5oe9J2IsDGBxt70sTGJVAA+Nm/mwiqsCwoowX+3AoMtAbc0zhsVqSy4WFmFgeVnUkLKYNV6/ckeLUs4idSHF4Nre5Yc66LsggDqU7FdS4e+67vZnXBPAFDn35L0XtV8OPb2JbckAvW+UiElx3hKwPmI31rKPL3p+eQUbnPDGH0oGp2yu+PpgJVtTzijD6fXn+Wj5EYjsimZK91v9DdbhTPiwEYlAdBLNMo4NdpIMO445mYMlAaJeAAAA==)"></div><div class="cell" style="flex:0.8198 1 0"><img class="m " src="/media/5e4c8f98-766b-4c7f-9540-8ffa47cea6cf_rw_1920.webp" width="1920" height="2342" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRtQAAABXRUJQVlA4IMgAAACwBQCdASoUABgAPu1qqlGppaOiqAqpMB2JbAC1G2Wv/l2AF/9CualRmgQHr0u/qbut+cAj2/AA/XX++jVvENiVgeDZmeNYqh0oDt2tTwON0Z94gIWuAZlNRnDBxAYg5dUX2G6g3SaoRd1lKoe7J6q5G8ov56J8QLBJMe5QnlQOmUzH9wVb6x7KxG4cfy0mjqRJx9VC9tF9+u/yi+L67iklPDRBvQrjenMcHWXFaBhPbWsXG7upMJ9tJVLaKDKGbrRNfBepfVYAAA==)"></div></div><div class="row"><div class="cell" style="flex:1.5000 1 0"><img class="m " src="/media/372263cf-b33f-4c70-ab73-e87bb589a08c_rw_1920.webp" width="1920" height="1280" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRqAAAABXRUJQVlA4IJQAAAAQBACdASoUAA0APu1iqU2ppaOiMAgBMB2JZgCdABo7X6QT39QBUVLe0AD+34XOdx6v2Qztqu/9fmqT+La4O3I2xxNYvvJdszZYrq+4o3e2BNhkj8ejE0O7yxMeNUQWZ5sF4cs1+36K2vYVTK2kRmJ3ICcfdlaQL5TIl93d7rzfjBd9Xz4jDXmKgMNCi2ctTIW8AAAA)"></div><div class="cell" style="flex:0.8000 1 0"><img class="m " src="/media/0b7c300e-7741-43dd-a623-9af76230b807_rw_1920.webp" width="1500" height="1875" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRuYAAABXRUJQVlA4INoAAABwBQCdASoUABkAPu1sq1EppaOiqAqpMB2JagCdOUAAbLr7vzXOrPLeIqnTzGl0gy9FKLUAAP6YVBzYWPUXmMEt7UA2eIzwV5ln3M7relkocCNKRJs/0R3cThUp+MpTEha0qetVOnMU7ZGZvCCI2kJfKVZUIRii5QlNXC0a2Xcr4/msndPDgnzyabpSO66qEpDrAFPrAFszMaF4zl90uBkuDBhed7v0vAoWV4dAke5O3SncPUh7tgRb50X/f4EXf/5waINZNEpRDdUHwwL4Mo4/LQdpOnN8MQQAAA==)"></div><div class="cell" style="flex:0.8000 1 0"><img class="m " src="/media/3b0877f3-b6ed-4797-a345-9786c1ee114f_rw_1920.webp" width="1500" height="1875" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRgABAABXRUJQVlA4IPQAAAAwBgCdASoUABkAPu1sq1EppaOiqAqpMB2JbACdMoGvR6Y7vLoC3vEQEKfCagpEOPI44mgWxNFZczgwAP7fIB4dLkYDtWj+YShk5kxWAhrJ/RTgjXDHe6h/fDDetwGuVqVMy5TfojgI8I30NfDDLhXg16wRFi+I+PDSmqWftp4V0LRSVXW5njt27yhF/jHuzVaiQug5paNY0OSmItehQIueR7rbVF6sD9dMx8oYd02AxjopUTXwYAceiXEpGjLGWGcAe5Y73xLVJ16v5F0lb/yarwQA3WwPlUpyqV/FDUuKzSX2zpNcFyGn1tnAPKnCXRJITAAA)"></div><div class="cell" style="flex:1.5000 1 0"><img class="m " src="/media/a02f2924-cdea-4f82-8240-0dee88d6d12f_rw_1920.webp" width="1920" height="1280" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRqwAAABXRUJQVlA4IKAAAABwBACdASoUAA0APu1iqU2ppaOiMAgBMB2JbACsLoBEgNsAArpkZFbSwEX+AAD+7WAiQihGR57nfDC38CaVXCCYEZJ8G6M4i3u6Pxahl9AnfvFRWyHh57g327Gn/A2xC0vzEi41Mgx/gc6xFa7y9xgQxGkjxeUH5MVJ4YRA2rN3/0jjugt/N+feykfiBLdrkM1kwUFvyS2KQibsUIbpAAAA)"></div></div></div></div><a class="next" href="/copia-de-iphone-17pro-x-mercado-libre/" data-next><span class="next-label">Next project</span><span class="next-title split">Chew It</span><span class="next-sub">Trident, 2026.</span><span class="next-img"><img class="m cover" src="/media/c8e1f683-c787-420f-b357-ef76462cd191_rwc_270x0x1381x1080x1280.webp" width="1280" height="1001" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAADQAwCdASoUABAAPu1iqU2ppaOiMAgBMB2JYwAARmrIy93g13RMxAAA/j4ikHUBzuQrFm8uxtaYOrO4jn5NCCs8IZtuy8Ao4Cr3kF3c9BOkzZPpsw2AtPsQElCdIdjQMSh40TEU9ymuME5MP8QkoLpdxAYeWeFmQqwAAA==)"></span><span class="next-bar"><i></i></span></a></article>
 </main>
 <footer class="site-foot">
   <a href="#top" class="totop">↑ back to top</a>
   <span><a href="https://www.linkedin.com/in/flaviosalzer" target="_blank" rel="noopener">LinkedIn</a><a href="https://instagram.com/flaviosalzer" target="_blank" rel="noopener">Instagram</a></span>
 </footer>
+<script src="/js/lenis.min.js"></script>
+<script src="/js/player.min.js"></script>
 <script>{
   document.documentElement.classList.add('js');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -218,6 +258,70 @@ figure{margin:0}
     }
     reduce ? el.classList.add('in') : revealObs.observe(el);
   });
+
+
+  // smooth (inertial) scrolling
+  let lenis = null;
+  if (!reduce && window.Lenis && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    lenis = new Lenis({ autoRaf: true, lerp: 0.09, wheelMultiplier: 1 });
+  }
+
+  // titles: split into lines and reveal line by line
+  const splitLines = el => {
+    const words = el.textContent.trim().split(/\s+/);
+    el.innerHTML = words.map(w => `<span class="w">${w.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))}</span>`).join(' ');
+    const lines = []; let top = null;
+    el.querySelectorAll('.w').forEach(w => { if (w.offsetTop !== top) { lines.push([]); top = w.offsetTop; } lines[lines.length - 1].push(w.textContent); });
+    el.innerHTML = lines.map((l, i) => `<span class="ln" style="--l:${i}"><span>${l.join(' ')}</span></span>`).join('');
+  };
+  const splits = [...document.querySelectorAll('.split')];
+  const doSplit = () => splits.forEach(splitLines);
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => {
+    doSplit();
+    splits.forEach(el => reduce ? el.classList.add('in') : revealObs.observe(el));
+  });
+  let rw; addEventListener('resize', () => { clearTimeout(rw); rw = setTimeout(() => { splits.forEach(el => { const t = [...el.querySelectorAll('.ln')].map(l => l.textContent).join(' '); el.textContent = t; }); doSplit(); }, 200); });
+
+  // own film player: Vimeo in background mode, click for sound
+  if (window.Vimeo) {
+    document.querySelectorAll('.vplayer').forEach(v => {
+      const f = v.querySelector('iframe'), b = v.querySelector('.vp-hit'), lab = v.querySelector('.vp-label');
+      let pl = null;
+      const ensure = () => { if (!pl) { f.src = f.dataset.src; pl = new Vimeo.Player(f); } return pl; };
+      new IntersectionObserver(es => es.forEach(e => {
+        if (e.isIntersecting) { ensure().play().catch(() => {}); }
+        else if (pl) { pl.pause().catch(() => {}); }
+      }), { rootMargin: '300px 0px' }).observe(v);
+      b.addEventListener('click', async () => {
+        const p = ensure();
+        if (v.classList.contains('sound')) {
+          v.classList.remove('sound'); lab.textContent = 'Play with sound'; b.setAttribute('aria-label', 'Play with sound');
+          try { await p.setMuted(true); } catch (e) {}
+        } else {
+          document.querySelectorAll('.vplayer.sound .vp-hit').forEach(o => o.click());
+          v.classList.add('sound'); lab.textContent = 'Mute'; b.setAttribute('aria-label', 'Mute');
+          try { await p.setCurrentTime(0); await p.setMuted(false); await p.setVolume(1); await p.play(); } catch (e) {}
+        }
+      });
+    });
+  }
+
+  // next project: keep scrolling at the bottom to go there
+  const nx = document.querySelector('[data-next]');
+  if (nx && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    let acc = 0, going = false, decay;
+    const atBottom = () => innerHeight + scrollY >= document.documentElement.scrollHeight - 4;
+    addEventListener('wheel', e => {
+      if (going) return;
+      if (atBottom() && e.deltaY > 0) {
+        acc = Math.min(1, acc + e.deltaY / 1400);
+        nx.style.setProperty('--np', acc.toFixed(3));
+        clearTimeout(decay);
+        decay = setTimeout(function back() { acc = Math.max(0, acc - 0.08); nx.style.setProperty('--np', acc.toFixed(3)); if (acc > 0) decay = setTimeout(back, 30); }, 450);
+        if (acc >= 1) { going = true; location.href = nx.href; }
+      }
+    }, { passive: true });
+  }
 
   // exit effect: project media shrink + fade a little as they scroll off the top
   if (!reduce) {
@@ -300,7 +404,7 @@ figure{margin:0}
     addEventListener('blur', () => c.classList.remove('on'));
   }
 
-  document.querySelectorAll('a[href="#top"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); }));
+  document.querySelectorAll('a[href="#top"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); lenis ? lenis.scrollTo(0) : scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); }));
 }
 </script>
 </body>

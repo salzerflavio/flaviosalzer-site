@@ -158,3 +158,34 @@ figure{margin:0}
 @keyframes vt-in{from{transform:translateY(100%)}}
 @media (prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root){animation:none}}
 ::view-transition-group(cursor){animation:none}
+
+/* imagens: versão desfocada da própria imagem enquanto carrega */
+.m[style*="background-image"]{background-size:cover;background-position:center;background-color:#0b0b0b}
+
+/* títulos entrando por linha */
+.split .ln{display:block;overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
+.split .ln>span{display:block;transform:translateY(105%);transition:transform 1.1s var(--ease);transition-delay:calc(var(--l,0) * 90ms + 80ms)}
+.split.in .ln>span{transform:none}
+html:not(.js) .split .ln>span{transform:none}
+
+/* player próprio */
+.vplayer{position:relative;background:#0b0b0b}
+.vplayer iframe{pointer-events:none}
+.vp-hit{position:absolute;inset:0;width:100%;border:0;padding:0;background:transparent;color:#fff;display:flex;align-items:flex-end;justify-content:flex-start}
+.vp-label{margin:0 0 22px 24px;font:500 var(--fs-ui)/1 var(--f);padding:10px 14px;border-radius:99px;background:rgba(0,0,0,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:opacity .3s}
+.vplayer.sound .vp-label{opacity:0}
+.vplayer.sound:hover .vp-label{opacity:1}
+
+/* próximo projeto */
+.next{display:block;margin-top:var(--s4);padding:var(--s3) var(--edge) 0;color:var(--hi)}
+.next-label{display:block;font:400 var(--fs-ui)/1 var(--f);color:var(--tx);margin-bottom:var(--s1)}
+.next-title{display:block;font:700 var(--fs-xl)/1.02 var(--f);letter-spacing:-.015em}
+.next-sub{display:block;margin-top:10px;font:400 var(--fs-body)/1.4 var(--f);color:var(--tx)}
+.next-img{display:block;position:relative;margin:var(--s2) calc(var(--edge) * -1 + var(--g)) 0;aspect-ratio:21/9;overflow:hidden}
+.next-img .m{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.next:hover .next-img .m{transform:scale(1.03)}
+.next-bar{display:block;height:2px;margin:0 calc(var(--edge) * -1 + var(--g));background:rgba(255,255,255,.12)}
+.next-bar i{display:block;height:100%;width:calc(var(--np,0) * 100%);background:#fff}
+@media (prefers-reduced-motion:reduce){.split .ln>span{transform:none!important;transition:none!important}}
+.vplayer .ratio{position:relative;height:0}
+.vplayer iframe{position:absolute;inset:0;width:100%;height:100%;border:0}

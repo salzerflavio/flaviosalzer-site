@@ -1,4 +1,4 @@
-cd "$(dirname "$0")" && find site -mindepth 1 -maxdepth 1 ! -name media -exec rm -rf {} +
+cd /home/claude/src && find site -mindepth 1 -maxdepth 1 ! -name media ! -name js ! -name og -exec rm -rf {} +
 # keep media
 python3 generate.py >/dev/null
 rm -rf preview && mkdir preview && python3 - <<'PY'
@@ -11,3 +11,4 @@ for f in glob.glob('site/**/*.html',recursive=True):
     o=os.path.join('preview',rel); os.makedirs(os.path.dirname(o),exist_ok=True); open(o,'w').write(s)
 os.symlink(os.path.abspath('site/media'),'preview/media')
 PY
+cp -r site/js site/og preview/

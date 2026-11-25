@@ -18,6 +18,70 @@
     reduce ? el.classList.add('in') : revealObs.observe(el);
   });
 
+
+  // smooth (inertial) scrolling
+  let lenis = null;
+  if (!reduce && window.Lenis && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    lenis = new Lenis({ autoRaf: true, lerp: 0.09, wheelMultiplier: 1 });
+  }
+
+  // titles: split into lines and reveal line by line
+  const splitLines = el => {
+    const words = el.textContent.trim().split(/\s+/);
+    el.innerHTML = words.map(w => `<span class="w">${w.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))}</span>`).join(' ');
+    const lines = []; let top = null;
+    el.querySelectorAll('.w').forEach(w => { if (w.offsetTop !== top) { lines.push([]); top = w.offsetTop; } lines[lines.length - 1].push(w.textContent); });
+    el.innerHTML = lines.map((l, i) => `<span class="ln" style="--l:${i}"><span>${l.join(' ')}</span></span>`).join('');
+  };
+  const splits = [...document.querySelectorAll('.split')];
+  const doSplit = () => splits.forEach(splitLines);
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => {
+    doSplit();
+    splits.forEach(el => reduce ? el.classList.add('in') : revealObs.observe(el));
+  });
+  let rw; addEventListener('resize', () => { clearTimeout(rw); rw = setTimeout(() => { splits.forEach(el => { const t = [...el.querySelectorAll('.ln')].map(l => l.textContent).join(' '); el.textContent = t; }); doSplit(); }, 200); });
+
+  // own film player: Vimeo in background mode, click for sound
+  if (window.Vimeo) {
+    document.querySelectorAll('.vplayer').forEach(v => {
+      const f = v.querySelector('iframe'), b = v.querySelector('.vp-hit'), lab = v.querySelector('.vp-label');
+      let pl = null;
+      const ensure = () => { if (!pl) { f.src = f.dataset.src; pl = new Vimeo.Player(f); } return pl; };
+      new IntersectionObserver(es => es.forEach(e => {
+        if (e.isIntersecting) { ensure().play().catch(() => {}); }
+        else if (pl) { pl.pause().catch(() => {}); }
+      }), { rootMargin: '300px 0px' }).observe(v);
+      b.addEventListener('click', async () => {
+        const p = ensure();
+        if (v.classList.contains('sound')) {
+          v.classList.remove('sound'); lab.textContent = 'Play with sound'; b.setAttribute('aria-label', 'Play with sound');
+          try { await p.setMuted(true); } catch (e) {}
+        } else {
+          document.querySelectorAll('.vplayer.sound .vp-hit').forEach(o => o.click());
+          v.classList.add('sound'); lab.textContent = 'Mute'; b.setAttribute('aria-label', 'Mute');
+          try { await p.setCurrentTime(0); await p.setMuted(false); await p.setVolume(1); await p.play(); } catch (e) {}
+        }
+      });
+    });
+  }
+
+  // next project: keep scrolling at the bottom to go there
+  const nx = document.querySelector('[data-next]');
+  if (nx && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    let acc = 0, going = false, decay;
+    const atBottom = () => innerHeight + scrollY >= document.documentElement.scrollHeight - 4;
+    addEventListener('wheel', e => {
+      if (going) return;
+      if (atBottom() && e.deltaY > 0) {
+        acc = Math.min(1, acc + e.deltaY / 1400);
+        nx.style.setProperty('--np', acc.toFixed(3));
+        clearTimeout(decay);
+        decay = setTimeout(function back() { acc = Math.max(0, acc - 0.08); nx.style.setProperty('--np', acc.toFixed(3)); if (acc > 0) decay = setTimeout(back, 30); }, 450);
+        if (acc >= 1) { going = true; location.href = nx.href; }
+      }
+    }, { passive: true });
+  }
+
   // exit effect: project media shrink + fade a little as they scroll off the top
   if (!reduce) {
     const mods = [...document.querySelectorAll('.p-body .reveal-m, .about .reveal-m')];
@@ -99,5 +163,5 @@
     addEventListener('blur', () => c.classList.remove('on'));
   }
 
-  document.querySelectorAll('a[href="#top"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); }));
+  document.querySelectorAll('a[href="#top"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); lenis ? lenis.scrollTo(0) : scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); }));
 }

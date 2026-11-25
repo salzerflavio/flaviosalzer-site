@@ -7,6 +7,13 @@
 <meta name="description" content="Here in Brazil, one of the greatest tributes you can receive is becoming an inspiration for a carnival samba.To promote Maradona&#x27;s series around here, we decided to pay this tribut">
 <meta property="og:title" content="The Man Who Became God — Flávio Salzer">
 <meta property="og:description" content="Here in Brazil, one of the greatest tributes you can receive is becoming an inspiration for a carnival samba.To promote Maradona&#x27;s series around here, we decided to pay this tribut">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://flaviosalzer.com/maradona/">
+<meta property="og:image" content="https://flaviosalzer.com/og/maradona.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://flaviosalzer.com/maradona/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🫀</text></svg>">
 <script>document.documentElement.classList.add('js')</script>
 <style>/* ==========================================================
@@ -169,6 +176,37 @@ figure{margin:0}
 @keyframes vt-in{from{transform:translateY(100%)}}
 @media (prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root){animation:none}}
 ::view-transition-group(cursor){animation:none}
+
+/* imagens: versão desfocada da própria imagem enquanto carrega */
+.m[style*="background-image"]{background-size:cover;background-position:center;background-color:#0b0b0b}
+
+/* títulos entrando por linha */
+.split .ln{display:block;overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
+.split .ln>span{display:block;transform:translateY(105%);transition:transform 1.1s var(--ease);transition-delay:calc(var(--l,0) * 90ms + 80ms)}
+.split.in .ln>span{transform:none}
+html:not(.js) .split .ln>span{transform:none}
+
+/* player próprio */
+.vplayer{position:relative;background:#0b0b0b}
+.vplayer iframe{pointer-events:none}
+.vp-hit{position:absolute;inset:0;width:100%;border:0;padding:0;background:transparent;color:#fff;display:flex;align-items:flex-end;justify-content:flex-start}
+.vp-label{margin:0 0 22px 24px;font:500 var(--fs-ui)/1 var(--f);padding:10px 14px;border-radius:99px;background:rgba(0,0,0,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:opacity .3s}
+.vplayer.sound .vp-label{opacity:0}
+.vplayer.sound:hover .vp-label{opacity:1}
+
+/* próximo projeto */
+.next{display:block;margin-top:var(--s4);padding:var(--s3) var(--edge) 0;color:var(--hi)}
+.next-label{display:block;font:400 var(--fs-ui)/1 var(--f);color:var(--tx);margin-bottom:var(--s1)}
+.next-title{display:block;font:700 var(--fs-xl)/1.02 var(--f);letter-spacing:-.015em}
+.next-sub{display:block;margin-top:10px;font:400 var(--fs-body)/1.4 var(--f);color:var(--tx)}
+.next-img{display:block;position:relative;margin:var(--s2) calc(var(--edge) * -1 + var(--g)) 0;aspect-ratio:21/9;overflow:hidden}
+.next-img .m{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.next:hover .next-img .m{transform:scale(1.03)}
+.next-bar{display:block;height:2px;margin:0 calc(var(--edge) * -1 + var(--g));background:rgba(255,255,255,.12)}
+.next-bar i{display:block;height:100%;width:calc(var(--np,0) * 100%);background:#fff}
+@media (prefers-reduced-motion:reduce){.split .ln>span{transform:none!important;transition:none!important}}
+.vplayer .ratio{position:relative;height:0}
+.vplayer iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 </style>
 </head>
 <body class="proj" id="top">
@@ -177,24 +215,26 @@ figure{margin:0}
   <nav><a href="/">Work</a><a href="/flavio/">☺ About</a></nav>
 </header>
 <main>
-<article class="project"><header class="p-head"><div class="p-intro"><a class="back" href="/" aria-label="Back to work"><svg class="arr" viewBox="486 353 250 95" width="66" height="25" aria-hidden="true"><polygon points="534.41 445.79 488.14 401.58 532.35 355.3 536.69 359.45 496.62 401.38 538.55 441.45 534.41 445.79"/><rect x="492.38" y="398.48" width="241.62" height="6"/></svg></a><h1 class="reveal-t">The Man Who Became God</h1><div class="p-desc reveal-t"><p>Here in Brazil, one of the greatest tributes you can receive is becoming an inspiration for a carnival samba.<br>To promote Maradona's series around here, we decided to pay this tribute to our biggest football rival.</p></div></div><dl class="credits reveal-t"><div><dt>Role</dt><dd>Idea, Script, Song and Art Direction.</dd></div><div><dt>With</dt><dd>Ale Muccillo, Gui Cruz, Sidão, Arthur Souza</dd></div><div><dt>Agency</dt><dd>Mutato</dd></div><div><dt>Client</dt><dd>Amazon Prime Video</dd></div><div><dt>Year</dt><dd>2021</dd></div></dl></header><div class="p-body"><div class="mod statement reveal-t"><p><span class="t-lg">Diego Maradona had a lifelong passion for Brazil. <br>Especially for Carnival.</span></p></div>
-<div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:1.3325 1 0"><video class="m " data-src="/media/01c9dc99-be84-4936-8313-32376d85aeb3_rw_1200.mp4" poster="/media/01c9dc99-be84-4936-8313-32376d85aeb3_rw_1200.webp" width="1082" height="812" muted loop playsinline preload="none"></video></div><div class="cell" style="flex:1.3325 1 0"><video class="m " data-src="/media/30c93c73-d982-4fe1-b4fd-2b0ec7cf9bd3_rw_1200.mp4" poster="/media/30c93c73-d982-4fe1-b4fd-2b0ec7cf9bd3_rw_1200.webp" width="1082" height="812" muted loop playsinline preload="none"></video></div></div></div>
+<article class="project"><header class="p-head"><div class="p-intro"><a class="back" href="/" aria-label="Back to work"><svg class="arr" viewBox="486 353 250 95" width="66" height="25" aria-hidden="true"><polygon points="534.41 445.79 488.14 401.58 532.35 355.3 536.69 359.45 496.62 401.38 538.55 441.45 534.41 445.79"/><rect x="492.38" y="398.48" width="241.62" height="6"/></svg></a><h1 class="split">The Man Who Became God</h1><div class="p-desc reveal-t"><p>Here in Brazil, one of the greatest tributes you can receive is becoming an inspiration for a carnival samba.<br>To promote Maradona's series around here, we decided to pay this tribute to our biggest football rival.</p></div></div><dl class="credits reveal-t"><div><dt>Role</dt><dd>Idea, Script, Song and Art Direction.</dd></div><div><dt>With</dt><dd>Ale Muccillo, Gui Cruz, Sidão, Arthur Souza</dd></div><div><dt>Agency</dt><dd>Mutato</dd></div><div><dt>Client</dt><dd>Amazon Prime Video</dd></div><div><dt>Year</dt><dd>2021</dd></div></dl></header><div class="p-body"><div class="mod statement reveal-t"><p><span class="t-lg">Diego Maradona had a lifelong passion for Brazil. <br>Especially for Carnival.</span></p></div>
+<div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:1.3325 1 0"><video class="m " data-src="/media/01c9dc99-be84-4936-8313-32376d85aeb3_rw_1200.mp4" poster="/media/01c9dc99-be84-4936-8313-32376d85aeb3_rw_1200.webp" width="1082" height="812" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRrAAAABXRUJQVlA4IKQAAABQBACdASoUAA8APu1iqU2ppaOiMAgBMB2JYgCdICXgwg+QMxXCzt6VF8JkAP7R3+1+uWYUXEv1Kcc5TeaxeNJl9uGBqkMTgnKGtvnMJag94YyJ9MLaRHNdsY1SdbNuuzyWOZ01gYfqvFfZlbgzyXR661qsAPbYVQU7ox8cMRvEkYpGg3Z1Rp0PWXdVb+giTfrfjwNwz1IuRCrlvE6Ixmd15IAAAA==)"></video></div><div class="cell" style="flex:1.3325 1 0"><video class="m " data-src="/media/30c93c73-d982-4fe1-b4fd-2b0ec7cf9bd3_rw_1200.mp4" poster="/media/30c93c73-d982-4fe1-b4fd-2b0ec7cf9bd3_rw_1200.webp" width="1082" height="812" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRsYAAABXRUJQVlA4ILoAAADQBACdASoUAA8APu1iqU2ppaOiMAgBMB2JbACdMoAlsRl//Qk/JW/o/g7G72phwAD8tKxrCrlrEze47qugUPgFbG/u3T84V36xoKlVTWa7Kw5p2rM1EMjEvuSJbdOz2DEh26GkyugLg+spnQiMSNmvB7Mf75fE3b43mQg/g9KCGZEe/YQxcUcNo+Q/QfZ+abva4R96vijm/c4SEllPJkGbLk4eyObspkVGjN3/NjGwshmH/Zx1LpmgAAA=)"></video></div></div></div>
 <div class="mod statement reveal-t"><p><span class="t-lg">And on his birthday, his series premiered in Brazil.<br>The occasion called for a gift no other country<br>could deliver: a samba-enredo.</span></p></div>
-<div class="mod embed reveal-m"><div class="ratio" style="padding-bottom:56.25%"><iframe src="https://player.vimeo.com/video/643664471?h=cd3ee411f4&amp;title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></div>
-<div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:1.7836 1 0"><video class="m " data-src="/media/6f430d3b-7fbb-4deb-89e6-4ee54cda6feb_rw_1920.mp4" poster="/media/6f430d3b-7fbb-4deb-89e6-4ee54cda6feb_rw_1920.webp" width="1302" height="730" muted loop playsinline preload="none"></video></div><div class="cell" style="flex:1.7836 1 0"><video class="m " data-src="/media/07c5eceb-f7e6-4258-b0bf-57c2772123f6_rw_1920.mp4" poster="/media/07c5eceb-f7e6-4258-b0bf-57c2772123f6_rw_1920.webp" width="1302" height="730" muted loop playsinline preload="none"></video></div></div><div class="row"><div class="cell" style="flex:1.7836 1 0"><video class="m " data-src="/media/a576d9c4-9776-4a6f-9d19-e0f28be7d75d_rw_1920.mp4" poster="/media/a576d9c4-9776-4a6f-9d19-e0f28be7d75d_rw_1920.webp" width="1302" height="730" muted loop playsinline preload="none"></video></div><div class="cell" style="flex:1.7836 1 0"><video class="m " data-src="/media/31274539-0168-44c0-b85a-7ff2608deef9_rw_1920.mp4" poster="/media/31274539-0168-44c0-b85a-7ff2608deef9_rw_1920.webp" width="1302" height="730" muted loop playsinline preload="none"></video></div></div></div>
+<div class="mod vplayer reveal-m"><div class="ratio" style="padding-bottom:56.25%"><iframe data-src="https://player.vimeo.com/video/643664471?h=cd3ee411f4&amp;background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Film"></iframe></div><button class="vp-hit" type="button" aria-label="Play with sound"><span class="vp-label">Play with sound</span></button></div>
+<div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:1.7836 1 0"><video class="m " data-src="/media/6f430d3b-7fbb-4deb-89e6-4ee54cda6feb_rw_1920.mp4" poster="/media/6f430d3b-7fbb-4deb-89e6-4ee54cda6feb_rw_1920.webp" width="1302" height="730" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAADwAwCdASoUAAsAPu1iqU2ppaQiMAgBMB2JYgBVI4ewzAnIFeUp7VSEAP7yt/LKChVHC991vIy5QxbT7Nq//PYQxUgg4BLRQtJm9JtMt3ne/ychmoNLGdkEHKdaexaBWiJbpyAAAAA=)"></video></div><div class="cell" style="flex:1.7836 1 0"><video class="m " data-src="/media/07c5eceb-f7e6-4258-b0bf-57c2772123f6_rw_1920.mp4" poster="/media/07c5eceb-f7e6-4258-b0bf-57c2772123f6_rw_1920.webp" width="1302" height="730" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAABQAwCdASoUAAsAPu1iqU2ppaOiMAgBMB2JQBOgAeG1YdW10AD+nBdmbnop8RRJHCZZVLVCce2ZiQPt+ztjfJkWHFctXaP/8VTGkDOBOL5BNmquhCHtSQIGxwAAAA==)"></video></div></div><div class="row"><div class="cell" style="flex:1.7836 1 0"><video class="m " data-src="/media/a576d9c4-9776-4a6f-9d19-e0f28be7d75d_rw_1920.mp4" poster="/media/a576d9c4-9776-4a6f-9d19-e0f28be7d75d_rw_1920.webp" width="1302" height="730" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAADwAwCdASoUAAsAPu1iqk2ppaQiMAgBMB2JQBOgBH35GOwgbq1CjsqgAP7q8g4RXVeLDLunyvBbP7TJrVA/qF4IKJv5xTOIIoH8vgU/Ig07uwRZv7zNf/guiiy9aizcQLczo5j0EgAAAA==)"></video></div><div class="cell" style="flex:1.7836 1 0"><video class="m " data-src="/media/31274539-0168-44c0-b85a-7ff2608deef9_rw_1920.mp4" poster="/media/31274539-0168-44c0-b85a-7ff2608deef9_rw_1920.webp" width="1302" height="730" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAADwAwCdASoUAAsAPu1iqU2ppaOiMAgBMB2JZQCsACPNW2/M9/P2ryMAAP5ABXv7vxPuiet1qzcxsSybTzlS6jrnUMuhngXqZgRJUVy+SIkDf8VOf7jH1GU76Z6qePCI6MB15/adFk57x/xvcpoPgAAA)"></video></div></div></div>
 <div class="mod statement reveal-t"><p><span class="t-lg">Listen to the full samba-enredo ↴</span></p></div>
 <div class="mod embed"><iframe src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1208159452&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true" height="166" style="width:100%;border:0" loading="lazy" allow="autoplay"></iframe></div>
-<div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:0.8380 1 0"><img class="m " src="/media/4dca184c-38e6-49f6-b1eb-c51f8e7d0574_rw_1920.webp" width="1500" height="1790" loading="lazy" decoding="async" alt=""></div><div class="cell" style="flex:1.8182 1 0"><video class="m " data-src="/media/396c50e8-69e1-40f3-8c6d-ee6704c4ab05_rw_1200.mp4" poster="/media/396c50e8-69e1-40f3-8c6d-ee6704c4ab05_rw_1200.webp" width="640" height="352" muted loop playsinline preload="none"></video></div></div></div>
+<div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:0.8380 1 0"><img class="m " src="/media/4dca184c-38e6-49f6-b1eb-c51f8e7d0574_rw_1920.webp" width="1500" height="1790" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRqQAAABXRUJQVlA4IJgAAAAQBQCdASoUABgAPu1ur1IppiQiqAgBMB2JaQAAH2PgHjSiZIjSm8JRu8pAkqLfF5AAAJpBAKHZuKqR4xlSWyeIUOsZD8OHJrD9reN0M3//7gg568t4GZTUaJ5Nou/52REP4zXBv95vlkV7midCZ3GbX0zOYrK40FiOwHwNA6H97VDKqkq47owYY6/9YVitgMrHhIyAhp0AAA==)"></div><div class="cell" style="flex:1.8182 1 0"><video class="m " data-src="/media/396c50e8-69e1-40f3-8c6d-ee6704c4ab05_rw_1200.mp4" poster="/media/396c50e8-69e1-40f3-8c6d-ee6704c4ab05_rw_1200.webp" width="640" height="352" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAACwAwCdASoUAAsAPu1iqU2ppaOiMAgBMB2JaQAARWPkdcP1qUxTAAD+49UQp7Bm3RAa6t5Z0+AzyQWsK6bpHdyGtIn0FbUBbGBGrSf5YaLmMbgWJsr1+yVWcZT0p8fPyoz/tpZZZBhxOYAAAAA=)"></video></div></div></div>
 <div class="mod statement reveal-t"><p><span class="t-lg">The single’s launch posters were inspired by iconic moments from <br>the 1990 World Cup, when El Pibe de Oro became D10s. ↴</span></p></div>
-<figure class="mod img reveal-m"><img class="m " src="/media/15cd4988-4de0-43ad-8433-6f2c095737f3_rw_1920.webp" width="1920" height="971" loading="lazy" decoding="async" alt=""></figure>
-<div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:0.7072 1 0"><img class="m " src="/media/3ced9068-0810-4feb-a248-f69619585681_rw_1920.webp" width="1920" height="2715" loading="lazy" decoding="async" alt=""></div><div class="cell" style="flex:0.7072 1 0"><img class="m " src="/media/7a717a07-d6c1-45ea-9f42-e9903089394d_rw_1920.webp" width="1920" height="2715" loading="lazy" decoding="async" alt=""></div><div class="cell" style="flex:0.7072 1 0"><img class="m " src="/media/1468fd8f-d230-4dab-8380-5cb69810a2da_rw_1920.webp" width="1920" height="2715" loading="lazy" decoding="async" alt=""></div><div class="cell" style="flex:0.7072 1 0"><img class="m " src="/media/9461149c-a01b-4655-b9e7-5fb29c693c30_rw_1920.webp" width="1920" height="2715" loading="lazy" decoding="async" alt=""></div></div></div>
-<figure class="mod img reveal-m"><img class="m " src="/media/806fffa6-68ac-48f6-bae7-94588c5141e2_rw_1920.webp" width="1920" height="5" loading="lazy" decoding="async" alt=""></figure>
-<div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:0.7072 1 0"><img class="m " src="/media/267e9dde-69b7-4340-a613-eb0e6369d2bb_rw_1920.webp" width="1920" height="2715" loading="lazy" decoding="async" alt=""></div><div class="cell" style="flex:0.7072 1 0"><img class="m " src="/media/965b8519-f422-4cdb-ae34-6144a1fe1eb6_rw_1920.webp" width="1920" height="2715" loading="lazy" decoding="async" alt=""></div><div class="cell" style="flex:0.7072 1 0"><img class="m " src="/media/c0470f93-8061-45f0-b06f-da9d56b50a58_rw_1920.webp" width="1920" height="2715" loading="lazy" decoding="async" alt=""></div><div class="cell" style="flex:0.7072 1 0"><img class="m " src="/media/b6e26547-8b34-40ff-a72a-d343d03217d5_rw_1920.webp" width="1920" height="2715" loading="lazy" decoding="async" alt=""></div></div></div></div></article>
+<figure class="mod img reveal-m"><img class="m " src="/media/15cd4988-4de0-43ad-8433-6f2c095737f3_rw_1920.webp" width="1920" height="971" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAACwBACdASoUAAoAPu1iqk2ppaQiMAgBMB2JYgCdMoKBAAviqUQWRv2i9mFOAisgAP1TCRLSkM25Hd/EYWfXusrnHQ+Em5dmKyQOoDBBJGe6bQM971kFJ5pI8Smz1YVHAVNfZaKpH9GAAA==)"></figure>
+<div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:0.7072 1 0"><img class="m " src="/media/3ced9068-0810-4feb-a248-f69619585681_rw_1920.webp" width="1920" height="2715" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRtIAAABXRUJQVlA4IMYAAACQBQCdASoUABwAPu1sqk8ppiOiMBgIATAdiUAX7WyF6AUM6j3a2zlX8LTbm7dDDPymGsorAAD+9DLYQwl5Xd9ksTE8qtCcxEO5CK+zCkCkL9uupp8CKyiaJU2rKxyDlLGPeNGfykE/e7O+d5eemNiOtC4FA2RAuevnSqKm7WQmxcjzx5OpBxdo2zovbp+O3SrVZFWjI4QLDPI6Q+WEuZBBDmxNJ0oKMBmg80B0HbZJ44JmZAMhkH6gnlOhNdy5J+e1I4GEAAA=)"></div><div class="cell" style="flex:0.7072 1 0"><img class="m " src="/media/7a717a07-d6c1-45ea-9f42-e9903089394d_rw_1920.webp" width="1920" height="2715" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRrwAAABXRUJQVlA4ILAAAABQBQCdASoUABwAPuVcp02pJSOiMAwBIByJbABVDQbi9Ed7bqluijmSNmU5+zQiU+PUcAAA/vQy1+3Y2O3vJJU+y2nA+Puel7pkJgEP3Vrxk7whXhaGOz5NpZTj0hkAMci/87ruYWJuKeRnHKc8f5qdl8zXbxCBdyV7omuJSX+lKm7zc/6fhaokADEboQbku8RTKmHKjHBfEJXk+1pKQNQAhThsGswGMgitCcyihgAAAA==)"></div><div class="cell" style="flex:0.7072 1 0"><img class="m " src="/media/1468fd8f-d230-4dab-8380-5cb69810a2da_rw_1920.webp" width="1920" height="2715" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRvYAAABXRUJQVlA4IOoAAADwBQCdASoUABwAPu1qr1AppaSiqAqpMB2JZACsGuAt/8AvLfYNCO7AY7wwE+I0T5hfyLehpikAAAD+7NegAdpxUUvzyTMyd3wcbukhj7NShW9d0ca01A2mLllnNM0s7hEeUC4abalgIVi9066mOvm4SzQlOx1x3IEq5M+NznfJW1EkEn/8y+yBLKKmFdICx3hL4D7HC/ssDQzbh6RuQkMn1h7G+b1obdA8k39IRZSW7ty951Py+BpIKYn2SCn+Fqlungr/xNDQvjtQV+TYjnwQ5JsS3/N7gyc3CWpRQc8Id5E0ctCkxlsvAAA=)"></div><div class="cell" style="flex:0.7072 1 0"><img class="m " src="/media/9461149c-a01b-4655-b9e7-5fb29c693c30_rw_1920.webp" width="1920" height="2715" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRrAAAABXRUJQVlA4IKQAAACQBACdASoUABwAPu1kqU2ppaOiMAgBMB2JYwC/7BoseKtlFSl88f2WTsx970AA/vQy2C0l8fBYyWXFU20iigPYmQ4Aj45sZU2mh5KL1tGcv5QdBxITBcGJ2QJ4vNiYstp1IQbS/5Wt+SB+2AbRtAZPkeH1jtDrjhEMQBtHMTkElW3lobUyAfFtEWQa3Lb87eAG+7KX6jFspcoF6Nw3Lemkq+AAAA==)"></div></div></div>
+<figure class="mod img reveal-m"><img class="m " src="/media/806fffa6-68ac-48f6-bae7-94588c5141e2_rw_1920.webp" width="1920" height="5" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAACwAgCdASoUAAEAPu1iqU2ppaOiMAgBMB2JaQAAeyAA/vCfnTzAAAAA)"></figure>
+<div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:0.7072 1 0"><img class="m " src="/media/267e9dde-69b7-4340-a613-eb0e6369d2bb_rw_1920.webp" width="1920" height="2715" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRtYAAABXRUJQVlA4IMoAAACQBQCdASoUABwAPu1eq1AppKOisBgIATAdiWwAnQAN2TVlcU8gt/A0exdVHl+zb++yZZfMAAD+7t52Jj/tqMAqHPfO70dO1xIk7TsbyY1+bKiiUEbVVy8ErHDB5aNXHr91Fy/CGXWb/MMGBwEtDBDw3gUpdvuPg6PTQteTlZbL6TfNsGhs8VSKbAknXvg8TLy/TYkTAyQPEjjdc5DkJuujVre32INPGagTGvn+nwVA1qBI2uDQPBemHFJ9WWvkkxZV5qo/M7NDAAAA)"></div><div class="cell" style="flex:0.7072 1 0"><img class="m " src="/media/965b8519-f422-4cdb-ae34-6144a1fe1eb6_rw_1920.webp" width="1920" height="2715" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRtQAAABXRUJQVlA4IMgAAACwBQCdASoUABwAPu1gqE2ppaOiMAgBMB2JYgC1G1YOO6K9RwyB/vBJ6Aj+r/pnU5kboCS5sAAA/u8MNe0ORStRb91MuIYQ4EOlix5WHRVSRyJiJBF4vyXyX9iRh2Rl9R5i/TZVv2t4IkzbypMqDNTshw2bN+3/iHJQBV9klcATRj1at2y0oUR/9ECTweLKkUmwgR7LzUz7myPAQbErQEcLOE2v4BHSeov2WIiZqoO7XaIuhojQn/gkQdLZvJREVtH/2MpNOMAAAA==)"></div><div class="cell" style="flex:0.7072 1 0"><img class="m " src="/media/c0470f93-8061-45f0-b06f-da9d56b50a58_rw_1920.webp" width="1920" height="2715" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRvoAAABXRUJQVlA4IO4AAACwBQCdASoUABwAPu1qr1AppaSiqAqpMB2JYgC7L5BHJj1UZxZqheg5PbzDgzbf0HcVxJalNAAA/uXlY32aX7eIXDuhOlo8YHBUySHrbbYfkOqiM6ycSCV66Iq7xcdve8FjU0zS0BVSv9wDBQWMyEcSo7db4e9EwdBHeM+GMVq6V87Ugzp8bfUP0O8d2ffpJJT0znlm4/7WuvmmCs93tcUZ8Z+JFQkczEuylcyUhSb+kIspLd25e863IeHSQUxNhCN0+c0vouvHtqQx+0pWXjd2nYRaS9pZdPYsSpCqHqF42uut4vnd/kg7I+I7AAAA)"></div><div class="cell" style="flex:0.7072 1 0"><img class="m " src="/media/b6e26547-8b34-40ff-a72a-d343d03217d5_rw_1920.webp" width="1920" height="2715" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRuAAAABXRUJQVlA4INQAAACwBQCdASoUABwAPu1mrE+ppaQiMBgIATAdiWIArDOQoAACmb8qdhci7jMPmqO+LlB4vvmp0cAA/vLfvNuNfDHoqaTdt+1XncL7138iRe6klWT4dtdlfEX7eKCF9j7zN9gvLqPet3AZRvKKh6r/0zmnvjS3m/+vjHp4eVPhUBeZ0/j+c6Zt8w75sCX3ajdoS41cQ4U4/ylnmHk6NzgKxRYo6KMWAH5gWbSkBMSlnrBmMpz/YMb8OtxgjIAJFmMJKzKjrNkdqFNoXMc5avdlRmA4hCQAAA==)"></div></div></div></div><a class="next" href="/shadow-delivery/" data-next><span class="next-label">Next project</span><span class="next-title split">Shadow Delivery</span><span class="next-sub">Johnnie Walker, 2025.</span><span class="next-img"><img class="m cover" src="/media/4f94a5bd-c488-4cb4-8665-33fe43400430_rwc_329x39x1249x976x1280.webp" width="1249" height="976" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRpAAAABXRUJQVlA4IIQAAAAwBACdASoUABAAPu1iqU2ppaOiMAgBMB2JbACdMoAC24fp7q3C2NSg/hAA9xQBzeovywXFfKZbB62COis0q4obSiyNtGgGd8/vxv0IpId+17OdgGbw0SpZkTXsBs0JkK2TEKy0iTX/EB7plbLZ98oAKCNBi5yR6xpc1f5d3OpqsQ2AAAA=)"></span><span class="next-bar"><i></i></span></a></article>
 </main>
 <footer class="site-foot">
   <a href="#top" class="totop">↑ back to top</a>
   <span><a href="https://www.linkedin.com/in/flaviosalzer" target="_blank" rel="noopener">LinkedIn</a><a href="https://instagram.com/flaviosalzer" target="_blank" rel="noopener">Instagram</a></span>
 </footer>
+<script src="/js/lenis.min.js"></script>
+<script src="/js/player.min.js"></script>
 <script>{
   document.documentElement.classList.add('js');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -214,6 +254,70 @@ figure{margin:0}
     }
     reduce ? el.classList.add('in') : revealObs.observe(el);
   });
+
+
+  // smooth (inertial) scrolling
+  let lenis = null;
+  if (!reduce && window.Lenis && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    lenis = new Lenis({ autoRaf: true, lerp: 0.09, wheelMultiplier: 1 });
+  }
+
+  // titles: split into lines and reveal line by line
+  const splitLines = el => {
+    const words = el.textContent.trim().split(/\s+/);
+    el.innerHTML = words.map(w => `<span class="w">${w.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))}</span>`).join(' ');
+    const lines = []; let top = null;
+    el.querySelectorAll('.w').forEach(w => { if (w.offsetTop !== top) { lines.push([]); top = w.offsetTop; } lines[lines.length - 1].push(w.textContent); });
+    el.innerHTML = lines.map((l, i) => `<span class="ln" style="--l:${i}"><span>${l.join(' ')}</span></span>`).join('');
+  };
+  const splits = [...document.querySelectorAll('.split')];
+  const doSplit = () => splits.forEach(splitLines);
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => {
+    doSplit();
+    splits.forEach(el => reduce ? el.classList.add('in') : revealObs.observe(el));
+  });
+  let rw; addEventListener('resize', () => { clearTimeout(rw); rw = setTimeout(() => { splits.forEach(el => { const t = [...el.querySelectorAll('.ln')].map(l => l.textContent).join(' '); el.textContent = t; }); doSplit(); }, 200); });
+
+  // own film player: Vimeo in background mode, click for sound
+  if (window.Vimeo) {
+    document.querySelectorAll('.vplayer').forEach(v => {
+      const f = v.querySelector('iframe'), b = v.querySelector('.vp-hit'), lab = v.querySelector('.vp-label');
+      let pl = null;
+      const ensure = () => { if (!pl) { f.src = f.dataset.src; pl = new Vimeo.Player(f); } return pl; };
+      new IntersectionObserver(es => es.forEach(e => {
+        if (e.isIntersecting) { ensure().play().catch(() => {}); }
+        else if (pl) { pl.pause().catch(() => {}); }
+      }), { rootMargin: '300px 0px' }).observe(v);
+      b.addEventListener('click', async () => {
+        const p = ensure();
+        if (v.classList.contains('sound')) {
+          v.classList.remove('sound'); lab.textContent = 'Play with sound'; b.setAttribute('aria-label', 'Play with sound');
+          try { await p.setMuted(true); } catch (e) {}
+        } else {
+          document.querySelectorAll('.vplayer.sound .vp-hit').forEach(o => o.click());
+          v.classList.add('sound'); lab.textContent = 'Mute'; b.setAttribute('aria-label', 'Mute');
+          try { await p.setCurrentTime(0); await p.setMuted(false); await p.setVolume(1); await p.play(); } catch (e) {}
+        }
+      });
+    });
+  }
+
+  // next project: keep scrolling at the bottom to go there
+  const nx = document.querySelector('[data-next]');
+  if (nx && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    let acc = 0, going = false, decay;
+    const atBottom = () => innerHeight + scrollY >= document.documentElement.scrollHeight - 4;
+    addEventListener('wheel', e => {
+      if (going) return;
+      if (atBottom() && e.deltaY > 0) {
+        acc = Math.min(1, acc + e.deltaY / 1400);
+        nx.style.setProperty('--np', acc.toFixed(3));
+        clearTimeout(decay);
+        decay = setTimeout(function back() { acc = Math.max(0, acc - 0.08); nx.style.setProperty('--np', acc.toFixed(3)); if (acc > 0) decay = setTimeout(back, 30); }, 450);
+        if (acc >= 1) { going = true; location.href = nx.href; }
+      }
+    }, { passive: true });
+  }
 
   // exit effect: project media shrink + fade a little as they scroll off the top
   if (!reduce) {
@@ -296,7 +400,7 @@ figure{margin:0}
     addEventListener('blur', () => c.classList.remove('on'));
   }
 
-  document.querySelectorAll('a[href="#top"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); }));
+  document.querySelectorAll('a[href="#top"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); lenis ? lenis.scrollTo(0) : scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); }));
 }
 </script>
 </body>

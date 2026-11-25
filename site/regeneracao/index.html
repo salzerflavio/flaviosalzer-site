@@ -7,6 +7,13 @@
 <meta name="description" content="For COP 30 in Brazil, Natura reminds the world where to look for the answers to our future.">
 <meta property="og:title" content="Look to the Earth — Flávio Salzer">
 <meta property="og:description" content="For COP 30 in Brazil, Natura reminds the world where to look for the answers to our future.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://flaviosalzer.com/regeneracao/">
+<meta property="og:image" content="https://flaviosalzer.com/og/regeneracao.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://flaviosalzer.com/regeneracao/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🫀</text></svg>">
 <script>document.documentElement.classList.add('js')</script>
 <style>/* ==========================================================
@@ -169,6 +176,37 @@ figure{margin:0}
 @keyframes vt-in{from{transform:translateY(100%)}}
 @media (prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root){animation:none}}
 ::view-transition-group(cursor){animation:none}
+
+/* imagens: versão desfocada da própria imagem enquanto carrega */
+.m[style*="background-image"]{background-size:cover;background-position:center;background-color:#0b0b0b}
+
+/* títulos entrando por linha */
+.split .ln{display:block;overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
+.split .ln>span{display:block;transform:translateY(105%);transition:transform 1.1s var(--ease);transition-delay:calc(var(--l,0) * 90ms + 80ms)}
+.split.in .ln>span{transform:none}
+html:not(.js) .split .ln>span{transform:none}
+
+/* player próprio */
+.vplayer{position:relative;background:#0b0b0b}
+.vplayer iframe{pointer-events:none}
+.vp-hit{position:absolute;inset:0;width:100%;border:0;padding:0;background:transparent;color:#fff;display:flex;align-items:flex-end;justify-content:flex-start}
+.vp-label{margin:0 0 22px 24px;font:500 var(--fs-ui)/1 var(--f);padding:10px 14px;border-radius:99px;background:rgba(0,0,0,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:opacity .3s}
+.vplayer.sound .vp-label{opacity:0}
+.vplayer.sound:hover .vp-label{opacity:1}
+
+/* próximo projeto */
+.next{display:block;margin-top:var(--s4);padding:var(--s3) var(--edge) 0;color:var(--hi)}
+.next-label{display:block;font:400 var(--fs-ui)/1 var(--f);color:var(--tx);margin-bottom:var(--s1)}
+.next-title{display:block;font:700 var(--fs-xl)/1.02 var(--f);letter-spacing:-.015em}
+.next-sub{display:block;margin-top:10px;font:400 var(--fs-body)/1.4 var(--f);color:var(--tx)}
+.next-img{display:block;position:relative;margin:var(--s2) calc(var(--edge) * -1 + var(--g)) 0;aspect-ratio:21/9;overflow:hidden}
+.next-img .m{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.next:hover .next-img .m{transform:scale(1.03)}
+.next-bar{display:block;height:2px;margin:0 calc(var(--edge) * -1 + var(--g));background:rgba(255,255,255,.12)}
+.next-bar i{display:block;height:100%;width:calc(var(--np,0) * 100%);background:#fff}
+@media (prefers-reduced-motion:reduce){.split .ln>span{transform:none!important;transition:none!important}}
+.vplayer .ratio{position:relative;height:0}
+.vplayer iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 </style>
 </head>
 <body class="proj" id="top">
@@ -177,20 +215,22 @@ figure{margin:0}
   <nav><a href="/">Work</a><a href="/flavio/">☺ About</a></nav>
 </header>
 <main>
-<article class="project"><header class="p-head"><div class="p-intro"><a class="back" href="/" aria-label="Back to work"><svg class="arr" viewBox="486 353 250 95" width="66" height="25" aria-hidden="true"><polygon points="534.41 445.79 488.14 401.58 532.35 355.3 536.69 359.45 496.62 401.38 538.55 441.45 534.41 445.79"/><rect x="492.38" y="398.48" width="241.62" height="6"/></svg></a><h1 class="reveal-t">Look to the Earth</h1><div class="p-desc reveal-t"><p>For COP 30 in Brazil, Natura reminds the world where to look for the answers to our future.</p></div></div><dl class="credits reveal-t"><div><dt>Role</dt><dd>Art Direction, Concept</dd></div><div><dt>With</dt><dd>Sergio Gordilho, Joanna Monteiro, Mihail Aleksandrov, Eduardo Ferraz, Milena Zindeluk, Patricia Oliveira, Nikole Vogel</dd></div><div><dt>Agency</dt><dd>Africa Creative</dd></div><div><dt>Client</dt><dd>Natura</dd></div><div><dt>Year</dt><dd>2025</dd></div></dl></header><div class="p-body"><div class="mod embed reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe src="https://player.vimeo.com/video/1099722284?h=94b6e5e318&amp;title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></div>
-<figure class="mod img reveal-m"><img class="m " src="/media/a82c99b3-5f05-4684-8bee-37b5c46d124d_rw_1920.webp" width="1920" height="5" loading="lazy" decoding="async" alt=""></figure>
-<div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:1.7781 1 0"><video class="m " data-src="/media/37ae1f5a-fcc3-4756-b9e4-be0f870f54cc_rw_1920.mp4" poster="/media/37ae1f5a-fcc3-4756-b9e4-be0f870f54cc_rw_1920.webp" width="1298" height="730" muted loop playsinline preload="none"></video></div><div class="cell" style="flex:1.7781 1 0"><video class="m " data-src="/media/38d29f1f-b1ab-48f1-92bd-8f4be13071af_rw_1920.mp4" poster="/media/38d29f1f-b1ab-48f1-92bd-8f4be13071af_rw_1920.webp" width="1298" height="730" muted loop playsinline preload="none"></video></div></div><div class="row"><div class="cell" style="flex:1.7781 1 0"><video class="m " data-src="/media/145ad197-2ec1-4527-ae60-70ea3ed704cb_rw_1920.mp4" poster="/media/145ad197-2ec1-4527-ae60-70ea3ed704cb_rw_1920.webp" width="1298" height="730" muted loop playsinline preload="none"></video></div><div class="cell" style="flex:1.7781 1 0"><video class="m " data-src="/media/b5bb5924-0f3b-40c8-9364-495dbae036eb_rw_1920.mp4" poster="/media/b5bb5924-0f3b-40c8-9364-495dbae036eb_rw_1920.webp" width="1298" height="730" muted loop playsinline preload="none"></video></div></div></div>
+<article class="project"><header class="p-head"><div class="p-intro"><a class="back" href="/" aria-label="Back to work"><svg class="arr" viewBox="486 353 250 95" width="66" height="25" aria-hidden="true"><polygon points="534.41 445.79 488.14 401.58 532.35 355.3 536.69 359.45 496.62 401.38 538.55 441.45 534.41 445.79"/><rect x="492.38" y="398.48" width="241.62" height="6"/></svg></a><h1 class="split">Look to the Earth</h1><div class="p-desc reveal-t"><p>For COP 30 in Brazil, Natura reminds the world where to look for the answers to our future.</p></div></div><dl class="credits reveal-t"><div><dt>Role</dt><dd>Art Direction, Concept</dd></div><div><dt>With</dt><dd>Sergio Gordilho, Joanna Monteiro, Mihail Aleksandrov, Eduardo Ferraz, Milena Zindeluk, Patricia Oliveira, Nikole Vogel</dd></div><div><dt>Agency</dt><dd>Africa Creative</dd></div><div><dt>Client</dt><dd>Natura</dd></div><div><dt>Year</dt><dd>2025</dd></div></dl></header><div class="p-body"><div class="mod vplayer reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe data-src="https://player.vimeo.com/video/1099722284?h=94b6e5e318&amp;background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Film"></iframe></div><button class="vp-hit" type="button" aria-label="Play with sound"><span class="vp-label">Play with sound</span></button></div>
+<figure class="mod img reveal-m"><img class="m " src="/media/a82c99b3-5f05-4684-8bee-37b5c46d124d_rw_1920.webp" width="1920" height="5" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAACwAgCdASoUAAEAPu1iqU2ppaOiMAgBMB2JaQAAeyAA/vCfnTzAAAAA)"></figure>
+<div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:1.7781 1 0"><video class="m " data-src="/media/37ae1f5a-fcc3-4756-b9e4-be0f870f54cc_rw_1920.mp4" poster="/media/37ae1f5a-fcc3-4756-b9e4-be0f870f54cc_rw_1920.webp" width="1298" height="730" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAADwAgCdASoUAAsAPu1iqU2ppaOiMAgBMB2JQBOmUACNQAD+74LZuAKz/kJOWOzr4EQtXid9u2Xy7ds8Y9GseEvYyAA=)"></video></div><div class="cell" style="flex:1.7781 1 0"><video class="m " data-src="/media/38d29f1f-b1ab-48f1-92bd-8f4be13071af_rw_1920.mp4" poster="/media/38d29f1f-b1ab-48f1-92bd-8f4be13071af_rw_1920.webp" width="1298" height="730" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAADQAwCdASoUAAsAPu1iqU2ppaQiMAgBMB2JQBOmUABM1/0c0neVwQAA/vGZ3sEjWUblcOtxa3+b3FuhNpX28TrqryDeXffYzIYSjEcNy2GO6GeLasdmlon+pLlsXMAA)"></video></div></div><div class="row"><div class="cell" style="flex:1.7781 1 0"><video class="m " data-src="/media/145ad197-2ec1-4527-ae60-70ea3ed704cb_rw_1920.mp4" poster="/media/145ad197-2ec1-4527-ae60-70ea3ed704cb_rw_1920.webp" width="1298" height="730" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAADQAgCdASoUAAsAPu1iqU2ppaQiMAgBMB2JZwAAhAwAAP7wsDMOFEAA)"></video></div><div class="cell" style="flex:1.7781 1 0"><video class="m " data-src="/media/b5bb5924-0f3b-40c8-9364-495dbae036eb_rw_1920.mp4" poster="/media/b5bb5924-0f3b-40c8-9364-495dbae036eb_rw_1920.webp" width="1298" height="730" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAACwAwCdASoUAAsAPu1iqU2ppaOiMAgBMB2JYwCw7BuJRJ5eEf8dQADiTjJzYiNDUs5cs6f325V9DCb8natIu91J6/tYYUPZ+N6uRoZpDmQyeUik+JmsbSyHYeib0OfAAAA=)"></video></div></div></div>
 <div class="mod statement reveal-t"><p><span class="t-lg">Every campaign asset was hand-produced<br>in woodcut, using natural inks born from<br>regenerated materials by Natura.</span></p></div>
-<div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:0.5660 1 0"><video class="m " data-src="/media/31041fa6-ccf9-483d-a720-af9fecb1c8ee_rw_600.mp4" poster="/media/31041fa6-ccf9-483d-a720-af9fecb1c8ee_rw_600.webp" width="480" height="848" muted loop playsinline preload="none"></video></div><div class="cell" style="flex:0.5671 1 0"><video class="m " data-src="/media/12b482dd-e1f4-4288-9264-731f6e014bf3_rw_600.mp4" poster="/media/12b482dd-e1f4-4288-9264-731f6e014bf3_rw_600.webp" width="397" height="700" muted loop playsinline preload="none"></video></div><div class="cell" style="flex:0.5671 1 0"><video class="m " data-src="/media/1d91aea1-408c-4517-b243-f97971e57506_rw_600.mp4" poster="/media/1d91aea1-408c-4517-b243-f97971e57506_rw_600.webp" width="397" height="700" muted loop playsinline preload="none"></video></div><div class="cell" style="flex:0.5671 1 0"><video class="m " data-src="/media/08944876-4c15-47f6-93a0-401d3d2e405d_rw_600.mp4" poster="/media/08944876-4c15-47f6-93a0-401d3d2e405d_rw_600.webp" width="397" height="700" muted loop playsinline preload="none"></video></div></div><div class="row"><div class="cell" style="flex:0.5660 1 0"><video class="m " data-src="/media/938b61dd-7c85-4b0e-ab28-6949e83c1738_rw_600.mp4" poster="/media/938b61dd-7c85-4b0e-ab28-6949e83c1738_rw_600.webp" width="480" height="848" muted loop playsinline preload="none"></video></div><div class="cell" style="flex:0.5660 1 0"><video class="m " data-src="/media/0299c949-5bbb-418d-afa4-4d8eb41dbd94_rw_600.mp4" poster="/media/0299c949-5bbb-418d-afa4-4d8eb41dbd94_rw_600.webp" width="480" height="848" muted loop playsinline preload="none"></video></div></div></div>
-<div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:0.7053 1 0"><img class="m " src="/media/67f4c9be-8383-4bf7-9380-632a394a00f1_rw_1200.webp" width="998" height="1415" loading="lazy" decoding="async" alt=""></div><div class="cell" style="flex:0.7053 1 0"><img class="m " src="/media/1955a908-641e-4f60-898f-641131569308_rw_1200.webp" width="998" height="1415" loading="lazy" decoding="async" alt=""></div><div class="cell" style="flex:0.7053 1 0"><img class="m " src="/media/e8302134-4383-4e54-9156-bc91f908391c_rw_1200.webp" width="998" height="1415" loading="lazy" decoding="async" alt=""></div><div class="cell" style="flex:1.6916 1 0"><img class="m " src="/media/36866a14-8f80-4245-afa6-ae8e926ef2ee_rw_1920.webp" width="1920" height="1135" loading="lazy" decoding="async" alt=""></div></div></div>
-<div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:1.0000 1 0"><img class="m " src="/media/88a20140-dd44-44e3-aae6-7510df143c32_rw_1920.webp" width="1440" height="1440" loading="lazy" decoding="async" alt=""></div><div class="cell" style="flex:1.0000 1 0"><img class="m " src="/media/ff0e8008-1b92-4854-b75a-f828c32b7f1d_rw_1920.webp" width="1600" height="1600" loading="lazy" decoding="async" alt=""></div></div></div>
-<div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:0.6667 1 0"><img class="m " src="/media/53f3e634-6018-490d-90b3-d458e0b08861_rw_1920.webp" width="1280" height="1920" loading="lazy" decoding="async" alt=""></div><div class="cell" style="flex:0.7145 1 0"><img class="m " src="/media/aef78e56-c468-47fe-8937-9a4658faf719_rw_1200.webp" width="1166" height="1632" loading="lazy" decoding="async" alt=""></div><div class="cell" style="flex:0.6667 1 0"><img class="m " src="/media/24bc2cb9-a4d7-48d8-ab4b-9b58503e060b_rw_1920.webp" width="1280" height="1920" loading="lazy" decoding="async" alt=""></div></div></div>
-<div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:1.1374 1 0"><img class="m " src="/media/deef1ea8-a1ad-411b-9416-1d3aefd52298_rw_1920.webp" width="1920" height="1688" loading="lazy" decoding="async" alt=""></div><div class="cell" style="flex:1.0509 1 0"><img class="m " src="/media/17ae359b-22a2-4484-9e5d-eb6b44662287_rw_1920.webp" width="1920" height="1827" loading="lazy" decoding="async" alt=""></div><div class="cell" style="flex:0.7901 1 0"><img class="m " src="/media/fe251b5b-bcf7-44ff-92d7-ebbb11ac913f_rw_1920.webp" width="1920" height="2431" loading="lazy" decoding="async" alt=""></div><div class="cell" style="flex:0.8803 1 0"><img class="m " src="/media/721260d2-22ee-4eb7-991b-db7d1de0a455_rw_1920.webp" width="1920" height="2182" loading="lazy" decoding="async" alt=""></div></div><div class="row"><div class="cell" style="flex:0.7827 1 0"><img class="m " src="/media/32f414be-4516-4bb9-88ea-91887c214989_rw_1920.webp" width="1920" height="2454" loading="lazy" decoding="async" alt=""></div><div class="cell" style="flex:0.7720 1 0"><img class="m " src="/media/f1eaf4a1-46d5-4d9f-8493-07e8ff8055f0_rw_1920.webp" width="1920" height="2487" loading="lazy" decoding="async" alt=""></div><div class="cell" style="flex:1.1354 1 0"><img class="m " src="/media/7aeb4798-ba55-4223-ba03-4fafda888e06_rw_1920.webp" width="1920" height="1692" loading="lazy" decoding="async" alt=""></div></div></div></div></article>
+<div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:0.5660 1 0"><video class="m " data-src="/media/31041fa6-ccf9-483d-a720-af9fecb1c8ee_rw_600.mp4" poster="/media/31041fa6-ccf9-483d-a720-af9fecb1c8ee_rw_600.webp" width="480" height="848" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRv4AAABXRUJQVlA4IPIAAAAQBgCdASoUACMAPu1urVCppqQiqqgBMB2JYgC7M3bKfSAju4q7zuLDC9qNp9GEYqHg7OLu3PvVjoAA/RwbuZgwUT2D3CZCAkUlH25W7MMtrjkk0GI04LWMswxN3w2qtITeXIMssxTPO+I3AxP9G1Q7qHwQ5GGbsV3ywU3cpVwJ6Xv5GU+LclGPd9MqR2MV20DMLdnOe8E8NYcaDNm20c08ZAwbscuB9izhakVnkUdAQY5wSQ6w6CX5QQjOHKgnnVURiQobsHPu7HUE8sXcbRQaeGyq7Cz2YFBbJKKotGOzbX0X6SoQ9hMmG6PF6SDUOEAAAA==)"></video></div><div class="cell" style="flex:0.5671 1 0"><video class="m " data-src="/media/12b482dd-e1f4-4288-9264-731f6e014bf3_rw_600.mp4" poster="/media/12b482dd-e1f4-4288-9264-731f6e014bf3_rw_600.webp" width="397" height="700" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRgYBAABXRUJQVlA4IPoAAAAQBwCdASoUACMAPu1wrVIppiQiqrgIATAdiUAWnbV+MBVSA5Ic5bxBbDmqfA8x3dO2EoXnaF+bUD0IDGI6TjItBgDf4zPNXs/BsomEtoJptwfgNklAIcwJ/iSLJ8RxXFxApUCBUnhz/L/yiE4dgGzCUGzoMj5LlDaD4o+BXwLyFUCVRIh6tYx8iQFZmnQjF5V25qTwzQxxDl4MyyfaWUl6Y5Qud4/zaPqV2O/87t/9q4mDO3ygZnEUEjAsH1b7sASF0o7/O+uBxhfD25ZnX4+AhwpY7yAsSHjXDUukg3tq7dMmjGghr/NK91SsYJH5ykh+Z1ZdAc9IyAAA)"></video></div><div class="cell" style="flex:0.5671 1 0"><video class="m " data-src="/media/1d91aea1-408c-4517-b243-f97971e57506_rw_600.mp4" poster="/media/1d91aea1-408c-4517-b243-f97971e57506_rw_600.webp" width="397" height="700" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRtwAAABXRUJQVlA4INAAAADQBQCdASoUACMAPulkqU2pJaQiKq35IB0JQBYdghllv+pgTwiXABm3d1x4oxOf+02HGH087WOAAP7PWqe/MNRTVsctFp5NV5I57b0SCIjDnrC7OrhPrMdi6l6hvVh1gDKleX++wDmpk3XVFGEIsjsYepnEAAk84a0erkb+x3iP7ViithR8ghFV0tu5yxQBdMCHNFqcwoPBzqBGJhSf3kJzdNUN94kGRPOsUwmsoNS7I7oAOs3/niMk3KnoOeor3ASJVXzVqDiQM0AOP+SV83wA)"></video></div><div class="cell" style="flex:0.5671 1 0"><video class="m " data-src="/media/08944876-4c15-47f6-93a0-401d3d2e405d_rw_600.mp4" poster="/media/08944876-4c15-47f6-93a0-401d3d2e405d_rw_600.webp" width="397" height="700" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRuYAAABXRUJQVlA4INoAAAAwBgCdASoUACMAPu1urlEppqQiqqgBMB2JYwCpJ09/lCpMjghktqbGmuD/bEwQu+3HjhCfsa6E670AAP68R6sBOa4QSI8cd8sw/Bm2WYry86E5lmBQrDZNwwY9zuRlcmm5ul1Z3rdWb7XEKEpQJ3qEfbfx1aP2UvecGaMmJTWVqRWkv4mQQ9D1nSu/O8QI/mxTsr/ghG9D3WleQJUECqE2lhi5v2r6Dyw50NGY6fmSH59tD2gHLcO7GpqCTU0hM8A+okx5GbyKtmpFsH0iBkSAvh2UGYnSZEAAAA==)"></video></div></div><div class="row"><div class="cell" style="flex:0.5660 1 0"><video class="m " data-src="/media/938b61dd-7c85-4b0e-ab28-6949e83c1738_rw_600.mp4" poster="/media/938b61dd-7c85-4b0e-ab28-6949e83c1738_rw_600.webp" width="480" height="848" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRtIAAABXRUJQVlA4IMYAAADwBQCdASoUACMAPu1qrU8ppiQiKrgMATAdiUAWI/JwGz8t76WlrT7uVan3d+iOTPhVXiFer/c0AAD542NBCulH1JJbqkn4e9bsqAUCoo8oZFNukwvdj9J0GvytKfXj/K7xUaPijUnbs1o62TIJI2YFaphjXp0WolcKf7PKlMs6EtpLVDanwEkjgsVsB7ChzX1jxrPmV0P/7d5rEytbO/82iQkfdpKWQP9WANkBWbqWdP5jW1XYlsG07whjQ7/w+koyFa4AAAA=)"></video></div><div class="cell" style="flex:0.5660 1 0"><video class="m " data-src="/media/0299c949-5bbb-418d-afa4-4d8eb41dbd94_rw_600.mp4" poster="/media/0299c949-5bbb-418d-afa4-4d8eb41dbd94_rw_600.webp" width="480" height="848" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRrQAAABXRUJQVlA4IKgAAABwBgCdASoUACMAPu1kp0+ppSMiMBVaqTAdiUAUlRAAE09lgW+GIuNZA34L903lwnp75eUGp8YNUTtyiAAA/hSL8TnibLUYHR4htHqpVMVTvfpx23V8507DJVxllXp2mHU2Uhbs6j4xKtXMsbFdwaMLjEFoqBb1j7Ikr/nWnWQKPjLVjGYBs/sbgSNmwsyN+xUYxvjkAsvy2zZn5DpFIttmYTdPFUVAAAA=)"></video></div></div></div>
+<div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:0.7053 1 0"><img class="m " src="/media/67f4c9be-8383-4bf7-9380-632a394a00f1_rw_1200.webp" width="998" height="1415" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRg4BAABXRUJQVlA4IAIBAADQBQCdASoUABwAPu1mrE+ppSQiMBgIATAdiUAWHeWDDBM8hb4HjSbFXGs1M30CVR7eD5aHMu/gAP7W1YBKpQAme+IkQctMxlyre21UEPkNwtFgi2Ysxt3lKDsJcwGP7LnDLaqMG3Ubv0bINQ81wwhZRjwAw3ura4+UVflkXq6gfKKDJwzq9We2GSfjbzBMaNUaBQf+gb6AGqEuId+K+ncTj+Q8BgGd5uqylDLo2Zh7lWPwp6PVYiMW9X28wOqAk0wBQAA5b6IzLW3lx4SmH74dbKsZdea+zU56TmGA9dDHZrH8tEX9HATc3pnv09KYYL3xCNYWKJrvF0gmfIYFHgKAAAA=)"></div><div class="cell" style="flex:0.7053 1 0"><img class="m " src="/media/1955a908-641e-4f60-898f-641131569308_rw_1200.webp" width="998" height="1415" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRuwAAABXRUJQVlA4IOAAAACwBQCdASoUABwAPu1mqk2ppaQiMAgBMB2JZQDBzdzu8idzD+cEUbMlcmNlEkGXQzQ24EN6wAAA/mtXC5lui/fhmadTPPcsKg4AvmitS+N+NLZrwLpM3MZMXtn6gFQCFZH2gLa2h7pTvn3HFoxaGhr8pAarys6ZUjiwXnzKpSnzydGLz6tDT85grNyAxBC0GdkBPIVjKlq92KK7/D8tcF9Eiq+CavawtnYFd+j840yUjtULfHubAIQho5F4zvT+HkcYFjg84dKsjON1GDFJe7tuwbkDXrxCUsC9yfxuPYRwAA==)"></div><div class="cell" style="flex:0.7053 1 0"><img class="m " src="/media/e8302134-4383-4e54-9156-bc91f908391c_rw_1200.webp" width="998" height="1415" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRsQAAABXRUJQVlA4ILgAAABwBQCdASoUABwAPu1kqk2ppaQiMAgBMB2JQBOg7UrdBOgi/M3+GgHuqpJvFfW92+mqTOkgAP7qcnXHX1Y8gJXFLTFGugvVKv8uUOAySP+9uZDFxY+Wg9kMUcQoycnvPd5GoH0SgzB0T4+pDSUIWfI0CGgcTN5uho7aOeLHdjK8dWzmi/YUJnKMe5isNiFvPWdzWjN53WVp8Vjnahmluv9mGPlqPLgKZAZQoXBbTlSffljbvx+fEYAA)"></div><div class="cell" style="flex:1.6916 1 0"><img class="m " src="/media/36866a14-8f80-4245-afa6-ae8e926ef2ee_rw_1920.webp" width="1920" height="1135" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAADwAwCdASoUAAwAPu1iqU2ppaQiMAgBMB2JZQCdACP/xQ7jWyTjiOuAAP7fh1Za961u1pLUA3xDyJRz50ZvoMx/irxhkNX7vDXD7vC5QyiWZSfXKt53n1nFNpkZFPQ/IAA=)"></div></div></div>
+<div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:1.0000 1 0"><img class="m " src="/media/88a20140-dd44-44e3-aae6-7510df143c32_rw_1920.webp" width="1440" height="1440" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAADQBACdASoUABQAPu1sqlEppaOiqAqpMB2JYgCdMoSEIBK8x48aO4VR1EO2Bx4AAAD+6oaX81zGtJubOHhfmzXsRf76GVJr0ln6DDpzBO1yrIuxfbQqZSeDXyGirkFCIYEMrGcBu8CVGHhgk5gAAA==)"></div><div class="cell" style="flex:1.0000 1 0"><img class="m " src="/media/ff0e8008-1b92-4854-b75a-f828c32b7f1d_rw_1920.webp" width="1600" height="1600" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRrAAAABXRUJQVlA4IKQAAABwBACdASoUABQAPu1srlIppaQiqAgBMB2JYwCsAAshjNvUjjTgBuPAJxxDQADMjXKC4Qr/2IcntZ5UnwsQEC/c0Ngx1p2DqVDbf8yJ1pKERZfHuf+lzg1hzCLVSQiUVFXujPanWa9d+O9JoY5WBiQy2YuMjaJVnFjfdIUD+o0AR9Zr2dabFjveITjEDh+2f+8Bm11T4FalPrdt+uqOPg6KGwAAAA==)"></div></div></div>
+<div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:0.6667 1 0"><img class="m " src="/media/53f3e634-6018-490d-90b3-d458e0b08861_rw_1920.webp" width="1280" height="1920" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRsgAAABXRUJQVlA4ILwAAAAQBQCdASoUAB4APu1kqk2ppaQiMAgBMB2JaACsMtDDAWQ+YB/gspDk2zKfIP9sAGAAAP7c79EVcFMa4gcFiNQQpYY1jk5RtCDzyDXJ1DPM076aAKDJK6q8XHCm9POH7z3spiGuEHxJF+NsoLpHP8NR+/mw/DFB76qyxMhKaXXT0UGyEDV+Gr32HtdiZOXGYRNhiAo1/kDDhDinY9wb7HhYAJ1ic03fVlVtlaWa18GUnXxEopaPSkB6WboAAA==)"></div><div class="cell" style="flex:0.7145 1 0"><img class="m " src="/media/aef78e56-c468-47fe-8937-9a4658faf719_rw_1200.webp" width="1166" height="1632" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRqgAAABXRUJQVlA4IJwAAABwBACdASoUABwAPu1qsFAppiUiqAqpMB2JQA8KwCwfeeFFA8Cubjb+FvN4EAD+Jy8wsU4NYrlei6IngQyy4x5zBKMaWhrvP+ZPiW7/0Bjm7ylZ/zdONZK+hs4k8HZI5RLP69wcgiKXEeP5W3LXxSb/B4lhQt3WTa2kqdCb/7eZroB5gnTxEOEJCprYE2H07BccTwzQb/RA1wAAAAA=)"></div><div class="cell" style="flex:0.6667 1 0"><img class="m " src="/media/24bc2cb9-a4d7-48d8-ab4b-9b58503e060b_rw_1920.webp" width="1280" height="1920" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRtIAAABXRUJQVlA4IMYAAAAQBQCdASoUAB4APu1mqU2ppaQiMAgBMB2JQBb3ZYAg0uGl7WnMafhOdD4yg6YvTC8AAP6gQM1sXyG+5W8b1bWjCP0vUbwHJG5LvP/iok+V+HEVkBzJ0uIBrQvWn1aX5hAwoSBJ3CtqLui2oXsfkaVvQq73CsBGxXp9pMibEoTsfL+x6fBNX+MbE4LsRyvhrHl1QrF+dfMFtAf3aWt4nhjS/z1T4NxmjrJ7ycRwXCbLbO6MNc9y7rfngiCwm7dHCsbXiKbFTAA=)"></div></div></div>
+<div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:1.1374 1 0"><img class="m " src="/media/deef1ea8-a1ad-411b-9416-1d3aefd52298_rw_1920.webp" width="1920" height="1688" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAADQAwCdASoUABIAPu1krFAppSQisBgIATAdiUATpmMANUAIEGbbc9AA/u03U9O1q0vFilh0lqH5U3kC7uoDJlMCXAAAAA==)"></div><div class="cell" style="flex:1.0509 1 0"><img class="m " src="/media/17ae359b-22a2-4484-9e5d-eb6b44662287_rw_1920.webp" width="1920" height="1827" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRpgAAABXRUJQVlA4IIwAAABQBACdASoUABMAPu1wsVIppiSiqAgBMB2JZQC06Yv+cLYslNvA6KJZnuYAAP7qpl3DLgRDR8PMUsN8x53j12fd13ioM0oENNVujNsGxy/oJJpYYjAIBrDQ5+AkKhhF5/p50XLdD59xwWJyaP3/tp3dicEComD218rsnaQ+tpZ9wLYLEAxbD4cezbGAAA==)"></div><div class="cell" style="flex:0.7901 1 0"><img class="m " src="/media/fe251b5b-bcf7-44ff-92d7-ebbb11ac913f_rw_1920.webp" width="1920" height="2431" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRqIAAABXRUJQVlA4IJYAAACwBACdASoUABkAPuVgpU2pJaOiMAwBIByJZwDI1Ywm32WvM+v57M8KCLel+FgAAP7rJk2zj+Vsi1XLEqTSBHTzgT7tkiiJYnrBj8gXGIBj84Hd2pLdexlvNhyzeA7iOp3FeJ43lheX9UdfEER2G25Jl/cnY8H/EihgRAgwkL7516whcS7tYqEKshtFZ8FAeRX7JJbAAAA=)"></div><div class="cell" style="flex:0.8803 1 0"><img class="m " src="/media/721260d2-22ee-4eb7-991b-db7d1de0a455_rw_1920.webp" width="1920" height="2182" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAADQAwCdASoUABcAPu1eqE4ppKOiMBgMATAdiWQAqPQQ7+eNSZYKdsAA/u03HQ2Dk8+i5NDDlo+WUUZnesS4lDm5RLxOW5y7vdMeC9VkH9kgLgAKT+Q/UioXvvXdRqAAAAA=)"></div></div><div class="row"><div class="cell" style="flex:0.7827 1 0"><img class="m " src="/media/32f414be-4516-4bb9-88ea-91887c214989_rw_1920.webp" width="1920" height="2454" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAABQBACdASoUABoAPu1srFEppaQiqAqpMB2JZACdMswBqgFt+hLgfq1STWAAAP7tSR0LeOCrW5O4vHSFI4eTvTYNLRDioqmhxN1SUmaZf8bUmL3KAAA=)"></div><div class="cell" style="flex:0.7720 1 0"><img class="m " src="/media/f1eaf4a1-46d5-4d9f-8493-07e8ff8055f0_rw_1920.webp" width="1920" height="2487" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRsYAAABXRUJQVlA4ILoAAABwBQCdASoUABoAPu1krE+ppSQiMBgIATAdiUAUkDGdzfcaRiLANH4rzYpDs0VyE8uK8krgAP7thB8HRjpkilzeD8AL4ZqhMi7qOSzzPwOv8CuFAGW8QWMbwB6sgGqTmOI+9SCZxkdV+Hl34RH9xf+tqKbucFksxg1wz0b5gU6BTntoTEb7WHk3JveAnKlbM3Ws/mZLEZ0nC9Dqm1iHs7IoPQZR7GBVPPTkQ/3Cps9yZRbLQoSGXBWDoAA=)"></div><div class="cell" style="flex:1.1354 1 0"><img class="m " src="/media/7aeb4798-ba55-4223-ba03-4fafda888e06_rw_1920.webp" width="1920" height="1692" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRpIAAABXRUJQVlA4IIYAAAAwBACdASoUABIAPu1sq1EppaOiqAqpMB2JZwDG9YmKGEdhsCa9+5k4ZsAA/u1kwNNO3HDEsD8jCBi3s14v7mLTVwKfnVK2ZO0KFGBo/s564PHesNNkcErJT0jB25s+C1Uldu0xmMWBp0gdsGZLW33aHm4DtP1Xa2K4Z/80vVhZj6/cgAAAAA==)"></div></div></div></div><a class="next" href="/notificacoes/" data-next><span class="next-label">Next project</span><span class="next-title split">Life’s Notifications</span><span class="next-sub">Quinto Andar, 2023.</span><span class="next-img"><img class="m cover" src="/media/6d1e0e46-464d-4b4f-b391-2d656e84ec52_rwc_1194x325x2388x1867x1280.webp" width="1280" height="1001" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAAAQBACdASoUABAAPu1iqk2ppaQiMAgBMB2JZQAAUz61DuM8cEd3qZHGAAD+7Afbvpg/c1zQaotWavCxIOnPrX+dvRABmjX+cIoBBVQ4zbxQSHOJNVMhVOhkoFXsw60VgDo21MEFXJaUow81VZ1VzW4xzvYHBgBN3y+AAA==)"></span><span class="next-bar"><i></i></span></a></article>
 </main>
 <footer class="site-foot">
   <a href="#top" class="totop">↑ back to top</a>
   <span><a href="https://www.linkedin.com/in/flaviosalzer" target="_blank" rel="noopener">LinkedIn</a><a href="https://instagram.com/flaviosalzer" target="_blank" rel="noopener">Instagram</a></span>
 </footer>
+<script src="/js/lenis.min.js"></script>
+<script src="/js/player.min.js"></script>
 <script>{
   document.documentElement.classList.add('js');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -210,6 +250,70 @@ figure{margin:0}
     }
     reduce ? el.classList.add('in') : revealObs.observe(el);
   });
+
+
+  // smooth (inertial) scrolling
+  let lenis = null;
+  if (!reduce && window.Lenis && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    lenis = new Lenis({ autoRaf: true, lerp: 0.09, wheelMultiplier: 1 });
+  }
+
+  // titles: split into lines and reveal line by line
+  const splitLines = el => {
+    const words = el.textContent.trim().split(/\s+/);
+    el.innerHTML = words.map(w => `<span class="w">${w.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))}</span>`).join(' ');
+    const lines = []; let top = null;
+    el.querySelectorAll('.w').forEach(w => { if (w.offsetTop !== top) { lines.push([]); top = w.offsetTop; } lines[lines.length - 1].push(w.textContent); });
+    el.innerHTML = lines.map((l, i) => `<span class="ln" style="--l:${i}"><span>${l.join(' ')}</span></span>`).join('');
+  };
+  const splits = [...document.querySelectorAll('.split')];
+  const doSplit = () => splits.forEach(splitLines);
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => {
+    doSplit();
+    splits.forEach(el => reduce ? el.classList.add('in') : revealObs.observe(el));
+  });
+  let rw; addEventListener('resize', () => { clearTimeout(rw); rw = setTimeout(() => { splits.forEach(el => { const t = [...el.querySelectorAll('.ln')].map(l => l.textContent).join(' '); el.textContent = t; }); doSplit(); }, 200); });
+
+  // own film player: Vimeo in background mode, click for sound
+  if (window.Vimeo) {
+    document.querySelectorAll('.vplayer').forEach(v => {
+      const f = v.querySelector('iframe'), b = v.querySelector('.vp-hit'), lab = v.querySelector('.vp-label');
+      let pl = null;
+      const ensure = () => { if (!pl) { f.src = f.dataset.src; pl = new Vimeo.Player(f); } return pl; };
+      new IntersectionObserver(es => es.forEach(e => {
+        if (e.isIntersecting) { ensure().play().catch(() => {}); }
+        else if (pl) { pl.pause().catch(() => {}); }
+      }), { rootMargin: '300px 0px' }).observe(v);
+      b.addEventListener('click', async () => {
+        const p = ensure();
+        if (v.classList.contains('sound')) {
+          v.classList.remove('sound'); lab.textContent = 'Play with sound'; b.setAttribute('aria-label', 'Play with sound');
+          try { await p.setMuted(true); } catch (e) {}
+        } else {
+          document.querySelectorAll('.vplayer.sound .vp-hit').forEach(o => o.click());
+          v.classList.add('sound'); lab.textContent = 'Mute'; b.setAttribute('aria-label', 'Mute');
+          try { await p.setCurrentTime(0); await p.setMuted(false); await p.setVolume(1); await p.play(); } catch (e) {}
+        }
+      });
+    });
+  }
+
+  // next project: keep scrolling at the bottom to go there
+  const nx = document.querySelector('[data-next]');
+  if (nx && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    let acc = 0, going = false, decay;
+    const atBottom = () => innerHeight + scrollY >= document.documentElement.scrollHeight - 4;
+    addEventListener('wheel', e => {
+      if (going) return;
+      if (atBottom() && e.deltaY > 0) {
+        acc = Math.min(1, acc + e.deltaY / 1400);
+        nx.style.setProperty('--np', acc.toFixed(3));
+        clearTimeout(decay);
+        decay = setTimeout(function back() { acc = Math.max(0, acc - 0.08); nx.style.setProperty('--np', acc.toFixed(3)); if (acc > 0) decay = setTimeout(back, 30); }, 450);
+        if (acc >= 1) { going = true; location.href = nx.href; }
+      }
+    }, { passive: true });
+  }
 
   // exit effect: project media shrink + fade a little as they scroll off the top
   if (!reduce) {
@@ -292,7 +396,7 @@ figure{margin:0}
     addEventListener('blur', () => c.classList.remove('on'));
   }
 
-  document.querySelectorAll('a[href="#top"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); }));
+  document.querySelectorAll('a[href="#top"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); lenis ? lenis.scrollTo(0) : scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); }));
 }
 </script>
 </body>

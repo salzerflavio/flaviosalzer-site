@@ -76,6 +76,26 @@ def strip_tags(h):
     return re.sub(r'<[^>]+>', '', h)
 
 # ---------- media ----------
+
+import base64, io
+from PIL import Image as _Img
+_LQ = {}
+def lqip(name):
+    if name in _LQ: return _LQ[name]
+    try:
+        im = _Img.open(os.path.join(OUT, 'media', name)).convert('RGB')
+        w, h = im.size
+        im = im.resize((20, max(1, round(20 * h / w))))
+        b = io.BytesIO(); im.save(b, 'WEBP', quality=40)
+        _LQ[name] = 'data:image/webp;base64,' + base64.b64encode(b.getvalue()).decode()
+    except Exception:
+        _LQ[name] = ''
+    return _LQ[name]
+
+def lq_style(name):
+    d = lqip(name)
+    return f' style="background-image:url({d})"' if d else ''
+
 def media_tag(url, cls='', sizes='100vw'):
     a = asset(url)
     if not a:
@@ -83,8 +103,8 @@ def media_tag(url, cls='', sizes='100vw'):
     w, h = a['w'], a['h']
     if a['type'] == 'video':
         return (f'<video class="m {cls}" data-src="/media/{a["src"]}" poster="/media/{a["poster"]}" '
-                f'width="{w}" height="{h}" muted loop playsinline preload="none"></video>')
-    return f'<img class="m {cls}" src="/media/{a["src"]}" width="{w}" height="{h}" loading="lazy" decoding="async" alt="">'
+                f'width="{w}" height="{h}" muted loop playsinline preload="none"{lq_style(a["poster"])}></video>')
+    return f'<img class="m {cls}" src="/media/{a["src"]}" width="{w}" height="{h}" loading="lazy" decoding="async" alt=""{lq_style(a["src"])}>'
 
 def render_image(m):
     a = asset(m.get('big'))
@@ -116,8 +136,12 @@ def render_embed(m):
     r = m.get('ratio') or '56.25%'
     if r.endswith('px'):
         return f'<div class="mod embed"><iframe src="{html.escape(src)}" height="{r[:-2]}" style="width:100%;border:0" loading="lazy" allow="autoplay"></iframe></div>'
-    if 'vimeo' in src and 'dnt=1' not in src:
-        src += ('&' if '?' in src else '?') + 'dnt=1'
+    if 'player.vimeo.com' in src:
+        base = src.split('&')[0]
+        vsrc = base + ('&' if '?' in base else '?') + 'background=1&autoplay=1&loop=1&muted=1&dnt=1'
+        return (f'<div class="mod vplayer reveal-m"><div class="ratio" style="padding-bottom:{r}">'
+                f'<iframe data-src="{html.escape(vsrc)}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Film"></iframe></div>'
+                f'<button class="vp-hit" type="button" aria-label="Play with sound"><span class="vp-label">Play with sound</span></button></div>')
     return (f'<div class="mod embed reveal-m"><div class="ratio" style="padding-bottom:{r}">'
             f'<iframe src="{html.escape(src)}" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></div>')
 
@@ -199,7 +223,7 @@ def project_header(tree, cover_name=''):
     creds = parse_credits(right)
     dl = ''.join(f'<div><dt>{html.escape(k)}</dt><dd>{v}</dd></div>' for k, v in creds)
     return title, (f'<header class="p-head">'
-                   f'<div class="p-intro"><a class="back" href="/" aria-label="Back to work"><svg class="arr" viewBox="486 353 250 95" width="66" height="25" aria-hidden="true"><polygon points="534.41 445.79 488.14 401.58 532.35 355.3 536.69 359.45 496.62 401.38 538.55 441.45 534.41 445.79"/><rect x="492.38" y="398.48" width="241.62" height="6"/></svg></a><h1 class="reveal-t">{html.escape(title)}</h1><div class="p-desc reveal-t">{desc_ps}</div></div>'
+                   f'<div class="p-intro"><a class="back" href="/" aria-label="Back to work"><svg class="arr" viewBox="486 353 250 95" width="66" height="25" aria-hidden="true"><polygon points="534.41 445.79 488.14 401.58 532.35 355.3 536.69 359.45 496.62 401.38 538.55 441.45 534.41 445.79"/><rect x="492.38" y="398.48" width="241.62" height="6"/></svg></a><h1 class="split">{html.escape(title)}</h1><div class="p-desc reveal-t">{desc_ps}</div></div>'
                    f'<dl class="credits reveal-t">{dl}</dl></header>')
 
 def render_mods(mods):
@@ -215,11 +239,42 @@ def render_mods(mods):
             out.append(f'<div class="mod cols">{cols}</div>')
     return '\n'.join(o for o in out if o)
 
+
+# ---------- share previews (1200x630 jpg) ----------
+def make_og(src_name, out_name, focus_left=True):
+    os.makedirs(os.path.join(OUT, 'og'), exist_ok=True)
+    dst = os.path.join(OUT, 'og', out_name)
+    try:
+        im = _Img.open(os.path.join(OUT, 'media', src_name)).convert('RGB')
+    except Exception:
+        return
+    W, H = 1200, 630
+    s = max(W / im.width, H / im.height)
+    im = im.resize((round(im.width * s), round(im.height * s)), _Img.LANCZOS)
+    x = 0 if focus_left else (im.width - W) // 2
+    y = (im.height - H) // 2
+    im.crop((x, y, x + W, y + H)).save(dst, 'JPEG', quality=84, optimize=True, progressive=True)
+
+def next_block(slug):
+    order = [c['slug'] for c in covers]
+    if slug not in order: return ''
+    nxt = covers[(order.index(slug) + 1) % len(order)]
+    name = NAMES.get(nxt['slug']) or clean_name(nxt['title']); client, year = project_meta(nxt['slug'])
+    sub = ', '.join(x for x in (client, year) if x)
+    n = asset(nxt['normal'])
+    img = media_tag(nxt['normal'], 'cover') if n else ''
+    return (f'<a class="next" href="/{nxt["slug"]}/" data-next>'
+            f'<span class="next-label">Next project</span>'
+            f'<span class="next-title split">{html.escape(name)}</span>'
+            f'<span class="next-sub">{html.escape(sub)}.</span>'
+            f'<span class="next-img">{img}</span>'
+            f'<span class="next-bar"><i></i></span></a>')
+
 # ---------- page shell ----------
 CSS = open('style.css').read()
 JS = open('main.js').read()
 
-def page(title, body, cls='', desc='Flávio Salzer — Creative and Art Director.'):
+def page(title, body, cls='', desc='Flávio Salzer — Creative and Art Director.', path='/', og='og/home.jpg', vimeo=False):
     return f'''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -229,6 +284,13 @@ def page(title, body, cls='', desc='Flávio Salzer — Creative and Art Director
 <meta name="description" content="{html.escape(desc)}">
 <meta property="og:title" content="{html.escape(title)}">
 <meta property="og:description" content="{html.escape(desc)}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://flaviosalzer.com{path}">
+<meta property="og:image" content="https://flaviosalzer.com/{og}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://flaviosalzer.com{path}">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🫀</text></svg>">
 <script>document.documentElement.classList.add('js')</script>
 <style>{CSS}</style>
@@ -245,6 +307,8 @@ def page(title, body, cls='', desc='Flávio Salzer — Creative and Art Director
   <a href="#top" class="totop">↑ back to top</a>
   <span><a href="https://www.linkedin.com/in/flaviosalzer" target="_blank" rel="noopener">LinkedIn</a><a href="https://instagram.com/flaviosalzer" target="_blank" rel="noopener">Instagram</a></span>
 </footer>
+<script src="/js/lenis.min.js"></script>
+{'<script src="/js/player.min.js"></script>' if vimeo else ''}
 <script>{JS}</script>
 </body>
 </html>'''
@@ -299,6 +363,7 @@ def masonry(ncols, first):
 
 flat = ''.join(thumb(c, i) for i, c in enumerate(covers))
 home = masonry(3, [1.1, STD, 1.18]) + masonry(2, [1.1, STD]) + f'<section class="stack">{flat}</section>'
+make_og(asset(covers[0]['normal'])['src'], 'home.jpg')
 write('index.html', page('Flávio Salzer', home, 'pg-home'))
 
 # ---------- projects ----------
@@ -310,12 +375,14 @@ for p in D['pages']:
         continue
     title, head = project_header(mods[0], clean_name(titles.get(slug, '')))
     if slug in NAMES:
-        head = re.sub(r'(<h1 class="reveal-t">)[^<]*', lambda m: m.group(1) + html.escape(NAMES[slug]), head, count=1); title = NAMES[slug]
+        head = re.sub(r'(<h1 class="split">)[^<]*', lambda m: m.group(1) + html.escape(NAMES[slug]), head, count=1); title = NAMES[slug]
     rest = render_mods(mods[1:])
     clean_title = NAMES.get(slug, title)
     desc = strip_tags(split_title(mods[0]['children'][0]['mods'][0]['html'])[1])
     desc = re.sub(r'\s+', ' ', desc).strip()[:180]
-    write(f'{slug}/index.html', page(f'{clean_title} — Flávio Salzer', f'<article class="project">{head}<div class="p-body">{rest}</div></article>', 'proj', desc or 'Flávio Salzer — Creative and Art Director.'))
+    cov = next((c for c in covers if c['slug'] == slug), None)
+    if cov and asset(cov['normal']): make_og(asset(cov['normal'])['src'], f'{slug}.jpg')
+    write(f'{slug}/index.html', page(f'{clean_title} — Flávio Salzer', f'<article class="project">{head}<div class="p-body">{rest}</div>{next_block(slug)}</article>', 'proj', desc or 'Flávio Salzer — Creative and Art Director.', path=f'/{slug}/', og=f'og/{slug}.jpg', vimeo='vplayer' in rest))
 
 # ---------- about ----------
 about = [p for p in D['pages'] if slug_of(p['url']) == 'flavio'][0]['mods']
@@ -327,7 +394,7 @@ def about_block(text_html):
     if m and len(strip_tags(m.group(1))) < 30:
         txt = strip_tags(m.group(1)).strip()
         if 'ABOUT' in txt.upper():
-            head = '<h1 class="a-title reveal-t">About</h1>'
+            head = '<h1 class="a-title split">About</h1>'
         else:
             head = f'<h2 class="reveal-t">{txt}</h2>'
         h = h[m.end():]
@@ -347,7 +414,9 @@ for m in about:
         parts.append(f'<div class="a-row">{"".join(cols)}</div>')
     elif m['type'] == 'image':
         parts.append(render_image(m))
-write('flavio/index.html', page('About — Flávio Salzer', f'<article class="about">{"".join(parts)}</article>', 'pg-about'))
+_pimg = asset(about[0]['children'][1]['mods'][0].get('big')) if about and about[0]['type']=='tree' and len(about[0]['children'])>1 else None
+if _pimg: make_og(_pimg['src'], 'about.jpg', focus_left=False)
+write('flavio/index.html', page('About — Flávio Salzer', f'<article class="about">{"".join(parts)}</article>', 'pg-about', path='/flavio/', og='og/about.jpg' if _pimg else 'og/home.jpg'))
 
 # ---------- netlify config ----------
 open(os.path.join(OUT, '_redirects'), 'w').write('/work / 301\n/work/ / 301\n/about /flavio/ 301\n')
