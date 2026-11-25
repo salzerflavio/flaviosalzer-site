@@ -469,8 +469,8 @@ html.view-list .pg-home .plist{display:block}
         const b = w[i] / sum, k = Math.min(1, b / PEAK);
         r.style.setProperty('--h', (H0 + E * b).toFixed(1) + 'px');
         r.style.setProperty('--a', (k * k * k).toFixed(3));
-        // rows away from the open one fade back softly
-        r.style.setProperty('--o', Math.max(0.05, Math.exp(-((i - cur) ** 2) / 1.5)).toFixed(3));
+        // rows already passed fade out fast; the ones coming up dim gradually, like a soft roll
+        { const d = i - cur; r.style.setProperty('--o', (d > 0 ? Math.max(0.1, Math.exp(-(d * d) / 12.5)) : Math.max(0.05, Math.exp(-(d * d) / 1.5))).toFixed(3)); }
         const v = vids[i];
         if (!v) return;
         if (k > 0.75) {
