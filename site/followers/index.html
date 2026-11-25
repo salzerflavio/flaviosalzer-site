@@ -465,7 +465,7 @@ html.view-list .pg-home .plist{display:block}
     const paint = () => {
       queued = false;
       if (!root.classList.contains('view-list')) return;
-      goal = target();
+      goal = hoverIdx ?? target();
       if (cur === null) cur = goal;
       cur += (goal - cur) * 0.12;
       if (Math.abs(goal - cur) < 0.001) cur = goal;
@@ -486,6 +486,20 @@ html.view-list .pg-home .plist{display:block}
       });
       if (cur !== goal) req();
     };
+    // with a mouse, the row under the cursor opens too; scrolling hands control back to the scroll
+    let hoverIdx = null;
+    if (matchMedia('(hover: hover)').matches) {
+      plistEl.addEventListener('mousemove', e => {
+        if (!e.movementX && !e.movementY) return;          // ignore events caused by the rows resizing
+        const r = e.target.closest('.prow');
+        const i = r ? rows.indexOf(r) : -1;
+        if (i >= 0 && i !== hoverIdx) { hoverIdx = i; req(); }
+      });
+      plistEl.addEventListener('mouseleave', () => { hoverIdx = null; req(); });
+      const release = () => { if (hoverIdx !== null) { hoverIdx = null; req(); } };
+      addEventListener('wheel', release, { passive: true });
+      addEventListener('keydown', release);
+    }
     const req = () => { if (!queued) { queued = true; requestAnimationFrame(paint); } };
     const root = document.documentElement;
     measure(); paint();
