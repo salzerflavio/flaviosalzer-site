@@ -236,7 +236,7 @@ def page(title, body, cls='', desc='Flávio Salzer — Creative and Art Director
 <body class="{cls}" id="top">
 <header class="site-head">
   <a class="logo" href="/">f*</a>
-  <nav><a href="/">work</a><a href="/flavio/">☺ about</a></nav>
+  <nav><a href="/">Work</a><a href="/flavio/">☺ About</a></nav>
 </header>
 <main>
 {body}

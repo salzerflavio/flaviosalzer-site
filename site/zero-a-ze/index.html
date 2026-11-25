@@ -15,14 +15,14 @@
    FONTE    Helvetica Neue (fallback Helvetica, Arial)
    PESOS    700 título de projeto · 500 título de página e UI
             400 textos do projeto · 400/700 textos pequenos (valor/rótulo)
-   TAMANHOS 56 título de projeto · 32 título de página · 26 frase de destaque
+   TAMANHOS 78 título de projeto · 32 título de página · 26 frase de destaque
             16 texto corrido · 14 UI (menu, thumbs) · 13 textos pequenos
    ESPAÇO   10 gutter · 20 · 40 · 80 · 120
    ========================================================== */
 :root{
   --bg:#000; --tx:#bcbcbc; --hi:#eeeeee;
   --f:"Helvetica Neue",Helvetica,Arial,sans-serif;
-  --fs-xl:clamp(39px,3.9vw,56px);
+  --fs-xl:clamp(46px,5.4vw,78px);
   --fs-lg:clamp(24px,2.3vw,32px);
   --fs-md:clamp(20px,1.85vw,26px);
   --fs-body:16px; --fs-ui:14px; --fs-sm:13px;
@@ -41,8 +41,8 @@ img,video{display:block;max-width:100%}
 
 /* ---------- topo (igual ao atual) ---------- */
 .site-head{display:flex;justify-content:space-between;align-items:center;padding:0 var(--edge);height:80px}
-.logo{font:700 16px/1 var(--f);color:var(--hi);letter-spacing:-.01em}
-.site-head nav{display:flex;gap:18px;font:500 var(--fs-ui)/1 var(--f);color:var(--hi)}
+.logo{font:700 24px/1 var(--f);color:var(--hi);letter-spacing:-.01em}
+.site-head nav{display:flex;gap:26px;font:500 21px/1 var(--f);color:var(--hi)}
 .site-head nav a{opacity:.85;transition:opacity .2s}
 .site-head nav a:hover{opacity:1}
 body.pg-home .site-head nav a[href="/"],body.pg-about .site-head nav a[href="/flavio/"]{opacity:1;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
@@ -75,7 +75,7 @@ body.pg-home .site-head nav a[href="/"],body.pg-about .site-head nav a[href="/fl
 /* ---------- projeto ---------- */
 .p-head{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:'b .' 't .' 'd c';gap:var(--s1) var(--s2);padding:var(--s2) var(--edge) var(--s3)}
 .p-intro{display:contents}
-.p-head h1{grid-area:t}.p-head .back{grid-area:b;justify-self:start;font:400 39px/1 var(--f);color:var(--hi);margin-bottom:var(--s1);transition:transform .3s var(--ease)}.p-head .back:hover{transform:translateX(-6px)}.p-desc{grid-area:d}.credits{grid-area:c}
+.p-head h1{grid-area:t}.p-head .back{grid-area:b;justify-self:start;font:400 55px/1 var(--f);color:var(--hi);margin-bottom:var(--s1);transition:transform .3s var(--ease)}.p-head .back:hover{transform:translateX(-6px)}.p-desc{grid-area:d}.credits{grid-area:c}
 .p-head h1{margin:0;align-self:end;font:700 var(--fs-xl)/1.02 var(--f);color:var(--hi);letter-spacing:-.015em;text-wrap:balance}
 .p-desc{max-width:60ch;display:grid;gap:1em}
 .credits{margin:0;display:grid;gap:var(--s1);max-width:560px;align-content:start;font-size:var(--fs-sm);line-height:1.45}
@@ -166,7 +166,7 @@ figure{margin:0}
 <body class="proj" id="top">
 <header class="site-head">
   <a class="logo" href="/">f*</a>
-  <nav><a href="/">work</a><a href="/flavio/">☺ about</a></nav>
+  <nav><a href="/">Work</a><a href="/flavio/">☺ About</a></nav>
 </header>
 <main>
 <article class="project"><header class="p-head"><div class="p-intro"><a class="back reveal-t" href="/" aria-label="Back to work">←</a><h1 class="reveal-t">From Zero to Zé</h1><div class="p-desc reveal-t"><p>Zé Delivery’s new brand platform is “From Zero to Zé.” A new era for the app, with more products, more occasions, and fewer excuses not to order.</p></div></div><dl class="credits reveal-t"><div><dt>Role</dt><dd>Creative Direction, Art Direction</dd></div><div><dt>With</dt><dd>Bruno Brux, Rainor Marinho, Gabriel Padilha, Matheus Távora, Yasmin Rodrigues</dd></div><div><dt>Agency</dt><dd>GUT</dd></div><div><dt>Client</dt><dd>Zé Delivery</dd></div><div><dt>Year</dt><dd>2026</dd></div></dl></header><div class="p-body"><div class="mod embed reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe src="https://player.vimeo.com/video/1203897634?h=94b6e5e318&amp;title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></div>
