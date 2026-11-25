@@ -167,7 +167,11 @@
       top = plistEl.getBoundingClientRect().top + scrollY;
     };
     // the open row stays where the list starts (same gap below the menu as the mosaic)
-    const target = () => Math.min(rows.length - 1, Math.max(0, scrollY / H0));
+    const target = () => {
+      // map the whole page scroll onto the rows, so the last one opens right as the page ends (no empty tail)
+      const max = Math.max(1, document.documentElement.scrollHeight - vh);
+      return Math.min(rows.length - 1, Math.max(0, (rows.length - 1) * scrollY / max));
+    };
     const paint = () => {
       queued = false;
       if (!root.classList.contains('view-list')) return;
@@ -182,7 +186,7 @@
         r.style.setProperty('--h', (H0 + E * b).toFixed(1) + 'px');
         r.style.setProperty('--a', (k * k * k).toFixed(3));
         // rows away from the open one fade back softly
-        r.style.setProperty('--o', Math.max(0.22, Math.exp(-((i - cur) ** 2) / 2.6)).toFixed(3));
+        r.style.setProperty('--o', Math.max(0.05, Math.exp(-((i - cur) ** 2) / 1.5)).toFixed(3));
         const v = vids[i];
         if (!v) return;
         if (k > 0.75) {
