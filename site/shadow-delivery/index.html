@@ -201,6 +201,12 @@ html:not(.js) .split .ln>span{transform:none}
 @media (prefers-reduced-motion:reduce){.split .ln>span{transform:none!important;transition:none!important}}
 .vplayer .ratio{position:relative;height:0}
 .vplayer iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+/* ícones sociais (arquivos do Flavio) */
+.social{align-items:center}
+.ic{display:block;width:18px;height:18px;background:currentColor;-webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat}
+.ic-li{--i:url(/img/linkedin.png)}
+.ic-ig{--i:url(/img/instagram.png)}
 </style>
 </head>
 <body class="proj" id="top">
@@ -217,7 +223,7 @@ html:not(.js) .split .ln>span{transform:none}
 </main>
 <footer class="site-foot">
   <a href="#top" class="totop">↑ back to top</a>
-  <span><a href="https://www.linkedin.com/in/flaviosalzer" target="_blank" rel="noopener">LinkedIn</a><a href="https://instagram.com/flaviosalzer" target="_blank" rel="noopener">Instagram</a></span>
+  <span class="social"><a href="https://www.linkedin.com/in/flaviosalzer" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ic ic-li"></i></a><a href="https://instagram.com/flaviosalzer" target="_blank" rel="noopener" aria-label="Instagram"><i class="ic ic-ig"></i></a></span>
 </footer>
 <script src="/js/lenis.min.js"></script>
 <script src="/js/player.min.js"></script>

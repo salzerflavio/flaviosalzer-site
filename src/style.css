@@ -183,3 +183,9 @@ html:not(.js) .split .ln>span{transform:none}
 @media (prefers-reduced-motion:reduce){.split .ln>span{transform:none!important;transition:none!important}}
 .vplayer .ratio{position:relative;height:0}
 .vplayer iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+/* ícones sociais (arquivos do Flavio) */
+.social{align-items:center}
+.ic{display:block;width:18px;height:18px;background:currentColor;-webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat}
+.ic-li{--i:url(/img/linkedin.png)}
+.ic-ig{--i:url(/img/instagram.png)}
