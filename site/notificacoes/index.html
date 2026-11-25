@@ -26,7 +26,7 @@
   --fs-lg:clamp(24px,2.3vw,32px);
   --fs-md:clamp(20px,1.85vw,26px);
   --fs-body:16px; --fs-ui:14px; --fs-sm:13px;
-  --g:10px; --s1:20px; --s2:40px; --s3:80px; --s4:120px;
+  --g:10px; --edge:35px; --s1:20px; --s2:40px; --s3:80px; --s4:120px;
   --ease:cubic-bezier(.2,.7,.1,1);
   color-scheme:dark;
 }
@@ -40,9 +40,9 @@ img,video{display:block;max-width:100%}
 .m{width:100%;height:auto;background:#0b0b0b}
 
 /* ---------- topo (igual ao atual) ---------- */
-.site-head{display:flex;justify-content:space-between;align-items:flex-start;padding:16px var(--g) 0;height:70px}
+.site-head{display:flex;justify-content:space-between;align-items:center;padding:0 var(--edge);height:80px}
 .logo{font:700 16px/1 var(--f);color:var(--hi);letter-spacing:-.01em}
-.site-head nav{display:flex;gap:18px;font:500 var(--fs-ui)/1 var(--f);color:var(--hi);padding-top:4px}
+.site-head nav{display:flex;gap:18px;font:500 var(--fs-ui)/1 var(--f);color:var(--hi)}
 .site-head nav a{opacity:.85;transition:opacity .2s}
 .site-head nav a:hover{opacity:1}
 body.pg-home .site-head nav a[href="/"],body.pg-about .site-head nav a[href="/flavio/"]{opacity:1;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
@@ -64,13 +64,14 @@ body.pg-home .site-head nav a[href="/"],body.pg-about .site-head nav a[href="/fl
 .thumb:hover .t-title,.thumb:focus-visible .t-title{opacity:1}
 .thumb:focus-visible{outline:2px solid var(--hi);outline-offset:-2px}
 @media (max-width:700px){
+  :root{--edge:20px}
   .masonry,.masonry.m2{display:none}
   .stack{display:block}
   .thumb.playing .t-title{opacity:1}
 }
 
 /* ---------- projeto ---------- */
-.p-head{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:'t .' 'd c';gap:var(--s1) var(--s2);padding:var(--s2) var(--g) var(--s3)}
+.p-head{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:'t .' 'd c';gap:var(--s1) var(--s2);padding:var(--s2) var(--edge) var(--s3)}
 .p-intro{display:contents}
 .p-head h1{grid-area:t}.p-desc{grid-area:d}.credits{grid-area:c}
 .p-head h1{margin:0;align-self:end;font:700 var(--fs-xl)/1.02 var(--f);color:var(--hi);text-transform:uppercase;letter-spacing:-.015em;text-wrap:balance}
@@ -89,22 +90,22 @@ figure{margin:0}
 .grid .cell .m{width:100%}
 .embed .ratio{position:relative;height:0}
 .embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.statement{padding:var(--s3) var(--g);text-align:center;max-width:900px;margin:0 auto;display:grid;gap:.5em}
+.statement{padding:var(--s3) var(--edge);text-align:center;max-width:900px;margin:0 auto;display:grid;gap:.5em}
 .statement p,.t-lg{font-size:var(--fs-md);line-height:1.25;font-weight:400;text-wrap:balance}
 .statement strong{font-weight:700}
 .t-sm{font-size:var(--fs-sm);line-height:1.45}
-.prose{padding:var(--s2) var(--g);max-width:760px;margin:0 auto;display:grid;gap:1em}
+.prose{padding:var(--s2) var(--edge);max-width:760px;margin:0 auto;display:grid;gap:1em}
 .cols{display:flex;gap:var(--g)}
 @media (max-width:800px){
   .p-head{grid-template-columns:1fr;grid-template-areas:'t' 'd' 'c';gap:var(--s1);padding-bottom:var(--s2)}.credits{margin-top:var(--s1)}
   .grid .row{flex-wrap:wrap}
   .grid .row .cell{flex-basis:calc(50% - var(--g)/2)!important}
-  .statement{padding:var(--s2) var(--g)}
+  .statement{padding:var(--s2) var(--edge)}
   .cols{flex-direction:column}
 }
 
 /* ---------- about ---------- */
-.about{padding:var(--s2) var(--g) 0;display:flex;flex-direction:column;gap:var(--s4)}
+.about{padding:var(--s2) var(--edge) 0;display:flex;flex-direction:column;gap:var(--s4)}
 .a-row{display:flex;gap:var(--s3);align-items:flex-start}
 .a-row .col{display:flex;flex-direction:column;gap:1em}
 .about h2{margin:0 0 var(--s1);font:500 var(--fs-lg)/1.05 var(--f);color:var(--hi);text-transform:uppercase;letter-spacing:-.01em}
@@ -112,10 +113,10 @@ figure{margin:0}
 @media (max-width:800px){.a-row{flex-direction:column;gap:var(--s2)}.about{gap:var(--s3)}}
 
 /* ---------- rodapé ---------- */
-.site-foot{display:flex;justify-content:space-between;padding:var(--s3) var(--g) var(--s1);font:500 var(--fs-ui)/1 var(--f);color:var(--hi)}
+.site-foot{display:flex;justify-content:space-between;padding:var(--s3) var(--edge) var(--edge);font:500 var(--fs-ui)/1 var(--f);color:var(--hi)}
 .site-foot span{display:flex;gap:18px}
 .site-foot a{opacity:.85}.site-foot a:hover{opacity:1}
-.nf{padding:var(--s4) var(--g)}
+.nf{padding:var(--s4) var(--edge)}
 .nf h1{font:700 var(--fs-xl)/1 var(--f);color:var(--hi);margin:0 0 var(--s1)}
 
 /* ---------- animações de scroll ---------- */
