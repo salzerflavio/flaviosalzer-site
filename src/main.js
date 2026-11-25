@@ -181,6 +181,8 @@
         const b = w[i] / sum, k = Math.min(1, b / PEAK);
         r.style.setProperty('--h', (H0 + E * b).toFixed(1) + 'px');
         r.style.setProperty('--a', (k * k * k).toFixed(3));
+        // rows away from the open one fade back softly
+        r.style.setProperty('--o', Math.max(0.22, Math.exp(-((i - cur) ** 2) / 2.6)).toFixed(3));
         const v = vids[i];
         if (!v) return;
         if (k > 0.75) {
