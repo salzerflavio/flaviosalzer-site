@@ -57,5 +57,31 @@
     document.querySelectorAll('.stack .thumb').forEach(t => midObs.observe(t));
   }
 
+  // custom cursor
+  if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    const c = document.createElement('div'); c.className = 'cur'; c.setAttribute('aria-hidden', 'true');
+    const g = document.createElement('span'); g.textContent = '*'; c.appendChild(g);
+    document.body.appendChild(c);
+    document.documentElement.classList.add('has-cur');
+    // centre the glyph's ink on the pointer
+    const r = g.getBoundingClientRect();
+    const cv = document.createElement('canvas').getContext('2d');
+    cv.font = getComputedStyle(c).font;
+    const m = cv.measureText('*');
+    const inkMid = (m.actualBoundingBoxAscent - m.actualBoundingBoxDescent) / 2;
+    const base = m.fontBoundingBoxAscent || r.height * 0.8;
+    const ox = r.width / 2, oy = base - inkMid;
+    g.style.transformOrigin = `${ox}px ${oy}px`;
+    let x = -100, y = -100, raf = 0;
+    const draw = () => { raf = 0; c.style.left = (x - ox) + 'px'; c.style.top = (y - oy) + 'px'; };
+    addEventListener('mousemove', e => {
+      x = e.clientX; y = e.clientY; c.classList.add('on');
+      c.classList.toggle('link', !!e.target.closest('a,button'));
+      if (!raf) raf = requestAnimationFrame(draw);
+    }, { passive: true });
+    document.addEventListener('mouseleave', () => c.classList.remove('on'));
+    addEventListener('blur', () => c.classList.remove('on'));
+  }
+
   document.querySelectorAll('a[href="#top"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); }));
 }

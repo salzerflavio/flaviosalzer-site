@@ -124,3 +124,15 @@ figure{margin:0}
   .js .reveal-t,.js .reveal-m,.js .thumb .frame{opacity:1!important;transform:none!important;clip-path:none!important;transition:none!important}
   .js .reveal-m .m,.js .thumb .cover{transform:none!important}
 }
+
+/* cursor: asterisco do logo, contorno branco; preenchido sobre links */
+@media (hover:hover) and (pointer:fine){
+  html.has-cur,html.has-cur *{cursor:none!important}
+  html.has-cur iframe{cursor:auto!important}
+}
+.cur{position:fixed;left:0;top:0;z-index:9999;pointer-events:none;font:700 46px/1 var(--f);color:transparent;
+  -webkit-text-stroke:1.3px #fff;text-stroke:1.3px #fff;filter:drop-shadow(0 0 1px rgba(0,0,0,.35));
+  opacity:0;transition:opacity .2s,color .18s ease,transform .18s ease;will-change:left,top;white-space:nowrap}
+.cur span{display:block;transition:transform .25s var(--ease)}
+.cur.on{opacity:1}
+.cur.link{color:#fff}
