@@ -29,11 +29,20 @@
     const v = t.querySelector('video.hover');
     if (!v) return;
     if (noHover) return;
-    t.addEventListener('mouseenter', () => { play(v); });
-    t.addEventListener('mouseleave', () => { v.pause(); });
-    t.addEventListener('focus', () => { play(v); });
-    t.addEventListener('blur', () => { v.pause(); });
+    let off;
+    const on = () => { clearTimeout(off); play(v); };
+    const stop = () => { clearTimeout(off); off = setTimeout(() => v.pause(), 350); };
+    t.addEventListener('mouseenter', on);
+    t.addEventListener('mouseleave', stop);
+    t.addEventListener('focus', on);
+    t.addEventListener('blur', stop);
   });
+
+  // preload cover loops as thumbs come into view
+  const preObs = new IntersectionObserver(es => {
+    es.forEach(e => { if (!e.isIntersecting) return; const v = e.target.querySelector('video.hover'); if (v) { v.preload = 'auto'; load(v); } preObs.unobserve(e.target); });
+  }, { rootMargin: '300px 0px' });
+  document.querySelectorAll('.thumb').forEach(t => preObs.observe(t));
 
   // touch screens: the thumb in the middle of the screen plays its loop
   if (noHover) {

@@ -47,7 +47,6 @@ body.pg-home .site-head nav a[href="/"],body.pg-about .site-head nav a[href="/fl
 .thumb .m{position:absolute;inset:-2px;width:calc(100% + 4px);height:calc(100% + 4px);max-width:none;object-position:left top;object-fit:cover;transition:transform 1.2s var(--ease),opacity .35s;transform-origin:left top}
 .thumb .hover{opacity:0}
 .thumb:hover .hover,.thumb.playing .hover{opacity:1}
-.thumb:hover .cover{transform:scale(1.02)}
 .t-title{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:var(--s1);font:500 var(--fs-ui)/1.3 var(--f);color:#fff;
   background:rgba(0,0,0,.22);opacity:0;transition:opacity .35s var(--ease)}
 .thumb:hover .t-title,.thumb:focus-visible .t-title{opacity:1}
@@ -65,7 +64,8 @@ body.pg-home .site-head nav a[href="/"],body.pg-about .site-head nav a[href="/fl
   background:radial-gradient(120% 90% at 30% 18%,rgba(255,255,255,.13),rgba(255,255,255,.03) 38%,transparent 60%)}
 .thumb .frame::after{z-index:2}
 .thumb:hover .frame::before,.thumb.playing .frame::before,.thumb:focus-visible .frame::before{opacity:1}
-.thumb:hover .hover,.thumb.playing .hover{transform:scale(1.035);transform-origin:50% 50%}
+.thumb .hover{transform-origin:50% 50%;transition:opacity .3s ease-out,transform 0s linear .3s}
+.thumb:hover .hover,.thumb.playing .hover{transform:scale(1.035);transition:opacity .3s ease-out,transform 0s}
 .t-title{z-index:3}
 
 .thumb .frame::before{z-index:2}.thumb .frame::after{z-index:3}.t-title{z-index:4}
@@ -139,7 +139,6 @@ figure{margin:0}
 .js .in.reveal-m .m{transform:none}
 .js .thumb.in .frame{clip-path:inset(0)}
 .js .thumb.in .cover{transform:none}
-.js .thumb.in:hover .cover{transform:scale(1.02)}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .js .reveal-t,.js .reveal-m,.js .thumb .frame{opacity:1!important;transform:none!important;clip-path:none!important;transition:none!important}

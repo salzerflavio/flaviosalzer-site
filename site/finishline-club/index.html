@@ -58,7 +58,6 @@ body.pg-home .site-head nav a[href="/"],body.pg-about .site-head nav a[href="/fl
 .thumb .m{position:absolute;inset:-2px;width:calc(100% + 4px);height:calc(100% + 4px);max-width:none;object-position:left top;object-fit:cover;transition:transform 1.2s var(--ease),opacity .35s;transform-origin:left top}
 .thumb .hover{opacity:0}
 .thumb:hover .hover,.thumb.playing .hover{opacity:1}
-.thumb:hover .cover{transform:scale(1.02)}
 .t-title{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:var(--s1);font:500 var(--fs-ui)/1.3 var(--f);color:#fff;
   background:rgba(0,0,0,.22);opacity:0;transition:opacity .35s var(--ease)}
 .thumb:hover .t-title,.thumb:focus-visible .t-title{opacity:1}
@@ -76,7 +75,8 @@ body.pg-home .site-head nav a[href="/"],body.pg-about .site-head nav a[href="/fl
   background:radial-gradient(120% 90% at 30% 18%,rgba(255,255,255,.13),rgba(255,255,255,.03) 38%,transparent 60%)}
 .thumb .frame::after{z-index:2}
 .thumb:hover .frame::before,.thumb.playing .frame::before,.thumb:focus-visible .frame::before{opacity:1}
-.thumb:hover .hover,.thumb.playing .hover{transform:scale(1.035);transform-origin:50% 50%}
+.thumb .hover{transform-origin:50% 50%;transition:opacity .3s ease-out,transform 0s linear .3s}
+.thumb:hover .hover,.thumb.playing .hover{transform:scale(1.035);transition:opacity .3s ease-out,transform 0s}
 .t-title{z-index:3}
 
 .thumb .frame::before{z-index:2}.thumb .frame::after{z-index:3}.t-title{z-index:4}
@@ -150,7 +150,6 @@ figure{margin:0}
 .js .in.reveal-m .m{transform:none}
 .js .thumb.in .frame{clip-path:inset(0)}
 .js .thumb.in .cover{transform:none}
-.js .thumb.in:hover .cover{transform:scale(1.02)}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .js .reveal-t,.js .reveal-m,.js .thumb .frame{opacity:1!important;transform:none!important;clip-path:none!important;transition:none!important}
@@ -217,11 +216,20 @@ figure{margin:0}
     const v = t.querySelector('video.hover');
     if (!v) return;
     if (noHover) return;
-    t.addEventListener('mouseenter', () => { play(v); });
-    t.addEventListener('mouseleave', () => { v.pause(); });
-    t.addEventListener('focus', () => { play(v); });
-    t.addEventListener('blur', () => { v.pause(); });
+    let off;
+    const on = () => { clearTimeout(off); play(v); };
+    const stop = () => { clearTimeout(off); off = setTimeout(() => v.pause(), 350); };
+    t.addEventListener('mouseenter', on);
+    t.addEventListener('mouseleave', stop);
+    t.addEventListener('focus', on);
+    t.addEventListener('blur', stop);
   });
+
+  // preload cover loops as thumbs come into view
+  const preObs = new IntersectionObserver(es => {
+    es.forEach(e => { if (!e.isIntersecting) return; const v = e.target.querySelector('video.hover'); if (v) { v.preload = 'auto'; load(v); } preObs.unobserve(e.target); });
+  }, { rootMargin: '300px 0px' });
+  document.querySelectorAll('.thumb').forEach(t => preObs.observe(t));
 
   // touch screens: the thumb in the middle of the screen plays its loop
   if (noHover) {
