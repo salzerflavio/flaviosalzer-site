@@ -148,10 +148,24 @@ def parse_credits(h):
             rows.append((strip_tags(m.group(1)).strip(), m.group(2).strip()))
     return rows
 
-def project_header(tree):
+
+SMALL = {'a','an','and','as','at','by','for','from','in','of','on','or','the','to','with','x','e','do','da','de','é'}
+def nice_title(page_title, cover_name):
+    if cover_name and cover_name.lower() == page_title.lower():
+        return cover_name
+    if page_title != page_title.upper():
+        return page_title
+    words = page_title.lower().split()
+    out = []
+    for k, w in enumerate(words):
+        out.append(w if (k and w in SMALL) else w[:1].upper() + w[1:] if not w.startswith('#') else '#' + w[1:2].upper() + w[2:])
+    return ' '.join(out)
+
+def project_header(tree, cover_name=''):
     left = tree['children'][0]['mods'][0]['html']
     right = tree['children'][1]['mods'][0]['html'] if len(tree['children']) > 1 else ''
     title, desc = split_title(left)
+    title = nice_title(title, cover_name)
     desc_ps = ''.join(f'<p>{p}</p>' for p in paragraphs(desc))
     creds = parse_credits(right)
     dl = ''.join(f'<div><dt>{html.escape(k)}</dt><dd>{v}</dd></div>' for k, v in creds)
@@ -265,7 +279,7 @@ for p in D['pages']:
     mods = p['mods']
     if slug == 'flavio':
         continue
-    title, head = project_header(mods[0])
+    title, head = project_header(mods[0], clean_name(titles.get(slug, '')))
     rest = render_mods(mods[1:])
     clean_title = titles.get(slug, title)
     desc = strip_tags(split_title(mods[0]['children'][0]['mods'][0]['html'])[1])
