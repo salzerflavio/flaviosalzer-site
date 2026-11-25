@@ -323,7 +323,41 @@ def page(title, body, cls='', desc='Flávio Salzer is a Creative and Art Directo
 </body>
 </html>'''
 
+_P = re.compile(r'(<p\b[^>]*>)(.*?)(</p>)', re.S)
+def _nowidow(m):
+    """glue the last words of a paragraph with nbsp so no word sits alone on the last line"""
+    body = m.group(2)
+    parts = re.split(r'(<[^>]+>)', body)
+    # indices of text chunks (not tags), from the end
+    glue = 2 if re.search(r'[↴→]\s*$', strip_tags(body)) else 1
+    if len(strip_tags(body).split()) < 5:
+        return m.group(0)
+    for k in range(len(parts) - 1, -1, -1):
+        if glue == 0: break
+        if parts[k].startswith('<'): continue
+        t = parts[k].rstrip()
+        trail = parts[k][len(t):]
+        while glue and ' ' in t:
+            i = t.rfind(' ')
+            t = t[:i] + '\u00a0' + t[i+1:]
+            glue -= 1
+            if glue and ' ' not in t: break
+        parts[k] = t + trail
+        if glue and t.strip(): break
+    return m.group(1) + ''.join(parts) + m.group(3)
+def _nowidow_br(m):
+    # each <br>-separated line of a paragraph gets the same treatment
+    segs = re.split(r'(<br\s*/?>)', m.group(2))
+    out = []
+    for sg in segs:
+        if re.fullmatch(r'<br\s*/?>', sg): out.append(sg); continue
+        out.append(_nowidow(re.match(r'(.*)', '<p>' + sg + '</p>', re.S) and _P.match('<p>' + sg + '</p>'))[3:-4])
+    return m.group(1) + ''.join(out) + m.group(3)
+def nowidow(s):
+    return _P.sub(_nowidow_br, s)
+
 def write(path, s):
+    s = nowidow(s)
     p = os.path.join(OUT, path)
     os.makedirs(os.path.dirname(p), exist_ok=True)
     open(p, 'w').write(s)
