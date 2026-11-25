@@ -276,6 +276,11 @@ def next_block(slug):
     return (f'<nav class="pn" aria-label="More projects">'
             f'<a href="/{prv}/" rel="prev">← Previous</a><a href="/{nxt}/" rel="next">Next →</a></nav>')
 
+def _ogv(og):
+    import hashlib
+    p = os.path.join(OUT, og)
+    return hashlib.md5(open(p, 'rb').read()).hexdigest()[:8] if os.path.exists(p) else '1'
+
 # ---------- page shell ----------
 CSS = open('style.css').read()
 JS = open('main.js').read()
@@ -292,7 +297,7 @@ def page(title, body, cls='', desc='Flávio Salzer is a Creative and Art Directo
 <meta property="og:description" content="{html.escape(desc)}">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://flaviosalzer.com{path}">
-<meta property="og:image" content="https://flaviosalzer.com/{og}">
+<meta property="og:image" content="https://flaviosalzer.com/{og}?v={_ogv(og)}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
