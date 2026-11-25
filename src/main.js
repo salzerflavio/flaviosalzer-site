@@ -57,23 +57,14 @@
     document.querySelectorAll('.stack .thumb').forEach(t => midObs.observe(t));
   }
 
-  // custom cursor
+  // custom cursor: Inter's asterisk, outline; filled over links
   if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
     const c = document.createElement('div'); c.className = 'cur'; c.setAttribute('aria-hidden', 'true');
-    const g = document.createElement('span'); g.textContent = '*'; c.appendChild(g);
+    c.innerHTML = '<svg viewBox="140 -1510 863 878" width="56" height="57"><path transform="scale(1,-1)" vector-effect="non-scaling-stroke" d="M476 652 495 936 257 777 160 945 417 1070 160 1195 257 1365 495 1206 476 1490H668L650 1206L888 1365L983 1195L728 1070L983 945L888 777L650 936L668 652Z"/></svg>';
     document.body.appendChild(c);
     document.documentElement.classList.add('has-cur');
-    // centre the glyph's ink on the pointer
-    const r = g.getBoundingClientRect();
-    const cv = document.createElement('canvas').getContext('2d');
-    cv.font = getComputedStyle(c).font;
-    const m = cv.measureText('*');
-    const inkMid = (m.actualBoundingBoxAscent - m.actualBoundingBoxDescent) / 2;
-    const base = m.fontBoundingBoxAscent || r.height * 0.8;
-    const ox = r.width / 2, oy = base - inkMid;
-    g.style.transformOrigin = `${ox}px ${oy}px`;
     let x = -100, y = -100, raf = 0;
-    const draw = () => { raf = 0; c.style.left = (x - ox) + 'px'; c.style.top = (y - oy) + 'px'; };
+    const draw = () => { raf = 0; c.style.transform = `translate3d(${x - 28}px,${y - 28.5}px,0)`; };
     addEventListener('mousemove', e => {
       x = e.clientX; y = e.clientY; c.classList.add('on');
       c.classList.toggle('link', !!e.target.closest('a,button'));
