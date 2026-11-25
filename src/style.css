@@ -49,8 +49,20 @@ body.pg-home .site-head nav a[href="/"],body.pg-about .site-head nav a[href="/fl
 .thumb:hover .hover,.thumb.playing .hover{opacity:1}
 .thumb:hover .cover{transform:scale(1.02)}
 .t-title{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:var(--s1);font:500 var(--fs-ui)/1.3 var(--f);color:#fff;
-  background:rgba(0,0,0,.4);opacity:0;transition:opacity .35s var(--ease)}
+  background:rgba(0,0,0,.22);opacity:0;transition:opacity .35s var(--ease)}
 .thumb:hover .t-title,.thumb:focus-visible .t-title{opacity:1}
+/* hover CRT: retícula RGB fininha + scanlines rolando + vinheta */
+.thumb .frame::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .35s var(--ease);
+  background:
+    repeating-linear-gradient(0deg,rgba(0,0,0,.38) 0 1px,transparent 1px 3px),
+    repeating-linear-gradient(90deg,rgba(255,40,40,.07) 0 1px,rgba(40,255,40,.07) 1px 2px,rgba(40,80,255,.07) 2px 3px),
+    radial-gradient(ellipse at center,transparent 58%,rgba(0,0,0,.5) 100%);
+  background-size:100% 3px,3px 100%,100% 100%;
+  animation:crt-roll 8s linear infinite paused}
+.thumb:hover .frame::after,.thumb.playing .frame::after,.thumb:focus-visible .frame::after{opacity:1;animation-play-state:running}
+.thumb:hover .hover,.thumb.playing .hover{filter:contrast(1.08) saturate(1.15) brightness(1.04)}
+@keyframes crt-roll{to{background-position:0 120px,0 0,0 0}}
+
 .thumb:focus-visible{outline:2px solid var(--hi);outline-offset:-2px}
 @media (max-width:700px){
   :root{--edge:20px}
@@ -121,6 +133,7 @@ figure{margin:0}
 .js .thumb.in .cover{transform:none}
 .js .thumb.in:hover .cover{transform:scale(1.02)}
 @media (prefers-reduced-motion:reduce){
+  .thumb .frame::after{animation:none}
   html{scroll-behavior:auto}
   .js .reveal-t,.js .reveal-m,.js .thumb .frame{opacity:1!important;transform:none!important;clip-path:none!important;transition:none!important}
   .js .reveal-m .m,.js .thumb .cover{transform:none!important}
