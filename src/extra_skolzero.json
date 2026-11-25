@@ -54,14 +54,14 @@
     "type": "grid",
     "items": [
      {
-      "w": 1600,
-      "h": 900,
-      "src": "local:skolzero-girl"
+      "w": 960,
+      "h": 540,
+      "src": "local:skolzero-side-girl"
      },
      {
-      "w": 1600,
-      "h": 900,
-      "src": "local:skolzero-guy"
+      "w": 960,
+      "h": 540,
+      "src": "local:skolzero-side-guy"
      }
     ]
    },
@@ -71,19 +71,9 @@
     "ratio": "56.25%"
    },
    {
-    "type": "grid",
-    "items": [
-     {
-      "w": 1600,
-      "h": 900,
-      "src": "local:skolzero-splash"
-     },
-     {
-      "w": 1600,
-      "h": 900,
-      "src": "local:skolzero-foam"
-     }
-    ]
+    "type": "image",
+    "big": "local:skolzero-splash",
+    "w": 1600
    },
    {
     "type": "text",
@@ -96,73 +86,51 @@
     "ratio": "56.25%"
    },
    {
-    "type": "image",
-    "big": "local:skolzero-header",
-    "w": 1600
-   },
-   {
     "type": "grid",
     "items": [
      {
-      "w": 1920,
-      "h": 1080,
-      "src": "local:skolzero-still-guy"
+      "w": 960,
+      "h": 540,
+      "src": "local:skolzero-still-girl"
      },
      {
-      "w": 1920,
-      "h": 1080,
-      "src": "local:skolzero-still-girl"
+      "w": 960,
+      "h": 540,
+      "src": "local:skolzero-still-guy"
      }
     ]
-   },
-   {
-    "type": "image",
-    "big": "local:skolzero-bottles",
-    "w": 1600
    }
   ]
  },
  "nameMap": {
   "local:skolzero-cover": "skolzero-cover",
   "local:skolzero-hover": "skolzero-hover",
-  "local:skolzero-girl": "skolzero-girl",
-  "local:skolzero-guy": "skolzero-guy",
-  "local:skolzero-splash": "skolzero-splash",
-  "local:skolzero-foam": "skolzero-foam",
-  "local:skolzero-bottles": "skolzero-bottles",
-  "local:skolzero-header": "skolzero-header",
   "local:skolzero-kv": "skolzero-kv",
-  "local:skolzero-still-guy": "skolzero-still-guy",
+  "local:skolzero-splash": "skolzero-splash",
+  "local:skolzero-side-girl": "skolzero-side-girl",
+  "local:skolzero-side-guy": "skolzero-side-guy",
   "local:skolzero-still-girl": "skolzero-still-girl",
-  "local:skolzero-still-foam": "skolzero-still-foam"
+  "local:skolzero-still-guy": "skolzero-still-guy"
  },
  "manifest": {
   "skolzero-cover": {
    "type": "image",
    "src": "skolzero-cover.webp",
    "w": 1280,
-   "h": 1001
+   "h": 1002
   },
   "skolzero-hover": {
    "type": "video",
    "src": "skolzero-hover.mp4",
    "poster": "skolzero-hover.webp",
-   "w": 1000,
-   "h": 782
+   "w": 1280,
+   "h": 1002
   },
-  "skolzero-girl": {
-   "type": "video",
-   "src": "skolzero-girl.mp4",
-   "poster": "skolzero-girl.webp",
-   "w": 1600,
-   "h": 900
-  },
-  "skolzero-guy": {
-   "type": "video",
-   "src": "skolzero-guy.mp4",
-   "poster": "skolzero-guy.webp",
-   "w": 1600,
-   "h": 900
+  "skolzero-kv": {
+   "type": "image",
+   "src": "skolzero-kv.webp",
+   "w": 1920,
+   "h": 1080
   },
   "skolzero-splash": {
    "type": "video",
@@ -171,50 +139,29 @@
    "w": 1600,
    "h": 900
   },
-  "skolzero-foam": {
-   "type": "video",
-   "src": "skolzero-foam.mp4",
-   "poster": "skolzero-foam.webp",
-   "w": 1600,
-   "h": 900
-  },
-  "skolzero-bottles": {
-   "type": "video",
-   "src": "skolzero-bottles.mp4",
-   "poster": "skolzero-bottles.webp",
-   "w": 1600,
-   "h": 900
-  },
-  "skolzero-header": {
-   "type": "video",
-   "src": "skolzero-header.mp4",
-   "poster": "skolzero-header.webp",
-   "w": 1600,
-   "h": 680
-  },
-  "skolzero-kv": {
+  "skolzero-side-girl": {
    "type": "image",
-   "src": "skolzero-kv.webp",
-   "w": 1920,
-   "h": 1080
+   "src": "skolzero-side-girl.webp",
+   "w": 960,
+   "h": 540
   },
-  "skolzero-still-guy": {
+  "skolzero-side-guy": {
    "type": "image",
-   "src": "skolzero-still-guy.webp",
-   "w": 1920,
-   "h": 1080
+   "src": "skolzero-side-guy.webp",
+   "w": 960,
+   "h": 540
   },
   "skolzero-still-girl": {
    "type": "image",
    "src": "skolzero-still-girl.webp",
-   "w": 1920,
-   "h": 1080
+   "w": 960,
+   "h": 540
   },
-  "skolzero-still-foam": {
+  "skolzero-still-guy": {
    "type": "image",
-   "src": "skolzero-still-foam.webp",
-   "w": 1920,
-   "h": 1080
+   "src": "skolzero-still-guy.webp",
+   "w": 960,
+   "h": 540
   }
  }
 }
