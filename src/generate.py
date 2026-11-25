@@ -213,9 +213,24 @@ def write(path, s):
 
 # ---------- home ----------
 covers = D['covers']
+
+def project_meta(slug):
+    p = next((p for p in D['pages'] if slug_of(p['url']) == slug), None)
+    if not p: return '', ''
+    tree = p['mods'][0]
+    right = tree['children'][1]['mods'][0]['html'] if len(tree['children']) > 1 else ''
+    cr = {k.lower(): strip_tags(v).strip() for k, v in parse_credits(right)}
+    return cr.get('client', ''), cr.get('year', '')
+
+def clean_name(t):
+    name = t.split('→')[0]
+    name = re.sub(r'[^\w\s&#\'’.,:!?-]', '', name)
+    return re.sub(r'\s+', ' ', name).strip()
+
 def thumb(c, i, ratio=None):
     n = asset(c['normal']); hv = asset(c['hover'])
-    title = c['title']
+    name = clean_name(c['title']); client, year = project_meta(c['slug'])
+    sub = ', '.join(x for x in (client, year) if x)
     img = media_tag(c['normal'], 'cover') if n else ''
     hover = ''
     if hv and hv['type'] == 'video':
@@ -225,7 +240,7 @@ def thumb(c, i, ratio=None):
     st = f' style="aspect-ratio:{ratio:.4f}"' if ratio else ''
     return (f'<a class="thumb" href="/{c["slug"]}/" style="--i:{i}">'
             f'<div class="frame"{st}>{img}{hover}</div>'
-            f'<span class="t-title">{html.escape(title)}</span></a>')
+            f'<span class="t-title"><b>{html.escape(name)}</b>' + (f'<i>{html.escape(sub)}.</i>' if sub else '') + '</span></a>')
 
 STD = 1891 / 1479
 def masonry(ncols, first):
