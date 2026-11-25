@@ -73,9 +73,9 @@ body.pg-home .site-head nav a[href="/"],body.pg-about .site-head nav a[href="/fl
 }
 
 /* ---------- projeto ---------- */
-.p-head{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:'t .' 'd c';gap:var(--s1) var(--s2);padding:var(--s2) var(--edge) var(--s3)}
+.p-head{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:'b .' 't .' 'd c';gap:var(--s1) var(--s2);padding:var(--s2) var(--edge) var(--s3)}
 .p-intro{display:contents}
-.p-head h1{grid-area:t}.p-desc{grid-area:d}.credits{grid-area:c}
+.p-head h1{grid-area:t}.p-head .back{grid-area:b;justify-self:start;font:400 28px/1 var(--f);color:var(--hi);margin-bottom:var(--s1);transition:transform .3s var(--ease)}.p-head .back:hover{transform:translateX(-6px)}.p-desc{grid-area:d}.credits{grid-area:c}
 .p-head h1{margin:0;align-self:end;font:700 var(--fs-xl)/1.02 var(--f);color:var(--hi);letter-spacing:-.015em;text-wrap:balance}
 .p-desc{max-width:60ch;display:grid;gap:1em}
 .credits{margin:0;display:grid;gap:var(--s1);max-width:560px;align-content:start;font-size:var(--fs-sm);line-height:1.45}
@@ -99,7 +99,7 @@ figure{margin:0}
 .prose{padding:var(--s2) var(--edge);max-width:760px;margin:0 auto;display:grid;gap:1em}
 .cols{display:flex;gap:var(--g)}
 @media (max-width:800px){
-  .p-head{grid-template-columns:1fr;grid-template-areas:'t' 'd' 'c';gap:var(--s1);padding-bottom:var(--s2)}.credits{margin-top:var(--s1)}
+  .p-head{grid-template-columns:1fr;grid-template-areas:'b' 't' 'd' 'c';gap:var(--s1);padding-bottom:var(--s2)}.credits{margin-top:var(--s1)}
   .grid .row{flex-wrap:wrap}
   .grid .row .cell{flex-basis:calc(50% - var(--g)/2)!important}
   .statement{padding:var(--s2) var(--edge)}
@@ -169,7 +169,7 @@ figure{margin:0}
   <nav><a href="/">work</a><a href="/flavio/">☺ about</a></nav>
 </header>
 <main>
-<article class="project"><header class="p-head"><div class="p-intro"><h1 class="reveal-t">The Zé Theory</h1><div class="p-desc reveal-t"><p>In 2022 we had the Fifa World Cup, the biggest event in the universe for soccer lovers. And, in Brazil, soccer is a big deal. Our country stops to watch the national team playing. Soccer is almost a religion for Brazilian people, surrounded by rituals and beliefs.</p><p>Here it is impossible to tear soccer and superstition apart. And, in 2022, we discovered one really important thing: every time that Brazil won a World Cup, there was a player named "Zé" in the pitch.</p><p>Wooooow! People needed to know that, and who is better to announce that than a brand with "Zé" in its name?</p><p>But wait, in 2022, was there a Zé on the team?</p></div></div><dl class="credits reveal-t"><div><dt>Role</dt><dd>Art Direction, Digital Content</dd></div><div><dt>With</dt><dd>Bruno Brux, Murilo Mello, Ju Utsch, Sofia Calvit, Cauique Johnson, Daniel Achucarro, Deborah Ferreira, Vitinho Chagas</dd></div><div><dt>Agency</dt><dd>GUT</dd></div><div><dt>Client</dt><dd>Zé Delivery</dd></div><div><dt>Year</dt><dd>2022</dd></div></dl></header><div class="p-body"><div class="mod embed reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe src="https://player.vimeo.com/video/827802570?h=451729e20b&amp;title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></div>
+<article class="project"><header class="p-head"><div class="p-intro"><a class="back reveal-t" href="/" aria-label="Back to work">←</a><h1 class="reveal-t">The Zé Theory</h1><div class="p-desc reveal-t"><p>In 2022 we had the Fifa World Cup, the biggest event in the universe for soccer lovers. And, in Brazil, soccer is a big deal. Our country stops to watch the national team playing. Soccer is almost a religion for Brazilian people, surrounded by rituals and beliefs.</p><p>Here it is impossible to tear soccer and superstition apart. And, in 2022, we discovered one really important thing: every time that Brazil won a World Cup, there was a player named "Zé" in the pitch.</p><p>Wooooow! People needed to know that, and who is better to announce that than a brand with "Zé" in its name?</p><p>But wait, in 2022, was there a Zé on the team?</p></div></div><dl class="credits reveal-t"><div><dt>Role</dt><dd>Art Direction, Digital Content</dd></div><div><dt>With</dt><dd>Bruno Brux, Murilo Mello, Ju Utsch, Sofia Calvit, Cauique Johnson, Daniel Achucarro, Deborah Ferreira, Vitinho Chagas</dd></div><div><dt>Agency</dt><dd>GUT</dd></div><div><dt>Client</dt><dd>Zé Delivery</dd></div><div><dt>Year</dt><dd>2022</dd></div></dl></header><div class="p-body"><div class="mod embed reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe src="https://player.vimeo.com/video/827802570?h=451729e20b&amp;title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></div>
 <figure class="mod img reveal-m"><img class="m " src="/media/62a339d2-ff44-4cf3-b86b-78dd0f469d65_rw_1920.webp" width="1920" height="5" loading="lazy" decoding="async" alt=""></figure>
 <figure class="mod img reveal-m"><img class="m " src="/media/ce0e8817-1c38-455f-bdb3-6d2e0bbf56ab_rw_1920.webp" width="1920" height="1080" loading="lazy" decoding="async" alt=""></figure>
 <figure class="mod img reveal-m"><img class="m " src="/media/056490ad-a19d-41ba-9d20-b31a4b3e5f0a_rw_1920.webp" width="1920" height="1080" loading="lazy" decoding="async" alt=""></figure>

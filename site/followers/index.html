@@ -73,9 +73,9 @@ body.pg-home .site-head nav a[href="/"],body.pg-about .site-head nav a[href="/fl
 }
 
 /* ---------- projeto ---------- */
-.p-head{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:'t .' 'd c';gap:var(--s1) var(--s2);padding:var(--s2) var(--edge) var(--s3)}
+.p-head{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:'b .' 't .' 'd c';gap:var(--s1) var(--s2);padding:var(--s2) var(--edge) var(--s3)}
 .p-intro{display:contents}
-.p-head h1{grid-area:t}.p-desc{grid-area:d}.credits{grid-area:c}
+.p-head h1{grid-area:t}.p-head .back{grid-area:b;justify-self:start;font:400 28px/1 var(--f);color:var(--hi);margin-bottom:var(--s1);transition:transform .3s var(--ease)}.p-head .back:hover{transform:translateX(-6px)}.p-desc{grid-area:d}.credits{grid-area:c}
 .p-head h1{margin:0;align-self:end;font:700 var(--fs-xl)/1.02 var(--f);color:var(--hi);letter-spacing:-.015em;text-wrap:balance}
 .p-desc{max-width:60ch;display:grid;gap:1em}
 .credits{margin:0;display:grid;gap:var(--s1);max-width:560px;align-content:start;font-size:var(--fs-sm);line-height:1.45}
@@ -99,7 +99,7 @@ figure{margin:0}
 .prose{padding:var(--s2) var(--edge);max-width:760px;margin:0 auto;display:grid;gap:1em}
 .cols{display:flex;gap:var(--g)}
 @media (max-width:800px){
-  .p-head{grid-template-columns:1fr;grid-template-areas:'t' 'd' 'c';gap:var(--s1);padding-bottom:var(--s2)}.credits{margin-top:var(--s1)}
+  .p-head{grid-template-columns:1fr;grid-template-areas:'b' 't' 'd' 'c';gap:var(--s1);padding-bottom:var(--s2)}.credits{margin-top:var(--s1)}
   .grid .row{flex-wrap:wrap}
   .grid .row .cell{flex-basis:calc(50% - var(--g)/2)!important}
   .statement{padding:var(--s2) var(--edge)}
@@ -169,7 +169,7 @@ figure{margin:0}
   <nav><a href="/">work</a><a href="/flavio/">☺ about</a></nav>
 </header>
 <main>
-<article class="project"><header class="p-head"><div class="p-intro"><h1 class="reveal-t">Followers Store</h1><div class="p-desc reveal-t"><p>New Balance set out to redefine exclusivity by giving true fans access to a limited-edition São Paulo F.C. jersey. The brand launched the Followers Store, an online shop that only unlocked for supporters physically following the team’s bus, shutting out scalpers.</p></div></div><dl class="credits reveal-t"><div><dt>Role</dt><dd>Creative Direction, Design</dd></div><div><dt>With</dt><dd>Felipe Cury, Alex Adati, Mihail Aleksandrov, Cauique Johnson, Leone Damião, Gabriel Santos, Isa Yamada, Matheus Távora, João Eustachio, Lucas Pereira.</dd></div><div><dt>Agency</dt><dd>LePub São Paulo</dd></div><div><dt>Client</dt><dd>New Balance</dd></div><div><dt>Year</dt><dd>2024</dd></div></dl></header><div class="p-body"><div class="mod embed reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe src="https://player.vimeo.com/video/1118379837?h=94b6e5e318&amp;title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></div>
+<article class="project"><header class="p-head"><div class="p-intro"><a class="back reveal-t" href="/" aria-label="Back to work">←</a><h1 class="reveal-t">Followers Store</h1><div class="p-desc reveal-t"><p>New Balance set out to redefine exclusivity by giving true fans access to a limited-edition São Paulo F.C. jersey. The brand launched the Followers Store, an online shop that only unlocked for supporters physically following the team’s bus, shutting out scalpers.</p></div></div><dl class="credits reveal-t"><div><dt>Role</dt><dd>Creative Direction, Design</dd></div><div><dt>With</dt><dd>Felipe Cury, Alex Adati, Mihail Aleksandrov, Cauique Johnson, Leone Damião, Gabriel Santos, Isa Yamada, Matheus Távora, João Eustachio, Lucas Pereira.</dd></div><div><dt>Agency</dt><dd>LePub São Paulo</dd></div><div><dt>Client</dt><dd>New Balance</dd></div><div><dt>Year</dt><dd>2024</dd></div></dl></header><div class="p-body"><div class="mod embed reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe src="https://player.vimeo.com/video/1118379837?h=94b6e5e318&amp;title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></div>
 <figure class="mod img reveal-m"><img class="m " src="/media/9b588af6-d735-46ff-bfb6-caa639a97bf9_rw_1920.webp" width="1920" height="5" loading="lazy" decoding="async" alt=""></figure>
 <div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:1.7797 1 0"><video class="m " data-src="/media/2e05f75d-953a-454c-9db7-07c76145ec6f_rw_1920.mp4" poster="/media/2e05f75d-953a-454c-9db7-07c76145ec6f_rw_1920.webp" width="1260" height="708" muted loop playsinline preload="none"></video></div><div class="cell" style="flex:1.7797 1 0"><video class="m " data-src="/media/d2b0a2ce-b1f7-4ce6-bb0f-c1f7c42d3535_rw_1920.mp4" poster="/media/d2b0a2ce-b1f7-4ce6-bb0f-c1f7c42d3535_rw_1920.webp" width="1260" height="708" muted loop playsinline preload="none"></video></div></div><div class="row"><div class="cell" style="flex:1.7797 1 0"><video class="m " data-src="/media/4bfe2c2f-6636-4d03-b4ae-a0b1330c74a6_rw_1920.mp4" poster="/media/4bfe2c2f-6636-4d03-b4ae-a0b1330c74a6_rw_1920.webp" width="1260" height="708" muted loop playsinline preload="none"></video></div><div class="cell" style="flex:1.7797 1 0"><video class="m " data-src="/media/2a921b25-3ea6-401f-9ad9-b015e923b2ad_rw_1920.mp4" poster="/media/2a921b25-3ea6-401f-9ad9-b015e923b2ad_rw_1920.webp" width="1260" height="708" muted loop playsinline preload="none"></video></div></div></div>
 <div class="mod statement reveal-t"><p><span class="t-lg">We first sold the jersey to real fans. But to share the story behind it with everyone, we created this film. ↴</span></p></div>

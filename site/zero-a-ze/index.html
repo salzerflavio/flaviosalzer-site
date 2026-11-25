@@ -73,9 +73,9 @@ body.pg-home .site-head nav a[href="/"],body.pg-about .site-head nav a[href="/fl
 }
 
 /* ---------- projeto ---------- */
-.p-head{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:'t .' 'd c';gap:var(--s1) var(--s2);padding:var(--s2) var(--edge) var(--s3)}
+.p-head{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:'b .' 't .' 'd c';gap:var(--s1) var(--s2);padding:var(--s2) var(--edge) var(--s3)}
 .p-intro{display:contents}
-.p-head h1{grid-area:t}.p-desc{grid-area:d}.credits{grid-area:c}
+.p-head h1{grid-area:t}.p-head .back{grid-area:b;justify-self:start;font:400 28px/1 var(--f);color:var(--hi);margin-bottom:var(--s1);transition:transform .3s var(--ease)}.p-head .back:hover{transform:translateX(-6px)}.p-desc{grid-area:d}.credits{grid-area:c}
 .p-head h1{margin:0;align-self:end;font:700 var(--fs-xl)/1.02 var(--f);color:var(--hi);letter-spacing:-.015em;text-wrap:balance}
 .p-desc{max-width:60ch;display:grid;gap:1em}
 .credits{margin:0;display:grid;gap:var(--s1);max-width:560px;align-content:start;font-size:var(--fs-sm);line-height:1.45}
@@ -99,7 +99,7 @@ figure{margin:0}
 .prose{padding:var(--s2) var(--edge);max-width:760px;margin:0 auto;display:grid;gap:1em}
 .cols{display:flex;gap:var(--g)}
 @media (max-width:800px){
-  .p-head{grid-template-columns:1fr;grid-template-areas:'t' 'd' 'c';gap:var(--s1);padding-bottom:var(--s2)}.credits{margin-top:var(--s1)}
+  .p-head{grid-template-columns:1fr;grid-template-areas:'b' 't' 'd' 'c';gap:var(--s1);padding-bottom:var(--s2)}.credits{margin-top:var(--s1)}
   .grid .row{flex-wrap:wrap}
   .grid .row .cell{flex-basis:calc(50% - var(--g)/2)!important}
   .statement{padding:var(--s2) var(--edge)}
@@ -169,7 +169,7 @@ figure{margin:0}
   <nav><a href="/">work</a><a href="/flavio/">☺ about</a></nav>
 </header>
 <main>
-<article class="project"><header class="p-head"><div class="p-intro"><h1 class="reveal-t">From Zero to Zé</h1><div class="p-desc reveal-t"><p>Zé Delivery’s new brand platform is “From Zero to Zé.” A new era for the app, with more products, more occasions, and fewer excuses not to order.</p></div></div><dl class="credits reveal-t"><div><dt>Role</dt><dd>Creative Direction, Art Direction</dd></div><div><dt>With</dt><dd>Bruno Brux, Rainor Marinho, Gabriel Padilha, Matheus Távora, Yasmin Rodrigues</dd></div><div><dt>Agency</dt><dd>GUT</dd></div><div><dt>Client</dt><dd>Zé Delivery</dd></div><div><dt>Year</dt><dd>2026</dd></div></dl></header><div class="p-body"><div class="mod embed reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe src="https://player.vimeo.com/video/1203897634?h=94b6e5e318&amp;title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></div>
+<article class="project"><header class="p-head"><div class="p-intro"><a class="back reveal-t" href="/" aria-label="Back to work">←</a><h1 class="reveal-t">From Zero to Zé</h1><div class="p-desc reveal-t"><p>Zé Delivery’s new brand platform is “From Zero to Zé.” A new era for the app, with more products, more occasions, and fewer excuses not to order.</p></div></div><dl class="credits reveal-t"><div><dt>Role</dt><dd>Creative Direction, Art Direction</dd></div><div><dt>With</dt><dd>Bruno Brux, Rainor Marinho, Gabriel Padilha, Matheus Távora, Yasmin Rodrigues</dd></div><div><dt>Agency</dt><dd>GUT</dd></div><div><dt>Client</dt><dd>Zé Delivery</dd></div><div><dt>Year</dt><dd>2026</dd></div></dl></header><div class="p-body"><div class="mod embed reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe src="https://player.vimeo.com/video/1203897634?h=94b6e5e318&amp;title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></div>
 <figure class="mod img reveal-m"><img class="m " src="/media/80c7218e-6047-4bd3-a7ed-037c01986446_rw_1920.webp" width="1920" height="5" loading="lazy" decoding="async" alt=""></figure>
 <div class="mod statement reveal-t"><p><span class="t-lg">To bring Zé’s new chapter to life, we teamed up with Porta dos Fundos. A very serious business strategy involving very unserious people.</span></p></div>
 <div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:1.7805 1 0"><video class="m " data-src="/media/41464fb9-1422-44ca-94b4-19d6de328570_rw_1200.mp4" poster="/media/41464fb9-1422-44ca-94b4-19d6de328570_rw_1200.webp" width="1168" height="656" muted loop playsinline preload="none"></video></div><div class="cell" style="flex:1.7805 1 0"><video class="m " data-src="/media/3c88743b-f546-4731-b4f0-89ba12d9d865_rw_1200.mp4" poster="/media/3c88743b-f546-4731-b4f0-89ba12d9d865_rw_1200.webp" width="1168" height="656" muted loop playsinline preload="none"></video></div></div></div>
