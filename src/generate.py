@@ -37,6 +37,11 @@ FIXES = [
     ('Zé Delivery aapp', 'Zé Delivery app'),
     ('OTHERS FESTIVALS', 'OTHER FESTIVALS'),
     ('Mihail Alexandrov', 'Mihail Aleksandrov'),
+    ('Filme - Look for The Earth', 'Film - Look to the Earth'),
+    ('Look for The Earth', 'Look to the Earth'),
+    ('Trouble calls for trouble', 'Trouble Calls for Trouble'),
+    ('Zero a Zé - Modo Sacooler', 'From Zero to Zé - Sacooler Mode'),
+    ('Zé Delivery’s new brand platform is “From Zero to Zé.”', 'Zé Delivery’s new brand platform is “From Zero to Zé.”'),
     ('Engagement- The', 'Engagement - The'),
     ('Wooooow! People did need to know that', 'Wooooow! People needed to know that'),
 ]
@@ -149,6 +154,29 @@ def parse_credits(h):
     return rows
 
 
+NAMES = {
+    'followers': 'Followers Store',
+    'the-ze-theory': 'The Zé Theory',
+    'skip-the-line': 'Skip the Line',
+    'finishline-club': 'Finish Line Club',
+    'copia-de-iphone-17pro-x-mercado-libre': 'Chew It',
+    'mercadolibrexapple': 'iPhone 17 Pro x Mercado Libre',
+    'zero-a-ze': 'From Zero to Zé',
+    'congress-league': 'Congress League',
+    'maradona': 'The Man Who Became God',
+    'shadow-delivery': 'Shadow Delivery',
+    'ceu-azul': 'Brazil’s Sky Is Blue',
+    'perrengue': 'Trouble Calls for Trouble',
+    'regeneracao': 'Look to the Earth',
+    'notificacoes': 'Life’s Notifications',
+    'flexmode': '#FlexMode',
+    'ai-assisted': 'AI-Assisted Software Engineering',
+    'hh-virtual-skol': 'Virtual Happy Hour',
+    'ze-salva': 'Zé Saves',
+    'the-smallest-launch': 'The Smallest Launch in the World',
+    'delivery-pool': 'Pool Delivery',
+}
+
 SMALL = {'a','an','and','as','at','by','for','from','in','of','on','or','the','to','with','x','e','do','da','de','é'}
 def nice_title(page_title, cover_name):
     if cover_name and cover_name.lower() == page_title.lower():
@@ -243,7 +271,7 @@ def clean_name(t):
 
 def thumb(c, i, ratio=None):
     n = asset(c['normal']); hv = asset(c['hover'])
-    name = clean_name(c['title']); client, year = project_meta(c['slug'])
+    name = NAMES.get(c['slug']) or clean_name(c['title']); client, year = project_meta(c['slug'])
     sub = ', '.join(x for x in (client, year) if x)
     img = media_tag(c['normal'], 'cover') if n else ''
     hover = ''
@@ -280,8 +308,10 @@ for p in D['pages']:
     if slug == 'flavio':
         continue
     title, head = project_header(mods[0], clean_name(titles.get(slug, '')))
+    if slug in NAMES:
+        head = re.sub(r'(<h1 class="reveal-t">)[^<]*', lambda m: m.group(1) + html.escape(NAMES[slug]), head, count=1); title = NAMES[slug]
     rest = render_mods(mods[1:])
-    clean_title = titles.get(slug, title)
+    clean_title = NAMES.get(slug, title)
     desc = strip_tags(split_title(mods[0]['children'][0]['mods'][0]['html'])[1])
     desc = re.sub(r'\s+', ' ', desc).strip()[:180]
     write(f'{slug}/index.html', page(f'{clean_title} — Flávio Salzer', f'<article class="project">{head}<div class="p-body">{rest}</div></article>', 'proj', desc or 'Flávio Salzer — Creative and Art Director.'))
