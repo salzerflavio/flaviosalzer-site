@@ -143,13 +143,24 @@ figure{margin:0}
   html.has-cur,html.has-cur *{cursor:none!important}
   html.has-cur iframe{cursor:auto!important}
 }
-.cur{position:fixed;left:0;top:0;z-index:9999;pointer-events:none;opacity:0;transition:opacity .2s;will-change:transform}
+.cur{view-transition-name:cursor;position:fixed;left:0;top:0;z-index:9999;pointer-events:none;opacity:0;transition:opacity .2s;will-change:transform}
 .cur svg{display:block;overflow:visible}
 .cur.on{opacity:1}
 .cur path{fill:#fff;fill-rule:evenodd;transition:opacity .18s ease}
 .cur .f{opacity:0}
 .cur.link .f{opacity:1}
 .cur.link .o{opacity:0}
+
+/* transição entre páginas (como a do Elvis): a página atual sobe e a nova entra de baixo */
+@view-transition{navigation:auto}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.9s;animation-timing-function:cubic-bezier(.87,0,.13,1);animation-fill-mode:both;mix-blend-mode:normal}
+::view-transition-old(root){animation-name:vt-out}
+::view-transition-new(root){animation-name:vt-in}
+::view-transition-group(root){background:#000}
+@keyframes vt-out{to{transform:translateY(-100%)}}
+@keyframes vt-in{from{transform:translateY(100%)}}
+@media (prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root){animation:none}}
+::view-transition-group(cursor){animation:none}
 </style>
 </head>
 <body class="pg-home" id="top">
