@@ -357,6 +357,7 @@ def nowidow(s):
     return _P.sub(_nowidow_br, s)
 
 def write(path, s):
+    s = s.replace('<br> -  From Zero to Zé - Sacooler', '<br><strong>SILVER</strong> -  From Zero to Zé - Sacooler')  # award level missing in source
     s = nowidow(s)
     p = os.path.join(OUT, path)
     os.makedirs(os.path.dirname(p), exist_ok=True)
