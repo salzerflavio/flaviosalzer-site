@@ -18,7 +18,7 @@
       "mods": [
        {
         "type": "text",
-        "html": "<big><b>SKOL ZERO ZERO</b></big>\nSkol Zero Zero is the first beer in Brazil with zero alcohol and zero sugar, without giving up the lightness and refreshing taste that made Skol one of the country’s favorite beers.\nThe launch had to say all of that at once, in a language as light, bright and summery as the beer itself.",
+        "html": "<big><b>SKOL ZERO ZERO</b></big>\nSomewhere along the way, drinking less became a full-time personality. And alcohol-free beers started looking more like supplements than beer.\nTo launch Brazil’s first zero-alcohol, zero-sugar beer, Skol challenged the category’s most unnecessary restriction: having fun.\nInstead of making beer fit into wellness culture, we made wellness fit into beer culture.",
         "align": "left"
        }
       ]
@@ -41,13 +41,8 @@
     "ratio": "56.25%"
    },
    {
-    "type": "image",
-    "big": "local:skolzero-kv",
-    "w": 1920
-   },
-   {
     "type": "text",
-    "html": "<big>Zero alcohol. Zero sugar. Zero giving up on what makes a Skol a Skol.</big>",
+    "html": "<big>A healthy disrespect for wellness.</big>\n<big>Twenty years later, we brought back one of Skol’s most iconic campaigns. Because if Skol had invented wellness, even healthy habits would be more fun.</big>",
     "align": "center"
    },
    {
@@ -66,24 +61,29 @@
     ]
    },
    {
+    "type": "text",
+    "html": "<big>Less fitness. More thirst.</big>\n<big>Sun-kissed bottles, ice-cold beer and unapologetic appetite appeal. Because a beer with zero alcohol and zero sugar should still look like something you’d crave, not something your nutritionist prescribed. ↴</big>",
+    "align": "center"
+   },
+   {
     "type": "embed",
     "src": "https://player.vimeo.com/video/1230718028",
     "ratio": "56.25%"
    },
    {
     "type": "image",
-    "big": "local:skolzero-splash",
-    "w": 1600
-   },
-   {
-    "type": "text",
-    "html": "<big>Golden hour, ice-cold bottles and a splash in every frame: the most refreshing sip of the summer, minus the hangover. ↴</big>",
-    "align": "center"
+    "big": "local:skolzero-kv",
+    "w": 1920
    },
    {
     "type": "embed",
     "src": "https://player.vimeo.com/video/1230714648",
     "ratio": "56.25%"
+   },
+   {
+    "type": "image",
+    "big": "local:skolzero-splash",
+    "w": 1600
    },
    {
     "type": "grid",

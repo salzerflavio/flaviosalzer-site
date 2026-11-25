@@ -212,8 +212,8 @@ html.view-list .pg-home .plist{display:block}
 .pr-r{display:flex;align-items:center;gap:16px}
 .prow:hover .pr-meta{color:var(--hi)}
 .pr-stage{position:absolute;inset:36px 0 12px;display:flex;align-items:center;justify-content:center}
-.pr-big{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font:500 clamp(56px,9.4vw,168px)/1 var(--f);letter-spacing:-.045em;white-space:nowrap;color:var(--hi);opacity:var(--a,0);pointer-events:none}
-.pr-img{position:relative;z-index:2;height:100%;width:clamp(190px,23vw,420px);overflow:hidden;background:#111}
+.pr-big{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font:500 clamp(48px,7.6vw,132px)/1 var(--f);letter-spacing:-.045em;white-space:nowrap;color:var(--hi);opacity:var(--a,0);pointer-events:none}
+.pr-img{position:relative;z-index:2;height:100%;width:clamp(200px,24vw,400px);overflow:hidden;background:#111}
 .pr-img img,.pr-img video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .pr-img video{opacity:0;transition:opacity .4s}
 .pr-img video.on{opacity:1}
@@ -228,7 +228,7 @@ html.view-list .pg-home .plist{display:block}
 @media (max-width:700px){
   .pr-meta{font-size:12px}
   .pr-bd{display:none}
-  .pr-img{width:42vw}
+  .pr-img{width:58vw}
   .pr-big{font-size:10.5vw}
 }
 

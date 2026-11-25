@@ -153,33 +153,45 @@
   if (plistEl) {
     const rows = [...plistEl.querySelectorAll('.prow')];
     const vids = rows.map(r => r.querySelector('video'));
-    let H0 = 0, E = 0, top = 0, vh = 0, queued = false;
+    // Each row gets a Gaussian share of one extra "open" height; the shares are
+    // normalised so they always sum to 1 (total list height never changes), and
+    // the open position eases toward the scroll position for a soft hand-off.
+    const SIG = 0.62, PEAK = 1 / (1 + 2 * Math.exp(-1 / (2 * SIG * SIG)) + 2 * Math.exp(-4 / (2 * SIG * SIG)));
+    let H0 = 0, E = 0, top = 0, vh = 0, cur = null, goal = 0, queued = false;
     const measure = () => {
       vh = innerHeight;
-      H0 = Math.max(104, vh * 0.15);
-      E = Math.max(220, vh * 0.44);
+      const W = parseFloat(getComputedStyle(rows[0].querySelector('.pr-img')).width) || 320;
+      H0 = Math.max(96, Math.min(124, vh * 0.13));
+      const open = W * 0.6 + 48;                     // horizontal image when open
+      E = Math.max(0, open - H0) / PEAK;
       plistEl.style.paddingTop = '0px';
       const t0 = plistEl.getBoundingClientRect().top + scrollY;
-      // nudge the list down so the first row opens centred on screen at the top of the page
-      const pad = Math.max(0, vh / 2 - (H0 + E) / 2 - t0);
+      const pad = Math.max(0, vh / 2 - (H0 + E * PEAK) / 2 - t0);
       plistEl.style.paddingTop = pad + 'px';
       top = t0 + pad;
     };
+    const target = () => Math.min(rows.length - 1, Math.max(0, (scrollY + vh / 2 - top - H0 / 2 - E * PEAK / 2) / H0));
     const paint = () => {
       queued = false;
       if (!root.classList.contains('view-list')) return;
-      const t = Math.min(rows.length - 1, Math.max(0, (scrollY + vh / 2 - top - H0 / 2 - E / 2) / H0));
+      goal = target();
+      if (cur === null) cur = goal;
+      cur += (goal - cur) * 0.12;
+      if (Math.abs(goal - cur) < 0.001) cur = goal;
+      const w = rows.map((r, i) => Math.exp(-((i - cur) ** 2) / (2 * SIG * SIG)));
+      const sum = w.reduce((s, x) => s + x, 0);
       rows.forEach((r, i) => {
-        const d = i - t, b = Math.abs(d) < 1 ? Math.cos(Math.PI * d / 2) ** 2 : 0;
+        const b = w[i] / sum, k = Math.min(1, b / PEAK);
         r.style.setProperty('--h', (H0 + E * b).toFixed(1) + 'px');
-        r.style.setProperty('--a', (b * b).toFixed(3));
+        r.style.setProperty('--a', (k * k * k).toFixed(3));
         const v = vids[i];
         if (!v) return;
-        if (b > 0.55) {
+        if (k > 0.75) {
           if (!v.src) v.src = v.dataset.src;
           if (v.paused) v.play().then(() => v.classList.add('on')).catch(() => {});
         } else if (!v.paused) { v.pause(); v.classList.remove('on'); }
       });
+      if (cur !== goal) req();
     };
     const req = () => { if (!queued) { queued = true; requestAnimationFrame(paint); } };
     const root = document.documentElement;
