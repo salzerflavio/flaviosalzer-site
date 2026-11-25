@@ -379,6 +379,7 @@ AWARDS = {  # badges as they appear on each cover
     'skip-the-line': ['lion'],
     'perrengue': ['effie', 'clube'],
     'regeneracao': ['clube'],
+    'zero-a-ze': ['effie'],
 }
 AWARD_LABEL = {'lion': 'Cannes Lions', 'effie': 'Effie', 'head': 'Award', 'clube': 'Clube de Criação'}
 def badges(slug):
