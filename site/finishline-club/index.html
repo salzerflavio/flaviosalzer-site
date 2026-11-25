@@ -7,7 +7,7 @@
 <meta name="description" content="The best part of the run is the finish line.">
 <meta property="og:title" content="Finish Line Club → Heineken 🏃‍♂️ — Flávio Salzer">
 <meta property="og:description" content="The best part of the run is the finish line.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23000'/><text x='4' y='23' font-family='Helvetica,Arial' font-weight='700' font-size='20' fill='%23eee'>f*</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🫀</text></svg>">
 <script>document.documentElement.classList.add('js')</script>
 <style>/* ==========================================================
    f* — GUIA PADRÃO
@@ -49,11 +49,12 @@ body.pg-home .site-head nav a[href="/"],body.pg-about .site-head nav a[href="/fl
 
 /* ---------- home: 2 colunas intercaladas, sem respiro ---------- */
 .masonry{display:flex}
+.masonry.m2{display:none}
+@media (max-width:1000px){.masonry.m3{display:none}.masonry.m2{display:flex}}
 .mcol{flex:1 1 0;display:flex;flex-direction:column}
 .stack{display:none}
 .thumb{position:relative;display:block;overflow:hidden}
 .thumb .frame{position:relative;aspect-ratio:1891/1479;overflow:hidden;background:#000;margin-bottom:-1px}
-.thumb.tall .frame{aspect-ratio:1/1}
 .thumb .m{position:absolute;inset:-2px;width:calc(100% + 4px);height:calc(100% + 4px);max-width:none;object-fit:cover;transition:transform 1.2s var(--ease),opacity .35s}
 .thumb .hover{opacity:0}
 .thumb:hover .hover,.thumb.playing .hover{opacity:1}
@@ -63,7 +64,7 @@ body.pg-home .site-head nav a[href="/"],body.pg-about .site-head nav a[href="/fl
 .thumb:hover .t-title,.thumb:focus-visible .t-title{opacity:1}
 .thumb:focus-visible{outline:2px solid var(--hi);outline-offset:-2px}
 @media (max-width:700px){
-  .masonry{display:none}
+  .masonry,.masonry.m2{display:none}
   .stack{display:block}
   .thumb.playing .t-title{opacity:1}
 }

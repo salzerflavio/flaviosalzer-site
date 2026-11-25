@@ -186,7 +186,7 @@ def page(title, body, cls='', desc='Flávio Salzer — Creative and Art Director
 <meta name="description" content="{html.escape(desc)}">
 <meta property="og:title" content="{html.escape(title)}">
 <meta property="og:description" content="{html.escape(desc)}">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23000'/><text x='4' y='23' font-family='Helvetica,Arial' font-weight='700' font-size='20' fill='%23eee'>f*</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🫀</text></svg>">
 <script>document.documentElement.classList.add('js')</script>
 <style>{CSS}</style>
 </head>
@@ -213,33 +213,39 @@ def write(path, s):
 
 # ---------- home ----------
 covers = D['covers']
-def thumb(c, i, shape):
+def thumb(c, i, ratio=None):
     n = asset(c['normal']); hv = asset(c['hover'])
     title = c['title']
-    img = media_tag(c['normal'], 'cover', '50vw') if n else ''
+    img = media_tag(c['normal'], 'cover') if n else ''
     hover = ''
     if hv and hv['type'] == 'video':
         hover = f'<video class="m hover" data-src="/media/{hv["src"]}" muted loop playsinline preload="none"></video>'
     elif hv and hv['src'] != (n or {}).get('src'):
         hover = f'<img class="m hover" src="/media/{hv["src"]}" loading="lazy" alt="">'
-    return (f'<a class="thumb {shape}" href="/{c["slug"]}/" style="--i:{i}">'
-            f'<div class="frame">{img}{hover}</div>'
+    st = f' style="aspect-ratio:{ratio:.4f}"' if ratio else ''
+    return (f'<a class="thumb" href="/{c["slug"]}/" style="--i:{i}">'
+            f'<div class="frame"{st}>{img}{hover}</div>'
             f'<span class="t-title">{html.escape(title)}</span></a>')
 
-left, right = [], []
-for i, c in enumerate(covers):
-    (left if i % 2 == 0 else right).append((i, c))
-cols_html = []
-for ci, col in enumerate((left, right)):
-    items = []
-    for k, (i, c) in enumerate(col):
-        # first tile of the left column and last tile of the right column are taller → columns interleave, bottoms align
-        tall = (ci == 0 and k == 0) or (ci == 1 and k == len(col) - 1)
-        items.append(thumb(c, i, 'tall' if tall else 'std'))
-    cols_html.append(f'<div class="mcol">{"".join(items)}</div>')
-# single-column (mobile) order is kept via the flat list
-flat = ''.join(thumb(c, i, 'std') for i, c in enumerate(covers))
-home = f'<section class="masonry">{"".join(cols_html)}</section><section class="stack">{flat}</section>'
+STD = 1891 / 1479
+def masonry(ncols, first):
+    """round-robin into columns; first tile of each column gets its own height so columns interleave,
+    then the last tile of each column is stretched so every column ends on the same line."""
+    cols = [[] for _ in range(ncols)]
+    for i, c in enumerate(covers):
+        cols[i % ncols].append([i, c, STD])
+    for k, col in enumerate(cols):
+        col[0][2] = first[k]
+    heights = [sum(1 / r for _, _, r in col) for col in cols]
+    H = max(heights)
+    for col, h in zip(cols, heights):
+        last = col[-1]
+        last[2] = 1 / (1 / last[2] + (H - h))
+    out = ''.join('<div class="mcol">' + ''.join(thumb(c, i, r) for i, c, r in col) + '</div>' for col in cols)
+    return f'<section class="masonry m{ncols}">{out}</section>'
+
+flat = ''.join(thumb(c, i) for i, c in enumerate(covers))
+home = masonry(3, [1.0, STD, 1.12]) + masonry(2, [1.0, STD]) + f'<section class="stack">{flat}</section>'
 write('index.html', page('Flávio Salzer', home, 'pg-home'))
 
 # ---------- projects ----------
