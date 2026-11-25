@@ -48,10 +48,16 @@
       if (v.readyState >= 2) return;
       waits.push(new Promise(res => { v.addEventListener('loadeddata', res, { once: true }); v.addEventListener('error', res, { once: true }); }));
     });
-    document.querySelectorAll('.vplayer iframe').forEach(f => {
-      if (!near(f)) return;
+    // films: every one on the page has to be playing before the page scrolls
+    if (window.Vimeo) document.querySelectorAll('.vplayer').forEach(v => {
+      const f = v.querySelector('iframe');
       if (!f.src) f.src = f.dataset.src;
-      waits.push(new Promise(res => f.addEventListener('load', res, { once: true })));
+      const pl = f._pl || (f._pl = new Vimeo.Player(f));
+      waits.push(new Promise(res => {
+        const ok = () => { v.classList.add('ready'); res(); };
+        pl.on('play', ok); pl.on('playing', ok);
+        pl.ready().then(() => pl.getPaused()).then(p => { if (!p) ok(); }).catch(ok);
+      }));
     });
     const total = waits.length || 1;
     let done = 0, shown = 0.08, target = 0.08;
@@ -66,7 +72,7 @@
       setTimeout(() => { bar.classList.add('done'); root.classList.remove('loading'); if (lenis) lenis.start(); }, 380);
       setTimeout(() => bar.remove(), 1200);
     };
-    Promise.race([Promise.all(waits), new Promise(r => setTimeout(r, 7000))]).then(() => setTimeout(finish, 150));
+    Promise.race([Promise.all(waits), new Promise(r => setTimeout(r, 15000))]).then(() => setTimeout(finish, 150));
   })();
 
   // titles: split into lines and reveal line by line
@@ -85,29 +91,45 @@
   });
   let rw; addEventListener('resize', () => { clearTimeout(rw); rw = setTimeout(() => { splits.forEach(el => { const t = [...el.querySelectorAll('.ln')].map(l => l.textContent).join(' '); el.textContent = t; }); doSplit(); }, 200); });
 
-  // own film player: Vimeo in background mode, click for sound
+  // own film player: Vimeo in background mode, click for sound, white timeline to scrub
   if (window.Vimeo) {
     document.querySelectorAll('.vplayer').forEach(v => {
-      const f = v.querySelector('iframe'), b = v.querySelector('.vp-hit'), lab = v.querySelector('.vp-label');
-      let pl = null;
-      const ensure = () => { if (!pl) { if (!f.src) f.src = f.dataset.src; pl = new Vimeo.Player(f); } return pl; };
+      const f = v.querySelector('iframe'), b = v.querySelector('.vp-hit'), lab = v.querySelector('.vp-label'), tl = v.querySelector('.vp-tl');
+      const ensure = () => { if (!f.src) f.src = f.dataset.src; return f._pl || (f._pl = new Vimeo.Player(f)); };
+      const pl = ensure();
+      pl.on('play', () => v.classList.add('ready'));
+      let dur = 0, dragging = false;
+      pl.getDuration().then(d => { dur = d; }).catch(() => {});
+      pl.on('timeupdate', d => { dur = d.duration || dur; if (!dragging) tl.style.setProperty('--p', d.percent.toFixed(4)); });
       new IntersectionObserver(es => es.forEach(e => {
-        if (e.isIntersecting) { ensure().play().catch(() => {}); }
-        else if (pl) { pl.pause().catch(() => {}); }
-      }), { rootMargin: '300px 0px' }).observe(v);
+        if (e.isIntersecting) pl.play().catch(() => {}); else pl.pause().catch(() => {});
+      }), { rootMargin: '200px 0px' }).observe(v);
+      const seekTo = x => {
+        const r = tl.getBoundingClientRect(); const p = Math.max(0, Math.min(1, (x - r.left) / r.width));
+        tl.style.setProperty('--p', p.toFixed(4));
+        if (dur) pl.setCurrentTime(p * dur * 0.999).catch(() => {});
+      };
+      tl.addEventListener('pointerdown', e => { dragging = true; tl.setPointerCapture(e.pointerId); seekTo(e.clientX); });
+      tl.addEventListener('pointermove', e => { if (dragging) seekTo(e.clientX); });
+      const up = () => { dragging = false; pl.play().catch(() => {}); };
+      tl.addEventListener('pointerup', up); tl.addEventListener('pointercancel', up);
+      tl.addEventListener('keydown', e => {
+        if (!dur) return;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); pl.getCurrentTime().then(t => pl.setCurrentTime(Math.max(0, Math.min(dur - .1, t + (e.key === 'ArrowRight' ? 5 : -5))))); }
+      });
       b.addEventListener('click', async () => {
-        const p = ensure();
         if (v.classList.contains('sound')) {
           v.classList.remove('sound'); lab.textContent = 'Play with sound'; b.setAttribute('aria-label', 'Play with sound');
-          try { await p.setMuted(true); } catch (e) {}
+          try { await pl.setMuted(true); } catch (e) {}
         } else {
           document.querySelectorAll('.vplayer.sound .vp-hit').forEach(o => o.click());
           v.classList.add('sound'); lab.textContent = 'Mute'; b.setAttribute('aria-label', 'Mute');
-          try { await p.setCurrentTime(0); await p.setMuted(false); await p.setVolume(1); await p.play(); } catch (e) {}
+          try { await pl.setCurrentTime(0); await pl.setMuted(false); await pl.setVolume(1); await pl.play(); } catch (e) {}
         }
       });
     });
   }
+
 
   // grid / list toggle (home); elsewhere it opens the home in the chosen view
   const vt = document.querySelector('.vt');

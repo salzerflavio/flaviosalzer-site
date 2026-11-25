@@ -223,11 +223,11 @@ html.view-list .vt .i-list{display:none}
 .plist{display:none;padding:var(--s2) var(--edge) var(--s3)}
 html.view-list .pg-home .masonry,html.view-list .pg-home .stack{display:none!important}
 html.view-list .pg-home .plist{display:block}
-.prow{display:grid;grid-template-columns:minmax(0,15%) minmax(0,1fr) 190px 48px 28px;align-items:baseline;gap:24px;padding:16px 0;border-top:1px solid rgba(255,255,255,.22);color:var(--tx);transition:color .25s}
+.prow{display:grid;grid-template-columns:minmax(0,15%) minmax(0,1fr) 190px 48px 28px;align-items:center;gap:24px;padding:16px 0;border-top:1px solid rgba(255,255,255,.22);color:var(--tx);transition:color .25s}
 .pr-client{font:400 var(--fs-ui)/1.3 var(--f)}
 .pr-name{font:500 clamp(28px,3.4vw,50px)/1.05 var(--f);letter-spacing:-.015em;color:var(--hi);opacity:.55;transition:opacity .25s,transform .4s var(--ease)}
-.pr-year{font:400 var(--fs-ui)/1 var(--f)}
-.pr-arr{font:400 22px/1 var(--f);opacity:0;transform:translateX(-8px);transition:opacity .25s,transform .3s var(--ease)}
+.pr-year{font:400 var(--fs-ui)/1 var(--f);text-align:right}
+.pr-arr{font:400 22px/1 var(--f);text-align:right;opacity:0;transform:translateX(-8px);transition:opacity .25s,transform .3s var(--ease)}
 .prow:hover .pr-name{opacity:1;transform:translateX(8px)}
 .prow:hover .pr-arr{opacity:1;transform:none}
 .prow:hover{color:var(--hi)}
@@ -242,7 +242,7 @@ html.view-list .pg-home .plist{display:block}
   .pv{display:none}
 }
 
-.pr-bd{display:flex;align-items:center;justify-content:flex-end;gap:14px;align-self:center}
+.pr-bd{display:flex;align-items:center;justify-content:flex-end;gap:14px}
 .prow:last-child{border-bottom:1px solid rgba(255,255,255,.22)}
 .bd{display:block;height:26px;background:currentColor;-webkit-mask:var(--b) center/contain no-repeat;mask:var(--b) center/contain no-repeat;opacity:.6;transition:opacity .25s}
 .prow:hover .bd{opacity:1}
@@ -255,6 +255,14 @@ html.view-list .pg-home .plist{display:block}
 /* respiro entre o menu e o mosaico */
 .pg-home main{padding-top:120px}
 .pg-home .plist{padding-top:0}
+
+/* linha do tempo dos filmes: branca, simples, clicável e arrastável */
+.vp-tl{position:relative;height:18px;margin-top:2px;cursor:pointer;touch-action:none}
+.vp-tl::before{content:"";position:absolute;left:0;right:0;top:8px;height:2px;background:rgba(255,255,255,.25)}
+.vp-tl i{position:absolute;left:0;top:8px;height:2px;width:calc(var(--p,0) * 100%);background:#fff}
+.vp-tl:hover::before,.vp-tl:hover i{top:7px;height:4px}
+.vplayer iframe{opacity:0;transition:opacity .4s}
+.vplayer.ready iframe{opacity:1}
 </style>
 </head>
 <body class="proj" id="top">
@@ -263,7 +271,7 @@ html.view-list .pg-home .plist{display:block}
   <nav><a href="/">Work</a><a href="/flavio/">☺ About</a><button class="vt" type="button" aria-label="Show as list"><svg class="i-list" viewBox="0 0 20 20" width="20" height="20"><rect x="2" y="4" width="16" height="1.6"/><rect x="2" y="9.2" width="16" height="1.6"/><rect x="2" y="14.4" width="16" height="1.6"/></svg><svg class="i-grid" viewBox="0 0 20 20" width="20" height="20"><rect x="2" y="2" width="7" height="7"/><rect x="11" y="2" width="7" height="7"/><rect x="2" y="11" width="7" height="7"/><rect x="11" y="11" width="7" height="7"/></svg></button></nav>
 </header>
 <main>
-<article class="project"><header class="p-head"><div class="p-intro"><a class="back" href="/" aria-label="Back to work"><svg class="arr" viewBox="486 353 250 95" width="66" height="25" aria-hidden="true"><polygon points="534.41 445.79 488.14 401.58 532.35 355.3 536.69 359.45 496.62 401.38 538.55 441.45 534.41 445.79"/><rect x="492.38" y="398.48" width="241.62" height="6"/></svg></a><h1 class="split">Congress League</h1><div class="p-desc reveal-t"><p>The Fantasy Game of the Brazilian Congress</p></div></div><dl class="credits reveal-t"><div><dt>Role</dt><dd>Idea, Art Direction, Design</dd></div><div><dt>With</dt><dd>Sergio Gordilho, Joanna Monteiro, Mihail Aleksandrov, Eduardo Ferraz, Milena Zindeluk, Cauique Johnson, Vinicius Montes</dd></div><div><dt>Agency</dt><dd>Africa Creative</dd></div><div><dt>Client</dt><dd>Congresso em Foco</dd></div><div><dt>Year</dt><dd>2024</dd></div></dl></header><div class="p-body"><div class="mod vplayer reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe data-src="https://player.vimeo.com/video/1123929430?h=94b6e5e318&amp;background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Film"></iframe></div><button class="vp-hit" type="button" aria-label="Play with sound"><span class="vp-label">Play with sound</span></button></div>
+<article class="project"><header class="p-head"><div class="p-intro"><a class="back" href="/" aria-label="Back to work"><svg class="arr" viewBox="486 353 250 95" width="66" height="25" aria-hidden="true"><polygon points="534.41 445.79 488.14 401.58 532.35 355.3 536.69 359.45 496.62 401.38 538.55 441.45 534.41 445.79"/><rect x="492.38" y="398.48" width="241.62" height="6"/></svg></a><h1 class="split">Congress League</h1><div class="p-desc reveal-t"><p>The Fantasy Game of the Brazilian Congress</p></div></div><dl class="credits reveal-t"><div><dt>Role</dt><dd>Idea, Art Direction, Design</dd></div><div><dt>With</dt><dd>Sergio Gordilho, Joanna Monteiro, Mihail Aleksandrov, Eduardo Ferraz, Milena Zindeluk, Cauique Johnson, Vinicius Montes</dd></div><div><dt>Agency</dt><dd>Africa Creative</dd></div><div><dt>Client</dt><dd>Congresso em Foco</dd></div><div><dt>Year</dt><dd>2024</dd></div></dl></header><div class="p-body"><div class="mod vplayer reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe data-src="https://player.vimeo.com/video/1123929430?h=94b6e5e318&amp;background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Film"></iframe><button class="vp-hit" type="button" aria-label="Play with sound"><span class="vp-label">Play with sound</span></button></div><div class="vp-tl" role="slider" aria-label="Seek" tabindex="0"><i></i></div></div>
 <figure class="mod img reveal-m"><img class="m " src="/media/84235ad1-fb83-4533-8399-aafd0aeae97a_rw_1920.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRpAAAABXRUJQVlA4IIQAAACwAwCdASoUAAsAPu1iqU2ppaOiMAgBMB2JbACdLwAAhOnNxcTeuAD+cHVNotiwm+LdwXamUVVOwFz+4vXUwiQjYC550CguLYlxMxEWfMUl7MF/Wj/0FCNmivHr+UtoTsKrhIhU49GKEa6eXVKWwIY4Um7M9EA0xYIwW0wocsR8qqQAAAA=)"></figure>
 <div class="mod grid"><div class="row"><div class="cell reveal-m" style="flex:2.1683 1 0;transition-delay:0ms"><video class="m " data-src="/media/c869f5f0-7f7b-432b-961b-843339716310_rw_1920.mp4" poster="/media/c869f5f0-7f7b-432b-961b-843339716310_rw_1920.webp" width="1778" height="820" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAADQAwCdASoUAAkAPu1iqU2ppaOiMAgBMB2JQBfnAz59lDWU1mabd4AA/u7e0L+vzvByxpZCIZ7JViJWDyA4XieIdlJkv+oqhTzYOQmNg5txOKlaOgyqjHCjw1EYMAUCGXyRHeiLRToAAA==)"></video></div><div class="cell reveal-m" style="flex:2.1683 1 0;transition-delay:90ms"><video class="m " data-src="/media/e4efa705-8efd-4c44-9701-bcdb37b1b106_rw_1920.mp4" poster="/media/e4efa705-8efd-4c44-9701-bcdb37b1b106_rw_1920.webp" width="1778" height="820" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAADQAwCdASoUAAkAPu1oqk6ppiQiMAgBMB2JYwCdACFSrAJgHlwyYwwA/vKkDarcqYQtnkvJnjMWFG1VERQm6PoeBFtrbD3DPcpXwvsnRFsjPeaqUB4Fxqbd12PnMS2OgAA=)"></video></div></div><div class="row"><div class="cell reveal-m" style="flex:2.1683 1 0;transition-delay:0ms"><video class="m " data-src="/media/e315367d-4d52-4728-b6d4-2d9451e87c6b_rw_1920.mp4" poster="/media/e315367d-4d52-4728-b6d4-2d9451e87c6b_rw_1920.webp" width="1778" height="820" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAADwAwCdASoUAAkAPu1iqU2ppaQiMAgBMB2JZQCdACLZLNio+6H3e0kAAP7mBFjaxXW98+BbdGmrXIXo73XeUpeIqLhtlRRab7pNtjJyJym6XbEdl3DC4eAa3gwYGgQdvLJtoweWyvUoO1U22HP5v3AG/hyV0zTJ3hgAAA==)"></video></div><div class="cell reveal-m" style="flex:2.1683 1 0;transition-delay:90ms"><video class="m " data-src="/media/88b21027-236f-4977-b9bf-0596afdf7187_rw_1920.mp4" poster="/media/88b21027-236f-4977-b9bf-0596afdf7187_rw_1920.webp" width="1778" height="820" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRooAAABXRUJQVlA4IH4AAAAwBACdASoUAAkAPu1iqU2ppaQiMAgBMB2JaACdMoMh8YkgK3Sb82Pf9AAA/tIlDJBZZFOq5gD0+pBaw2WR1nIqZ92SfKc+fW7qBywolwejSoWfqIvZVkYiTilf0A5CpD/X0JgEuhV+0VCGcrZX/iNzof7OF50mb/u33z9AAAA=)"></video></div></div></div>
 <div class="mod grid"><div class="row"><div class="cell reveal-m" style="flex:0.7072 1 0;transition-delay:0ms"><img class="m " src="/media/598cbf8f-f551-40bb-9b08-9add98700615_rw_1920.webp" width="1920" height="2715" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRvYAAABXRUJQVlA4IOoAAABQBgCdASoUABwAPu1qr1CppaQiqAqpMB2JbACxHt13W+ga2P+pCX7w/2Ob1jU3u17icArGzBq4M/8xAAD+I2CqpAFp+AlnkwYZGhgG5l1zl03DPTaX28e1wsa9U+whQtU1KpkPQJx8kDRDLnO1JSf4c+IMCAMukNFXigWSlKEJplbp8NDMdr0//TQlWi5asszEZ5m/juAhwdAPKPni0hEoyq5RcJ4B+9CHhM/jsqWFG4r4wCIu10XxZ6uQ9vPYfndkLfMFp5VuyZsGGteh+u8egNQdk0+rlr5ohCUL4PU6FmTpuXHV680AAAA=)"></div><div class="cell reveal-m" style="flex:0.7072 1 0;transition-delay:90ms"><img class="m " src="/media/969cbdff-7863-4419-9646-d31898168e2f_rw_1920.webp" width="1920" height="2715" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRiABAABXRUJQVlA4IBQBAACQBgCdASoUABwAPu1irVAppSQisBgIATAdiWwAnTMy/CjQI8D3XEGJlW+lVl8+SenbvTQ0NH+Gp94kcUGgAP7UOH7F6bLFGaKQyTPQI+yDdvVIN/A/POnquE3RJW9+9bZlGa+5PPelHcVnvnxXZaDXoPHrbmXlOlX5e2HX/EvFbGiWZWgH9yGgA8iDeYYYtLnAfIjoMQ3QKg/cmfq8bRFblDxOdrk5c7cBeuuWXNfSmvmov8BWBAF27ZZh5aO4pVMembFmnulZuF1mpDYVENYX/8iKA62m7FLS+WvB77+kfUZe2T+StQdpN48SNMuQ6WYEB/uz6E24nuP5pMht2VDzNilvOPHZ4xXaFnGs6+BXl9KAAAA=)"></div><div class="cell reveal-m" style="flex:0.7072 1 0;transition-delay:180ms"><img class="m " src="/media/70d82583-48d7-48d3-9617-57403c31080e_rw_1920.webp" width="1920" height="2715" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRhYBAABXRUJQVlA4IAoBAAAwBgCdASoUABwAPu1kqlAppSOisBgIATAdiWwAtRfBQDMcqsdVLi2vXeBmqPtUqXYytNZobj2e2CIAAP53V7xHd253ZAsHjRvW9TzV1AD9xSlzX2BCYsAizn1jqcS1dwxk/ZYlgkfGD7IQq6+iia2wZlxsWTocuVv6iY1g5cQIKQZUf27tgxVokntWbAUcCO+rQAqbjHi2+si/VQGgnGCw009DtH+IXTkYlbjTKOAo25OJrT7WLAGLVcjVbPWnC0VKV2BLMtZWFKln40EiP+fYCM/mIl4BwYG/HD2GBzTGzBBckX1sgPW+s5xwgYtjWLe1ikEAUkaOJtDWtUbD9qLQ4QQJiD7obsMIAA==)"></div><div class="cell reveal-m" style="flex:0.7072 1 0;transition-delay:270ms"><img class="m " src="/media/24c96240-2cbc-4d2e-9bd8-3b858430f0e8_rw_1920.webp" width="1920" height="2715" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRuYAAABXRUJQVlA4INoAAAAQBgCdASoUABwAPu1krFAppSQisBgIATAdiWgAwoMuIGAGwEPoYVgxobe1mVIMZK+ivZX6KKnIQAAA/tP0Rw4yYHUELqPll6iwCQuDahQ4F5ulVMki/pEVqRwnKtaTfRO8Cg95PzwCkiJxWh9RvoFtDxHb6oA0KcJnpDgmsGtXNe1YytveWRxQqNwKNdChIA070/y1otN4kL0FSYM9Glx9TtEoTZs/rKB1s3ihuUxWqByqYw3WRmjZDpplBhhTmbloxZeIzkg8J6UfVEStMvnE8ONjRPLDnrAAAA==)"></div></div></div>
@@ -327,10 +335,16 @@ html.view-list .pg-home .plist{display:block}
       if (v.readyState >= 2) return;
       waits.push(new Promise(res => { v.addEventListener('loadeddata', res, { once: true }); v.addEventListener('error', res, { once: true }); }));
     });
-    document.querySelectorAll('.vplayer iframe').forEach(f => {
-      if (!near(f)) return;
+    // films: every one on the page has to be playing before the page scrolls
+    if (window.Vimeo) document.querySelectorAll('.vplayer').forEach(v => {
+      const f = v.querySelector('iframe');
       if (!f.src) f.src = f.dataset.src;
-      waits.push(new Promise(res => f.addEventListener('load', res, { once: true })));
+      const pl = f._pl || (f._pl = new Vimeo.Player(f));
+      waits.push(new Promise(res => {
+        const ok = () => { v.classList.add('ready'); res(); };
+        pl.on('play', ok); pl.on('playing', ok);
+        pl.ready().then(() => pl.getPaused()).then(p => { if (!p) ok(); }).catch(ok);
+      }));
     });
     const total = waits.length || 1;
     let done = 0, shown = 0.08, target = 0.08;
@@ -345,7 +359,7 @@ html.view-list .pg-home .plist{display:block}
       setTimeout(() => { bar.classList.add('done'); root.classList.remove('loading'); if (lenis) lenis.start(); }, 380);
       setTimeout(() => bar.remove(), 1200);
     };
-    Promise.race([Promise.all(waits), new Promise(r => setTimeout(r, 7000))]).then(() => setTimeout(finish, 150));
+    Promise.race([Promise.all(waits), new Promise(r => setTimeout(r, 15000))]).then(() => setTimeout(finish, 150));
   })();
 
   // titles: split into lines and reveal line by line
@@ -364,29 +378,45 @@ html.view-list .pg-home .plist{display:block}
   });
   let rw; addEventListener('resize', () => { clearTimeout(rw); rw = setTimeout(() => { splits.forEach(el => { const t = [...el.querySelectorAll('.ln')].map(l => l.textContent).join(' '); el.textContent = t; }); doSplit(); }, 200); });
 
-  // own film player: Vimeo in background mode, click for sound
+  // own film player: Vimeo in background mode, click for sound, white timeline to scrub
   if (window.Vimeo) {
     document.querySelectorAll('.vplayer').forEach(v => {
-      const f = v.querySelector('iframe'), b = v.querySelector('.vp-hit'), lab = v.querySelector('.vp-label');
-      let pl = null;
-      const ensure = () => { if (!pl) { if (!f.src) f.src = f.dataset.src; pl = new Vimeo.Player(f); } return pl; };
+      const f = v.querySelector('iframe'), b = v.querySelector('.vp-hit'), lab = v.querySelector('.vp-label'), tl = v.querySelector('.vp-tl');
+      const ensure = () => { if (!f.src) f.src = f.dataset.src; return f._pl || (f._pl = new Vimeo.Player(f)); };
+      const pl = ensure();
+      pl.on('play', () => v.classList.add('ready'));
+      let dur = 0, dragging = false;
+      pl.getDuration().then(d => { dur = d; }).catch(() => {});
+      pl.on('timeupdate', d => { dur = d.duration || dur; if (!dragging) tl.style.setProperty('--p', d.percent.toFixed(4)); });
       new IntersectionObserver(es => es.forEach(e => {
-        if (e.isIntersecting) { ensure().play().catch(() => {}); }
-        else if (pl) { pl.pause().catch(() => {}); }
-      }), { rootMargin: '300px 0px' }).observe(v);
+        if (e.isIntersecting) pl.play().catch(() => {}); else pl.pause().catch(() => {});
+      }), { rootMargin: '200px 0px' }).observe(v);
+      const seekTo = x => {
+        const r = tl.getBoundingClientRect(); const p = Math.max(0, Math.min(1, (x - r.left) / r.width));
+        tl.style.setProperty('--p', p.toFixed(4));
+        if (dur) pl.setCurrentTime(p * dur * 0.999).catch(() => {});
+      };
+      tl.addEventListener('pointerdown', e => { dragging = true; tl.setPointerCapture(e.pointerId); seekTo(e.clientX); });
+      tl.addEventListener('pointermove', e => { if (dragging) seekTo(e.clientX); });
+      const up = () => { dragging = false; pl.play().catch(() => {}); };
+      tl.addEventListener('pointerup', up); tl.addEventListener('pointercancel', up);
+      tl.addEventListener('keydown', e => {
+        if (!dur) return;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); pl.getCurrentTime().then(t => pl.setCurrentTime(Math.max(0, Math.min(dur - .1, t + (e.key === 'ArrowRight' ? 5 : -5))))); }
+      });
       b.addEventListener('click', async () => {
-        const p = ensure();
         if (v.classList.contains('sound')) {
           v.classList.remove('sound'); lab.textContent = 'Play with sound'; b.setAttribute('aria-label', 'Play with sound');
-          try { await p.setMuted(true); } catch (e) {}
+          try { await pl.setMuted(true); } catch (e) {}
         } else {
           document.querySelectorAll('.vplayer.sound .vp-hit').forEach(o => o.click());
           v.classList.add('sound'); lab.textContent = 'Mute'; b.setAttribute('aria-label', 'Mute');
-          try { await p.setCurrentTime(0); await p.setMuted(false); await p.setVolume(1); await p.play(); } catch (e) {}
+          try { await pl.setCurrentTime(0); await pl.setMuted(false); await pl.setVolume(1); await pl.play(); } catch (e) {}
         }
       });
     });
   }
+
 
   // grid / list toggle (home); elsewhere it opens the home in the chosen view
   const vt = document.querySelector('.vt');

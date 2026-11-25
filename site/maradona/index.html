@@ -223,11 +223,11 @@ html.view-list .vt .i-list{display:none}
 .plist{display:none;padding:var(--s2) var(--edge) var(--s3)}
 html.view-list .pg-home .masonry,html.view-list .pg-home .stack{display:none!important}
 html.view-list .pg-home .plist{display:block}
-.prow{display:grid;grid-template-columns:minmax(0,15%) minmax(0,1fr) 190px 48px 28px;align-items:baseline;gap:24px;padding:16px 0;border-top:1px solid rgba(255,255,255,.22);color:var(--tx);transition:color .25s}
+.prow{display:grid;grid-template-columns:minmax(0,15%) minmax(0,1fr) 190px 48px 28px;align-items:center;gap:24px;padding:16px 0;border-top:1px solid rgba(255,255,255,.22);color:var(--tx);transition:color .25s}
 .pr-client{font:400 var(--fs-ui)/1.3 var(--f)}
 .pr-name{font:500 clamp(28px,3.4vw,50px)/1.05 var(--f);letter-spacing:-.015em;color:var(--hi);opacity:.55;transition:opacity .25s,transform .4s var(--ease)}
-.pr-year{font:400 var(--fs-ui)/1 var(--f)}
-.pr-arr{font:400 22px/1 var(--f);opacity:0;transform:translateX(-8px);transition:opacity .25s,transform .3s var(--ease)}
+.pr-year{font:400 var(--fs-ui)/1 var(--f);text-align:right}
+.pr-arr{font:400 22px/1 var(--f);text-align:right;opacity:0;transform:translateX(-8px);transition:opacity .25s,transform .3s var(--ease)}
 .prow:hover .pr-name{opacity:1;transform:translateX(8px)}
 .prow:hover .pr-arr{opacity:1;transform:none}
 .prow:hover{color:var(--hi)}
@@ -242,7 +242,7 @@ html.view-list .pg-home .plist{display:block}
   .pv{display:none}
 }
 
-.pr-bd{display:flex;align-items:center;justify-content:flex-end;gap:14px;align-self:center}
+.pr-bd{display:flex;align-items:center;justify-content:flex-end;gap:14px}
 .prow:last-child{border-bottom:1px solid rgba(255,255,255,.22)}
 .bd{display:block;height:26px;background:currentColor;-webkit-mask:var(--b) center/contain no-repeat;mask:var(--b) center/contain no-repeat;opacity:.6;transition:opacity .25s}
 .prow:hover .bd{opacity:1}
@@ -255,6 +255,14 @@ html.view-list .pg-home .plist{display:block}
 /* respiro entre o menu e o mosaico */
 .pg-home main{padding-top:120px}
 .pg-home .plist{padding-top:0}
+
+/* linha do tempo dos filmes: branca, simples, clicável e arrastável */
+.vp-tl{position:relative;height:18px;margin-top:2px;cursor:pointer;touch-action:none}
+.vp-tl::before{content:"";position:absolute;left:0;right:0;top:8px;height:2px;background:rgba(255,255,255,.25)}
+.vp-tl i{position:absolute;left:0;top:8px;height:2px;width:calc(var(--p,0) * 100%);background:#fff}
+.vp-tl:hover::before,.vp-tl:hover i{top:7px;height:4px}
+.vplayer iframe{opacity:0;transition:opacity .4s}
+.vplayer.ready iframe{opacity:1}
 </style>
 </head>
 <body class="proj" id="top">
@@ -266,7 +274,7 @@ html.view-list .pg-home .plist{display:block}
 <article class="project"><header class="p-head"><div class="p-intro"><a class="back" href="/" aria-label="Back to work"><svg class="arr" viewBox="486 353 250 95" width="66" height="25" aria-hidden="true"><polygon points="534.41 445.79 488.14 401.58 532.35 355.3 536.69 359.45 496.62 401.38 538.55 441.45 534.41 445.79"/><rect x="492.38" y="398.48" width="241.62" height="6"/></svg></a><h1 class="split">The Man Who Became God</h1><div class="p-desc reveal-t"><p>Here in Brazil, one of the greatest tributes you can receive is becoming an inspiration for a carnival samba.<br>To promote Maradona's series around here, we decided to pay this tribute to our biggest football rival.</p></div></div><dl class="credits reveal-t"><div><dt>Role</dt><dd>Idea, Script, Song and Art Direction.</dd></div><div><dt>With</dt><dd>Ale Muccillo, Gui Cruz, Sidão, Arthur Souza</dd></div><div><dt>Agency</dt><dd>Mutato</dd></div><div><dt>Client</dt><dd>Amazon Prime Video</dd></div><div><dt>Year</dt><dd>2021</dd></div></dl></header><div class="p-body"><div class="mod statement reveal-t"><p><span class="t-lg">Diego Maradona had a lifelong passion for Brazil. <br>Especially for Carnival.</span></p></div>
 <div class="mod grid"><div class="row"><div class="cell reveal-m" style="flex:1.3325 1 0;transition-delay:0ms"><video class="m " data-src="/media/01c9dc99-be84-4936-8313-32376d85aeb3_rw_1200.mp4" poster="/media/01c9dc99-be84-4936-8313-32376d85aeb3_rw_1200.webp" width="1082" height="812" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRrAAAABXRUJQVlA4IKQAAABQBACdASoUAA8APu1iqU2ppaOiMAgBMB2JYgCdICXgwg+QMxXCzt6VF8JkAP7R3+1+uWYUXEv1Kcc5TeaxeNJl9uGBqkMTgnKGtvnMJag94YyJ9MLaRHNdsY1SdbNuuzyWOZ01gYfqvFfZlbgzyXR661qsAPbYVQU7ox8cMRvEkYpGg3Z1Rp0PWXdVb+giTfrfjwNwz1IuRCrlvE6Ixmd15IAAAA==)"></video></div><div class="cell reveal-m" style="flex:1.3325 1 0;transition-delay:90ms"><video class="m " data-src="/media/30c93c73-d982-4fe1-b4fd-2b0ec7cf9bd3_rw_1200.mp4" poster="/media/30c93c73-d982-4fe1-b4fd-2b0ec7cf9bd3_rw_1200.webp" width="1082" height="812" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRsYAAABXRUJQVlA4ILoAAADQBACdASoUAA8APu1iqU2ppaOiMAgBMB2JbACdMoAlsRl//Qk/JW/o/g7G72phwAD8tKxrCrlrEze47qugUPgFbG/u3T84V36xoKlVTWa7Kw5p2rM1EMjEvuSJbdOz2DEh26GkyugLg+spnQiMSNmvB7Mf75fE3b43mQg/g9KCGZEe/YQxcUcNo+Q/QfZ+abva4R96vijm/c4SEllPJkGbLk4eyObspkVGjN3/NjGwshmH/Zx1LpmgAAA=)"></video></div></div></div>
 <div class="mod statement reveal-t"><p><span class="t-lg">And on his birthday, his series premiered in Brazil.<br>The occasion called for a gift no other country<br>could deliver: a samba-enredo.</span></p></div>
-<div class="mod vplayer reveal-m"><div class="ratio" style="padding-bottom:56.25%"><iframe data-src="https://player.vimeo.com/video/643664471?h=cd3ee411f4&amp;background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Film"></iframe></div><button class="vp-hit" type="button" aria-label="Play with sound"><span class="vp-label">Play with sound</span></button></div>
+<div class="mod vplayer reveal-m"><div class="ratio" style="padding-bottom:56.25%"><iframe data-src="https://player.vimeo.com/video/643664471?h=cd3ee411f4&amp;background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Film"></iframe><button class="vp-hit" type="button" aria-label="Play with sound"><span class="vp-label">Play with sound</span></button></div><div class="vp-tl" role="slider" aria-label="Seek" tabindex="0"><i></i></div></div>
 <div class="mod grid"><div class="row"><div class="cell reveal-m" style="flex:1.7836 1 0;transition-delay:0ms"><video class="m " data-src="/media/6f430d3b-7fbb-4deb-89e6-4ee54cda6feb_rw_1920.mp4" poster="/media/6f430d3b-7fbb-4deb-89e6-4ee54cda6feb_rw_1920.webp" width="1302" height="730" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAADwAwCdASoUAAsAPu1iqU2ppaQiMAgBMB2JYgBVI4ewzAnIFeUp7VSEAP7yt/LKChVHC991vIy5QxbT7Nq//PYQxUgg4BLRQtJm9JtMt3ne/ychmoNLGdkEHKdaexaBWiJbpyAAAAA=)"></video></div><div class="cell reveal-m" style="flex:1.7836 1 0;transition-delay:90ms"><video class="m " data-src="/media/07c5eceb-f7e6-4258-b0bf-57c2772123f6_rw_1920.mp4" poster="/media/07c5eceb-f7e6-4258-b0bf-57c2772123f6_rw_1920.webp" width="1302" height="730" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAABQAwCdASoUAAsAPu1iqU2ppaOiMAgBMB2JQBOgAeG1YdW10AD+nBdmbnop8RRJHCZZVLVCce2ZiQPt+ztjfJkWHFctXaP/8VTGkDOBOL5BNmquhCHtSQIGxwAAAA==)"></video></div></div><div class="row"><div class="cell reveal-m" style="flex:1.7836 1 0;transition-delay:0ms"><video class="m " data-src="/media/a576d9c4-9776-4a6f-9d19-e0f28be7d75d_rw_1920.mp4" poster="/media/a576d9c4-9776-4a6f-9d19-e0f28be7d75d_rw_1920.webp" width="1302" height="730" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAADwAwCdASoUAAsAPu1iqk2ppaQiMAgBMB2JQBOgBH35GOwgbq1CjsqgAP7q8g4RXVeLDLunyvBbP7TJrVA/qF4IKJv5xTOIIoH8vgU/Ig07uwRZv7zNf/guiiy9aizcQLczo5j0EgAAAA==)"></video></div><div class="cell reveal-m" style="flex:1.7836 1 0;transition-delay:90ms"><video class="m " data-src="/media/31274539-0168-44c0-b85a-7ff2608deef9_rw_1920.mp4" poster="/media/31274539-0168-44c0-b85a-7ff2608deef9_rw_1920.webp" width="1302" height="730" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAADwAwCdASoUAAsAPu1iqU2ppaOiMAgBMB2JZQCsACPNW2/M9/P2ryMAAP5ABXv7vxPuiet1qzcxsSybTzlS6jrnUMuhngXqZgRJUVy+SIkDf8VOf7jH1GU76Z6qePCI6MB15/adFk57x/xvcpoPgAAA)"></video></div></div></div>
 <div class="mod statement reveal-t"><p><span class="t-lg">Listen to the full samba-enredo ↴</span></p></div>
 <div class="mod embed"><iframe src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1208159452&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true" height="166" style="width:100%;border:0" loading="lazy" allow="autoplay"></iframe></div>
@@ -333,10 +341,16 @@ html.view-list .pg-home .plist{display:block}
       if (v.readyState >= 2) return;
       waits.push(new Promise(res => { v.addEventListener('loadeddata', res, { once: true }); v.addEventListener('error', res, { once: true }); }));
     });
-    document.querySelectorAll('.vplayer iframe').forEach(f => {
-      if (!near(f)) return;
+    // films: every one on the page has to be playing before the page scrolls
+    if (window.Vimeo) document.querySelectorAll('.vplayer').forEach(v => {
+      const f = v.querySelector('iframe');
       if (!f.src) f.src = f.dataset.src;
-      waits.push(new Promise(res => f.addEventListener('load', res, { once: true })));
+      const pl = f._pl || (f._pl = new Vimeo.Player(f));
+      waits.push(new Promise(res => {
+        const ok = () => { v.classList.add('ready'); res(); };
+        pl.on('play', ok); pl.on('playing', ok);
+        pl.ready().then(() => pl.getPaused()).then(p => { if (!p) ok(); }).catch(ok);
+      }));
     });
     const total = waits.length || 1;
     let done = 0, shown = 0.08, target = 0.08;
@@ -351,7 +365,7 @@ html.view-list .pg-home .plist{display:block}
       setTimeout(() => { bar.classList.add('done'); root.classList.remove('loading'); if (lenis) lenis.start(); }, 380);
       setTimeout(() => bar.remove(), 1200);
     };
-    Promise.race([Promise.all(waits), new Promise(r => setTimeout(r, 7000))]).then(() => setTimeout(finish, 150));
+    Promise.race([Promise.all(waits), new Promise(r => setTimeout(r, 15000))]).then(() => setTimeout(finish, 150));
   })();
 
   // titles: split into lines and reveal line by line
@@ -370,29 +384,45 @@ html.view-list .pg-home .plist{display:block}
   });
   let rw; addEventListener('resize', () => { clearTimeout(rw); rw = setTimeout(() => { splits.forEach(el => { const t = [...el.querySelectorAll('.ln')].map(l => l.textContent).join(' '); el.textContent = t; }); doSplit(); }, 200); });
 
-  // own film player: Vimeo in background mode, click for sound
+  // own film player: Vimeo in background mode, click for sound, white timeline to scrub
   if (window.Vimeo) {
     document.querySelectorAll('.vplayer').forEach(v => {
-      const f = v.querySelector('iframe'), b = v.querySelector('.vp-hit'), lab = v.querySelector('.vp-label');
-      let pl = null;
-      const ensure = () => { if (!pl) { if (!f.src) f.src = f.dataset.src; pl = new Vimeo.Player(f); } return pl; };
+      const f = v.querySelector('iframe'), b = v.querySelector('.vp-hit'), lab = v.querySelector('.vp-label'), tl = v.querySelector('.vp-tl');
+      const ensure = () => { if (!f.src) f.src = f.dataset.src; return f._pl || (f._pl = new Vimeo.Player(f)); };
+      const pl = ensure();
+      pl.on('play', () => v.classList.add('ready'));
+      let dur = 0, dragging = false;
+      pl.getDuration().then(d => { dur = d; }).catch(() => {});
+      pl.on('timeupdate', d => { dur = d.duration || dur; if (!dragging) tl.style.setProperty('--p', d.percent.toFixed(4)); });
       new IntersectionObserver(es => es.forEach(e => {
-        if (e.isIntersecting) { ensure().play().catch(() => {}); }
-        else if (pl) { pl.pause().catch(() => {}); }
-      }), { rootMargin: '300px 0px' }).observe(v);
+        if (e.isIntersecting) pl.play().catch(() => {}); else pl.pause().catch(() => {});
+      }), { rootMargin: '200px 0px' }).observe(v);
+      const seekTo = x => {
+        const r = tl.getBoundingClientRect(); const p = Math.max(0, Math.min(1, (x - r.left) / r.width));
+        tl.style.setProperty('--p', p.toFixed(4));
+        if (dur) pl.setCurrentTime(p * dur * 0.999).catch(() => {});
+      };
+      tl.addEventListener('pointerdown', e => { dragging = true; tl.setPointerCapture(e.pointerId); seekTo(e.clientX); });
+      tl.addEventListener('pointermove', e => { if (dragging) seekTo(e.clientX); });
+      const up = () => { dragging = false; pl.play().catch(() => {}); };
+      tl.addEventListener('pointerup', up); tl.addEventListener('pointercancel', up);
+      tl.addEventListener('keydown', e => {
+        if (!dur) return;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); pl.getCurrentTime().then(t => pl.setCurrentTime(Math.max(0, Math.min(dur - .1, t + (e.key === 'ArrowRight' ? 5 : -5))))); }
+      });
       b.addEventListener('click', async () => {
-        const p = ensure();
         if (v.classList.contains('sound')) {
           v.classList.remove('sound'); lab.textContent = 'Play with sound'; b.setAttribute('aria-label', 'Play with sound');
-          try { await p.setMuted(true); } catch (e) {}
+          try { await pl.setMuted(true); } catch (e) {}
         } else {
           document.querySelectorAll('.vplayer.sound .vp-hit').forEach(o => o.click());
           v.classList.add('sound'); lab.textContent = 'Mute'; b.setAttribute('aria-label', 'Mute');
-          try { await p.setCurrentTime(0); await p.setMuted(false); await p.setVolume(1); await p.play(); } catch (e) {}
+          try { await pl.setCurrentTime(0); await pl.setMuted(false); await pl.setVolume(1); await pl.play(); } catch (e) {}
         }
       });
     });
   }
+
 
   // grid / list toggle (home); elsewhere it opens the home in the chosen view
   const vt = document.querySelector('.vt');

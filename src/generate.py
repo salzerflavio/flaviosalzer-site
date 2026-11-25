@@ -140,8 +140,9 @@ def render_embed(m):
         base = src.split('&')[0]
         vsrc = base + ('&' if '?' in base else '?') + 'background=1&autoplay=1&loop=1&muted=1&dnt=1'
         return (f'<div class="mod vplayer reveal-m"><div class="ratio" style="padding-bottom:{r}">'
-                f'<iframe data-src="{html.escape(vsrc)}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Film"></iframe></div>'
-                f'<button class="vp-hit" type="button" aria-label="Play with sound"><span class="vp-label">Play with sound</span></button></div>')
+                f'<iframe data-src="{html.escape(vsrc)}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Film"></iframe>'
+                f'<button class="vp-hit" type="button" aria-label="Play with sound"><span class="vp-label">Play with sound</span></button></div>'
+                f'<div class="vp-tl" role="slider" aria-label="Seek" tabindex="0"><i></i></div></div>')
     return (f'<div class="mod embed reveal-m"><div class="ratio" style="padding-bottom:{r}">'
             f'<iframe src="{html.escape(src)}" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></div>')
 
