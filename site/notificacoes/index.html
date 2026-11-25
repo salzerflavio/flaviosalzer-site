@@ -223,9 +223,9 @@ html.view-list .vt .i-list{display:none}
 .plist{display:none;padding:var(--s2) var(--edge) var(--s3)}
 html.view-list .pg-home .masonry,html.view-list .pg-home .stack{display:none!important}
 html.view-list .pg-home .plist{display:block}
-.prow{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,4fr) auto auto;align-items:baseline;gap:var(--s2);padding:14px 0;color:var(--tx);transition:color .25s}
+.prow{display:grid;grid-template-columns:minmax(0,15%) minmax(0,1fr) 190px 48px 28px;align-items:baseline;gap:24px;padding:16px 0;border-top:1px solid rgba(255,255,255,.22);color:var(--tx);transition:color .25s}
 .pr-client{font:400 var(--fs-ui)/1.3 var(--f)}
-.pr-name{font:500 clamp(30px,3.9vw,56px)/1.05 var(--f);letter-spacing:-.015em;color:var(--hi);opacity:.55;transition:opacity .25s,transform .4s var(--ease)}
+.pr-name{font:500 clamp(28px,3.4vw,50px)/1.05 var(--f);letter-spacing:-.015em;color:var(--hi);opacity:.55;transition:opacity .25s,transform .4s var(--ease)}
 .pr-year{font:400 var(--fs-ui)/1 var(--f)}
 .pr-arr{font:400 22px/1 var(--f);opacity:0;transform:translateX(-8px);transition:opacity .25s,transform .3s var(--ease)}
 .prow:hover .pr-name{opacity:1;transform:translateX(8px)}
@@ -235,12 +235,22 @@ html.view-list .pg-home .plist{display:block}
 .pv.on{opacity:1;transform:scale(1)}
 .pv img{width:100%;height:100%;object-fit:cover;object-position:left top;display:block}
 @media (max-width:700px){
-  .prow{grid-template-columns:1fr auto;gap:4px 12px}
+  .prow{grid-template-columns:1fr auto;gap:6px 12px}
   .pr-client{grid-column:1/-1;order:-1}
   .pr-arr{display:none}
   .pr-name{opacity:1}
   .pv{display:none}
 }
+
+.pr-bd{display:flex;align-items:center;justify-content:flex-end;gap:14px;align-self:center}
+.prow:last-child{border-bottom:1px solid rgba(255,255,255,.22)}
+.bd{display:block;height:26px;background:currentColor;-webkit-mask:var(--b) center/contain no-repeat;mask:var(--b) center/contain no-repeat;opacity:.6;transition:opacity .25s}
+.prow:hover .bd{opacity:1}
+.bd-lion{--b:url(/img/badge-lion.png);aspect-ratio:88/96}
+.bd-effie{--b:url(/img/badge-effie.png);aspect-ratio:96/87}
+.bd-head{--b:url(/img/badge-head.png);aspect-ratio:82/96}
+.bd-clube{--b:url(/img/badge-clube.png);aspect-ratio:96/92;height:24px}
+@media (max-width:700px){.pr-bd{grid-column:1/-1;order:3;justify-content:flex-start}.bd{height:20px}}
 </style>
 </head>
 <body class="proj" id="top">

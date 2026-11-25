@@ -355,12 +355,25 @@ def masonry(ncols, first):
     return f'<section class="masonry m{ncols}">{out}</section>'
 
 flat = ''.join(thumb(c, i) for i, c in enumerate(covers))
+
+AWARDS = {  # badges as they appear on each cover
+    'followers': ['lion'],
+    'the-ze-theory': ['lion', 'effie', 'head', 'clube'],
+    'skip-the-line': ['lion'],
+    'perrengue': ['effie', 'clube'],
+    'regeneracao': ['clube'],
+}
+AWARD_LABEL = {'lion': 'Cannes Lions', 'effie': 'Effie', 'head': 'Award', 'clube': 'Clube de Criação'}
+def badges(slug):
+    b = AWARDS.get(slug, [])
+    return ''.join(f'<i class="bd bd-{k}" role="img" aria-label="{AWARD_LABEL[k]}" title="{AWARD_LABEL[k]}"></i>' for k in b)
+
 def plist_row(c):
     name = NAMES.get(c['slug']) or clean_name(c['title']); client, year = project_meta(c['slug'])
     n = asset(c['normal'])
     pv = f' data-pv="/media/{n["src"]}"' if n else ''
     return (f'<a class="prow" href="/{c["slug"]}/"{pv}><span class="pr-client">{html.escape(client)}</span>'
-            f'<span class="pr-name">{html.escape(name)}</span><span class="pr-year">{html.escape(year)}</span><span class="pr-arr">→</span></a>')
+            f'<span class="pr-name">{html.escape(name)}</span><span class="pr-bd">{badges(c["slug"])}</span><span class="pr-year">{html.escape(year)}</span><span class="pr-arr">→</span></a>')
 plist = '<section class="plist">' + ''.join(plist_row(c) for c in covers) + '</section><div class="pv" aria-hidden="true"><img alt=""></div>'
 home = masonry(3, [1.1, STD, 1.18]) + masonry(2, [1.1, STD]) + f'<section class="stack">{flat}</section>' + plist
 make_og(asset(covers[0]['normal'])['src'], 'home.jpg')
