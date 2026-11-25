@@ -55,7 +55,7 @@ body.pg-home .site-head nav a[href="/"],body.pg-about .site-head nav a[href="/fl
 .stack{display:none}
 .thumb{position:relative;display:block;overflow:hidden}
 .thumb .frame{position:relative;aspect-ratio:1891/1479;overflow:hidden;background:#000;margin-bottom:-1px}
-.thumb .m{position:absolute;inset:-2px;width:calc(100% + 4px);height:calc(100% + 4px);max-width:none;object-fit:cover;transition:transform 1.2s var(--ease),opacity .35s}
+.thumb .m{position:absolute;inset:-2px;width:calc(100% + 4px);height:calc(100% + 4px);max-width:none;object-position:left top;object-fit:cover;transition:transform 1.2s var(--ease),opacity .35s;transform-origin:left top}
 .thumb .hover{opacity:0}
 .thumb:hover .hover,.thumb.playing .hover{opacity:1}
 .thumb:hover .cover{transform:scale(1.02)}

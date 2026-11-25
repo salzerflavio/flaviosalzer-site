@@ -236,16 +236,11 @@ def masonry(ncols, first):
         cols[i % ncols].append([i, c, STD])
     for k, col in enumerate(cols):
         col[0][2] = first[k]
-    heights = [sum(1 / r for _, _, r in col) for col in cols]
-    H = max(heights)
-    for col, h in zip(cols, heights):
-        last = col[-1]
-        last[2] = 1 / (1 / last[2] + (H - h))
     out = ''.join('<div class="mcol">' + ''.join(thumb(c, i, r) for i, c, r in col) + '</div>' for col in cols)
     return f'<section class="masonry m{ncols}">{out}</section>'
 
 flat = ''.join(thumb(c, i) for i, c in enumerate(covers))
-home = masonry(3, [1.0, STD, 1.12]) + masonry(2, [1.0, STD]) + f'<section class="stack">{flat}</section>'
+home = masonry(3, [1.1, STD, 1.18]) + masonry(2, [1.1, STD]) + f'<section class="stack">{flat}</section>'
 write('index.html', page('Flávio Salzer', home, 'pg-home'))
 
 # ---------- projects ----------
