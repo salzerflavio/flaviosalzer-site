@@ -194,16 +194,10 @@ html:not(.js) .split .ln>span{transform:none}
 .vplayer.sound .vp-label{opacity:0}
 .vplayer.sound:hover .vp-label{opacity:1}
 
-/* próximo projeto */
-.next{display:block;margin-top:var(--s4);padding:var(--s3) var(--edge) 0;color:var(--hi)}
-.next-label{display:block;font:400 var(--fs-ui)/1 var(--f);color:var(--tx);margin-bottom:var(--s1)}
-.next-title{display:block;font:700 var(--fs-xl)/1.02 var(--f);letter-spacing:-.015em}
-.next-sub{display:block;margin-top:10px;font:400 var(--fs-body)/1.4 var(--f);color:var(--tx)}
-.next-img{display:block;position:relative;margin:var(--s2) calc(var(--edge) * -1 + var(--g)) 0;aspect-ratio:21/9;overflow:hidden}
-.next-img .m{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
-.next:hover .next-img .m{transform:scale(1.03)}
-.next-bar{display:block;height:2px;margin:0 calc(var(--edge) * -1 + var(--g));background:rgba(255,255,255,.12)}
-.next-bar i{display:block;height:100%;width:calc(var(--np,0) * 100%);background:#fff}
+/* anterior / próximo: discreto, no pé do case */
+.pn{display:flex;justify-content:space-between;padding:var(--s4) var(--edge) 0;font:400 var(--fs-ui)/1 var(--f)}
+.pn a{color:var(--tx);transition:color .2s}
+.pn a:hover{color:var(--hi)}
 @media (prefers-reduced-motion:reduce){.split .ln>span{transform:none!important;transition:none!important}}
 .vplayer .ratio{position:relative;height:0}
 .vplayer iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
@@ -220,7 +214,7 @@ html:not(.js) .split .ln>span{transform:none}
 <div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:1.7977 1 0"><video class="m " data-src="/media/73fdad2c-8354-41fb-8517-a6aa9f07d1dc_rw_1920.mp4" poster="/media/73fdad2c-8354-41fb-8517-a6aa9f07d1dc_rw_1920.webp" width="1582" height="880" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAACwAwCdASoUAAsAPu1iqU2ppaOiMAgBMB2JbAC7ABIxjlgsomXiAAD+0MkGJa47mUu0gb1ItebAdh5VIqR7yddFp+HHWhiOpeHPjLWsota9uxEvonzo2ueSRstUS/eYE6+L2Ark20E6w1G4ALq0qyAA)"></video></div><div class="cell" style="flex:1.7977 1 0"><video class="m " data-src="/media/71d017c0-e8af-4e82-959a-141b62710c00_rw_1920.mp4" poster="/media/71d017c0-e8af-4e82-959a-141b62710c00_rw_1920.webp" width="1582" height="880" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAADwAgCdASoUAAsAPu1iqU2ppaOiMAgBMB2JYwCo9C0kAAD+7v6vJSXS3aDkRAAA)"></video></div></div></div>
 <figure class="mod img reveal-m"><img class="m " src="/media/fc8ca006-719c-4d50-8a5e-488e0232b66a_rw_1920.webp" width="1920" height="1090" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAABwAwCdASoUAAsAPu1iqU2ppaOiMAgBMB2JYgCdMoAEYq0uxYAA/vAI6XDC6GNQNWgbpNu1tPT/ZKaD+EjaqVs1LoAAAA==)"></figure>
 <div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:1.7977 1 0"><video class="m " data-src="/media/3ce488cf-48f6-4e0f-8805-d5e3264a7220_rw_1920.mp4" poster="/media/3ce488cf-48f6-4e0f-8805-d5e3264a7220_rw_1920.webp" width="1582" height="880" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAADQAwCdASoUAAsAPu1iqU2ppaOiMAgBMB2JZgCdACPw0fp+p3NJk+AA/uw3xk5GB2K5NnFwTGUKTiJnjNCEzqjhZu3toUV4rgAAAA==)"></video></div><div class="cell" style="flex:1.7977 1 0"><video class="m " data-src="/media/dbb35934-ca68-4846-8a80-7966935f9a3b_rw_1920.mp4" poster="/media/dbb35934-ca68-4846-8a80-7966935f9a3b_rw_1920.webp" width="1582" height="880" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAADwAwCdASoUAAsAPu1iqU2ppaQiMAgBMB2JQBdmUAA9dSJ/neQM98OAAP7r/o+XnS73zIlUPA0z5g7CTLmGXARvFHa6W1XS6rwNFNQl4DXgUUMMQIL+fyj2rpglQ1GakM1ksIr4egAAAA==)"></video></div></div></div>
-<div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:0.7076 1 0"><img class="m " src="/media/4469af12-dfdb-487c-b143-eb62aeb46a2f_rw_1920.webp" width="1462" height="2066" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAAAwBACdASoUABwAPu1krE+ppSQiMBgIATAdiWIAxNgQ8Aa/T58W7KQV3gAA/vC91Kt6FJJG0QliDCVHTC/LissygNDmEUJ1ySoBeWwYWj1mdCWv9cI1g4vBXpEb4YkljhGnrmy7ROuSjc2DuEJ+IAAA)"></div><div class="cell" style="flex:0.7076 1 0"><img class="m " src="/media/3e76e8d4-dde4-4775-b01d-ae43c43f6d7d_rw_1920.webp" width="1462" height="2066" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAAAwBACdASoUABwAPu1mqk8ppaOiKA1RMB2JYwDCgBEcinZIkbqeYkn4/igA/vC+COQ9AEyoeVJQB3dVjde56D6Rt3/IzJy3khvJwrUSuGV8Zahbb/ggJaIQpcFEfwb4AAA=)"></div><div class="cell" style="flex:0.7076 1 0"><img class="m " src="/media/aa246c44-205d-4f51-9689-d2ee5e33b05e_rw_1920.webp" width="1462" height="2066" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRg4BAABXRUJQVlA4IAIBAAAwBwCdASoUABwAPu1gp02ppSMiMAgBMB2JbACdMoRz78Bbh2mrwDnqrJ0RoAVAyLpy5Pwd0z1ljmQ/OQ5/+o9uUAAA9wgcplkPPdbIv++iQw1i+n7enrvtnb4h70AoAgifOgkX5/8G//ZRj0jfW0O/+VEgKnTuqU3KG4Vox+15n9pIRPhKU21Saun2yuL6falxr3+vtrWCEuFZNDetVIBkY5etcrY7/KjgHlihNA7R/k3pZfQJIzB70yU6znNq81JtjPAYlgAWL7Ou0zOYTDoiKrc/ivfeIdrydfzN+WOEk+sHYQr/j5y7YvIcWyq102whrQfp/+Df9En4rw1wf11cAAA=)"></div><div class="cell" style="flex:0.7076 1 0"><img class="m " src="/media/d597d96d-d9c8-4717-8089-9df56492f0d7_rw_1920.webp" width="1462" height="2066" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRh4BAABXRUJQVlA4IBIBAAAwBwCdASoUABwAPu1ur1IppiQiqAgBMB2JbACdMoR09oLgz9gG2A58XTAOfA9lcBjfVXXbv5A6L4RraDUIn6y5EAAA/ie0+TRAbIvGzHJbw4zss0CXw/PNIth1NmZO0nWcX/7Y8buPpjdIjlHMCckrHkFy6ic/zLE6ksN0bA5Eg+VNh//hoB4+2pbNhQGn7LBIxoYos0833Fp85+awt1dHDcRpssvkgGLqQAp5oj310oG/i3lkSsM+fH1/o0YlGBja/P24uLgGIT22V/l1vn4K0p0ZotiWDNL7/qnaBiA85wNH9ITbjZD3JVbSZCkp2NfrrPqLIaiH/XSTJ5YHKUR3JX5KZoJ9RAKGeJ/4sjdxoAAA)"></div></div></div></div><a class="next" href="/finishline-club/" data-next><span class="next-label">Next project</span><span class="next-title split">Finish Line Club</span><span class="next-sub">Heineken, 2025.</span><span class="next-img"><img class="m cover" src="/media/2f02984a-6cc8-4006-9419-1c21e132a263_rwc_81x0x1633x1277x1280.webp" width="1280" height="1001" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRooAAABXRUJQVlA4IH4AAAAwBACdASoUABAAPu1iqU2ppaOiMAgBMB2JbACdH8ADCTulleL+x0xjO1AA/qk4/HaDo3GCOoDABEbYr+OSj7Yt4xi8bm4gAHkYJOmkWw/WiHkzzcLc3n1swQ1WUKTasgIb07NcgXIxUtD15ykErruM4HApIZsWzMJNYTAAAAA=)"></span><span class="next-bar"><i></i></span></a></article>
+<div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:0.7076 1 0"><img class="m " src="/media/4469af12-dfdb-487c-b143-eb62aeb46a2f_rw_1920.webp" width="1462" height="2066" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAAAwBACdASoUABwAPu1krE+ppSQiMBgIATAdiWIAxNgQ8Aa/T58W7KQV3gAA/vC91Kt6FJJG0QliDCVHTC/LissygNDmEUJ1ySoBeWwYWj1mdCWv9cI1g4vBXpEb4YkljhGnrmy7ROuSjc2DuEJ+IAAA)"></div><div class="cell" style="flex:0.7076 1 0"><img class="m " src="/media/3e76e8d4-dde4-4775-b01d-ae43c43f6d7d_rw_1920.webp" width="1462" height="2066" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAAAwBACdASoUABwAPu1mqk8ppaOiKA1RMB2JYwDCgBEcinZIkbqeYkn4/igA/vC+COQ9AEyoeVJQB3dVjde56D6Rt3/IzJy3khvJwrUSuGV8Zahbb/ggJaIQpcFEfwb4AAA=)"></div><div class="cell" style="flex:0.7076 1 0"><img class="m " src="/media/aa246c44-205d-4f51-9689-d2ee5e33b05e_rw_1920.webp" width="1462" height="2066" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRg4BAABXRUJQVlA4IAIBAAAwBwCdASoUABwAPu1gp02ppSMiMAgBMB2JbACdMoRz78Bbh2mrwDnqrJ0RoAVAyLpy5Pwd0z1ljmQ/OQ5/+o9uUAAA9wgcplkPPdbIv++iQw1i+n7enrvtnb4h70AoAgifOgkX5/8G//ZRj0jfW0O/+VEgKnTuqU3KG4Vox+15n9pIRPhKU21Saun2yuL6falxr3+vtrWCEuFZNDetVIBkY5etcrY7/KjgHlihNA7R/k3pZfQJIzB70yU6znNq81JtjPAYlgAWL7Ou0zOYTDoiKrc/ivfeIdrydfzN+WOEk+sHYQr/j5y7YvIcWyq102whrQfp/+Df9En4rw1wf11cAAA=)"></div><div class="cell" style="flex:0.7076 1 0"><img class="m " src="/media/d597d96d-d9c8-4717-8089-9df56492f0d7_rw_1920.webp" width="1462" height="2066" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRh4BAABXRUJQVlA4IBIBAAAwBwCdASoUABwAPu1ur1IppiQiqAgBMB2JbACdMoR09oLgz9gG2A58XTAOfA9lcBjfVXXbv5A6L4RraDUIn6y5EAAA/ie0+TRAbIvGzHJbw4zss0CXw/PNIth1NmZO0nWcX/7Y8buPpjdIjlHMCckrHkFy6ic/zLE6ksN0bA5Eg+VNh//hoB4+2pbNhQGn7LBIxoYos0833Fp85+awt1dHDcRpssvkgGLqQAp5oj310oG/i3lkSsM+fH1/o0YlGBja/P24uLgGIT22V/l1vn4K0p0ZotiWDNL7/qnaBiA85wNH9ITbjZD3JVbSZCkp2NfrrPqLIaiH/XSTJ5YHKUR3JX5KZoJ9RAKGeJ/4sjdxoAAA)"></div></div></div></div><nav class="pn" aria-label="More projects"><a href="/the-ze-theory/" rel="prev">← Previous</a><a href="/finishline-club/" rel="next">Next →</a></nav></article>
 </main>
 <footer class="site-foot">
   <a href="#top" class="totop">↑ back to top</a>
@@ -252,7 +246,7 @@ html:not(.js) .split .ln>span{transform:none}
   // smooth (inertial) scrolling
   let lenis = null;
   if (!reduce && window.Lenis && matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    lenis = new Lenis({ autoRaf: true, lerp: 0.09, wheelMultiplier: 1 });
+    lenis = new Lenis({ autoRaf: true, lerp: 0.15, wheelMultiplier: 1 });
   }
 
   // titles: split into lines and reveal line by line
@@ -293,23 +287,6 @@ html:not(.js) .split .ln>span{transform:none}
         }
       });
     });
-  }
-
-  // next project: keep scrolling at the bottom to go there
-  const nx = document.querySelector('[data-next]');
-  if (nx && matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    let acc = 0, going = false, decay;
-    const atBottom = () => innerHeight + scrollY >= document.documentElement.scrollHeight - 4;
-    addEventListener('wheel', e => {
-      if (going) return;
-      if (atBottom() && e.deltaY > 0) {
-        acc = Math.min(1, acc + e.deltaY / 1400);
-        nx.style.setProperty('--np', acc.toFixed(3));
-        clearTimeout(decay);
-        decay = setTimeout(function back() { acc = Math.max(0, acc - 0.08); nx.style.setProperty('--np', acc.toFixed(3)); if (acc > 0) decay = setTimeout(back, 30); }, 450);
-        if (acc >= 1) { going = true; location.href = nx.href; }
-      }
-    }, { passive: true });
   }
 
   // exit effect: project media shrink + fade a little as they scroll off the top

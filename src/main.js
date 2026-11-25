@@ -22,7 +22,7 @@
   // smooth (inertial) scrolling
   let lenis = null;
   if (!reduce && window.Lenis && matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    lenis = new Lenis({ autoRaf: true, lerp: 0.09, wheelMultiplier: 1 });
+    lenis = new Lenis({ autoRaf: true, lerp: 0.15, wheelMultiplier: 1 });
   }
 
   // titles: split into lines and reveal line by line
@@ -63,23 +63,6 @@
         }
       });
     });
-  }
-
-  // next project: keep scrolling at the bottom to go there
-  const nx = document.querySelector('[data-next]');
-  if (nx && matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    let acc = 0, going = false, decay;
-    const atBottom = () => innerHeight + scrollY >= document.documentElement.scrollHeight - 4;
-    addEventListener('wheel', e => {
-      if (going) return;
-      if (atBottom() && e.deltaY > 0) {
-        acc = Math.min(1, acc + e.deltaY / 1400);
-        nx.style.setProperty('--np', acc.toFixed(3));
-        clearTimeout(decay);
-        decay = setTimeout(function back() { acc = Math.max(0, acc - 0.08); nx.style.setProperty('--np', acc.toFixed(3)); if (acc > 0) decay = setTimeout(back, 30); }, 450);
-        if (acc >= 1) { going = true; location.href = nx.href; }
-      }
-    }, { passive: true });
   }
 
   // exit effect: project media shrink + fade a little as they scroll off the top

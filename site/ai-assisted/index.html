@@ -194,16 +194,10 @@ html:not(.js) .split .ln>span{transform:none}
 .vplayer.sound .vp-label{opacity:0}
 .vplayer.sound:hover .vp-label{opacity:1}
 
-/* próximo projeto */
-.next{display:block;margin-top:var(--s4);padding:var(--s3) var(--edge) 0;color:var(--hi)}
-.next-label{display:block;font:400 var(--fs-ui)/1 var(--f);color:var(--tx);margin-bottom:var(--s1)}
-.next-title{display:block;font:700 var(--fs-xl)/1.02 var(--f);letter-spacing:-.015em}
-.next-sub{display:block;margin-top:10px;font:400 var(--fs-body)/1.4 var(--f);color:var(--tx)}
-.next-img{display:block;position:relative;margin:var(--s2) calc(var(--edge) * -1 + var(--g)) 0;aspect-ratio:21/9;overflow:hidden}
-.next-img .m{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
-.next:hover .next-img .m{transform:scale(1.03)}
-.next-bar{display:block;height:2px;margin:0 calc(var(--edge) * -1 + var(--g));background:rgba(255,255,255,.12)}
-.next-bar i{display:block;height:100%;width:calc(var(--np,0) * 100%);background:#fff}
+/* anterior / próximo: discreto, no pé do case */
+.pn{display:flex;justify-content:space-between;padding:var(--s4) var(--edge) 0;font:400 var(--fs-ui)/1 var(--f)}
+.pn a{color:var(--tx);transition:color .2s}
+.pn a:hover{color:var(--hi)}
 @media (prefers-reduced-motion:reduce){.split .ln>span{transform:none!important;transition:none!important}}
 .vplayer .ratio{position:relative;height:0}
 .vplayer iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
@@ -224,7 +218,7 @@ html:not(.js) .split .ln>span{transform:none}
 <figure class="mod img reveal-m"><img class="m " src="/media/3ac57c7f-bcb0-4920-92f1-ea75daa571f8_rw_1920.webp" width="1920" height="1342" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAADwAgCdASoUAA4APu1iqU2ppaOiMAgBMB2JaWZAADdYAAD+8G6dTS8OX1jhZxdX/7qGSGYmTZD+D+NpgyQAAA==)"></figure>
 <figure class="mod img reveal-m"><img class="m " src="/media/129547ea-9d58-415b-a46d-5e6437bba145_rw_1920.webp" width="1920" height="1409" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRj4AAABXRUJQVlA4IDIAAABQAwCdASoUAA8APu1iqU2ppaOiMAgBMB2JaQAAW+v4c7soAAD+8MlNita46mfX2AAAAA==)"></figure>
 <figure class="mod img reveal-m"><img class="m " src="/media/7550f4ee-0b04-42d3-b17c-c393d9b72d18_rw_1920.webp" width="1920" height="1331" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAACwAgCdASoUAA4APu1iqU2ppaOiMAgBMB2JaQAAeyAA/vDLCTsfOc+dmp0P8wGAAAA=)"></figure>
-<figure class="mod img reveal-m"><img class="m " src="/media/af3e23df-ae4b-435b-9833-032915dbfe57_rw_1920.webp" width="1920" height="1228" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAABwAwCdASoUAA0APu1iqU2ppaQiMAgBMB2JaQAAW4YTFQK6RkAA/vQm9jx535twe4YbfTP4O3L4kAAA)"></figure></div><a class="next" href="/hh-virtual-skol/" data-next><span class="next-label">Next project</span><span class="next-title split">Virtual Happy Hour</span><span class="next-sub">Skol, 2021.</span><span class="next-img"><img class="m cover" src="/media/b4034302-92d0-4527-8740-e8d42aa1e754_carw_202x158x1280.webp" width="1280" height="1001" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRrwAAABXRUJQVlA4ILAAAAAwBACdASoUABAAPu1iqU2ppaOiMAgBMB2JbACdMoAvXzMwRkYQLcPWgFgA8C6RFhbfdC5ny0sRWQ/ARkF9f7YJ3w1q6vuen99Jn8w4jaPQg41Ys1dAEdRXd+dwypRDEhUlVYVOqTO4VECk8U/8W84QL4itAKGZW6vQi2bHrZDuW4HPNPEwIzYE8JhScwuBNv1gpiP+4hMl3ub8pYNis+1p/HPU0fVBFDLsp9/LWLAAAA==)"></span><span class="next-bar"><i></i></span></a></article>
+<figure class="mod img reveal-m"><img class="m " src="/media/af3e23df-ae4b-435b-9833-032915dbfe57_rw_1920.webp" width="1920" height="1228" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAABwAwCdASoUAA0APu1iqU2ppaQiMAgBMB2JaQAAW4YTFQK6RkAA/vQm9jx535twe4YbfTP4O3L4kAAA)"></figure></div><nav class="pn" aria-label="More projects"><a href="/flexmode/" rel="prev">← Previous</a><a href="/hh-virtual-skol/" rel="next">Next →</a></nav></article>
 </main>
 <footer class="site-foot">
   <a href="#top" class="totop">↑ back to top</a>
@@ -256,7 +250,7 @@ html:not(.js) .split .ln>span{transform:none}
   // smooth (inertial) scrolling
   let lenis = null;
   if (!reduce && window.Lenis && matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    lenis = new Lenis({ autoRaf: true, lerp: 0.09, wheelMultiplier: 1 });
+    lenis = new Lenis({ autoRaf: true, lerp: 0.15, wheelMultiplier: 1 });
   }
 
   // titles: split into lines and reveal line by line
@@ -297,23 +291,6 @@ html:not(.js) .split .ln>span{transform:none}
         }
       });
     });
-  }
-
-  // next project: keep scrolling at the bottom to go there
-  const nx = document.querySelector('[data-next]');
-  if (nx && matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    let acc = 0, going = false, decay;
-    const atBottom = () => innerHeight + scrollY >= document.documentElement.scrollHeight - 4;
-    addEventListener('wheel', e => {
-      if (going) return;
-      if (atBottom() && e.deltaY > 0) {
-        acc = Math.min(1, acc + e.deltaY / 1400);
-        nx.style.setProperty('--np', acc.toFixed(3));
-        clearTimeout(decay);
-        decay = setTimeout(function back() { acc = Math.max(0, acc - 0.08); nx.style.setProperty('--np', acc.toFixed(3)); if (acc > 0) decay = setTimeout(back, 30); }, 450);
-        if (acc >= 1) { going = true; location.href = nx.href; }
-      }
-    }, { passive: true });
   }
 
   // exit effect: project media shrink + fade a little as they scroll off the top

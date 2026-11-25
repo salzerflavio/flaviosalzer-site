@@ -194,16 +194,10 @@ html:not(.js) .split .ln>span{transform:none}
 .vplayer.sound .vp-label{opacity:0}
 .vplayer.sound:hover .vp-label{opacity:1}
 
-/* próximo projeto */
-.next{display:block;margin-top:var(--s4);padding:var(--s3) var(--edge) 0;color:var(--hi)}
-.next-label{display:block;font:400 var(--fs-ui)/1 var(--f);color:var(--tx);margin-bottom:var(--s1)}
-.next-title{display:block;font:700 var(--fs-xl)/1.02 var(--f);letter-spacing:-.015em}
-.next-sub{display:block;margin-top:10px;font:400 var(--fs-body)/1.4 var(--f);color:var(--tx)}
-.next-img{display:block;position:relative;margin:var(--s2) calc(var(--edge) * -1 + var(--g)) 0;aspect-ratio:21/9;overflow:hidden}
-.next-img .m{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
-.next:hover .next-img .m{transform:scale(1.03)}
-.next-bar{display:block;height:2px;margin:0 calc(var(--edge) * -1 + var(--g));background:rgba(255,255,255,.12)}
-.next-bar i{display:block;height:100%;width:calc(var(--np,0) * 100%);background:#fff}
+/* anterior / próximo: discreto, no pé do case */
+.pn{display:flex;justify-content:space-between;padding:var(--s4) var(--edge) 0;font:400 var(--fs-ui)/1 var(--f)}
+.pn a{color:var(--tx);transition:color .2s}
+.pn a:hover{color:var(--hi)}
 @media (prefers-reduced-motion:reduce){.split .ln>span{transform:none!important;transition:none!important}}
 .vplayer .ratio{position:relative;height:0}
 .vplayer iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
@@ -224,7 +218,7 @@ html:not(.js) .split .ln>span{transform:none}
 <div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:1.6000 1 0"><img class="m " src="/media/70c02858-e3eb-4dcd-a13a-c36fde91dcaf_rw_1920.webp" width="1920" height="1200" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRqgAAABXRUJQVlA4IJwAAABQBACdASoUAAwAPu1iqU2ppaOiMAgBMB2JbACdMoAvQTPoXv1xKAQsNnoAAOIYtmCMNbjwFsKnF1rXgmP3eimJAy2lcD5pgTIanUpaqT9lQveIM1txDFBOUHjaj/+LfEH5nMwiT++X0Yx7D+AlZl2U/zKeRf9T8+/j7UKx2tjAK/9DmUcPzNwv8O/X/8ET3E8QdjOIEYlSW6TQAAA=)"></div><div class="cell" style="flex:1.3338 1 0"><img class="m " src="/media/6ff7e9b1-d1c4-4252-8ccc-34ce73c9d3b3_rw_3840.webp" width="3840" height="2880" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAACwAwCdASoUAA8APu1iqU2ppaOiMAgBMB2JQBhQBDwJqeLNIfAYAAD+78Kn20PuMtn0dkjIfUy6CvskSY1lJlZN1TYoMW4ioyQkeMFfn9cAAA==)"></div></div></div>
 <figure class="mod img reveal-m"><img class="m " src="/media/2e86c31d-7c39-4c9e-b721-3d3d95d9a7cd_rw_1920.webp" width="1920" height="1449" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAADwAwCdASoUAA8APu1iqU2ppaOiMAgBMB2JbAC/RiAAJfpphd3jt0YAAP7v10a9RD9dYASzT72hTctBsuZ1UnrXN+vO7JPXitr6sxolJJ14sb2ZxjAAAA==)"></figure>
 <div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:1.0000 1 0"><video class="m " data-src="/media/e429a2f1-d029-4dff-b915-aae8cce952ca_rw_1200.mp4" poster="/media/e429a2f1-d029-4dff-b915-aae8cce952ca_rw_1200.webp" width="800" height="800" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRqQAAABXRUJQVlA4IJgAAACQBACdASoUABQAPu1mq0+ppSOiMBgIATAdiWwAsR9aNJeqgCulW+9SZTaz0QAA/uqW+sUChwZBbawS60jmtqRgXm2BKr3UaDz2Rj8bU6FvqcdMi8P/4xbTmxxxuz21tO6a9ruHLjQUBjznPprtAmfxHE945nrb3f+TRNm8e4vETw+XQkzbSMmw3ZcdYI9AMuuz4GUyBfYAAA==)"></video></div><div class="cell" style="flex:1.0000 1 0"><video class="m " data-src="/media/a9b6d03a-22a2-4494-83e3-e6b18490ec65_rw_1200.mp4" poster="/media/a9b6d03a-22a2-4494-83e3-e6b18490ec65_rw_1200.webp" width="800" height="800" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAABwAwCdASoUABQAPu1wsFIppiSiqAgBMB2JQBdgAiOZUbJhQQAA/upoNtNBajeqDRJjxN6Rq0kasaQhUSBZUqsJfV2pFS//nYP/hdh/+H0TjWy87nWMLAgJ1aTR4Hhp6g57Wb8JgAAAAA==)"></video></div></div></div>
-<figure class="mod img reveal-m"><img class="m " src="/media/58c5f487-d7f1-4320-bb34-b91b231293a5_rw_1920.webp" width="1920" height="5" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAACwAgCdASoUAAEAPu1iqU2ppaOiMAgBMB2JaQAAeyAA/vCfnTzAAAAA)"></figure></div><a class="next" href="/ze-salva/" data-next><span class="next-label">Next project</span><span class="next-title split">Zé Saves</span><span class="next-sub">Zé Delivery, 2022.</span><span class="next-img"><img class="m cover" src="/media/cc5c0a54-4573-4ddb-a23f-6a91400d49b3_rwc_641x199x1157x904x1280.webp" width="1157" height="904" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRvIAAABXRUJQVlA4IOYAAADQBACdASoUABAAPu1iqU2ppaOiMAgBMB2JaAC073gHPs5tyrMMBmXn0pFRRya4AAD+84FKEHt0zdofj4aNKz0atWOLFwZVbA1jA5M7734frfJQ/+hWukHherO6cB2KpvWXumzVlNMTS/Uh18Gvwdp8IAL3NJyCcUdcl4NPqaYGHDWXVJNRspKDrQXkJA7P3AwfhshQ2wOsYPQSG2xXbUtH1BDVYnf8Flzg28R2vYOlqXv0n3hNkYL4gHpg13tUvjPL9ttUBPIOmfxhb+NGqHFjfhWH1khkHfWEPcMRIVUrik84Ay8YAA==)"></span><span class="next-bar"><i></i></span></a></article>
+<figure class="mod img reveal-m"><img class="m " src="/media/58c5f487-d7f1-4320-bb34-b91b231293a5_rw_1920.webp" width="1920" height="5" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAACwAgCdASoUAAEAPu1iqU2ppaOiMAgBMB2JaQAAeyAA/vCfnTzAAAAA)"></figure></div><nav class="pn" aria-label="More projects"><a href="/ai-assisted/" rel="prev">← Previous</a><a href="/ze-salva/" rel="next">Next →</a></nav></article>
 </main>
 <footer class="site-foot">
   <a href="#top" class="totop">↑ back to top</a>
@@ -256,7 +250,7 @@ html:not(.js) .split .ln>span{transform:none}
   // smooth (inertial) scrolling
   let lenis = null;
   if (!reduce && window.Lenis && matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    lenis = new Lenis({ autoRaf: true, lerp: 0.09, wheelMultiplier: 1 });
+    lenis = new Lenis({ autoRaf: true, lerp: 0.15, wheelMultiplier: 1 });
   }
 
   // titles: split into lines and reveal line by line
@@ -297,23 +291,6 @@ html:not(.js) .split .ln>span{transform:none}
         }
       });
     });
-  }
-
-  // next project: keep scrolling at the bottom to go there
-  const nx = document.querySelector('[data-next]');
-  if (nx && matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    let acc = 0, going = false, decay;
-    const atBottom = () => innerHeight + scrollY >= document.documentElement.scrollHeight - 4;
-    addEventListener('wheel', e => {
-      if (going) return;
-      if (atBottom() && e.deltaY > 0) {
-        acc = Math.min(1, acc + e.deltaY / 1400);
-        nx.style.setProperty('--np', acc.toFixed(3));
-        clearTimeout(decay);
-        decay = setTimeout(function back() { acc = Math.max(0, acc - 0.08); nx.style.setProperty('--np', acc.toFixed(3)); if (acc > 0) decay = setTimeout(back, 30); }, 450);
-        if (acc >= 1) { going = true; location.href = nx.href; }
-      }
-    }, { passive: true });
   }
 
   // exit effect: project media shrink + fade a little as they scroll off the top

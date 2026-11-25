@@ -258,17 +258,10 @@ def make_og(src_name, out_name, focus_left=True):
 def next_block(slug):
     order = [c['slug'] for c in covers]
     if slug not in order: return ''
-    nxt = covers[(order.index(slug) + 1) % len(order)]
-    name = NAMES.get(nxt['slug']) or clean_name(nxt['title']); client, year = project_meta(nxt['slug'])
-    sub = ', '.join(x for x in (client, year) if x)
-    n = asset(nxt['normal'])
-    img = media_tag(nxt['normal'], 'cover') if n else ''
-    return (f'<a class="next" href="/{nxt["slug"]}/" data-next>'
-            f'<span class="next-label">Next project</span>'
-            f'<span class="next-title split">{html.escape(name)}</span>'
-            f'<span class="next-sub">{html.escape(sub)}.</span>'
-            f'<span class="next-img">{img}</span>'
-            f'<span class="next-bar"><i></i></span></a>')
+    k = order.index(slug)
+    prv, nxt = order[k - 1], order[(k + 1) % len(order)]
+    return (f'<nav class="pn" aria-label="More projects">'
+            f'<a href="/{prv}/" rel="prev">← Previous</a><a href="/{nxt}/" rel="next">Next →</a></nav>')
 
 # ---------- page shell ----------
 CSS = open('style.css').read()

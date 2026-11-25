@@ -194,16 +194,10 @@ html:not(.js) .split .ln>span{transform:none}
 .vplayer.sound .vp-label{opacity:0}
 .vplayer.sound:hover .vp-label{opacity:1}
 
-/* próximo projeto */
-.next{display:block;margin-top:var(--s4);padding:var(--s3) var(--edge) 0;color:var(--hi)}
-.next-label{display:block;font:400 var(--fs-ui)/1 var(--f);color:var(--tx);margin-bottom:var(--s1)}
-.next-title{display:block;font:700 var(--fs-xl)/1.02 var(--f);letter-spacing:-.015em}
-.next-sub{display:block;margin-top:10px;font:400 var(--fs-body)/1.4 var(--f);color:var(--tx)}
-.next-img{display:block;position:relative;margin:var(--s2) calc(var(--edge) * -1 + var(--g)) 0;aspect-ratio:21/9;overflow:hidden}
-.next-img .m{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
-.next:hover .next-img .m{transform:scale(1.03)}
-.next-bar{display:block;height:2px;margin:0 calc(var(--edge) * -1 + var(--g));background:rgba(255,255,255,.12)}
-.next-bar i{display:block;height:100%;width:calc(var(--np,0) * 100%);background:#fff}
+/* anterior / próximo: discreto, no pé do case */
+.pn{display:flex;justify-content:space-between;padding:var(--s4) var(--edge) 0;font:400 var(--fs-ui)/1 var(--f)}
+.pn a{color:var(--tx);transition:color .2s}
+.pn a:hover{color:var(--hi)}
 @media (prefers-reduced-motion:reduce){.split .ln>span{transform:none!important;transition:none!important}}
 .vplayer .ratio{position:relative;height:0}
 .vplayer iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
@@ -229,7 +223,7 @@ html:not(.js) .split .ln>span{transform:none}
 <figure class="mod img reveal-m"><img class="m " src="/media/9a444850-2585-4603-a86b-f0ba88171742_rw_3840.webp" width="3840" height="2160" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRpgAAABXRUJQVlA4IIwAAAAwBACdASoUAAsAPu1iqU2ppaOiMAgBMB2JbACw7Yx2yYAUsMBjn/PmaAAA/u0rGYn0vhnw6a/eym8mJt50heRqidBu4YfMdQj5ksoT/WZV7T+7jHpJVLcMhStXODdZ12wzv5rc6gUA5m+e+3hCVq+Hbmnwl+/5Mmi5EmzGTmqAKBf3ZCRnePwfcpEAAA==)"></figure>
 <figure class="mod img reveal-m"><img class="m " src="/media/115e4334-e7ed-4354-ad8b-c6e06fd0ce5f_rw_3840.webp" width="3840" height="2160" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRrgAAABXRUJQVlA4IKwAAABQBACdASoUAAsAPu1iqU2ppaOiMAgBMB2JbACdMoO4AATZWPSZrg2fJfZ4AP6O85z1wO7H8FVEcCjk/Ves/VZOYaDkUCJPKpOk2hRMYNezLPo6Dui/zMvx1j8r/8YKvWHFW/vO8HfisltJrZT6gb2xB5X49HWPIhAddH5/y4wOzVSsm57ZW/G173RyMlf7fqHRTGa0YZFvP1TrG3XfUH35XBf8csscrP/PxgAA)"></figure>
 <figure class="mod img reveal-m"><img class="m " src="/media/f936c611-1ece-4c7a-8a3a-d2360b6483b5_rw_3840.webp" width="3840" height="2160" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRpQAAABXRUJQVlA4IIgAAAAQBACdASoUAAsAPu1iqU2ppaOiMAgBMB2JbAC06dwA3Crn4MlT0WxmAAD+8yZ8+s5AMAkRXvpevnLV8lJLiucszbF0H70k1uJ6qHUyEjy2bwEAvHO9DtFfXjA+NudyDW/ZAo7aW1sBVPRkiAeWUtPFYQ/ec3EceQjbbbf0KQRoViQPtItVaAAA)"></figure>
-<figure class="mod img reveal-m"><img class="m " src="/media/c9b34128-1f4d-49fe-b054-8cac97f855c6_rw_3840.webp" width="3840" height="2160" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRqgAAABXRUJQVlA4IJwAAABQBACdASoUAAsAPu1iqU2ppaOiMAgBMB2JbACdMoKAAAlYsWjhD2ZOAAHAAP3Z0olNyFQvaTfeFAQpCfmdi9MwlptgHAnOrX7WMT0ZOSW9kRauOUmMbqoixeUxwpzELWTBfceioZpWBNTs5cjjhG4Bxfxk6LhxZLQyq3a4uTECWHzf5CMDFloiu7pD90XCX5YrlsT5aJ6JuKSeYAA=)"></figure></div><a class="next" href="/the-smallest-launch/" data-next><span class="next-label">Next project</span><span class="next-title split">The Smallest Launch in the World</span><span class="next-sub">Skol, 2020.</span><span class="next-img"><img class="m cover" src="/media/59d4deab-40b7-49e2-ae62-af4ed9c318a6_rwc_993x318x922x721x1280.webp" width="922" height="721" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRpYAAABXRUJQVlA4IIoAAACwBACdASoUABAAPu1iqU2ppaOiMAgBMB2JbACdMoR3DhMwMz/50z8gbVkNHbSAAP7XG7NTewkqZjR2LiCHfKc08fmi+h7VjxtOvr1lRP/wuVuEtxewq6SC47rBMhne3dWk5AmxU4dMn0fgn0WGji9BoKle8PX3T7pMTzj7lcb9j6cx/Rp1YCvigAA=)"></span><span class="next-bar"><i></i></span></a></article>
+<figure class="mod img reveal-m"><img class="m " src="/media/c9b34128-1f4d-49fe-b054-8cac97f855c6_rw_3840.webp" width="3840" height="2160" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRqgAAABXRUJQVlA4IJwAAABQBACdASoUAAsAPu1iqU2ppaOiMAgBMB2JbACdMoKAAAlYsWjhD2ZOAAHAAP3Z0olNyFQvaTfeFAQpCfmdi9MwlptgHAnOrX7WMT0ZOSW9kRauOUmMbqoixeUxwpzELWTBfceioZpWBNTs5cjjhG4Bxfxk6LhxZLQyq3a4uTECWHzf5CMDFloiu7pD90XCX5YrlsT5aJ6JuKSeYAA=)"></figure></div><nav class="pn" aria-label="More projects"><a href="/hh-virtual-skol/" rel="prev">← Previous</a><a href="/the-smallest-launch/" rel="next">Next →</a></nav></article>
 </main>
 <footer class="site-foot">
   <a href="#top" class="totop">↑ back to top</a>
@@ -261,7 +255,7 @@ html:not(.js) .split .ln>span{transform:none}
   // smooth (inertial) scrolling
   let lenis = null;
   if (!reduce && window.Lenis && matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    lenis = new Lenis({ autoRaf: true, lerp: 0.09, wheelMultiplier: 1 });
+    lenis = new Lenis({ autoRaf: true, lerp: 0.15, wheelMultiplier: 1 });
   }
 
   // titles: split into lines and reveal line by line
@@ -302,23 +296,6 @@ html:not(.js) .split .ln>span{transform:none}
         }
       });
     });
-  }
-
-  // next project: keep scrolling at the bottom to go there
-  const nx = document.querySelector('[data-next]');
-  if (nx && matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    let acc = 0, going = false, decay;
-    const atBottom = () => innerHeight + scrollY >= document.documentElement.scrollHeight - 4;
-    addEventListener('wheel', e => {
-      if (going) return;
-      if (atBottom() && e.deltaY > 0) {
-        acc = Math.min(1, acc + e.deltaY / 1400);
-        nx.style.setProperty('--np', acc.toFixed(3));
-        clearTimeout(decay);
-        decay = setTimeout(function back() { acc = Math.max(0, acc - 0.08); nx.style.setProperty('--np', acc.toFixed(3)); if (acc > 0) decay = setTimeout(back, 30); }, 450);
-        if (acc >= 1) { going = true; location.href = nx.href; }
-      }
-    }, { passive: true });
   }
 
   // exit effect: project media shrink + fade a little as they scroll off the top
