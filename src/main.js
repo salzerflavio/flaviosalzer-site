@@ -146,19 +146,47 @@
       document.startViewTransition && !reduce ? document.startViewTransition(swap) : swap();
     });
   }
-  // list hover preview follows the cursor
-  const pv = document.querySelector('.pv');
-  if (pv && matchMedia('(hover: hover)').matches) {
-    const pimg = pv.querySelector('img');
-    let px = 0, py = 0, tx = 0, ty = 0, run = false;
-    const loop = () => { px += (tx - px) * 0.2; py += (ty - py) * 0.2; pv.style.translate = `${px + 28}px ${py - pv.offsetHeight / 2}px`; if (run) requestAnimationFrame(loop); };
-    document.querySelectorAll('.prow').forEach(r => {
-      r.addEventListener('mouseenter', e => { if (r.dataset.pv) pimg.src = r.dataset.pv; pv.classList.add('on'); if (!run) { px = tx = e.clientX; py = ty = e.clientY; run = true; loop(); } });
-      r.addEventListener('mouseleave', () => { pv.classList.remove('on'); setTimeout(() => { if (!pv.classList.contains('on')) run = false; }, 400); });
-    });
-    addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; }, { passive: true });
-    // warm the cache so previews pop instantly
-    setTimeout(() => document.querySelectorAll('.prow[data-pv]').forEach(r => { const i = new Image(); i.src = r.dataset.pv; }), 2500);
+  // list: the row crossing the middle of the screen opens up and shows its name.
+  // Heights follow a cos² bump that always sums to one row, so the list's total
+  // height never changes and scrolling never fights the layout.
+  const plistEl = document.querySelector('.plist');
+  if (plistEl) {
+    const rows = [...plistEl.querySelectorAll('.prow')];
+    const vids = rows.map(r => r.querySelector('video'));
+    let H0 = 0, E = 0, top = 0, vh = 0, queued = false;
+    const measure = () => {
+      vh = innerHeight;
+      H0 = Math.max(104, vh * 0.15);
+      E = Math.max(220, vh * 0.44);
+      plistEl.style.paddingTop = '0px';
+      const t0 = plistEl.getBoundingClientRect().top + scrollY;
+      // nudge the list down so the first row opens centred on screen at the top of the page
+      const pad = Math.max(0, vh / 2 - (H0 + E) / 2 - t0);
+      plistEl.style.paddingTop = pad + 'px';
+      top = t0 + pad;
+    };
+    const paint = () => {
+      queued = false;
+      if (!root.classList.contains('view-list')) return;
+      const t = Math.min(rows.length - 1, Math.max(0, (scrollY + vh / 2 - top - H0 / 2 - E / 2) / H0));
+      rows.forEach((r, i) => {
+        const d = i - t, b = Math.abs(d) < 1 ? Math.cos(Math.PI * d / 2) ** 2 : 0;
+        r.style.setProperty('--h', (H0 + E * b).toFixed(1) + 'px');
+        r.style.setProperty('--a', (b * b).toFixed(3));
+        const v = vids[i];
+        if (!v) return;
+        if (b > 0.55) {
+          if (!v.src) v.src = v.dataset.src;
+          if (v.paused) v.play().then(() => v.classList.add('on')).catch(() => {});
+        } else if (!v.paused) { v.pause(); v.classList.remove('on'); }
+      });
+    };
+    const req = () => { if (!queued) { queued = true; requestAnimationFrame(paint); } };
+    const root = document.documentElement;
+    measure(); paint();
+    addEventListener('scroll', req, { passive: true });
+    addEventListener('resize', () => { measure(); req(); });
+    new MutationObserver(() => { measure(); req(); }).observe(root, { attributes: true, attributeFilter: ['class'] });
   }
 
   // in-page loops (ex-GIFs): load + play only while on screen
