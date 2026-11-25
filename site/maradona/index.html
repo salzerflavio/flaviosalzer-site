@@ -138,6 +138,8 @@ figure{margin:0}
 .js .in.reveal-m .m{transform:none}
 .js .thumb.in .frame{clip-path:inset(0)}
 .js .thumb.in .cover{transform:none}
+/* saída: ao sair pelo topo, a mídia encolhe e apaga um pouco */
+.js .reveal-m.in.done{transition:none;transform:scale(calc(1 - var(--x,0) * .06));opacity:calc(1 - var(--x,0) * .65);transform-origin:50% 100%;will-change:transform,opacity}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .js .reveal-t,.js .reveal-m,.js .thumb .frame{opacity:1!important;transform:none!important;clip-path:none!important;transition:none!important}
@@ -212,6 +214,31 @@ figure{margin:0}
     }
     reduce ? el.classList.add('in') : revealObs.observe(el);
   });
+
+  // exit effect: project media shrink + fade a little as they scroll off the top
+  if (!reduce) {
+    const mods = [...document.querySelectorAll('.p-body .reveal-m, .about .reveal-m')];
+    mods.forEach(m => {
+      const done = () => setTimeout(() => m.classList.add('done'), 1300);
+      if (m.classList.contains('in')) done();
+      else new MutationObserver((_, o) => { if (m.classList.contains('in')) { o.disconnect(); done(); } }).observe(m, { attributes: true, attributeFilter: ['class'] });
+    });
+    let ticking = false;
+    const head = 80;
+    const exitFx = () => {
+      ticking = false;
+      const vh = innerHeight;
+      for (const m of mods) {
+        const r = m.getBoundingClientRect();
+        if (r.bottom < -50 || r.top > vh) continue;
+        const span = Math.min(r.height, vh * 0.8);
+        const p = Math.max(0, Math.min(1, (head - r.top) / span));
+        m.style.setProperty('--x', p.toFixed(3));
+      }
+    };
+    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(exitFx); } }, { passive: true });
+    exitFx();
+  }
 
   // in-page loops (ex-GIFs): load + play only while on screen
   const vidObs = new IntersectionObserver(es => {

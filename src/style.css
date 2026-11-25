@@ -127,6 +127,8 @@ figure{margin:0}
 .js .in.reveal-m .m{transform:none}
 .js .thumb.in .frame{clip-path:inset(0)}
 .js .thumb.in .cover{transform:none}
+/* saída: ao sair pelo topo, a mídia encolhe e apaga um pouco */
+.js .reveal-m.in.done{transition:none;transform:scale(calc(1 - var(--x,0) * .06));opacity:calc(1 - var(--x,0) * .65);transform-origin:50% 100%;will-change:transform,opacity}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .js .reveal-t,.js .reveal-m,.js .thumb .frame{opacity:1!important;transform:none!important;clip-path:none!important;transition:none!important}

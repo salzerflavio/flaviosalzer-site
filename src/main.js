@@ -18,6 +18,31 @@
     reduce ? el.classList.add('in') : revealObs.observe(el);
   });
 
+  // exit effect: project media shrink + fade a little as they scroll off the top
+  if (!reduce) {
+    const mods = [...document.querySelectorAll('.p-body .reveal-m, .about .reveal-m')];
+    mods.forEach(m => {
+      const done = () => setTimeout(() => m.classList.add('done'), 1300);
+      if (m.classList.contains('in')) done();
+      else new MutationObserver((_, o) => { if (m.classList.contains('in')) { o.disconnect(); done(); } }).observe(m, { attributes: true, attributeFilter: ['class'] });
+    });
+    let ticking = false;
+    const head = 80;
+    const exitFx = () => {
+      ticking = false;
+      const vh = innerHeight;
+      for (const m of mods) {
+        const r = m.getBoundingClientRect();
+        if (r.bottom < -50 || r.top > vh) continue;
+        const span = Math.min(r.height, vh * 0.8);
+        const p = Math.max(0, Math.min(1, (head - r.top) / span));
+        m.style.setProperty('--x', p.toFixed(3));
+      }
+    };
+    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(exitFx); } }, { passive: true });
+    exitFx();
+  }
+
   // in-page loops (ex-GIFs): load + play only while on screen
   const vidObs = new IntersectionObserver(es => {
     es.forEach(e => { const v = e.target; e.isIntersecting ? play(v) : v.pause(); });
