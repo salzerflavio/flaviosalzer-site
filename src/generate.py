@@ -125,9 +125,9 @@ def render_grid(m):
     out = []
     for r in rows:
         cells = ''.join(
-            f'<div class="cell" style="flex:{i["w"]/i["h"]:.4f} 1 0">{media_tag(i["src"])}</div>' for i in r)
+            f'<div class="cell reveal-m" style="flex:{i["w"]/i["h"]:.4f} 1 0;transition-delay:{k*90}ms">{media_tag(i["src"])}</div>' for k, i in enumerate(r))
         out.append(f'<div class="row">{cells}</div>')
-    return f'<div class="mod grid reveal-m">{"".join(out)}</div>'
+    return f'<div class="mod grid">{"".join(out)}</div>'
 
 def render_embed(m):
     src = m.get('src') or ''

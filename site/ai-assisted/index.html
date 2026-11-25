@@ -136,21 +136,17 @@ figure{margin:0}
 
 /* ---------- animações de scroll ---------- */
 .js .reveal-t{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform 1.1s var(--ease)}
-.js .reveal-m{clip-path:inset(10% 0 0 0);opacity:0;transition:clip-path 1.2s var(--ease),opacity .8s var(--ease)}
-.js .reveal-m .m{transform:scale(1.06);transition:transform 1.6s var(--ease)}
+.js .reveal-m{opacity:0;transform:translateY(40px);transition:transform 1s ease-in-out,opacity .8s ease-in-out}
 .js .thumb .frame{clip-path:inset(0 0 100% 0);transition:clip-path 1.1s var(--ease);transition-delay:calc(var(--d,0) * 90ms)}
 .js .thumb .cover{transform:scale(1.08)}
 .js .in.reveal-t{opacity:1;transform:none}
-.js .in.reveal-m{clip-path:inset(0);opacity:1}
-.js .in.reveal-m .m{transform:none}
+.js .in.reveal-m{opacity:1;transform:none}
 .js .thumb.in .frame{clip-path:inset(0)}
 .js .thumb.in .cover{transform:none}
-/* saída: ao sair pelo topo, a mídia encolhe e apaga um pouco */
-.js .reveal-m.in.done{transition:none;transform:scale(calc(1 - var(--x,0) * .06));opacity:calc(1 - var(--x,0) * .65);transform-origin:50% 100%;will-change:transform,opacity}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .js .reveal-t,.js .reveal-m,.js .thumb .frame{opacity:1!important;transform:none!important;clip-path:none!important;transition:none!important}
-  .js .reveal-m .m,.js .thumb .cover{transform:none!important}
+  .js .thumb .cover{transform:none!important}
 }
 
 /* cursor: asterisco do logo, contorno branco; preenchido sobre links */
@@ -217,8 +213,8 @@ html:not(.js) .split .ln>span{transform:none}
 <main>
 <article class="project"><header class="p-head"><div class="p-intro"><a class="back" href="/" aria-label="Back to work"><svg class="arr" viewBox="486 353 250 95" width="66" height="25" aria-hidden="true"><polygon points="534.41 445.79 488.14 401.58 532.35 355.3 536.69 359.45 496.62 401.38 538.55 441.45 534.41 445.79"/><rect x="492.38" y="398.48" width="241.62" height="6"/></svg></a><h1 class="split">AI-Assisted Software Engineering</h1><div class="p-desc reveal-t"><p>We position Compass UOL as a reference in generative Artificial Intelligence. With the aim of presenting a perspective in which AI can be a great positive transformation for the market, the film illustrates moments in which professionals use technology to optimize their most precious asset: time.</p><p>Compass UOL, a global company focused on digital transformation, offers tools that can transform any technological opportunity into reality and is at the forefront of the main discussions about AI.</p></div></div><dl class="credits reveal-t"><div><dt>Role</dt><dd>Art Direction, Design</dd></div><div><dt>With</dt><dd>Bruno Brux, Murilo Mello, Ju Utsch, Sofia Calvit, Gheisa Lessa, Chico Medeiros, Fill Almeida</dd></div><div><dt>Agency</dt><dd>GUT</dd></div><div><dt>Client</dt><dd>Uol Compass</dd></div><div><dt>Year</dt><dd>2023</dd></div></dl></header><div class="p-body"><div class="mod vplayer reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe data-src="https://player.vimeo.com/video/856552783?h=79ea256596&amp;background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Film"></iframe></div><button class="vp-hit" type="button" aria-label="Play with sound"><span class="vp-label">Play with sound</span></button></div>
 <figure class="mod img reveal-m"><img class="m " src="/media/d3d4dd0e-ac4d-4437-acc7-87e178114368_rw_1920.webp" width="1920" height="5" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAACwAgCdASoUAAEAPu1iqU2ppaOiMAgBMB2JaQAAeyAA/vCfnTzAAAAA)"></figure>
-<div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:1.0000 1 0"><video class="m " data-src="/media/3e5ccc15-8d9e-4551-8770-8d0ad6acc62c_rw_600.mp4" poster="/media/3e5ccc15-8d9e-4551-8770-8d0ad6acc62c_rw_600.webp" width="540" height="540" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAAAQBACdASoUABQAPu1qrVCppaQiqAqpMB2JaQAAJdsjTw6xNTT5DbLGgAD+0CyYcOklFcVSbOLWMJhqifySrv31MR20C0itfabeP0bokg5WAAAA)"></video></div><div class="cell" style="flex:1.0000 1 0"><video class="m " data-src="/media/6f09f656-cab2-4ba5-a460-f950e34f3a8e_rw_600.mp4" poster="/media/6f09f656-cab2-4ba5-a460-f950e34f3a8e_rw_600.webp" width="540" height="540" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAADQAgCdASoUABQAPu1wsVKppiSiqAgBMB2JaQAAPaOgAP7vmxrmvgAA)"></video></div><div class="cell" style="flex:1.0000 1 0"><video class="m " data-src="/media/a7146134-cb01-4338-9fcb-b94df74ef156_rw_600.mp4" poster="/media/a7146134-cb01-4338-9fcb-b94df74ef156_rw_600.webp" width="540" height="540" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAACQAwCdASoUABQAPu1sq06ppiOiMBgIATAdiWkAAC51V0lWOsTAAP7udpbn/vYfI01vB1XXxBk/Qfh784/kRbNgGu2MAAAA)"></video></div></div></div>
-<div class="mod grid reveal-m"><div class="row"><div class="cell" style="flex:0.7072 1 0"><img class="m " src="/media/b34cdcd4-79d9-4473-96a2-93d7a3e225e1_rw_1920.webp" width="1920" height="2716" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRqoAAABXRUJQVlA4IJ4AAAAwBQCdASoUABwAPuVcp02pJSOiMAwBIByJaQAD5mILwNdIkqdmtkqvGXrVSfzvlDtzgAD+6RqwcCRH5dSc6Ua0bvO7xLeru6N+oo0L/jmfKQ/BgXsmQPxHsb3FH7AzCbGbQfHhaBUhoWDtmuEzXl09fVtgzOCZ8YwVPB8xzM7NADhXKDhM918YNNF2BDn2PNPLeTI+K4a7CVRmDAgAAA==)"></div><div class="cell" style="flex:0.7072 1 0"><img class="m " src="/media/0f5fd90a-406d-4064-8e73-6cb29a46dd73_rw_1920.webp" width="1920" height="2716" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRrYAAABXRUJQVlA4IKoAAAAQBQCdASoUABwAPu1krE+ppSQiMBgIATAdiWkAACMBsOnhi3e3EKz1tF+uxitzDqKoAM3bBiHVM/cVv9kZTr/ExFyuV7nJRNgemoMd1DZ7rR+8UzcKIAxEXxCXL5vVX99j/J9+Kurwgs+oUbPcxda1CRhdKEdMv4+pF18tt4HFnRRMmqHuSIq+YcAMrvCwZNDfzsPVWVqjGzDWNwwmIG0cRQvQgGcTYEAAAA==)"></div><div class="cell" style="flex:0.7067 1 0"><img class="m " src="/media/792a62a9-ae4b-41aa-9609-abb3264599f3_rw_1200.webp" width="800" height="1132" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRpAAAABXRUJQVlA4IIQAAADQBACdASoUABwAPu1qr1CppaQiqAqpMB2JaQAAj/UCtZLXJ7c8AqLVF7XG4GtoAAD+3oSHz74X/bYrnoWJyEcRBob1DbtSYxUFfhr0FXbe/azrON26BuAdiotmOSuxDt1EX/6ih7CRo6shPk4m4E6wpEu3BX8FMiE0scEUGbafgwzCgAA=)"></div><div class="cell" style="flex:0.7072 1 0"><img class="m " src="/media/556c0e9f-2c1b-4e60-a315-21f35865adbb_rw_1920.webp" width="1920" height="2716" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRoAAAABXRUJQVlA4IHQAAAAwBQCdASoUABwAPu1cqE2ppKQiN/VYATAdiWkA0FQQ8AMAmtzhKJ06GZSVNmYtySKKWAD8s/KCYm2/oGwZDmGGZVskNOMH9tjCOzyoMtjSbWESxJDCzMIz+EtKAKESStc4H2UlqjdWfXNRIWY3zqdMHcQAAA==)"></div></div></div>
+<div class="mod grid"><div class="row"><div class="cell reveal-m" style="flex:1.0000 1 0;transition-delay:0ms"><video class="m " data-src="/media/3e5ccc15-8d9e-4551-8770-8d0ad6acc62c_rw_600.mp4" poster="/media/3e5ccc15-8d9e-4551-8770-8d0ad6acc62c_rw_600.webp" width="540" height="540" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAAAQBACdASoUABQAPu1qrVCppaQiqAqpMB2JaQAAJdsjTw6xNTT5DbLGgAD+0CyYcOklFcVSbOLWMJhqifySrv31MR20C0itfabeP0bokg5WAAAA)"></video></div><div class="cell reveal-m" style="flex:1.0000 1 0;transition-delay:90ms"><video class="m " data-src="/media/6f09f656-cab2-4ba5-a460-f950e34f3a8e_rw_600.mp4" poster="/media/6f09f656-cab2-4ba5-a460-f950e34f3a8e_rw_600.webp" width="540" height="540" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAADQAgCdASoUABQAPu1wsVKppiSiqAgBMB2JaQAAPaOgAP7vmxrmvgAA)"></video></div><div class="cell reveal-m" style="flex:1.0000 1 0;transition-delay:180ms"><video class="m " data-src="/media/a7146134-cb01-4338-9fcb-b94df74ef156_rw_600.mp4" poster="/media/a7146134-cb01-4338-9fcb-b94df74ef156_rw_600.webp" width="540" height="540" muted loop playsinline preload="none" style="background-image:url(data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAACQAwCdASoUABQAPu1sq06ppiOiMBgIATAdiWkAAC51V0lWOsTAAP7udpbn/vYfI01vB1XXxBk/Qfh784/kRbNgGu2MAAAA)"></video></div></div></div>
+<div class="mod grid"><div class="row"><div class="cell reveal-m" style="flex:0.7072 1 0;transition-delay:0ms"><img class="m " src="/media/b34cdcd4-79d9-4473-96a2-93d7a3e225e1_rw_1920.webp" width="1920" height="2716" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRqoAAABXRUJQVlA4IJ4AAAAwBQCdASoUABwAPuVcp02pJSOiMAwBIByJaQAD5mILwNdIkqdmtkqvGXrVSfzvlDtzgAD+6RqwcCRH5dSc6Ua0bvO7xLeru6N+oo0L/jmfKQ/BgXsmQPxHsb3FH7AzCbGbQfHhaBUhoWDtmuEzXl09fVtgzOCZ8YwVPB8xzM7NADhXKDhM918YNNF2BDn2PNPLeTI+K4a7CVRmDAgAAA==)"></div><div class="cell reveal-m" style="flex:0.7072 1 0;transition-delay:90ms"><img class="m " src="/media/0f5fd90a-406d-4064-8e73-6cb29a46dd73_rw_1920.webp" width="1920" height="2716" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRrYAAABXRUJQVlA4IKoAAAAQBQCdASoUABwAPu1krE+ppSQiMBgIATAdiWkAACMBsOnhi3e3EKz1tF+uxitzDqKoAM3bBiHVM/cVv9kZTr/ExFyuV7nJRNgemoMd1DZ7rR+8UzcKIAxEXxCXL5vVX99j/J9+Kurwgs+oUbPcxda1CRhdKEdMv4+pF18tt4HFnRRMmqHuSIq+YcAMrvCwZNDfzsPVWVqjGzDWNwwmIG0cRQvQgGcTYEAAAA==)"></div><div class="cell reveal-m" style="flex:0.7067 1 0;transition-delay:180ms"><img class="m " src="/media/792a62a9-ae4b-41aa-9609-abb3264599f3_rw_1200.webp" width="800" height="1132" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRpAAAABXRUJQVlA4IIQAAADQBACdASoUABwAPu1qr1CppaQiqAqpMB2JaQAAj/UCtZLXJ7c8AqLVF7XG4GtoAAD+3oSHz74X/bYrnoWJyEcRBob1DbtSYxUFfhr0FXbe/azrON26BuAdiotmOSuxDt1EX/6ih7CRo6shPk4m4E6wpEu3BX8FMiE0scEUGbafgwzCgAA=)"></div><div class="cell reveal-m" style="flex:0.7072 1 0;transition-delay:270ms"><img class="m " src="/media/556c0e9f-2c1b-4e60-a315-21f35865adbb_rw_1920.webp" width="1920" height="2716" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRoAAAABXRUJQVlA4IHQAAAAwBQCdASoUABwAPu1cqE2ppKQiN/VYATAdiWkA0FQQ8AMAmtzhKJ06GZSVNmYtySKKWAD8s/KCYm2/oGwZDmGGZVskNOMH9tjCOzyoMtjSbWESxJDCzMIz+EtKAKESStc4H2UlqjdWfXNRIWY3zqdMHcQAAA==)"></div></div></div>
 <figure class="mod img reveal-m"><img class="m " src="/media/3dd5ea3d-f228-4ce3-ba19-1074fae88b3e_rw_1920.webp" width="1920" height="890" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRj4AAABXRUJQVlA4IDIAAAAQAwCdASoUAAkAPu1iqU2ppaOiMAgBMB2JaQAAW51RhQAA/vKeAUHvthzTNttQZAAAAA==)"></figure>
 <figure class="mod img reveal-m"><img class="m " src="/media/ba52c35d-a798-442d-8393-0e6857c6a6a5_rw_1920.webp" width="1920" height="1173" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRjAAAABXRUJQVlA4ICQAAACwAgCdASoUAAwAPu1iqU2ppaOiMAgBMB2JaQAAeyAA/vA0wAA=)"></figure>
 <figure class="mod img reveal-m"><img class="m " src="/media/3ac57c7f-bcb0-4920-92f1-ea75daa571f8_rw_1920.webp" width="1920" height="1342" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAADwAgCdASoUAA4APu1iqU2ppaOiMAgBMB2JaWZAADdYAAD+8G6dTS8OX1jhZxdX/7qGSGYmTZD+D+NpgyQAAA==)"></figure>
@@ -297,31 +293,6 @@ html:not(.js) .split .ln>span{transform:none}
         }
       });
     });
-  }
-
-  // exit effect: project media shrink + fade a little as they scroll off the top
-  if (!reduce) {
-    const mods = [...document.querySelectorAll('.p-body .reveal-m, .about .reveal-m')];
-    mods.forEach(m => {
-      const done = () => setTimeout(() => m.classList.add('done'), 1300);
-      if (m.classList.contains('in')) done();
-      else new MutationObserver((_, o) => { if (m.classList.contains('in')) { o.disconnect(); done(); } }).observe(m, { attributes: true, attributeFilter: ['class'] });
-    });
-    let ticking = false;
-    const head = 80;
-    const exitFx = () => {
-      ticking = false;
-      const vh = innerHeight;
-      for (const m of mods) {
-        const r = m.getBoundingClientRect();
-        if (r.bottom < -50 || r.top > vh) continue;
-        const span = Math.min(r.height, vh * 0.8);
-        const p = Math.max(0, Math.min(1, (head - r.top) / span));
-        m.style.setProperty('--x', p.toFixed(3));
-      }
-    };
-    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(exitFx); } }, { passive: true });
-    exitFx();
   }
 
   // in-page loops (ex-GIFs): load + play only while on screen
