@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flávio Salzer</title>
+<meta name="description" content="Flávio Salzer — Creative and Art Director.">
+<meta property="og:title" content="Flávio Salzer">
+<meta property="og:description" content="Flávio Salzer — Creative and Art Director.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23000'/><text x='4' y='23' font-family='Helvetica,Arial' font-weight='700' font-size='20' fill='%23eee'>f*</text></svg>">
+<script>document.documentElement.classList.add('js')</script>
+<style>/* ==========================================================
+   f* — GUIA PADRÃO
+   COR      fundo #000 · texto #bcbcbc · destaque #eeeeee
+   FONTE    Helvetica Neue (fallback Helvetica, Arial)
+   PESOS    700 título de projeto · 500 título de página e UI
+            400 textos do projeto · 400/700 textos pequenos (valor/rótulo)
+   TAMANHOS 40 título de projeto · 32 título de página · 26 frase de destaque
+            16 texto corrido · 14 UI (menu, thumbs) · 13 textos pequenos
+   ESPAÇO   10 gutter · 20 · 40 · 80 · 120
+   ========================================================== */
+:root{
+  --bg:#000; --tx:#bcbcbc; --hi:#eeeeee;
+  --f:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --fs-xl:clamp(28px,2.8vw,40px);
+  --fs-lg:clamp(24px,2.3vw,32px);
+  --fs-md:clamp(20px,1.85vw,26px);
+  --fs-body:16px; --fs-ui:14px; --fs-sm:13px;
+  --g:10px; --s1:20px; --s2:40px; --s3:80px; --s4:120px;
+  --ease:cubic-bezier(.2,.7,.1,1);
+  color-scheme:dark;
+}
+*{box-sizing:border-box;min-width:0}
+html{background:var(--bg);scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 var(--fs-body)/1.5 var(--f);-webkit-font-smoothing:antialiased;overflow-x:clip}
+a{color:inherit;text-decoration:none}
+p{margin:0}
+strong{font-weight:700;color:var(--hi)}
+img,video{display:block;max-width:100%}
+.m{width:100%;height:auto;background:#0b0b0b}
+
+/* ---------- topo (igual ao atual) ---------- */
+.site-head{display:flex;justify-content:space-between;align-items:flex-start;padding:16px var(--g) 0;height:70px}
+.logo{font:700 16px/1 var(--f);color:var(--hi);letter-spacing:-.01em}
+.site-head nav{display:flex;gap:18px;font:500 var(--fs-ui)/1 var(--f);color:var(--hi);padding-top:4px}
+.site-head nav a{opacity:.85;transition:opacity .2s}
+.site-head nav a:hover{opacity:1}
+body.pg-home .site-head nav a[href="/"],body.pg-about .site-head nav a[href="/flavio/"]{opacity:1;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+
+/* ---------- home: 2 colunas intercaladas, sem respiro ---------- */
+.masonry{display:flex}
+.mcol{flex:1 1 0;display:flex;flex-direction:column}
+.stack{display:none}
+.thumb{position:relative;display:block;overflow:hidden}
+.thumb .frame{position:relative;aspect-ratio:1891/1479;overflow:hidden}
+.thumb.tall .frame{aspect-ratio:1/1}
+.thumb .m{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease),opacity .35s}
+.thumb .hover{opacity:0}
+.thumb:hover .hover,.thumb.playing .hover{opacity:1}
+.thumb:hover .cover{transform:scale(1.02)}
+.t-title{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:var(--s1);font:500 var(--fs-ui)/1.3 var(--f);color:#fff;
+  background:rgba(0,0,0,.4);opacity:0;transition:opacity .35s var(--ease)}
+.thumb:hover .t-title,.thumb:focus-visible .t-title{opacity:1}
+.thumb:focus-visible{outline:2px solid var(--hi);outline-offset:-2px}
+@media (max-width:700px){
+  .masonry{display:none}
+  .stack{display:block}
+  .thumb.playing .t-title{opacity:1}
+}
+
+/* ---------- projeto ---------- */
+.p-head{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:'t .' 'd c';gap:var(--s1) var(--s2);padding:var(--s2) var(--g) var(--s3)}
+.p-intro{display:contents}
+.p-head h1{grid-area:t}.p-desc{grid-area:d}.credits{grid-area:c}
+.p-head h1{margin:0;align-self:end;font:700 var(--fs-xl)/1.02 var(--f);color:var(--hi);text-transform:uppercase;letter-spacing:-.015em;text-wrap:balance}
+.p-desc{max-width:60ch;display:grid;gap:1em}
+.credits{margin:0;display:grid;gap:var(--s1);max-width:560px;align-content:start;font-size:var(--fs-sm);line-height:1.45}
+.credits div{break-inside:avoid}
+.credits dt{font-weight:700;color:var(--hi)}
+.credits dd{margin:0}
+.p-body{display:flex;flex-direction:column;gap:var(--g);padding:0 var(--g)}
+.mod{margin:0}
+.reveal-m,.thumb .frame{overflow:hidden}
+figure{margin:0}
+.mod.img{width:100%;margin-inline:auto}
+.grid .row{display:flex;gap:var(--g)}
+.grid .row+.row{margin-top:var(--g)}
+.grid .cell .m{width:100%}
+.embed .ratio{position:relative;height:0}
+.embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.statement{padding:var(--s3) var(--g);text-align:center;max-width:900px;margin:0 auto;display:grid;gap:.5em}
+.statement p,.t-lg{font-size:var(--fs-md);line-height:1.25;font-weight:400;text-wrap:balance}
+.statement strong{font-weight:700}
+.t-sm{font-size:var(--fs-sm);line-height:1.45}
+.prose{padding:var(--s2) var(--g);max-width:760px;margin:0 auto;display:grid;gap:1em}
+.cols{display:flex;gap:var(--g)}
+@media (max-width:800px){
+  .p-head{grid-template-columns:1fr;grid-template-areas:'t' 'd' 'c';gap:var(--s1);padding-bottom:var(--s2)}.credits{margin-top:var(--s1)}
+  .grid .row{flex-wrap:wrap}
+  .grid .row .cell{flex-basis:calc(50% - var(--g)/2)!important}
+  .statement{padding:var(--s2) var(--g)}
+  .cols{flex-direction:column}
+}
+
+/* ---------- about ---------- */
+.about{padding:var(--s2) var(--g) 0;display:flex;flex-direction:column;gap:var(--s4)}
+.a-row{display:flex;gap:var(--s3);align-items:flex-start}
+.a-row .col{display:flex;flex-direction:column;gap:1em}
+.about h2{margin:0 0 var(--s1);font:500 var(--fs-lg)/1.05 var(--f);color:var(--hi);text-transform:uppercase;letter-spacing:-.01em}
+.about .col>p .t-lg:first-child{display:block}
+@media (max-width:800px){.a-row{flex-direction:column;gap:var(--s2)}.about{gap:var(--s3)}}
+
+/* ---------- rodapé ---------- */
+.site-foot{display:flex;justify-content:space-between;padding:var(--s3) var(--g) var(--s1);font:500 var(--fs-ui)/1 var(--f);color:var(--hi)}
+.site-foot span{display:flex;gap:18px}
+.site-foot a{opacity:.85}.site-foot a:hover{opacity:1}
+.nf{padding:var(--s4) var(--g)}
+.nf h1{font:700 var(--fs-xl)/1 var(--f);color:var(--hi);margin:0 0 var(--s1)}
+
+/* ---------- animações de scroll ---------- */
+.js .reveal-t{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform 1.1s var(--ease)}
+.js .reveal-m{clip-path:inset(10% 0 0 0);opacity:0;transition:clip-path 1.2s var(--ease),opacity .8s var(--ease)}
+.js .reveal-m .m{transform:scale(1.06);transition:transform 1.6s var(--ease)}
+.js .thumb .frame{clip-path:inset(0 0 100% 0);transition:clip-path 1.1s var(--ease);transition-delay:calc(var(--d,0) * 90ms)}
+.js .thumb .cover{transform:scale(1.08)}
+.js .in.reveal-t{opacity:1;transform:none}
+.js .in.reveal-m{clip-path:inset(0);opacity:1}
+.js .in.reveal-m .m{transform:none}
+.js .thumb.in .frame{clip-path:inset(0)}
+.js .thumb.in .cover{transform:none}
+.js .thumb.in:hover .cover{transform:scale(1.02)}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .reveal-t,.js .reveal-m,.js .thumb .frame{opacity:1!important;transform:none!important;clip-path:none!important;transition:none!important}
+  .js .reveal-m .m,.js .thumb .cover{transform:none!important}
+}
+</style>
+</head>
+<body class="pg-home">
+<header class="site-head">
+  <a class="logo" href="/">f*</a>
+  <nav><a href="/">work</a><a href="/flavio/">☺ about</a></nav>
+</header>
+<main>
+<section class="masonry"><div class="mcol"><a class="thumb tall" href="/followers/" style="--i:0"><div class="frame"><img class="m cover" src="/media/1007028b-905a-44ce-858b-d6ad07a43cd0_rwc_0x0x1891x1479x1280.webp" width="1280" height="1001" loading="lazy" decoding="async" alt=""><video class="m hover" data-src="/media/ab931476-80f4-4b16-ba5c-d54e612bf6e7_rwc_135x0x690x540x690.mp4" muted loop playsinline preload="none"></video></div><span class="t-title">Followers Store → New Balance ⚽</span></a><a class="thumb std" href="/skip-the-line/" style="--i:2"><div class="frame"><img class="m cover" src="/media/be7415df-0199-4df3-b742-d52a078fae65_rwc_0x0x3086x2413x1280.webp" width="1280" height="1001" loading="lazy" decoding="async" alt=""><video class="m hover" data-src="/media/e3144ec7-1e25-450c-a315-413504857f3f_rwc_168x0x1125x880x1280.mp4" muted loop playsinline preload="none"></video></div><span class="t-title">Skip The Line → Heineken ✨</span></a><a class="thumb std" href="/copia-de-iphone-17pro-x-mercado-libre/" style="--i:4"><div class="frame"><img class="m cover" src="/media/c8e1f683-c787-420f-b357-ef76462cd191_rwc_270x0x1381x1080x1280.webp" width="1280" height="1001" loading="lazy" decoding="async" alt=""><video class="m hover" data-src="/media/f445c211-09d1-44ab-a1ef-ceb1bd553086_rwc_174x0x854x668x854.mp4" muted loop playsinline preload="none"></video></div><span class="t-title">Que se masque → Trident 🟢</span></a><a class="thumb std" href="/zero-a-ze/" style="--i:6"><div class="frame"><img class="m cover" src="/media/7f7b2e45-ca22-496b-8d9d-30eb961b0dda_rwc_0x279x1920x1501x1280.webp" width="1280" height="1001" loading="lazy" decoding="async" alt=""><video class="m hover" data-src="/media/52774919-0ffb-44dd-81e5-c143a641067c_rwc_192x0x741x580x741.mp4" muted loop playsinline preload="none"></video></div><span class="t-title">Zero to Zé → Zé Delivery 🍻</span></a><a class="thumb std" href="/maradona/" style="--i:8"><div class="frame"><img class="m cover" src="/media/f42980d2-fbbc-4083-a44d-ec00e4fa55a9_rwc_233x686x1466x1146x1280.webp" width="1280" height="1001" loading="lazy" decoding="async" alt=""><video class="m hover" data-src="/media/d64b038a-f26c-4336-8058-298fed1d85fc_carw_202x158x1280.mp4" muted loop playsinline preload="none"></video></div><span class="t-title">The Man Who Became God → Amazon Prime Video ⚽</span></a><a class="thumb std" href="/ceu-azul/" style="--i:10"><div class="frame"><img class="m cover" src="/media/828bfd84-c793-4a71-a76b-8cebf16aa713_rwc_502x0x1381x1080x1280.webp" width="1280" height="1001" loading="lazy" decoding="async" alt=""><video class="m hover" data-src="/media/83ad22bc-ba15-4533-a99f-a592c8e7e080_rwc_223x0x534x418x534.mp4" muted loop playsinline preload="none"></video></div><span class="t-title">O Céu do Brasil é Azul → Azul ✈️</span></a><a class="thumb std" href="/regeneracao/" style="--i:12"><div class="frame"><img class="m cover" src="/media/cef56dfa-d6c1-4d10-abf4-38a56e3c45f7_rwc_0x0x3086x2413x1280.webp" width="1280" height="1001" loading="lazy" decoding="async" alt=""><video class="m hover" data-src="/media/6b8cb946-123b-4f57-8426-97101b000847_rwc_182x0x933x730x1280.mp4" muted loop playsinline preload="none"></video></div><span class="t-title">Look for Earth for Cop30 → Natura 🌱</span></a><a class="thumb std" href="/flexmode/" style="--i:14"><div class="frame"><img class="m cover" src="/media/8c9c0555-ccee-42c6-8b45-6f69f75d5d37_rwc_378x238x770x602x1280.webp" width="770" height="602" loading="lazy" decoding="async" alt=""><video class="m hover" data-src="/media/5afda7fb-497f-40ed-b544-c21e964dfc73_rwc_177x110x345x270x345.mp4" muted loop playsinline preload="none"></video></div><span class="t-title">#FlexMode → Samsung 📱</span></a><a class="thumb std" href="/hh-virtual-skol/" style="--i:16"><div class="frame"><img class="m cover" src="/media/b4034302-92d0-4527-8740-e8d42aa1e754_carw_202x158x1280.webp" width="1280" height="1001" loading="lazy" decoding="async" alt=""><video class="m hover" data-src="/media/937d5c5c-0f82-4271-8581-6bac555666e5_carw_202x158x1280.mp4" muted loop playsinline preload="none"></video></div><span class="t-title">HH Virtual → Skol 🕗</span></a><a class="thumb std" href="/the-smallest-launch/" style="--i:18"><div class="frame"><img class="m cover" src="/media/59d4deab-40b7-49e2-ae62-af4ed9c318a6_rwc_993x318x922x721x1280.webp" width="922" height="721" loading="lazy" decoding="async" alt=""><img class="m hover" src="/media/a81ebf5d-b911-403e-bb11-fabfbd9142a3_carw_202x158x1280.webp" loading="lazy" alt=""></div><span class="t-title">The Smallest Launch of The World  → Skol 🍻</span></a></div><div class="mcol"><a class="thumb std" href="/the-ze-theory/" style="--i:1"><div class="frame"><img class="m cover" src="/media/2b5edeca-5205-415c-84a4-dada7f031eff_rwc_9x0x2018x1578x1280.webp" width="1280" height="1001" loading="lazy" decoding="async" alt=""><video class="m hover" data-src="/media/e03670d3-b229-4843-b462-7ce59e9ba711_rwc_0x0x1753x1371x1280.mp4" muted loop playsinline preload="none"></video></div><span class="t-title">The Zé Theory → Zé Delivery ⚽</span></a><a class="thumb std" href="/finishline-club/" style="--i:3"><div class="frame"><img class="m cover" src="/media/2f02984a-6cc8-4006-9419-1c21e132a263_rwc_81x0x1633x1277x1280.webp" width="1280" height="1001" loading="lazy" decoding="async" alt=""><video class="m hover" data-src="/media/deab2949-67ed-4d0c-8da1-204c12cd5616_rwc_152x0x777x608x777.mp4" muted loop playsinline preload="none"></video></div><span class="t-title">Finish Line Club → Heineken 🏃‍♂️</span></a><a class="thumb std" href="/mercadolibrexapple/" style="--i:5"><div class="frame"><img class="m cover" src="/media/3a934f26-7341-4a83-9a7f-769f2ce17321_rwc_329x0x1685x1318x1280.webp" width="1280" height="1001" loading="lazy" decoding="async" alt=""><video class="m hover" data-src="/media/348964eb-af74-49a0-969b-8b6fc8c3eac4_rwc_164x0x839x656x839.mp4" muted loop playsinline preload="none"></video></div><span class="t-title">Iphone 17pro x Mercado Libre 📦</span></a><a class="thumb std" href="/congress-league/" style="--i:7"><div class="frame"><img class="m cover" src="/media/5dc1bf89-ffa5-4fb8-9e63-a40418205a76_rwc_67x331x1058x827x1058.webp" width="1058" height="827" loading="lazy" decoding="async" alt=""><img class="m hover" src="/media/f3603493-4b82-4f86-ba58-857d2d751801_rwc_50x235x1101x861x1101.webp" loading="lazy" alt=""></div><span class="t-title">Congress League → Congresso em Foco 🕹️</span></a><a class="thumb std" href="/shadow-delivery/" style="--i:9"><div class="frame"><img class="m cover" src="/media/4f94a5bd-c488-4cb4-8665-33fe43400430_rwc_329x39x1249x976x1280.webp" width="1249" height="976" loading="lazy" decoding="async" alt=""><video class="m hover" data-src="/media/0558da2d-fb35-45f1-ac33-8f629688ffb9_rwc_255x0x1279x1000x1280.mp4" muted loop playsinline preload="none"></video></div><span class="t-title">Shadow Delivery → Johnnie Walker 🎉</span></a><a class="thumb std" href="/perrengue/" style="--i:11"><div class="frame"><img class="m cover" src="/media/ced2e560-9e41-402e-bb00-e522bdb04cff_rwc_0x0x2984x2333x1280.webp" width="1280" height="1001" loading="lazy" decoding="async" alt=""><video class="m hover" data-src="/media/f69943c0-3b8a-42c0-bb98-bf951e4a1e42_rwc_120x0x613x480x613.mp4" muted loop playsinline preload="none"></video></div><span class="t-title">Perrengue calls Perrengue → Zé Delivery 🍻</span></a><a class="thumb std" href="/notificacoes/" style="--i:13"><div class="frame"><img class="m cover" src="/media/6d1e0e46-464d-4b4f-b391-2d656e84ec52_rwc_1194x325x2388x1867x1280.webp" width="1280" height="1001" loading="lazy" decoding="async" alt=""><video class="m hover" data-src="/media/bf41b6d7-34fa-4b60-8d69-9a016463706c_rwc_186x0x933x730x1280.mp4" muted loop playsinline preload="none"></video></div><span class="t-title">Life&#x27;s Notifications  → Quinto Andar 🏠</span></a><a class="thumb std" href="/ai-assisted/" style="--i:15"><div class="frame"><img class="m cover" src="/media/1e609c28-9a5b-4c0a-9348-0fcdd0266ee2_rwc_0x0x1138x890x1280.webp" width="1138" height="890" loading="lazy" decoding="async" alt=""><video class="m hover" data-src="/media/a8405af9-cfd6-45f0-b9bb-71c4297908bb_rwc_0x58x540x422x540.mp4" muted loop playsinline preload="none"></video></div><span class="t-title">AI-assisted Software Engineering → Uol Compass 🤖</span></a><a class="thumb std" href="/ze-salva/" style="--i:17"><div class="frame"><img class="m cover" src="/media/cc5c0a54-4573-4ddb-a23f-6a91400d49b3_rwc_641x199x1157x904x1280.webp" width="1157" height="904" loading="lazy" decoding="async" alt=""><img class="m hover" src="/media/52819d4f-27ed-4f4f-9557-59630dd5c68d_rwc_1999x236x1157x904x1280.webp" loading="lazy" alt=""></div><span class="t-title">Zé Saves → Zé Delivery ❄️</span></a><a class="thumb tall" href="/delivery-pool/" style="--i:19"><div class="frame"><img class="m cover" src="/media/cdd72a6d-d241-48b6-b874-fd1919c74d5b_rwc_1028x0x796x623x1280.webp" width="796" height="623" loading="lazy" decoding="async" alt=""><img class="m hover" src="/media/899dd8df-06d7-4281-89e3-61a6fe3db07a_carw_202x158x1280.webp" loading="lazy" alt=""></div><span class="t-title">Pool Delivery → Skol 💦</span></a></div></section><section class="stack"><a class="thumb std" href="/followers/" style="--i:0"><div class="frame"><img class="m cover" src="/media/1007028b-905a-44ce-858b-d6ad07a43cd0_rwc_0x0x1891x1479x1280.webp" width="1280" height="1001" loading="lazy" decoding="async" alt=""><video class="m hover" data-src="/media/ab931476-80f4-4b16-ba5c-d54e612bf6e7_rwc_135x0x690x540x690.mp4" muted loop playsinline preload="none"></video></div><span class="t-title">Followers Store → New Balance ⚽</span></a><a class="thumb std" href="/the-ze-theory/" style="--i:1"><div class="frame"><img class="m cover" src="/media/2b5edeca-5205-415c-84a4-dada7f031eff_rwc_9x0x2018x1578x1280.webp" width="1280" height="1001" loading="lazy" decoding="async" alt=""><video class="m hover" data-src="/media/e03670d3-b229-4843-b462-7ce59e9ba711_rwc_0x0x1753x1371x1280.mp4" muted loop playsinline preload="none"></video></div><span class="t-title">The Zé Theory → Zé Delivery ⚽</span></a><a class="thumb std" href="/skip-the-line/" style="--i:2"><div class="frame"><img class="m cover" src="/media/be7415df-0199-4df3-b742-d52a078fae65_rwc_0x0x3086x2413x1280.webp" width="1280" height="1001" loading="lazy" decoding="async" alt=""><video class="m hover" data-src="/media/e3144ec7-1e25-450c-a315-413504857f3f_rwc_168x0x1125x880x1280.mp4" muted loop playsinline preload="none"></video></div><span class="t-title">Skip The Line → Heineken ✨</span></a><a class="thumb std" href="/finishline-club/" style="--i:3"><div class="frame"><img class="m cover" src="/media/2f02984a-6cc8-4006-9419-1c21e132a263_rwc_81x0x1633x1277x1280.webp" width="1280" height="1001" loading="lazy" decoding="async" alt=""><video class="m hover" data-src="/media/deab2949-67ed-4d0c-8da1-204c12cd5616_rwc_152x0x777x608x777.mp4" muted loop playsinline preload="none"></video></div><span class="t-title">Finish Line Club → Heineken 🏃‍♂️</span></a><a class="thumb std" href="/copia-de-iphone-17pro-x-mercado-libre/" style="--i:4"><div class="frame"><img class="m cover" src="/media/c8e1f683-c787-420f-b357-ef76462cd191_rwc_270x0x1381x1080x1280.webp" width="1280" height="1001" loading="lazy" decoding="async" alt=""><video class="m hover" data-src="/media/f445c211-09d1-44ab-a1ef-ceb1bd553086_rwc_174x0x854x668x854.mp4" muted loop playsinline preload="none"></video></div><span class="t-title">Que se masque → Trident 🟢</span></a><a class="thumb std" href="/mercadolibrexapple/" style="--i:5"><div class="frame"><img class="m cover" src="/media/3a934f26-7341-4a83-9a7f-769f2ce17321_rwc_329x0x1685x1318x1280.webp" width="1280" height="1001" loading="lazy" decoding="async" alt=""><video class="m hover" data-src="/media/348964eb-af74-49a0-969b-8b6fc8c3eac4_rwc_164x0x839x656x839.mp4" muted loop playsinline preload="none"></video></div><span class="t-title">Iphone 17pro x Mercado Libre 📦</span></a><a class="thumb std" href="/zero-a-ze/" style="--i:6"><div class="frame"><img class="m cover" src="/media/7f7b2e45-ca22-496b-8d9d-30eb961b0dda_rwc_0x279x1920x1501x1280.webp" width="1280" height="1001" loading="lazy" decoding="async" alt=""><video class="m hover" data-src="/media/52774919-0ffb-44dd-81e5-c143a641067c_rwc_192x0x741x580x741.mp4" muted loop playsinline preload="none"></video></div><span class="t-title">Zero to Zé → Zé Delivery 🍻</span></a><a class="thumb std" href="/congress-league/" style="--i:7"><div class="frame"><img class="m cover" src="/media/5dc1bf89-ffa5-4fb8-9e63-a40418205a76_rwc_67x331x1058x827x1058.webp" width="1058" height="827" loading="lazy" decoding="async" alt=""><img class="m hover" src="/media/f3603493-4b82-4f86-ba58-857d2d751801_rwc_50x235x1101x861x1101.webp" loading="lazy" alt=""></div><span class="t-title">Congress League → Congresso em Foco 🕹️</span></a><a class="thumb std" href="/maradona/" style="--i:8"><div class="frame"><img class="m cover" src="/media/f42980d2-fbbc-4083-a44d-ec00e4fa55a9_rwc_233x686x1466x1146x1280.webp" width="1280" height="1001" loading="lazy" decoding="async" alt=""><video class="m hover" data-src="/media/d64b038a-f26c-4336-8058-298fed1d85fc_carw_202x158x1280.mp4" muted loop playsinline preload="none"></video></div><span class="t-title">The Man Who Became God → Amazon Prime Video ⚽</span></a><a class="thumb std" href="/shadow-delivery/" style="--i:9"><div class="frame"><img class="m cover" src="/media/4f94a5bd-c488-4cb4-8665-33fe43400430_rwc_329x39x1249x976x1280.webp" width="1249" height="976" loading="lazy" decoding="async" alt=""><video class="m hover" data-src="/media/0558da2d-fb35-45f1-ac33-8f629688ffb9_rwc_255x0x1279x1000x1280.mp4" muted loop playsinline preload="none"></video></div><span class="t-title">Shadow Delivery → Johnnie Walker 🎉</span></a><a class="thumb std" href="/ceu-azul/" style="--i:10"><div class="frame"><img class="m cover" src="/media/828bfd84-c793-4a71-a76b-8cebf16aa713_rwc_502x0x1381x1080x1280.webp" width="1280" height="1001" loading="lazy" decoding="async" alt=""><video class="m hover" data-src="/media/83ad22bc-ba15-4533-a99f-a592c8e7e080_rwc_223x0x534x418x534.mp4" muted loop playsinline preload="none"></video></div><span class="t-title">O Céu do Brasil é Azul → Azul ✈️</span></a><a class="thumb std" href="/perrengue/" style="--i:11"><div class="frame"><img class="m cover" src="/media/ced2e560-9e41-402e-bb00-e522bdb04cff_rwc_0x0x2984x2333x1280.webp" width="1280" height="1001" loading="lazy" decoding="async" alt=""><video class="m hover" data-src="/media/f69943c0-3b8a-42c0-bb98-bf951e4a1e42_rwc_120x0x613x480x613.mp4" muted loop playsinline preload="none"></video></div><span class="t-title">Perrengue calls Perrengue → Zé Delivery 🍻</span></a><a class="thumb std" href="/regeneracao/" style="--i:12"><div class="frame"><img class="m cover" src="/media/cef56dfa-d6c1-4d10-abf4-38a56e3c45f7_rwc_0x0x3086x2413x1280.webp" width="1280" height="1001" loading="lazy" decoding="async" alt=""><video class="m hover" data-src="/media/6b8cb946-123b-4f57-8426-97101b000847_rwc_182x0x933x730x1280.mp4" muted loop playsinline preload="none"></video></div><span class="t-title">Look for Earth for Cop30 → Natura 🌱</span></a><a class="thumb std" href="/notificacoes/" style="--i:13"><div class="frame"><img class="m cover" src="/media/6d1e0e46-464d-4b4f-b391-2d656e84ec52_rwc_1194x325x2388x1867x1280.webp" width="1280" height="1001" loading="lazy" decoding="async" alt=""><video class="m hover" data-src="/media/bf41b6d7-34fa-4b60-8d69-9a016463706c_rwc_186x0x933x730x1280.mp4" muted loop playsinline preload="none"></video></div><span class="t-title">Life&#x27;s Notifications  → Quinto Andar 🏠</span></a><a class="thumb std" href="/flexmode/" style="--i:14"><div class="frame"><img class="m cover" src="/media/8c9c0555-ccee-42c6-8b45-6f69f75d5d37_rwc_378x238x770x602x1280.webp" width="770" height="602" loading="lazy" decoding="async" alt=""><video class="m hover" data-src="/media/5afda7fb-497f-40ed-b544-c21e964dfc73_rwc_177x110x345x270x345.mp4" muted loop playsinline preload="none"></video></div><span class="t-title">#FlexMode → Samsung 📱</span></a><a class="thumb std" href="/ai-assisted/" style="--i:15"><div class="frame"><img class="m cover" src="/media/1e609c28-9a5b-4c0a-9348-0fcdd0266ee2_rwc_0x0x1138x890x1280.webp" width="1138" height="890" loading="lazy" decoding="async" alt=""><video class="m hover" data-src="/media/a8405af9-cfd6-45f0-b9bb-71c4297908bb_rwc_0x58x540x422x540.mp4" muted loop playsinline preload="none"></video></div><span class="t-title">AI-assisted Software Engineering → Uol Compass 🤖</span></a><a class="thumb std" href="/hh-virtual-skol/" style="--i:16"><div class="frame"><img class="m cover" src="/media/b4034302-92d0-4527-8740-e8d42aa1e754_carw_202x158x1280.webp" width="1280" height="1001" loading="lazy" decoding="async" alt=""><video class="m hover" data-src="/media/937d5c5c-0f82-4271-8581-6bac555666e5_carw_202x158x1280.mp4" muted loop playsinline preload="none"></video></div><span class="t-title">HH Virtual → Skol 🕗</span></a><a class="thumb std" href="/ze-salva/" style="--i:17"><div class="frame"><img class="m cover" src="/media/cc5c0a54-4573-4ddb-a23f-6a91400d49b3_rwc_641x199x1157x904x1280.webp" width="1157" height="904" loading="lazy" decoding="async" alt=""><img class="m hover" src="/media/52819d4f-27ed-4f4f-9557-59630dd5c68d_rwc_1999x236x1157x904x1280.webp" loading="lazy" alt=""></div><span class="t-title">Zé Saves → Zé Delivery ❄️</span></a><a class="thumb std" href="/the-smallest-launch/" style="--i:18"><div class="frame"><img class="m cover" src="/media/59d4deab-40b7-49e2-ae62-af4ed9c318a6_rwc_993x318x922x721x1280.webp" width="922" height="721" loading="lazy" decoding="async" alt=""><img class="m hover" src="/media/a81ebf5d-b911-403e-bb11-fabfbd9142a3_carw_202x158x1280.webp" loading="lazy" alt=""></div><span class="t-title">The Smallest Launch of The World  → Skol 🍻</span></a><a class="thumb std" href="/delivery-pool/" style="--i:19"><div class="frame"><img class="m cover" src="/media/cdd72a6d-d241-48b6-b874-fd1919c74d5b_rwc_1028x0x796x623x1280.webp" width="796" height="623" loading="lazy" decoding="async" alt=""><img class="m hover" src="/media/899dd8df-06d7-4281-89e3-61a6fe3db07a_carw_202x158x1280.webp" loading="lazy" alt=""></div><span class="t-title">Pool Delivery → Skol 💦</span></a></section>
+</main>
+<footer class="site-foot">
+  <a href="#top" class="totop">↑ back to top</a>
+  <span><a href="https://www.linkedin.com/in/flaviosalzer" target="_blank" rel="noopener">LinkedIn</a><a href="https://instagram.com/flaviosalzer" target="_blank" rel="noopener">Instagram</a></span>
+</footer>
+<script>{
+  document.documentElement.classList.add('js');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const noHover = matchMedia('(hover: none)').matches;
+
+  const load = v => { if (v.dataset.src && !v.src) { v.src = v.dataset.src; } };
+  const play = v => { load(v); const p = v.play(); if (p) p.catch(() => {}); };
+
+  // reveal on scroll
+  const revealObs = new IntersectionObserver(es => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); } });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+  document.querySelectorAll('.reveal-t,.reveal-m,.thumb').forEach((el) => {
+    if (el.classList.contains('thumb')) {
+      const col = el.parentElement.classList.contains('mcol') ? [...el.parentElement.parentElement.children].indexOf(el.parentElement) : 0;
+      el.style.setProperty('--d', col);
+    }
+    reduce ? el.classList.add('in') : revealObs.observe(el);
+  });
+
+  // in-page loops (ex-GIFs): load + play only while on screen
+  const vidObs = new IntersectionObserver(es => {
+    es.forEach(e => { const v = e.target; e.isIntersecting ? play(v) : v.pause(); });
+  }, { rootMargin: '200px 0px' });
+  document.querySelectorAll('.p-body video, .about video').forEach(v => vidObs.observe(v));
+
+  // cover hover loops
+  document.querySelectorAll('.thumb').forEach(t => {
+    const v = t.querySelector('video.hover');
+    if (!v) return;
+    if (noHover) return;
+    t.addEventListener('mouseenter', () => { play(v); });
+    t.addEventListener('mouseleave', () => { v.pause(); });
+    t.addEventListener('focus', () => { play(v); });
+    t.addEventListener('blur', () => { v.pause(); });
+  });
+
+  // touch screens: the thumb in the middle of the screen plays its loop
+  if (noHover) {
+    const midObs = new IntersectionObserver(es => {
+      es.forEach(e => {
+        const v = e.target.querySelector('video.hover');
+        if (!v) return;
+        if (e.isIntersecting) { e.target.classList.add('playing'); play(v); }
+        else { e.target.classList.remove('playing'); v.pause(); }
+      });
+    }, { rootMargin: '-35% 0px -35% 0px' });
+    document.querySelectorAll('.stack .thumb').forEach(t => midObs.observe(t));
+  }
+
+  document.querySelectorAll('a[href="#top"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); }));
+}
+</script>
+</body>
+</html>

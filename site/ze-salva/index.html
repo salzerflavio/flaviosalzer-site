@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zé Saves → Zé Delivery ❄️ — Flávio Salzer</title>
+<meta name="description" content="A hot party calls for a cold drink. Zé Delivery saves. Conceptual visuals for the winter campaign of Zé Delivery, the largest beveragedelivery company in Brazil.">
+<meta property="og:title" content="Zé Saves → Zé Delivery ❄️ — Flávio Salzer">
+<meta property="og:description" content="A hot party calls for a cold drink. Zé Delivery saves. Conceptual visuals for the winter campaign of Zé Delivery, the largest beveragedelivery company in Brazil.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23000'/><text x='4' y='23' font-family='Helvetica,Arial' font-weight='700' font-size='20' fill='%23eee'>f*</text></svg>">
+<script>document.documentElement.classList.add('js')</script>
+<style>/* ==========================================================
+   f* — GUIA PADRÃO
+   COR      fundo #000 · texto #bcbcbc · destaque #eeeeee
+   FONTE    Helvetica Neue (fallback Helvetica, Arial)
+   PESOS    700 título de projeto · 500 título de página e UI
+            400 textos do projeto · 400/700 textos pequenos (valor/rótulo)
+   TAMANHOS 40 título de projeto · 32 título de página · 26 frase de destaque
+            16 texto corrido · 14 UI (menu, thumbs) · 13 textos pequenos
+   ESPAÇO   10 gutter · 20 · 40 · 80 · 120
+   ========================================================== */
+:root{
+  --bg:#000; --tx:#bcbcbc; --hi:#eeeeee;
+  --f:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --fs-xl:clamp(28px,2.8vw,40px);
+  --fs-lg:clamp(24px,2.3vw,32px);
+  --fs-md:clamp(20px,1.85vw,26px);
+  --fs-body:16px; --fs-ui:14px; --fs-sm:13px;
+  --g:10px; --s1:20px; --s2:40px; --s3:80px; --s4:120px;
+  --ease:cubic-bezier(.2,.7,.1,1);
+  color-scheme:dark;
+}
+*{box-sizing:border-box;min-width:0}
+html{background:var(--bg);scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 var(--fs-body)/1.5 var(--f);-webkit-font-smoothing:antialiased;overflow-x:clip}
+a{color:inherit;text-decoration:none}
+p{margin:0}
+strong{font-weight:700;color:var(--hi)}
+img,video{display:block;max-width:100%}
+.m{width:100%;height:auto;background:#0b0b0b}
+
+/* ---------- topo (igual ao atual) ---------- */
+.site-head{display:flex;justify-content:space-between;align-items:flex-start;padding:16px var(--g) 0;height:70px}
+.logo{font:700 16px/1 var(--f);color:var(--hi);letter-spacing:-.01em}
+.site-head nav{display:flex;gap:18px;font:500 var(--fs-ui)/1 var(--f);color:var(--hi);padding-top:4px}
+.site-head nav a{opacity:.85;transition:opacity .2s}
+.site-head nav a:hover{opacity:1}
+body.pg-home .site-head nav a[href="/"],body.pg-about .site-head nav a[href="/flavio/"]{opacity:1;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+
+/* ---------- home: 2 colunas intercaladas, sem respiro ---------- */
+.masonry{display:flex}
+.mcol{flex:1 1 0;display:flex;flex-direction:column}
+.stack{display:none}
+.thumb{position:relative;display:block;overflow:hidden}
+.thumb .frame{position:relative;aspect-ratio:1891/1479;overflow:hidden}
+.thumb.tall .frame{aspect-ratio:1/1}
+.thumb .m{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease),opacity .35s}
+.thumb .hover{opacity:0}
+.thumb:hover .hover,.thumb.playing .hover{opacity:1}
+.thumb:hover .cover{transform:scale(1.02)}
+.t-title{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:var(--s1);font:500 var(--fs-ui)/1.3 var(--f);color:#fff;
+  background:rgba(0,0,0,.4);opacity:0;transition:opacity .35s var(--ease)}
+.thumb:hover .t-title,.thumb:focus-visible .t-title{opacity:1}
+.thumb:focus-visible{outline:2px solid var(--hi);outline-offset:-2px}
+@media (max-width:700px){
+  .masonry{display:none}
+  .stack{display:block}
+  .thumb.playing .t-title{opacity:1}
+}
+
+/* ---------- projeto ---------- */
+.p-head{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:'t .' 'd c';gap:var(--s1) var(--s2);padding:var(--s2) var(--g) var(--s3)}
+.p-intro{display:contents}
+.p-head h1{grid-area:t}.p-desc{grid-area:d}.credits{grid-area:c}
+.p-head h1{margin:0;align-self:end;font:700 var(--fs-xl)/1.02 var(--f);color:var(--hi);text-transform:uppercase;letter-spacing:-.015em;text-wrap:balance}
+.p-desc{max-width:60ch;display:grid;gap:1em}
+.credits{margin:0;display:grid;gap:var(--s1);max-width:560px;align-content:start;font-size:var(--fs-sm);line-height:1.45}
+.credits div{break-inside:avoid}
+.credits dt{font-weight:700;color:var(--hi)}
+.credits dd{margin:0}
+.p-body{display:flex;flex-direction:column;gap:var(--g);padding:0 var(--g)}
+.mod{margin:0}
+.reveal-m,.thumb .frame{overflow:hidden}
+figure{margin:0}
+.mod.img{width:100%;margin-inline:auto}
+.grid .row{display:flex;gap:var(--g)}
+.grid .row+.row{margin-top:var(--g)}
+.grid .cell .m{width:100%}
+.embed .ratio{position:relative;height:0}
+.embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.statement{padding:var(--s3) var(--g);text-align:center;max-width:900px;margin:0 auto;display:grid;gap:.5em}
+.statement p,.t-lg{font-size:var(--fs-md);line-height:1.25;font-weight:400;text-wrap:balance}
+.statement strong{font-weight:700}
+.t-sm{font-size:var(--fs-sm);line-height:1.45}
+.prose{padding:var(--s2) var(--g);max-width:760px;margin:0 auto;display:grid;gap:1em}
+.cols{display:flex;gap:var(--g)}
+@media (max-width:800px){
+  .p-head{grid-template-columns:1fr;grid-template-areas:'t' 'd' 'c';gap:var(--s1);padding-bottom:var(--s2)}.credits{margin-top:var(--s1)}
+  .grid .row{flex-wrap:wrap}
+  .grid .row .cell{flex-basis:calc(50% - var(--g)/2)!important}
+  .statement{padding:var(--s2) var(--g)}
+  .cols{flex-direction:column}
+}
+
+/* ---------- about ---------- */
+.about{padding:var(--s2) var(--g) 0;display:flex;flex-direction:column;gap:var(--s4)}
+.a-row{display:flex;gap:var(--s3);align-items:flex-start}
+.a-row .col{display:flex;flex-direction:column;gap:1em}
+.about h2{margin:0 0 var(--s1);font:500 var(--fs-lg)/1.05 var(--f);color:var(--hi);text-transform:uppercase;letter-spacing:-.01em}
+.about .col>p .t-lg:first-child{display:block}
+@media (max-width:800px){.a-row{flex-direction:column;gap:var(--s2)}.about{gap:var(--s3)}}
+
+/* ---------- rodapé ---------- */
+.site-foot{display:flex;justify-content:space-between;padding:var(--s3) var(--g) var(--s1);font:500 var(--fs-ui)/1 var(--f);color:var(--hi)}
+.site-foot span{display:flex;gap:18px}
+.site-foot a{opacity:.85}.site-foot a:hover{opacity:1}
+.nf{padding:var(--s4) var(--g)}
+.nf h1{font:700 var(--fs-xl)/1 var(--f);color:var(--hi);margin:0 0 var(--s1)}
+
+/* ---------- animações de scroll ---------- */
+.js .reveal-t{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform 1.1s var(--ease)}
+.js .reveal-m{clip-path:inset(10% 0 0 0);opacity:0;transition:clip-path 1.2s var(--ease),opacity .8s var(--ease)}
+.js .reveal-m .m{transform:scale(1.06);transition:transform 1.6s var(--ease)}
+.js .thumb .frame{clip-path:inset(0 0 100% 0);transition:clip-path 1.1s var(--ease);transition-delay:calc(var(--d,0) * 90ms)}
+.js .thumb .cover{transform:scale(1.08)}
+.js .in.reveal-t{opacity:1;transform:none}
+.js .in.reveal-m{clip-path:inset(0);opacity:1}
+.js .in.reveal-m .m{transform:none}
+.js .thumb.in .frame{clip-path:inset(0)}
+.js .thumb.in .cover{transform:none}
+.js .thumb.in:hover .cover{transform:scale(1.02)}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .reveal-t,.js .reveal-m,.js .thumb .frame{opacity:1!important;transform:none!important;clip-path:none!important;transition:none!important}
+  .js .reveal-m .m,.js .thumb .cover{transform:none!important}
+}
+</style>
+</head>
+<body class="proj">
+<header class="site-head">
+  <a class="logo" href="/">f*</a>
+  <nav><a href="/">work</a><a href="/flavio/">☺ about</a></nav>
+</header>
+<main>
+<article class="project"><header class="p-head"><div class="p-intro"><h1 class="reveal-t">ZÉ SAVES</h1><div class="p-desc reveal-t"><p>A hot party calls for a cold drink. Zé Delivery saves.</p><p>Conceptual visuals for the winter campaign of Zé Delivery, the largest beverage<br>delivery company in Brazil.</p></div></div><dl class="credits reveal-t"><div><dt>Role</dt><dd>Art Direction, Design, Illustration</dd></div><div><dt>With</dt><dd>Ju Utsch, Sofia Calvit, Cauique Johnson</dd></div><div><dt>Agency</dt><dd>GUT</dd></div><div><dt>Client</dt><dd>Zé Delivery</dd></div><div><dt>Year</dt><dd>2022</dd></div></dl></header><div class="p-body"><figure class="mod img reveal-m"><img class="m " src="/media/3cdfd34e-bb4b-4944-a4cf-a296d52960ed_rw_1920.webp" width="1920" height="5" loading="lazy" decoding="async" alt=""></figure>
+<figure class="mod img reveal-m"><img class="m " src="/media/30bc3523-64df-4a73-9374-661cf737ce18_rw_3840.webp" width="3840" height="2160" loading="lazy" decoding="async" alt=""></figure>
+<div class="mod statement reveal-t"><p><span class="t-lg">Zé Delivery needed to stand out as the only beverage delivery company in the country that actually delivers cold drinks.</span></p></div>
+<figure class="mod img reveal-m"><img class="m " src="/media/828d9ea6-2c79-4daa-856f-b4ff97aa2f84_rw_3840.webp" width="3840" height="2160" loading="lazy" decoding="async" alt=""></figure>
+<figure class="mod img reveal-m"><img class="m " src="/media/d70d76c2-fb65-4894-bb78-4a9cb93126fc_rw_3840.webp" width="3840" height="2160" loading="lazy" decoding="async" alt=""></figure>
+<div class="mod statement reveal-t"><p><span class="t-lg">To make it work and still keep its Zé's vibe, we created a unique visual style that blended drinking moments with "frozen" pop culture icons.</span></p></div>
+<figure class="mod img reveal-m"><img class="m " src="/media/a19089e4-a2e9-4ac4-842d-5ab01bd08af1_rw_3840.webp" width="3840" height="2160" loading="lazy" decoding="async" alt=""></figure>
+<div class="mod statement reveal-t"><p><span class="t-lg">And along with all that, elements that represent speed and urgency in the delivery.</span></p></div>
+<figure class="mod img reveal-m"><img class="m " src="/media/7a0f184f-36ed-4802-8ba7-5ea25f6edf38_rw_3840.webp" width="3840" height="2160" loading="lazy" decoding="async" alt=""></figure>
+<figure class="mod img reveal-m"><img class="m " src="/media/9018f185-125e-4cfc-9c61-47a5584cbdce_rw_3840.webp" width="3840" height="2160" loading="lazy" decoding="async" alt=""></figure>
+<div class="mod statement reveal-t"><p><span class="t-lg">The color palette features the brand’s colors, and the halftone gradient represents the ice and the memorable stories the brand helps create.</span></p></div>
+<figure class="mod img reveal-m"><img class="m " src="/media/9a444850-2585-4603-a86b-f0ba88171742_rw_3840.webp" width="3840" height="2160" loading="lazy" decoding="async" alt=""></figure>
+<figure class="mod img reveal-m"><img class="m " src="/media/115e4334-e7ed-4354-ad8b-c6e06fd0ce5f_rw_3840.webp" width="3840" height="2160" loading="lazy" decoding="async" alt=""></figure>
+<figure class="mod img reveal-m"><img class="m " src="/media/f936c611-1ece-4c7a-8a3a-d2360b6483b5_rw_3840.webp" width="3840" height="2160" loading="lazy" decoding="async" alt=""></figure>
+<figure class="mod img reveal-m"><img class="m " src="/media/c9b34128-1f4d-49fe-b054-8cac97f855c6_rw_3840.webp" width="3840" height="2160" loading="lazy" decoding="async" alt=""></figure></div></article>
+</main>
+<footer class="site-foot">
+  <a href="#top" class="totop">↑ back to top</a>
+  <span><a href="https://www.linkedin.com/in/flaviosalzer" target="_blank" rel="noopener">LinkedIn</a><a href="https://instagram.com/flaviosalzer" target="_blank" rel="noopener">Instagram</a></span>
+</footer>
+<script>{
+  document.documentElement.classList.add('js');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const noHover = matchMedia('(hover: none)').matches;
+
+  const load = v => { if (v.dataset.src && !v.src) { v.src = v.dataset.src; } };
+  const play = v => { load(v); const p = v.play(); if (p) p.catch(() => {}); };
+
+  // reveal on scroll
+  const revealObs = new IntersectionObserver(es => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); } });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+  document.querySelectorAll('.reveal-t,.reveal-m,.thumb').forEach((el) => {
+    if (el.classList.contains('thumb')) {
+      const col = el.parentElement.classList.contains('mcol') ? [...el.parentElement.parentElement.children].indexOf(el.parentElement) : 0;
+      el.style.setProperty('--d', col);
+    }
+    reduce ? el.classList.add('in') : revealObs.observe(el);
+  });
+
+  // in-page loops (ex-GIFs): load + play only while on screen
+  const vidObs = new IntersectionObserver(es => {
+    es.forEach(e => { const v = e.target; e.isIntersecting ? play(v) : v.pause(); });
+  }, { rootMargin: '200px 0px' });
+  document.querySelectorAll('.p-body video, .about video').forEach(v => vidObs.observe(v));
+
+  // cover hover loops
+  document.querySelectorAll('.thumb').forEach(t => {
+    const v = t.querySelector('video.hover');
+    if (!v) return;
+    if (noHover) return;
+    t.addEventListener('mouseenter', () => { play(v); });
+    t.addEventListener('mouseleave', () => { v.pause(); });
+    t.addEventListener('focus', () => { play(v); });
+    t.addEventListener('blur', () => { v.pause(); });
+  });
+
+  // touch screens: the thumb in the middle of the screen plays its loop
+  if (noHover) {
+    const midObs = new IntersectionObserver(es => {
+      es.forEach(e => {
+        const v = e.target.querySelector('video.hover');
+        if (!v) return;
+        if (e.isIntersecting) { e.target.classList.add('playing'); play(v); }
+        else { e.target.classList.remove('playing'); v.pause(); }
+      });
+    }, { rootMargin: '-35% 0px -35% 0px' });
+    document.querySelectorAll('.stack .thumb').forEach(t => midObs.observe(t));
+  }
+
+  document.querySelectorAll('a[href="#top"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); }));
+}
+</script>
+</body>
+</html>
