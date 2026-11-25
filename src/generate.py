@@ -285,7 +285,7 @@ def _ogv(og):
 CSS = open('style.css').read()
 JS = open('main.js').read()
 
-def page(title, body, cls='', desc='Flávio Salzer is a Creative and Art Director based in São Paulo. Former LePub and Africa, now back at GUT. Selected work for Zé Delivery, Heineken, New Balance, Skol and more.', path='/', og='og/home.jpg', vimeo=False):
+def page(title, body, cls='', desc='Flávio Salzer is a Creative Director and Art Director based in São Paulo. Former LePub and Africa, now back at GUT. Selected work for Zé Delivery, Heineken, New Balance, Skol and more.', path='/', og='og/home.jpg', vimeo=False):
     return f'''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -456,7 +456,7 @@ for p in D['pages']:
     desc = re.sub(r'\s+', ' ', desc).strip()[:180]
     cov = next((c for c in covers if c['slug'] == slug), None)
     if cov and asset(cov['normal']): make_og(asset(cov['normal'])['src'], f'{slug}.jpg')
-    write(f'{slug}/index.html', page(f'{clean_title} — Flávio Salzer', f'<article class="project">{head}<div class="p-body">{rest}</div>{next_block(slug)}</article>', 'proj', desc or 'Flávio Salzer — Creative and Art Director.', path=f'/{slug}/', og=f'og/{slug}.jpg', vimeo='vplayer' in rest))
+    write(f'{slug}/index.html', page(f'{clean_title} — Flávio Salzer', f'<article class="project">{head}<div class="p-body">{rest}</div>{next_block(slug)}</article>', 'proj', desc or 'Flávio Salzer — Creative Director and Art Director.', path=f'/{slug}/', og=f'og/{slug}.jpg', vimeo='vplayer' in rest))
 
 # ---------- about ----------
 about = [p for p in D['pages'] if slug_of(p['url']) == 'flavio'][0]['mods']
