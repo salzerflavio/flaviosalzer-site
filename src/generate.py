@@ -236,8 +236,8 @@ def project_header(tree, cover_name=''):
     creds = parse_credits(right)
     dl = ''.join(f'<div><dt>{html.escape(k)}</dt><dd>{v}</dd></div>' for k, v in creds)
     return title, (f'<header class="p-head">'
-                   f'<div class="p-intro"><a class="back" href="/" aria-label="Back to work"><svg class="arr" viewBox="486 353 250 95" width="66" height="25" aria-hidden="true"><polygon points="534.41 445.79 488.14 401.58 532.35 355.3 536.69 359.45 496.62 401.38 538.55 441.45 534.41 445.79"/><rect x="492.38" y="398.48" width="241.62" height="6"/></svg></a><h1 class="split">{html.escape(title)}</h1><div class="p-desc reveal-t">{desc_ps}</div></div>'
-                   f'<dl class="credits reveal-t">{dl}</dl></header>')
+                   f'<div class="p-intro"><a class="back" href="/" aria-label="Back to work"><svg class="arr" viewBox="486 353 250 95" width="66" height="25" aria-hidden="true"><polygon points="534.41 445.79 488.14 401.58 532.35 355.3 536.69 359.45 496.62 401.38 538.55 441.45 534.41 445.79"/><rect x="492.38" y="398.48" width="241.62" height="6"/></svg></a><h1 class="reveal-s" style="--d:0">{html.escape(title)}</h1><div class="p-desc reveal-s" style="--d:1">{desc_ps}</div></div>'
+                   f'<dl class="credits reveal-s" style="--d:2">{dl}</dl></header>')
 
 def render_mods(mods):
     out = []

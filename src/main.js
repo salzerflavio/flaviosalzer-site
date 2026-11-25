@@ -10,7 +10,7 @@
   const revealObs = new IntersectionObserver(es => {
     es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); } });
   }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-  document.querySelectorAll('.reveal-t,.reveal-m,.thumb').forEach((el) => {
+  document.querySelectorAll('.reveal-t,.reveal-m,.reveal-s,.thumb').forEach((el) => {
     if (el.classList.contains('thumb')) {
       const col = el.parentElement.classList.contains('mcol') ? [...el.parentElement.parentElement.children].indexOf(el.parentElement) : 0;
       el.style.setProperty('--d', col);
