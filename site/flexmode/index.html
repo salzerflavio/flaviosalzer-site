@@ -82,6 +82,13 @@ body.pg-home .site-head nav a[href="/"],body.pg-about .site-head nav a[href="/fl
 .thumb:hover .t-title,.thumb.playing .t-title{text-shadow:0 0 8px rgba(255,255,255,.45),0 0 2px rgba(255,255,255,.6)}
 .t-title{z-index:3}
 
+/* bloom: os pontos claros ganham um halo (backdrop desfocado + screen) */
+.thumb .glow{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .4s var(--ease);
+  -webkit-backdrop-filter:blur(12px) brightness(.7) contrast(2.6) saturate(1.1);backdrop-filter:blur(12px) brightness(.7) contrast(2.6) saturate(1.1);
+  mix-blend-mode:screen}
+.thumb:hover .glow,.thumb.playing .glow{opacity:.4}
+.thumb .frame::before{z-index:2}.thumb .frame::after{z-index:3}.t-title{z-index:4}
+
 
 .thumb:focus-visible{outline:2px solid var(--hi);outline-offset:-2px}
 @media (max-width:700px){
