@@ -228,6 +228,8 @@
   document.querySelectorAll('.thumb').forEach(t => {
     const v = t.querySelector('video.hover');
     if (!v) return;
+    v.addEventListener('playing', () => v.classList.add('on'));
+    v.addEventListener('pause', () => v.classList.remove('on'));
     if (noHover) return;
     let off;
     const on = () => { clearTimeout(off); play(v); };
