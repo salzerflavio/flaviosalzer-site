@@ -233,7 +233,7 @@ def page(title, body, cls='', desc='Flávio Salzer — Creative and Art Director
 <script>document.documentElement.classList.add('js')</script>
 <style>{CSS}</style>
 </head>
-<body class="{cls}">
+<body class="{cls}" id="top">
 <header class="site-head">
   <a class="logo" href="/">f*</a>
   <nav><a href="/">work</a><a href="/flavio/">☺ about</a></nav>
