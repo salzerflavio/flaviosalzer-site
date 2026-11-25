@@ -36,6 +36,7 @@ FIXES = [
     ('brazilian people', 'Brazilian people'),
     ('Zé Delivery aapp', 'Zé Delivery app'),
     ('OTHERS FESTIVALS', 'OTHER FESTIVALS'),
+    ('Mihail Alexandrov', 'Mihail Aleksandrov'),
     ('Engagement- The', 'Engagement - The'),
     ('Wooooow! People did need to know that', 'Wooooow! People needed to know that'),
 ]
