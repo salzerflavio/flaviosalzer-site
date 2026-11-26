@@ -143,7 +143,16 @@
       try { localStorage.setItem('fs-view', list ? 'list' : 'grid'); } catch (e) {}
       if (!document.body.classList.contains('pg-home')) { location.href = '/' + (list ? '#list' : ''); return; }
       const swap = () => { root.classList.toggle('view-list', list); label(); scrollTo(0, 0); if (lenis) lenis.scrollTo(0, { immediate: true }); };
-      document.startViewTransition && !reduce ? document.startViewTransition(swap) : swap();
+      // no page slide here: the content under the menu fades out, swaps, and rises back in
+      const main = document.querySelector('main');
+      if (reduce || !main) return swap();
+      main.classList.add('vswap-out');
+      setTimeout(() => {
+        swap();
+        main.classList.remove('vswap-out');
+        main.classList.add('vswap-in');
+        requestAnimationFrame(() => requestAnimationFrame(() => main.classList.remove('vswap-in')));
+      }, 280);
     });
   }
   // list: the row crossing the middle of the screen opens up and shows its name.
