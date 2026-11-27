@@ -278,7 +278,7 @@ main.vswap-out{opacity:0;transition-duration:.25s}
 main.vswap-in{opacity:0;transition:none}
 
 /* desktop mosaic as a loose collage (after davidwilliambaum.com); positions come from main.js */
-.collage{display:none;position:relative;height:calc(100svh - 110px);min-height:600px;margin:-30px 0 0;overflow:clip}
+.collage{display:none;position:relative;z-index:0;isolation:isolate;height:100svh;min-height:600px;margin:-120px 0 0;overflow:clip}
 @media (hover:hover) and (pointer:fine) and (min-width:900px){
   .collage{display:block}
   .masonry,.masonry.m2,.masonry.m3{display:none!important}
@@ -607,11 +607,17 @@ html.view-list .pg-home .collage{display:none!important}
       let s = 20241126;
       const rnd = () => { s |= 0; s = s + 0x6D2B79F5 | 0; let t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
       const R = 1891 / 1479, n = tiles.length;
-      const unit = Math.sqrt(0.36 * W * H / n * R);
-      const b = tiles.map(() => {
+      const unit = Math.sqrt(0.2 * W * H / n * R);
+      // jittered grid: one tile per cell, so the cloud covers the whole screen (and spills past its edges) evenly
+      const cols = Math.ceil(Math.sqrt(n * W / H * 1.1)), rows = Math.ceil(n / cols);
+      const cells = [...Array(cols * rows).keys()];
+      for (let i = cells.length - 1; i > 0; i--) { const k = Math.floor(rnd() * (i + 1)); [cells[i], cells[k]] = [cells[k], cells[i]]; }
+      const cw = 1.1 * W / cols, chh = 1.1 * H / rows;
+      const b = tiles.map((_, i) => {
         const w = unit * (0.6 + rnd() * 0.8), h = w / R;
-        const g = () => rnd();                                // scattered over the whole canvas
-        return { w, h, x: 0.02 * W + g() * (0.96 * W - w), y: g() * (H - h), z: 1 + Math.floor(rnd() * n) };
+        const c = cells[i], gx = c % cols, gy = Math.floor(c / cols);
+        const cx = -0.05 * W + (gx + 0.15 + rnd() * 0.7) * cw, cy = -0.05 * H + (gy + 0.15 + rnd() * 0.7) * chh;
+        return { w, h, x: cx - w / 2, y: cy - h / 2, z: 1 + Math.floor(rnd() * n) };
       });
       for (let it = 0; it < 400; it++) {
         let moved = false;
@@ -619,21 +625,20 @@ html.view-list .pg-home .collage{display:none!important}
           const A = b[i], B = b[k];
           const ox = Math.min(A.x + A.w, B.x + B.w) - Math.max(A.x, B.x);
           const oy = Math.min(A.y + A.h, B.y + B.h) - Math.max(A.y, B.y);
-          const ax = 0.04 * Math.min(A.w, B.w), ay = 0.04 * Math.min(A.h, B.h);
+          const ax = -0.25 * Math.min(A.w, B.w), ay = -0.25 * Math.min(A.h, B.h);   // keep a gap between tiles
           if (ox > ax && oy > ay) {
             moved = true;
             if (ox - ax < oy - ay) { const d = (ox - ax) / 2 + .5, sg = A.x < B.x ? 1 : -1; A.x -= sg * d; B.x += sg * d; }
             else { const d = (oy - ay) / 2 + .5, sg = A.y < B.y ? 1 : -1; A.y -= sg * d; B.y += sg * d; }
           }
         }
-        b.forEach(t => { t.x = Math.max(-0.08 * W, Math.min(1.08 * W - t.w, t.x)); t.y = Math.max(0, Math.min(H - t.h, t.y)); });
+        b.forEach(t => { t.x = Math.max(-0.08 * W, Math.min(1.08 * W - t.w, t.x)); t.y = Math.max(-0.08 * H, Math.min(1.08 * H - t.h, t.y)); });
         if (!moved) break;
       }
       // centre the cloud on the page
       const minX = Math.min(...b.map(t => t.x)), maxX = Math.max(...b.map(t => t.x + t.w));
       const minY = Math.min(...b.map(t => t.y)), maxY = Math.max(...b.map(t => t.y + t.h));
       const dx = (W - (maxX + minX)) / 2, dy = (H - (maxY + minY)) / 2;
-      b.forEach(t => { t.x += dx; t.y += dy; });
       tiles.forEach((t, i) => {
         t.style.setProperty('--w', b[i].w.toFixed(1) + 'px');
         t.style.setProperty('--x', b[i].x.toFixed(1) + 'px');
@@ -650,15 +655,15 @@ html.view-list .pg-home .collage{display:none!important}
     const lens = () => {
       lensRaf = 0;
       if (!base) return;
-      const W = col.clientWidth, sig = 0.16 * W, sig2 = 2 * sig * sig;
+      const W = col.clientWidth, sig = 0.13 * W, sig2 = 2 * sig * sig;
       let busy = false;
       tiles.forEach((t, i) => {
         const B = base[i], cx = B.x + B.w / 2, cy = B.y + B.h / 2;
         let tx = 0, ty = 0, ts = 1;
         if (lensOn) {
           const dx = cx - mx, dy = cy - my, f = Math.exp(-(dx * dx + dy * dy) / sig2);
-          ts = 1 + 0.45 * f + (t.matches(':hover') ? 0.3 : 0);   // neighbours swell a little, the one under the cursor most
-          const push = 0.22 * f;                          // gentle bulge outward from the cursor
+          ts = 1 + 0.95 * f + (t.matches(':hover') ? 0.45 : 0);  // tiles swell as the cursor nears, the one under it most
+          const push = 0.32 * f;                          // gentle bulge outward from the cursor
           tx = dx * push; ty = dy * push;
         }
         const S = st[i];
