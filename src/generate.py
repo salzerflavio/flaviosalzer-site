@@ -232,7 +232,15 @@ def project_header(tree, cover_name=''):
     right = tree['children'][1]['mods'][0]['html'] if len(tree['children']) > 1 else ''
     title, desc = split_title(left)
     title = nice_title(title, cover_name)
-    desc_ps = ''.join(f'<p>{p}</p>' for p in paragraphs(desc))
+    ps = paragraphs(desc)
+    # two columns that break between paragraphs, never mid-sentence: split where the halves are closest in length
+    if len(ps) >= 2:
+        L = [len(strip_tags(p)) for p in ps]; tot = sum(L)
+        k = min(range(1, len(ps)), key=lambda i: (abs(sum(L[:i]) - (tot - sum(L[:i]))), sum(L[:i]) < tot - sum(L[:i])))
+        cols = [ps[:k], ps[k:]]
+    else:
+        cols = [ps]
+    desc_ps = ''.join('<div class="pcol">' + ''.join(f'<p>{p}</p>' for p in c) + '</div>' for c in cols)
     creds = parse_credits(right)
     dl = ''.join(f'<div><dt>{html.escape(k)}</dt><dd>{v}</dd></div>' for k, v in creds)
     return title, (f'<header class="p-head">'
