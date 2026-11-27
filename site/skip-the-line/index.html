@@ -603,11 +603,11 @@ html.view-list .pg-home .collage{display:none!important}
       const cols = Math.ceil(Math.sqrt(n * W / H * 1.1)), rows = Math.ceil(n / cols);
       const cells = [...Array(cols * rows).keys()];
       for (let i = cells.length - 1; i > 0; i--) { const k = Math.floor(rnd() * (i + 1)); [cells[i], cells[k]] = [cells[k], cells[i]]; }
-      const cw = 1.1 * W / cols, chh = 1.1 * H / rows;
+      const top = 96, cw = 1.04 * W / cols, chh = (1.02 * H - top) / rows;   // nothing hides under the menu
       const b = tiles.map((_, i) => {
         const w = unit, h = w / R;                       // all the same size to start
         const c = cells[i], gx = c % cols, gy = Math.floor(c / cols);
-        const cx = -0.05 * W + (gx + 0.15 + rnd() * 0.7) * cw, cy = -0.05 * H + (gy + 0.15 + rnd() * 0.7) * chh;
+        const cx = -0.02 * W + (gx + 0.05 + rnd() * 0.9) * cw, cy = top + (gy + 0.05 + rnd() * 0.9) * chh;
         return { w, h, x: cx - w / 2, y: cy - h / 2, z: 1 + Math.floor(rnd() * n) };
       });
       for (let it = 0; it < 400; it++) {
@@ -623,7 +623,7 @@ html.view-list .pg-home .collage{display:none!important}
             else { const d = (oy - ay) / 2 + .5, sg = A.y < B.y ? 1 : -1; A.y -= sg * d; B.y += sg * d; }
           }
         }
-        b.forEach(t => { t.x = Math.max(-0.08 * W, Math.min(1.08 * W - t.w, t.x)); t.y = Math.max(-0.08 * H, Math.min(1.08 * H - t.h, t.y)); });
+        b.forEach(t => { t.x = Math.max(-0.3 * t.w, Math.min(W - 0.7 * t.w, t.x)); t.y = Math.max(96, Math.min(H - 0.65 * t.h, t.y)); });   // at most a third cut by the screen edge
         if (!moved) break;
       }
       // centre the cloud on the page
@@ -638,30 +638,35 @@ html.view-list .pg-home .collage{display:none!important}
         t.style.setProperty('--d', i % 8);
       });
       col.classList.add('laid');
+      tiles.forEach(t => t.classList.add('in'));   // tiles cut by the screen edge still reveal
       base = b; lens();
     };
     // lens: tiles near the cursor grow together (the nearest most) and the cloud bulges away from it
     let base = null, mx = null, my = null, lensOn = false, lensRaf = 0;
     // each tile eases at its own pace, so they swell one after another rather than in lockstep
-    const st = tiles.map((_, i) => ({ x: 0, y: 0, s: 1, k: 0.045 + ((i * 7919) % 97) / 97 * 0.09 }));
+    const st = tiles.map((_, i) => ({ s: 1, tgt: 1, pend: 1, at: 0, jit: ((i * 7919) % 97) / 97 }));
     const lens = () => {
       lensRaf = 0;
       if (!base) return;
-      const W = col.clientWidth, sig = 0.13 * W, sig2 = 2 * sig * sig;
+      const W = col.clientWidth, H = col.clientHeight, rx = 0.22 * W, ry = 0.3 * H, now = performance.now();
       let busy = false;
       tiles.forEach((t, i) => {
         const B = base[i], cx = B.x + B.w / 2, cy = B.y + B.h / 2;
-        let tx = 0, ty = 0, ts = 1;
+        let ts = 1, dist = 0;
         if (lensOn) {
-          const dx = cx - mx, dy = cy - my, f = Math.exp(-(dx * dx + dy * dy) / sig2);
-          ts = 1 + 0.95 * f + (t.matches(':hover') ? 0.45 : 0);  // tiles swell as the cursor nears, the one under it most
-          const push = 0.32 * f;                          // gentle bulge outward from the cursor
-          tx = dx * push; ty = dy * push;
+          // square-ish field (not a round bulge): tiles grow in place, the one under the cursor most
+          const ux = Math.abs(cx - mx) / rx, uy = Math.abs(cy - my) / ry, u = Math.max(ux, uy);
+          const f = u >= 1 ? 0 : 1 - u;
+          ts = 1 + 0.75 * f + (t.matches(':hover') ? 0.55 : 0);
+          dist = Math.hypot(cx - mx, cy - my) / W;
         }
         const S = st[i];
-        S.x += (tx - S.x) * S.k; S.y += (ty - S.y) * S.k; S.s += (ts - S.s) * S.k;
-        if (Math.abs(tx - S.x) + Math.abs(ty - S.y) + Math.abs(ts - S.s) * 100 > 0.2) busy = true;
-        t.style.transform = `translate(${(B.x + S.x).toFixed(1)}px,${(B.y + S.y).toFixed(1)}px) scale(${S.s.toFixed(3)})`;
+        // cascade: a new size is taken up after a delay that grows with distance from the cursor
+        if (Math.abs(ts - S.pend) > 0.015) { S.pend = ts; S.at = now + dist * 900 + S.jit * 90; }
+        if (now >= S.at) S.tgt = S.pend;
+        S.s += (S.tgt - S.s) * 0.16;
+        if (Math.abs(S.tgt - S.s) > 0.002 || S.tgt !== S.pend) busy = true;
+        t.style.transform = `translate(${B.x.toFixed(1)}px,${B.y.toFixed(1)}px) scale(${S.s.toFixed(3)})`;
         t.style.zIndex = t.matches(':hover') ? 300 : Math.round(S.s * 100) + B.z;
       });
       if (busy) lensRaf = requestAnimationFrame(lens);
