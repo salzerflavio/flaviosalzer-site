@@ -441,7 +441,15 @@ def plist_row(c):
             f'<span class="pr-r"><span class="pr-bd">{badges(c["slug"])}</span><span>{html.escape(meta)}</span></span></div>'
             f'<div class="pr-stage"><span class="pr-big" aria-hidden="true">{html.escape(name)}</span><div class="pr-img">{img}{vid}</div></div></a>')
 plist = '<section class="plist">' + ''.join(plist_row(c) for c in covers) + '</section>'
-home = masonry(3, [1.1, STD, 1.18]) + masonry(2, [1.1, STD]) + f'<section class="stack">{flat}</section>' + plist
+def collage():
+    """desktop: thumbs scattered as a loose collage (positions laid out in main.js); the cursor carries the caption"""
+    out = ''
+    for i, c in enumerate(covers):
+        name = NAMES.get(c['slug']) or clean_name(c['title']); client, year = project_meta(c['slug'])
+        cap = name + (' — ' + ', '.join(x for x in (client, year) if x) if (client or year) else '')
+        out += thumb(c, i).replace('<a class="thumb"', f'<a class="thumb" data-cap="{html.escape(cap)}"', 1)
+    return f'<section class="collage">{out}</section>'
+home = collage() + masonry(3, [1.1, STD, 1.18]) + masonry(2, [1.1, STD]) + f'<section class="stack">{flat}</section>' + plist
 if os.path.exists('og-home.jpg'):
     os.makedirs(os.path.join(OUT, 'og'), exist_ok=True); shutil.copy('og-home.jpg', os.path.join(OUT, 'og', 'home.jpg'))
 else:
