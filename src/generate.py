@@ -304,12 +304,12 @@ def page(title, body, cls='', desc='Flávio Salzer is a Creative Director and Ar
 <meta property="og:title" content="{html.escape(title)}">
 <meta property="og:description" content="{html.escape(desc)}">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://flaviosalzer.com{path}">
-<meta property="og:image" content="https://flaviosalzer.com/{og}?v={_ogv(og)}">
+<meta property="og:url" content="https://flaviosalzer.work{path}">
+<meta property="og:image" content="https://flaviosalzer.work/{og}?v={_ogv(og)}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="canonical" href="https://flaviosalzer.com{path}">
+<link rel="canonical" href="https://flaviosalzer.work{path}">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🫀</text></svg>">
 <script>document.documentElement.classList.add('js');try{{var v=localStorage.getItem('fs-view');if(v==='list'||location.hash==='#list'||(!v&&matchMedia('(max-width:700px)').matches))document.documentElement.classList.add('view-list')}}catch(e){{}}</script>
 <style>{CSS}</style>
@@ -560,11 +560,11 @@ write('flavio/index.html', page('About — Flávio Salzer', f'<article class="ab
 
 # ---------- netlify config ----------
 # GitHub Pages: custom domain, no Jekyll, and HTML redirects in place of Netlify's _redirects
-open(os.path.join(OUT, 'CNAME'), 'w').write('flaviosalzer.com\n')
+open(os.path.join(OUT, 'CNAME'), 'w').write('flaviosalzer.work\n')
 open(os.path.join(OUT, '.nojekyll'), 'w').write('')
 for _from, _to in (('work', '/'), ('about', '/flavio/')):
     os.makedirs(os.path.join(OUT, _from), exist_ok=True)
-    open(os.path.join(OUT, _from, 'index.html'), 'w').write(f'<!doctype html><meta charset="utf-8"><title>Redirecting…</title><link rel="canonical" href="https://flaviosalzer.com{_to}"><meta http-equiv="refresh" content="0;url={_to}"><script>location.replace("{_to}")</script>')
+    open(os.path.join(OUT, _from, 'index.html'), 'w').write(f'<!doctype html><meta charset="utf-8"><title>Redirecting…</title><link rel="canonical" href="https://flaviosalzer.work{_to}"><meta http-equiv="refresh" content="0;url={_to}"><script>location.replace("{_to}")</script>')
 open(os.path.join(OUT, '_redirects'), 'w').write('/work / 301\n/work/ / 301\n/about /flavio/ 301\n')
 open(os.path.join(OUT, '_headers'), 'w').write('/media/*\n  Cache-Control: public, max-age=31536000, immutable\n')
 write('404.html', page('Not found — Flávio Salzer', '<div class="nf"><h1>Not found.</h1><p><a href="/">← back to work</a></p></div>', 'proj'))
