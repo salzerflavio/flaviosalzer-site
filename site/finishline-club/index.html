@@ -792,7 +792,7 @@ html,body{background:#000}
       deckEl.style.setProperty('--cw', cw + 'px');
       cur += (pos - cur) * 0.06;
       let moving = Math.abs(pos - cur) > 0.0005;
-      const SK = Math.tan(12 * Math.PI / 180), SX = 0.8, pw = cw * SX;   // near-isometric: parallel edges, no vanishing point
+      const SK = Math.tan(12 * Math.PI / 180), SX = 0.88, pw = cw * SX;   // near-isometric: parallel edges, no vanishing point
       cards.forEach((c, i) => {
         let d = ((i - cur) % N + N) % N; if (d >= N / 2) d -= N;
         lift[i] += ((i === hot ? 1 : 0) - lift[i]) * 0.14;

@@ -9,7 +9,7 @@
 <meta property="og:description" content="Flávio Salzer is a Creative Director and Art Director based in São Paulo. Former LePub and Africa, now back at GUT. Selected work for Zé Delivery, Heineken, New Balance, Skol and more.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://flaviosalzer.com/">
-<meta property="og:image" content="https://flaviosalzer.com/og/home.jpg?v=51b73780">
+<meta property="og:image" content="https://flaviosalzer.com/og/home.jpg?v=a953fd09">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -777,7 +777,7 @@ html,body{background:#000}
       deckEl.style.setProperty('--cw', cw + 'px');
       cur += (pos - cur) * 0.06;
       let moving = Math.abs(pos - cur) > 0.0005;
-      const SK = Math.tan(12 * Math.PI / 180), SX = 0.8, pw = cw * SX;   // near-isometric: parallel edges, no vanishing point
+      const SK = Math.tan(12 * Math.PI / 180), SX = 0.88, pw = cw * SX;   // near-isometric: parallel edges, no vanishing point
       cards.forEach((c, i) => {
         let d = ((i - cur) % N + N) % N; if (d >= N / 2) d -= N;
         lift[i] += ((i === hot ? 1 : 0) - lift[i]) * 0.14;
