@@ -473,7 +473,7 @@ def collage():
         cap = name + (' — ' + ', '.join(x for x in (client, year) if x) if (client or year) else '')
         out += thumb(c, i).replace('<a class="thumb"', f'<a class="thumb" data-cap="{html.escape(cap)}"', 1)
         # a second, still tile per project (a picture from inside the project) so the cloud is denser, like the ref
-        for alt in _alt_stills(c):
+        for alt in _alt_stills(c, 1):
             extra.append(f'<a class="thumb" href="/{c["slug"]}/" data-cap="{html.escape(cap)}"><div class="frame"><img class="m" src="/media/{alt}" alt="" loading="lazy" decoding="async"></div></a>')
     return f'<section class="collage">{out}{"".join(extra)}</section>'
 home = collage() + masonry(3, [1.1, STD, 1.18]) + masonry(2, [1.1, STD]) + f'<section class="stack">{flat}</section>' + plist

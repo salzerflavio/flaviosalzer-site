@@ -279,12 +279,13 @@
       let s = 20241126;
       const rnd = () => { s |= 0; s = s + 0x6D2B79F5 | 0; let t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
       const R = 1891 / 1479, n = tiles.length;
-      const unit = Math.max(80, 0.066 * W);
+      const unit = Math.max(88, 0.072 * W);
       // best-candidate sampling: random, but each new tile takes the farthest of a few candidate spots,
       // so the cloud is organic yet evenly spread (no clumps, no big holes), like the ref
       const top = 96, b = [];
       for (let i = 0; i < n; i++) {
-        const w = unit, h = w / R;                       // all the same size to start
+        const ar = [0.8, 0.8, 0.75, 1, 1.25, 0.8][Math.floor(rnd() * 6)];   // mostly portrait, like the ref
+        const w = unit * Math.sqrt(ar), h = unit / Math.sqrt(ar);          // same area for every tile
         let best = null, bestD = -1;
         for (let c = 0; c < 14; c++) {
           const x = -0.3 * w + rnd() * (W - 0.4 * w), y = top + rnd() * (H - top - h - 24);
@@ -292,7 +293,7 @@
           for (const o of b) d = Math.min(d, Math.hypot((x - o.x) / W * 1.4, (y - o.y) / H));
           if (d > bestD) { bestD = d; best = { x, y }; }
         }
-        b.push({ w, h, x: best.x, y: best.y, z: 1 + Math.floor(rnd() * n) });
+        b.push({ w, h, ar, x: best.x, y: best.y, z: 1 + Math.floor(rnd() * n) });
       }
       for (let it = 0; it < 400; it++) {
         let moved = false;
@@ -300,7 +301,7 @@
           const A = b[i], B = b[k];
           const ox = Math.min(A.x + A.w, B.x + B.w) - Math.max(A.x, B.x);
           const oy = Math.min(A.y + A.h, B.y + B.h) - Math.max(A.y, B.y);
-          const ax = (i + k) % 5 ? -0.12 * Math.min(A.w, B.w) : 0.2 * Math.min(A.w, B.w), ay = (i + k) % 5 ? -0.12 * Math.min(A.h, B.h) : 0.2 * Math.min(A.h, B.h);   // mostly a small gap; a few pairs may overlap
+          const ax = -0.14 * Math.min(A.w, B.w), ay = -0.14 * Math.min(A.h, B.h);   // never on top of each other: always a little air
           if (ox > ax && oy > ay) {
             moved = true;
             if (ox - ax < oy - ay) { const d = (ox - ax) / 2 + .5, sg = A.x < B.x ? 1 : -1; A.x -= sg * d; B.x += sg * d; }
@@ -316,6 +317,7 @@
       const dx = (W - (maxX + minX)) / 2, dy = (H - (maxY + minY)) / 2;
       tiles.forEach((t, i) => {
         t.style.setProperty('--w', b[i].w.toFixed(1) + 'px');
+        t.style.setProperty('--ar', b[i].ar);
         t.style.setProperty('--x', b[i].x.toFixed(1) + 'px');
         t.style.setProperty('--y', b[i].y.toFixed(1) + 'px');
         t.style.setProperty('--z', b[i].z);
@@ -336,7 +338,7 @@
       const W = col.clientWidth, H = col.clientHeight, rx = 0.19 * W, ry = 0.27 * H, now = performance.now();
       let busy = false;
       const camTx = lensOn ? (W / 2 - mx) * 0.1 : 0, camTy = lensOn ? (H / 2 - my) * 0.1 : 0;
-      cam.x += (camTx - cam.x) * 0.035; cam.y += (camTy - cam.y) * 0.035;
+      cam.x += (camTx - cam.x) * 0.03; cam.y += (camTy - cam.y) * 0.03;
       if (Math.abs(camTx - cam.x) + Math.abs(camTy - cam.y) > 0.2) busy = true;
       tiles.forEach((t, i) => {
         const B = base[i], cx = B.x + B.w / 2, cy = B.y + B.h / 2;
@@ -345,16 +347,16 @@
           // square-ish field (not a round bulge): tiles grow in place, the one under the cursor most
           const ux = Math.abs(cx - mx) / rx, uy = Math.abs(cy - my) / ry, u = Math.max(ux, uy);
           const f = u >= 1 ? 0 : 1 - u;
-          ts = 1 + 0.85 * f + (t.matches(':hover') ? 0.9 : 0);   // a clear focus, with the neighbourhood growing along
+          ts = 1 + 0.7 * f + (t.matches(':hover') ? 0.75 : 0);   // a clear focus, with the neighbourhood growing along
           dist = Math.hypot(cx - mx, cy - my) / W;
         }
         const S = st[i];
         // cascade: a new size is taken up after a delay that grows with distance from the cursor
         const hov = t.matches(':hover');
-        if (Math.abs(ts - S.pend) > 0.015) { S.pend = ts; S.at = hov ? now : now + dist * 320 + S.jit * 60; }
+        if (Math.abs(ts - S.pend) > 0.015) { S.pend = ts; S.at = hov ? now : now + dist * 260 + S.jit * 40; }
         if (now >= S.at) S.tgt = S.pend;
         // soft spring: picks up right away, settles smoothly with no bounce
-        S.v += (S.tgt - S.s) * (hov ? 0.11 : 0.075); S.v *= 0.74; S.s += S.v;
+        S.s += (S.tgt - S.s) * 0.085; S.v = 0;            // smooth exponential ease, no spring
         if (Math.abs(S.tgt - S.s) > 0.002 || Math.abs(S.v) > 0.001 || S.tgt !== S.pend) busy = true;
         t.style.transform = `translate(${(B.x + cam.x).toFixed(1)}px,${(B.y + cam.y).toFixed(1)}px) scale(${S.s.toFixed(3)})`;
         t.style.zIndex = t.matches(':hover') ? 300 : Math.round(S.s * 100) + B.z;
