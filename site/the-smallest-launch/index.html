@@ -778,7 +778,8 @@ html.view-list .pg-home .collage{display:none!important}
       cur += (pos - cur) * 0.06;
       let moving = Math.abs(pos - cur) > 0.0005;
       cards.forEach((c, i) => {
-        const d = i - cur;
+        // endless loop: each card sits at its shortest distance from the current position
+        let d = ((i - cur) % N + N) % N; if (d >= N / 2) d -= N;
         lift[i] += ((i === hot ? 1 : 0) - lift[i]) * 0.08;
         if (Math.abs((i === hot ? 1 : 0) - lift[i]) > 0.002) moving = true;
         if (opening) return;
@@ -789,7 +790,7 @@ html.view-list .pg-home .collage{display:none!important}
         // each card gets its own perspective, so every card converges on its own centre (as in the ref)
         c.style.transform = `translate3d(${x.toFixed(1)}px,${(y + ly).toFixed(1)}px,0) perspective(${(ch * 2.6).toFixed(0)}px) rotateY(40deg) translateZ(${(lz * 2).toFixed(1)}px)`;
         c.style.opacity = op.toFixed(3);
-        c.style.zIndex = 1000 - i;
+        c.style.zIndex = Math.round(1000 - d * 10);
         c.style.pointerEvents = op > 0.5 ? 'auto' : 'none';
       });
       if (moving) raf = requestAnimationFrame(place);
@@ -797,13 +798,13 @@ html.view-list .pg-home .collage{display:none!important}
     const req = () => { if (!raf) raf = requestAnimationFrame(place); };
     addEventListener('wheel', e => {
       if (!active() || opening) return;
-      pos = Math.max(0, Math.min(N - 1, pos + (e.deltaY + e.deltaX) * 0.0028));
+      pos += (e.deltaY + e.deltaX) * 0.0028;
       req();
     }, { passive: true });
     addEventListener('keydown', e => {
       if (!active() || opening) return;
-      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { pos = Math.min(N - 1, Math.round(pos) + 1); req(); }
-      if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { pos = Math.max(0, Math.round(pos) - 1); req(); }
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { pos = Math.round(pos) + 1; req(); }
+      if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { pos = Math.round(pos) - 1; req(); }
     });
     cards.forEach((c, i) => {
       const v = c.querySelector('video');
