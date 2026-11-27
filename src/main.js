@@ -376,6 +376,76 @@
     new MutationObserver(layout).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
   }
 
+  // home deck: covers stacked in 3D from the bottom-left (near) to the top-right (far).
+  // The wheel moves along the stack with inertia; the card under the cursor lifts and shows its caption;
+  // a click turns the card to face the viewer, centred, before opening the project.
+  const deckEl = document.querySelector('.deck');
+  if (deckEl) {
+    const cards = [...deckEl.querySelectorAll('.dk')];
+    const N = cards.length;
+    const lift = cards.map(() => 0);
+    let pos = 0, cur = 0, hot = -1, raf = 0, opening = false;
+    const active = () => getComputedStyle(deckEl).display !== 'none';
+    const place = () => {
+      raf = 0;
+      if (!active()) return;
+      const W = innerWidth, H = innerHeight, cw = Math.min(W * 0.26, H * 0.5);
+      deckEl.style.setProperty('--cw', cw + 'px');
+      cur += (pos - cur) * 0.085;
+      let moving = Math.abs(pos - cur) > 0.0005;
+      cards.forEach((c, i) => {
+        const d = i - cur;
+        lift[i] += ((i === hot ? 1 : 0) - lift[i]) * 0.12;
+        if (Math.abs((i === hot ? 1 : 0) - lift[i]) > 0.002) moving = true;
+        if (opening) return;
+        // along the diagonal: each step goes right, up and away
+        const x = W * 0.1 + d * W * 0.058, y = H * 0.58 - d * H * 0.068, z = -d * 150;
+        const ly = -lift[i] * cw * 0.16, lz = lift[i] * 30;
+        const op = d < -1.6 ? Math.max(0, 1 + (d + 1.6) / 0.9) : d > 9 ? Math.max(0, 1 - (d - 9) / 3) : 1;
+        c.style.transform = `translate3d(${x.toFixed(1)}px,${(y + ly - cw * 0.39).toFixed(1)}px,${(z + lz).toFixed(1)}px) rotateY(36deg)`;
+        c.style.opacity = op.toFixed(3);
+        c.style.zIndex = 1000 - i;
+        c.style.pointerEvents = op > 0.5 ? 'auto' : 'none';
+      });
+      if (moving) raf = requestAnimationFrame(place);
+    };
+    const req = () => { if (!raf) raf = requestAnimationFrame(place); };
+    addEventListener('wheel', e => {
+      if (!active() || opening) return;
+      pos = Math.max(0, Math.min(N - 1, pos + (e.deltaY + e.deltaX) * 0.0035));
+      req();
+    }, { passive: true });
+    addEventListener('keydown', e => {
+      if (!active() || opening) return;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { pos = Math.min(N - 1, Math.round(pos) + 1); req(); }
+      if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { pos = Math.max(0, Math.round(pos) - 1); req(); }
+    });
+    cards.forEach((c, i) => {
+      const v = c.querySelector('video');
+      c.addEventListener('mouseenter', () => {
+        hot = i; c.classList.add('hot'); req();
+        if (v) { if (!v.src) v.src = v.dataset.src; v.play().then(() => v.classList.add('on')).catch(() => {}); }
+      });
+      c.addEventListener('mouseleave', () => {
+        if (hot === i) hot = -1; c.classList.remove('hot'); req();
+        if (v) { v.pause(); v.classList.remove('on'); }
+      });
+      c.addEventListener('click', e => {
+        if (!active() || e.metaKey || e.ctrlKey || e.shiftKey) return;
+        e.preventDefault();
+        opening = true; c.classList.add('picked'); deckEl.classList.add('opening');
+        const W = innerWidth, H = innerHeight, cw = parseFloat(deckEl.style.getPropertyValue('--cw')) || 300;
+        const s = Math.min(1.5, (H * 0.62) / (cw / (1891 / 1479)));
+        c.style.transform = `translate3d(${(W - cw) / 2}px,${(H - cw / (1891 / 1479)) / 2}px,0) rotateY(0deg) scale(${s.toFixed(3)})`;
+        setTimeout(() => { location.href = c.href; }, 850);
+      });
+    });
+    addEventListener('resize', req);
+    addEventListener('pageshow', () => { opening = false; deckEl.classList.remove('opening'); cards.forEach(c => c.classList.remove('picked')); req(); });
+    new MutationObserver(req).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    place();
+  }
+
   // custom cursor: Inter's asterisk, outline; filled over links
   if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
     const c = document.createElement('div'); c.className = 'cur'; c.setAttribute('aria-hidden', 'true');

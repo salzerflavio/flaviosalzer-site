@@ -476,7 +476,19 @@ def collage():
     for i, c in enumerate(covers):
         out += thumb(c, i).replace('<a class="thumb"', f'<a class="thumb" data-cap="{html.escape(caps[c["slug"]])}" data-ar="{STD:.3f}"', 1)
     return f'<section class="collage">{out}</section>'
-home = collage() + masonry(3, [1.1, STD, 1.18]) + masonry(2, [1.1, STD]) + f'<section class="stack">{flat}</section>' + plist
+def deck():
+    """desktop home: the covers as a 3D stack running corner to corner; the wheel moves through it (main.js)"""
+    out = ''
+    for i, c in enumerate(covers):
+        name = NAMES.get(c['slug']) or clean_name(c['title']); client, year = project_meta(c['slug'])
+        n = asset(c['normal']); hv = asset(c['hover'])
+        src = (n.get('poster') if n.get('type') == 'video' else n['src']) if n else ''
+        vid = f'<video data-src="/media/{hv["src"]}" muted loop playsinline preload="none"></video>' if hv and hv.get('type') == 'video' else ''
+        meta = ', '.join(x for x in (client, year) if x)
+        out += (f'<a class="dk" href="/{c["slug"]}/"><span class="dk-face"><img src="/media/{src}" alt="" decoding="async"{" loading=\"lazy\"" if i > 8 else ""}>{vid}'
+                f'<span class="dk-cap">{html.escape(name)}<i>{html.escape(meta)}</i></span></span></a>')
+    return f'<section class="deck" aria-label="Projects">{out}</section>'
+home = deck() + collage() + masonry(3, [1.1, STD, 1.18]) + masonry(2, [1.1, STD]) + f'<section class="stack">{flat}</section>' + plist
 if os.path.exists('og-home.jpg'):
     os.makedirs(os.path.join(OUT, 'og'), exist_ok=True); shutil.copy('og-home.jpg', os.path.join(OUT, 'og', 'home.jpg'))
 else:
