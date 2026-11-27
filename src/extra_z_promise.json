@@ -4,7 +4,7 @@
   "slug": "promise-delivery",
   "title": "Promise Delivery",
   "normal": "local:promise-cover",
-  "hover": "local:promise-cover"
+  "hover": "local:promise-hover"
  },
  "page": {
   "url": "https://flaviosalzer.com/promise-delivery",
@@ -55,7 +55,8 @@
  "nameMap": {
   "local:promise-cover": "promise-cover",
   "local:promise-kv": "promise-kv",
-  "local:promise-joao": "promise-joao"
+  "local:promise-joao": "promise-joao",
+  "local:promise-hover": "promise-hover"
  },
  "manifest": {
   "promise-cover": {
@@ -75,6 +76,13 @@
    "src": "promise-joao.webp",
    "w": 1920,
    "h": 1280
+  },
+  "promise-hover": {
+   "type": "video",
+   "src": "promise-hover.mp4",
+   "poster": "promise-hover.webp",
+   "w": 830,
+   "h": 650
   }
  }
 }
