@@ -323,6 +323,10 @@ html.view-list .pg-home .collage{display:none!important}
 .lg{display:block;height:calc(var(--lh,30px) / sqrt(var(--a)) * 1.6);max-height:56px;max-width:100%;aspect-ratio:var(--a);background:var(--tx);-webkit-mask:var(--u) center/contain no-repeat;mask:var(--u) center/contain no-repeat;opacity:.9}
 @media (max-width:900px){.logos{grid-template-columns:repeat(4,1fr)}}
 @media (max-width:560px){.logos{grid-template-columns:repeat(3,1fr);--lh:24px}}
+/* cursor + caption invert over whatever is behind them, like the menu */
+.cur,.cur-cap{mix-blend-mode:difference}
+.cur path,.cur .xh::before,.cur .xh::after{fill:#fff;background:#fff}
+.cur-cap{color:#fff}
 </style>
 </head>
 <body class="pg-about" id="top">
