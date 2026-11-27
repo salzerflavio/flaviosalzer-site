@@ -266,6 +266,11 @@ main.vswap-in{opacity:0;transition:none}
   .masonry,.masonry.m2,.masonry.m3{display:none!important}
 }
 html.view-list .pg-home .collage{display:none!important}
+@media (hover:hover) and (pointer:fine) and (min-width:900px){
+  html:not(.view-list) .pg-home .site-foot{display:none}
+  html:not(.view-list) .pg-home main{padding-bottom:0}
+  html:not(.view-list) body.pg-home{overflow:hidden}
+}
 .collage .thumb{position:absolute;left:0;top:0;width:var(--w,200px);transform:translate(var(--x,0),var(--y,0));transform-origin:center;z-index:var(--z,1);overflow:visible;will-change:transform}
 .js .collage .thumb .frame{transition:clip-path 1.1s var(--ease),transform .6s var(--ease),opacity .5s ease;transition-delay:calc(var(--d,0) * 60ms),0s,0s}
 .collage .t-title{display:none}
