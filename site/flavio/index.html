@@ -309,6 +309,21 @@ html.view-list .pg-home .collage{display:none!important}
 /* over links the cross opens up a little */
 .cur.x .xh{transition:opacity .18s,width .25s var(--ease),height .25s var(--ease)}
 .cur.x.link .xh{width:34px;height:34px}
+
+/* ===== TESTE: tema claro (fundo off-white #f6f5ed, texto preto 95%) — apagar este bloco para voltar ao escuro ===== */
+:root{--bg:#f6f5ed;--tx:#0d0d0d;--hi:#0d0d0d}
+.site-head,.site-head .logo,.site-head nav{color:#fff}           /* menu keeps its difference blend: reads dark on light */
+.m,.m[style*="background-image"],.vplayer,.vplayer iframe{background-color:#e9e8e0}
+.thumb .frame,.collage .thumb .frame,.pr-img{background:#e9e8e0}
+.p-head h1,.p-desc,.statement p,.t-lg,.pn a{color:#0d0d0d}
+.credits{color:rgba(13,13,13,.85)}
+.pn{border-top-color:rgba(13,13,13,.4)}
+.prow{border-top-color:rgba(13,13,13,.22)}.plist .prow:last-child{border-bottom-color:rgba(13,13,13,.22)}
+.vp-tl::before{background:rgba(13,13,13,.25)}.vp-tl i,.loadbar i{background:#0d0d0d}
+::view-transition-group(root){background:#f6f5ed}
+.cur path,.cur .xh::before,.cur .xh::after{fill:#0d0d0d;background:#0d0d0d}
+.cur-cap{color:#0d0d0d;text-shadow:none}
+.bd{background:#0d0d0d}
 </style>
 </head>
 <body class="pg-about" id="top">
