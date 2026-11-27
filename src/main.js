@@ -279,7 +279,7 @@
       let s = 20241126;
       const rnd = () => { s |= 0; s = s + 0x6D2B79F5 | 0; let t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
       const R = 1891 / 1479, n = tiles.length;
-      const unit = Math.max(130, 0.118 * W);
+      const unit = Math.max(100, 0.085 * W);
       // best-candidate sampling: random, but each new tile takes the farthest of a few candidate spots,
       // so the cloud is organic yet evenly spread (no clumps, no big holes), like the ref
       const top = 96, b = [];

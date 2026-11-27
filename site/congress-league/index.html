@@ -52,8 +52,8 @@ img,video{display:block;max-width:100%}
 .site-head{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:0 var(--edge);height:80px;mix-blend-mode:difference;pointer-events:none}
 .site-head a{pointer-events:auto}
 main{padding-top:80px}
-.logo{font:700 19.5px/1 var(--f);color:var(--hi);letter-spacing:-.01em}
-.site-head nav{display:flex;gap:22px;font:400 17px/1 var(--f);color:var(--hi)}
+.logo{font:700 23.5px/1 var(--f);color:var(--hi);letter-spacing:-.01em}
+.site-head nav{display:flex;gap:26px;font:400 20.5px/1 var(--f);color:var(--hi)}
 .site-head nav a{opacity:.85;transition:opacity .2s}
 .site-head nav a:hover{opacity:1}
 body.pg-home .site-head nav a[href="/"],body.pg-about .site-head nav a[href="/flavio/"]{opacity:1;font-weight:500;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
@@ -314,7 +314,7 @@ html.view-list .pg-home .collage{display:none!important}
 <body class="proj" id="top">
 <header class="site-head">
   <a class="logo" href="/">f*</a>
-  <nav><a href="/">Work</a><a href="/flavio/">☺ About</a><button class="vt" type="button" aria-label="Show as list"><svg class="i-list" viewBox="0 0 20 20" width="17" height="17"><rect x="2" y="4" width="16" height="1.6"/><rect x="2" y="9.2" width="16" height="1.6"/><rect x="2" y="14.4" width="16" height="1.6"/></svg><svg class="i-grid" viewBox="0 0 20 20" width="17" height="17"><rect x="2" y="2" width="7" height="7"/><rect x="11" y="2" width="7" height="7"/><rect x="2" y="11" width="7" height="7"/><rect x="11" y="11" width="7" height="7"/></svg></button></nav>
+  <nav><a href="/">Work</a><a href="/flavio/">☺ About</a><button class="vt" type="button" aria-label="Show as list"><svg class="i-list" viewBox="0 0 20 20" width="20.5" height="20.5"><rect x="2" y="4" width="16" height="1.6"/><rect x="2" y="9.2" width="16" height="1.6"/><rect x="2" y="14.4" width="16" height="1.6"/></svg><svg class="i-grid" viewBox="0 0 20 20" width="20.5" height="20.5"><rect x="2" y="2" width="7" height="7"/><rect x="11" y="2" width="7" height="7"/><rect x="2" y="11" width="7" height="7"/><rect x="11" y="11" width="7" height="7"/></svg></button></nav>
 </header>
 <main>
 <article class="project"><header class="p-head"><div class="p-intro"><a class="back" href="/" aria-label="Back to work"><svg class="arr" viewBox="486 353 250 95" width="66" height="25" aria-hidden="true"><polygon points="534.41 445.79 488.14 401.58 532.35 355.3 536.69 359.45 496.62 401.38 538.55 441.45 534.41 445.79"/><rect x="492.38" y="398.48" width="241.62" height="6"/></svg></a><h1 class="reveal-s" style="--d:0">Congress League</h1><div class="p-desc reveal-s" style="--d:1"><div class="pcol"><p>The Fantasy Game of the Brazilian Congress</p></div></div></div><dl class="credits reveal-s" style="--d:2"><div><dt>Role</dt><dd>Idea, Art Direction, Design</dd></div><div><dt>With</dt><dd>Sergio Gordilho, Joanna Monteiro, Mihail Aleksandrov, Eduardo Ferraz, Milena Zindeluk, Cauique Johnson, Vinicius Montes</dd></div><div><dt>Agency</dt><dd>Africa Creative</dd></div><div><dt>Client</dt><dd>Congresso em Foco</dd></div><div><dt>Year</dt><dd>2024</dd></div></dl></header><div class="p-body"><div class="mod vplayer reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe data-src="https://player.vimeo.com/video/1123929430?h=94b6e5e318&amp;background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Film"></iframe><button class="vp-hit" type="button" aria-label="Play with sound"><span class="vp-label">Play with sound</span></button></div><div class="vp-tl" role="slider" aria-label="Seek" tabindex="0"><i></i></div></div>
@@ -611,7 +611,7 @@ html.view-list .pg-home .collage{display:none!important}
       let s = 20241126;
       const rnd = () => { s |= 0; s = s + 0x6D2B79F5 | 0; let t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
       const R = 1891 / 1479, n = tiles.length;
-      const unit = Math.max(130, 0.118 * W);
+      const unit = Math.max(100, 0.085 * W);
       // best-candidate sampling: random, but each new tile takes the farthest of a few candidate spots,
       // so the cloud is organic yet evenly spread (no clumps, no big holes), like the ref
       const top = 96, b = [];
