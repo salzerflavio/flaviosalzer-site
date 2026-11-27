@@ -441,9 +441,10 @@ def plist_row(c):
             f'<span class="pr-r"><span class="pr-bd">{badges(c["slug"])}</span><span>{html.escape(meta)}</span></span></div>'
             f'<div class="pr-stage"><span class="pr-big" aria-hidden="true">{html.escape(name)}</span><div class="pr-img">{img}{vid}</div></div></a>')
 plist = '<section class="plist">' + ''.join(plist_row(c) for c in covers) + '</section>'
-def _alt_still(c):
+def _alt_stills(c, k=2):
     p = next((p for p in D['pages'] if slug_of(p['url']) == c['slug']), None)
-    if not p: return None
+    if not p: return []
+    out = []
     cover = (asset(c['normal']) or {}).get('src')
     def walk(mods):
         for m in mods:
@@ -459,9 +460,10 @@ def _alt_still(c):
         if not a: continue
         src = a.get('poster') if a.get('type') == 'video' else a.get('src')
         w, h = a.get('w') or 0, a.get('h') or 0
-        if src and src != cover and h and 1.1 < w / h < 2.2:
-            return src
-    return None
+        if src and src != cover and src not in out and h and 1.05 < w / h < 2.3:
+            out.append(src)
+            if len(out) >= k: break
+    return out
 
 def collage():
     """desktop: thumbs scattered as a loose collage (positions laid out in main.js); the cursor carries the caption"""
@@ -471,8 +473,7 @@ def collage():
         cap = name + (' — ' + ', '.join(x for x in (client, year) if x) if (client or year) else '')
         out += thumb(c, i).replace('<a class="thumb"', f'<a class="thumb" data-cap="{html.escape(cap)}"', 1)
         # a second, still tile per project (a picture from inside the project) so the cloud is denser, like the ref
-        alt = _alt_still(c)
-        if alt:
+        for alt in _alt_stills(c):
             extra.append(f'<a class="thumb" href="/{c["slug"]}/" data-cap="{html.escape(cap)}"><div class="frame"><img class="m" src="/media/{alt}" alt="" loading="lazy" decoding="async"></div></a>')
     return f'<section class="collage">{out}{"".join(extra)}</section>'
 home = collage() + masonry(3, [1.1, STD, 1.18]) + masonry(2, [1.1, STD]) + f'<section class="stack">{flat}</section>' + plist

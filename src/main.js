@@ -279,13 +279,21 @@
       let s = 20241126;
       const rnd = () => { s |= 0; s = s + 0x6D2B79F5 | 0; let t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
       const R = 1891 / 1479, n = tiles.length;
-      const unit = Math.max(90, 0.078 * W);
-      // organic scatter: random spots, then a light relax so tiles mostly keep apart but some still touch or overlap
-      const top = 96;
-      const b = tiles.map(() => {
+      const unit = Math.max(80, 0.066 * W);
+      // best-candidate sampling: random, but each new tile takes the farthest of a few candidate spots,
+      // so the cloud is organic yet evenly spread (no clumps, no big holes), like the ref
+      const top = 96, b = [];
+      for (let i = 0; i < n; i++) {
         const w = unit, h = w / R;                       // all the same size to start
-        return { w, h, x: -0.25 * w + rnd() * (W - 0.5 * w), y: top + rnd() * (H - top - h - 24), z: 1 + Math.floor(rnd() * n) };
-      });
+        let best = null, bestD = -1;
+        for (let c = 0; c < 14; c++) {
+          const x = -0.3 * w + rnd() * (W - 0.4 * w), y = top + rnd() * (H - top - h - 24);
+          let d = Infinity;
+          for (const o of b) d = Math.min(d, Math.hypot((x - o.x) / W * 1.4, (y - o.y) / H));
+          if (d > bestD) { bestD = d; best = { x, y }; }
+        }
+        b.push({ w, h, x: best.x, y: best.y, z: 1 + Math.floor(rnd() * n) });
+      }
       for (let it = 0; it < 400; it++) {
         let moved = false;
         for (let i = 0; i < n; i++) for (let k = i + 1; k < n; k++) {
@@ -325,7 +333,7 @@
     const lens = () => {
       lensRaf = 0;
       if (!base) return;
-      const W = col.clientWidth, H = col.clientHeight, rx = 0.22 * W, ry = 0.3 * H, now = performance.now();
+      const W = col.clientWidth, H = col.clientHeight, rx = 0.19 * W, ry = 0.27 * H, now = performance.now();
       let busy = false;
       const camTx = lensOn ? (W / 2 - mx) * 0.1 : 0, camTy = lensOn ? (H / 2 - my) * 0.1 : 0;
       cam.x += (camTx - cam.x) * 0.035; cam.y += (camTy - cam.y) * 0.035;
@@ -337,7 +345,7 @@
           // square-ish field (not a round bulge): tiles grow in place, the one under the cursor most
           const ux = Math.abs(cx - mx) / rx, uy = Math.abs(cy - my) / ry, u = Math.max(ux, uy);
           const f = u >= 1 ? 0 : 1 - u;
-          ts = 1 + 0.4 * f + (t.matches(':hover') ? 1.25 : 0);   // one clear focus, the neighbours only swell a little
+          ts = 1 + 0.85 * f + (t.matches(':hover') ? 0.9 : 0);   // a clear focus, with the neighbourhood growing along
           dist = Math.hypot(cx - mx, cy - my) / W;
         }
         const S = st[i];
