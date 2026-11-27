@@ -305,6 +305,10 @@ html.view-list .pg-home .collage{display:none!important}
 .cur .xh::after{top:0;bottom:0;left:50%;width:1px;margin-left:-.5px}
 .cur.x svg{opacity:0}.cur.x .xh{opacity:1}
 .cur svg{transition:opacity .18s}
+
+/* over links the cross opens up a little */
+.cur.x .xh{transition:opacity .18s,width .25s var(--ease),height .25s var(--ease)}
+.cur.x.link .xh{width:34px;height:34px}
 </style>
 </head>
 <body class="pg-about" id="top">
@@ -655,6 +659,7 @@ html.view-list .pg-home .collage{display:none!important}
     // each tile eases at its own pace, so they swell one after another rather than in lockstep
     const st = tiles.map((_, i) => ({ s: 1, v: 0, tgt: 1, pend: 1, at: 0, x: 0, y: 0, jit: ((i * 7919) % 97) / 97 }));
     const cam = { x: 0, y: 0 };   // the whole canvas drifts gently toward where things are growing
+    let pmx = null, pmy = null;   // previous cursor position, to know how fast it is moving
     const lens = () => {
       lensRaf = 0;
       if (!base) return;
@@ -663,6 +668,41 @@ html.view-list .pg-home .collage{display:none!important}
       const camTx = lensOn ? (W / 2 - mx) * 0.08 : 0, camTy = lensOn ? (H / 2 - my) * 0.08 : 0;
       cam.x += (camTx - cam.x) * 0.03; cam.y += (camTy - cam.y) * 0.03;
       if (Math.abs(camTx - cam.x) + Math.abs(camTy - cam.y) > 0.2) busy = true;
+      // stirring: the cursor pushes tiles away and drags them along its path; they keep their new place
+      const mvx = lensOn && pmx !== null ? mx - pmx : 0, mvy = lensOn && pmy !== null ? my - pmy : 0;
+      pmx = lensOn ? mx : null; pmy = lensOn ? my : null;
+      const speed = Math.min(1, Math.hypot(mvx, mvy) / 18);
+      base.forEach((B, i) => {
+        const S = st[i];
+        if (lensOn) {
+          const dx = B.x + B.w / 2 - (mx - cam.x), dy = B.y + B.h / 2 - (my - cam.y), d = Math.hypot(dx, dy) || 1;
+          const f = Math.exp(-(d * d) / (2 * (0.12 * W) ** 2));
+          S.vx = (S.vx || 0) + (dx / d * 2.2 * speed + mvx * 0.06) * f;
+          S.vy = (S.vy || 0) + (dy / d * 2.2 * speed + mvy * 0.06) * f;
+        }
+        // a very faint pull toward the middle, so stirred tiles don't end up stacked on the edges
+        if (lensOn) { S.vx = (S.vx || 0) + (W / 2 - B.x - B.w / 2) * 0.00003; S.vy = (S.vy || 0) + (H / 2 - B.y - B.h / 2) * 0.00003; }
+        S.vx = (S.vx || 0) * 0.92; S.vy = (S.vy || 0) * 0.92;
+        B.x += S.vx; B.y += S.vy;
+        // keep inside the screen (a little spill allowed), sliding along the edge
+        if (B.x < -0.35 * B.w) { B.x = -0.35 * B.w; S.vx *= -0.3; }
+        if (B.x > W - 0.65 * B.w) { B.x = W - 0.65 * B.w; S.vx *= -0.3; }
+        if (B.y < 96) { B.y = 96; S.vy *= -0.3; }
+        if (B.y > H - B.h - 24) { B.y = H - B.h - 24; S.vy *= -0.3; }
+        if (Math.abs(S.vx) + Math.abs(S.vy) > 0.05) busy = true;
+      });
+      // tiles never pile up: overlapping pairs ease apart
+      for (let i = 0; i < base.length; i++) for (let k = i + 1; k < base.length; k++) {
+        const A = base[i], C = base[k], sa = st[i].s, sc = st[k].s;
+        // compare the tiles as they are drawn (scaled around their centre)
+        const ax0 = A.x + A.w * (1 - sa) / 2, ay0 = A.y + A.h * (1 - sa) / 2, cx0 = C.x + C.w * (1 - sc) / 2, cy0 = C.y + C.h * (1 - sc) / 2;
+        const ox = Math.min(ax0 + A.w * sa, cx0 + C.w * sc) - Math.max(ax0, cx0) + 10, oy = Math.min(ay0 + A.h * sa, cy0 + C.h * sc) - Math.max(ay0, cy0) + 10;
+        if (ox > 0 && oy > 0) {
+          if (ox < oy) { const s = (A.x < C.x ? -1 : 1) * ox * 0.08; A.x += s; C.x -= s; }
+          else { const s = (A.y < C.y ? -1 : 1) * oy * 0.08; A.y += s; C.y -= s; }
+          busy = true;
+        }
+      }
       tiles.forEach((t, i) => {
         const B = base[i], cx = B.x + B.w / 2, cy = B.y + B.h / 2;
         let ts = 1, dist = 0, tx = 0, ty = 0;
@@ -672,7 +712,7 @@ html.view-list .pg-home .collage{display:none!important}
           const dx = cx - (mx - cam.x), dy = cy - (my - cam.y), d2 = dx * dx + dy * dy;
           const f = Math.exp(-d2 / (2 * (0.13 * W) ** 2));
           ts = 1 + 0.9 * f + (t.matches(':hover') ? 0.25 : 0);
-          tx = dx * 0.6 * f; ty = dy * 0.6 * f;   // a clear focus, with the neighbourhood growing along
+          tx = dx * 0.25 * f; ty = dy * 0.25 * f;   // a little extra room around the focus
           dist = Math.hypot(cx - mx, cy - my) / W;
         }
         const S = st[i];
@@ -711,6 +751,7 @@ html.view-list .pg-home .collage{display:none!important}
       capLoop = (Math.abs(x - cx) + Math.abs(y - cy) > 0.3) ? requestAnimationFrame(trail) : 0;
     };
     const xh = document.createElement('i'); xh.className = 'xh'; c.appendChild(xh);
+    c.classList.add('x');   // the thin cross is the cursor everywhere
     document.body.appendChild(c);
     document.documentElement.classList.add('has-cur');
     let x = -100, y = -100, raf = 0;
@@ -722,7 +763,7 @@ html.view-list .pg-home .collage{display:none!important}
       if (ct) { if (cap.textContent !== ct.dataset.cap) cap.textContent = ct.dataset.cap; cap.classList.add('on'); c.classList.remove('link'); }
       else cap.classList.remove('on');
       if (!capLoop) capLoop = requestAnimationFrame(trail);
-      c.classList.toggle('x', !!e.target.closest('.collage'));
+
       if (!raf) raf = requestAnimationFrame(draw);
     }, { passive: true });
     document.addEventListener('mouseleave', () => c.classList.remove('on'));

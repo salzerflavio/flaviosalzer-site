@@ -287,3 +287,7 @@ html.view-list .pg-home .collage{display:none!important}
 .cur .xh::after{top:0;bottom:0;left:50%;width:1px;margin-left:-.5px}
 .cur.x svg{opacity:0}.cur.x .xh{opacity:1}
 .cur svg{transition:opacity .18s}
+
+/* over links the cross opens up a little */
+.cur.x .xh{transition:opacity .18s,width .25s var(--ease),height .25s var(--ease)}
+.cur.x.link .xh{width:34px;height:34px}
