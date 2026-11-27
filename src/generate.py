@@ -507,12 +507,12 @@ for p in D['pages']:
         head = head.replace('</h1>', f'</h1><div class="p-awards reveal-s" style="--d:0">{badges(slug)}</div>', 1)
     if slug in NAMES:
         head = re.sub(r'(<h1 class="split">)[^<]*', lambda m: m.group(1) + html.escape(NAMES[slug]), head, count=1); title = NAMES[slug]
-    if slug == 'maradona':   # film, then type posters, then image-only posters; motion versions close the page
+    if slug == 'maradona':   # film, then type posters; motion versions close the page
         for _k in ('mara-motion-1', 'mara-motion-2'):
             NM['local:' + _k] = _k
             M[_k] = {'type': 'video', 'src': _k + '.mp4', 'poster': _k + '.webp', 'w': 1080, 'h': 1440}
         _motion = {'type': 'grid', 'items': [{'src': 'local:mara-motion-1', 'w': 1080, 'h': 1440}, {'src': 'local:mara-motion-2', 'w': 1080, 'h': 1440}]}
-        mods = [mods[i] for i in (0, 1, 2, 3, 4, 9, 11, 14, 5, 6, 7, 8, 10)] + [_motion]
+        mods = [mods[i] for i in (0, 1, 2, 3, 4, 9, 11, 5, 6, 7, 8, 10)] + [_motion]
     rest = render_mods(mods[1:])
     clean_title = NAMES.get(slug, title)
     desc = strip_tags(split_title(mods[0]['children'][0]['mods'][0]['html'])[1])
