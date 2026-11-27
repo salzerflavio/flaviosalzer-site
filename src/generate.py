@@ -485,7 +485,7 @@ def deck():
         src = (n.get('poster') if n.get('type') == 'video' else n['src']) if n else ''
         vid = f'<video data-src="/media/{hv["src"]}" muted loop playsinline preload="none"></video>' if hv and hv.get('type') == 'video' else ''
         meta = ', '.join(x for x in (client, year) if x)
-        out += (f'<a class="dk" href="/{c["slug"]}/"><span class="dk-face"><img src="/media/{src}" alt="" decoding="async"{" loading=\"lazy\"" if i > 8 else ""}>{vid}'
+        out += (f'<a class="dk" href="/{c["slug"]}/" data-cap="{html.escape(name + (" — " + meta if meta else ""))}"><span class="dk-face"><img src="/media/{src}" alt="" decoding="async"{" loading=\"lazy\"" if i > 8 else ""}>{vid}'
                 f'<span class="dk-cap">{html.escape(name)}<i>{html.escape(meta)}</i></span></span></a>')
     return f'<section class="deck" aria-label="Projects">{out}</section>'
 home = deck() + collage() + masonry(3, [1.1, STD, 1.18]) + masonry(2, [1.1, STD]) + f'<section class="stack">{flat}</section>' + plist

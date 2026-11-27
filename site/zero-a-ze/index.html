@@ -346,17 +346,19 @@ html.view-list .pg-home .collage{display:none!important}
 .deck{position:fixed;inset:0;z-index:1;perspective:1700px;perspective-origin:62% 30%;overflow:hidden;
   background:linear-gradient(118deg,transparent 0 30%,rgba(0,0,0,.01) 30.5% 38%,transparent 38.5% 62%,rgba(0,0,0,.008) 62.5% 70%,transparent 70.5%)}
 .dk{position:absolute;left:0;top:0;width:var(--cw,26vw);aspect-ratio:1891/1479;transform-style:preserve-3d;will-change:transform,opacity;cursor:pointer}
-.dk-face{position:absolute;inset:0;display:block;overflow:hidden;background:#eee;outline:1px solid rgba(0,0,0,.18);outline-offset:-1px;
-  box-shadow:0 24px 60px -20px rgba(0,0,0,.25);transition:box-shadow .5s var(--ease)}
-.dk-face::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(255,255,255,.22),transparent 40%);pointer-events:none}
+.dk-face{position:absolute;inset:0;display:block;overflow:hidden;background:rgba(235,238,238,.35);opacity:.9;
+  border-top:1px solid rgba(255,255,255,.9);box-shadow:inset 0 2px 0 rgba(255,255,255,.35),inset 0 -1px 0 rgba(0,0,0,.08),0 30px 60px -28px rgba(0,0,0,.28);transition:box-shadow .6s var(--ease),opacity .6s}
+/* glass: the image melts softly toward the lower edge, a light sheen runs over the top */
+.dk-face img,.dk-face video{-webkit-mask:linear-gradient(180deg,#000 0,#000 62%,rgba(0,0,0,.55) 100%);mask:linear-gradient(180deg,#000 0,#000 62%,rgba(0,0,0,.55) 100%)}
+.dk-face::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,.28) 0,rgba(255,255,255,0) 18%),linear-gradient(100deg,rgba(255,255,255,.14),transparent 45%)}
+.dk-face::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;z-index:3;background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(190,215,215,.35));pointer-events:none}
 .dk img,.dk video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:left top;display:block}
 .dk video{opacity:0;transition:opacity .4s}
 .dk video.on{opacity:1}
-.dk-cap{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;white-space:nowrap;text-align:center;font:500 13px/1.3 var(--f);letter-spacing:.04em;text-transform:uppercase;color:#fff;
+.dk-cap{display:none;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;white-space:nowrap;text-align:center;font:500 13px/1.3 var(--f);letter-spacing:.04em;text-transform:uppercase;color:#fff;
   text-shadow:0 1px 10px rgba(0,0,0,.45);opacity:0;transition:opacity .35s}
 .dk-cap i{display:block;font-style:normal;font-weight:400;opacity:.8}
-.dk.hot .dk-cap{opacity:1}
-.dk.hot .dk-face{box-shadow:0 40px 80px -24px rgba(0,0,0,.35)}
+.dk.hot .dk-face{opacity:1;box-shadow:inset 0 2px 0 rgba(255,255,255,.35),0 44px 80px -26px rgba(0,0,0,.35)}
 .deck.opening .dk:not(.picked){opacity:0!important;transition:opacity .45s ease}
 .deck.opening .dk.picked{transition:transform .9s cubic-bezier(.7,0,.2,1)}
 </style>
@@ -771,25 +773,25 @@ html.view-list .pg-home .collage{display:none!important}
     const cards = [...deckEl.querySelectorAll('.dk')];
     const N = cards.length;
     const lift = cards.map(() => 0);
-    let pos = 0, cur = 0, hot = -1, raf = 0, opening = false;
+    let pos = 4, cur = 4, hot = -1, raf = 0, opening = false;
     const active = () => getComputedStyle(deckEl).display !== 'none';
     const place = () => {
       raf = 0;
       if (!active()) return;
-      const W = innerWidth, H = innerHeight, cw = Math.min(W * 0.26, H * 0.5);
+      const W = innerWidth, H = innerHeight, cw = Math.min(W * 0.25, H * 0.48);
       deckEl.style.setProperty('--cw', cw + 'px');
-      cur += (pos - cur) * 0.085;
+      cur += (pos - cur) * 0.06;
       let moving = Math.abs(pos - cur) > 0.0005;
       cards.forEach((c, i) => {
         const d = i - cur;
-        lift[i] += ((i === hot ? 1 : 0) - lift[i]) * 0.12;
+        lift[i] += ((i === hot ? 1 : 0) - lift[i]) * 0.08;
         if (Math.abs((i === hot ? 1 : 0) - lift[i]) > 0.002) moving = true;
         if (opening) return;
         // along the diagonal: each step goes right, up and away
-        const x = W * 0.1 + d * W * 0.058, y = H * 0.58 - d * H * 0.068, z = -d * 150;
+        const x = W * 0.4 + d * W * 0.07, y = H * 0.5 - d * H * 0.088, z = -d * 70;   // the stack runs through the middle of the screen
         const ly = -lift[i] * cw * 0.16, lz = lift[i] * 30;
-        const op = d < -1.6 ? Math.max(0, 1 + (d + 1.6) / 0.9) : d > 9 ? Math.max(0, 1 - (d - 9) / 3) : 1;
-        c.style.transform = `translate3d(${x.toFixed(1)}px,${(y + ly - cw * 0.39).toFixed(1)}px,${(z + lz).toFixed(1)}px) rotateY(36deg)`;
+        const op = d < -4.5 ? Math.max(0, 1 + (d + 4.5) / 1.2) : d > 4.5 ? Math.max(0, 1 - (d - 4.5) / 2.5) : 1;
+        c.style.transform = `translate3d(${x.toFixed(1)}px,${(y + ly - cw * 0.39).toFixed(1)}px,${(z + lz).toFixed(1)}px) rotateY(24deg)`;
         c.style.opacity = op.toFixed(3);
         c.style.zIndex = 1000 - i;
         c.style.pointerEvents = op > 0.5 ? 'auto' : 'none';
@@ -799,7 +801,7 @@ html.view-list .pg-home .collage{display:none!important}
     const req = () => { if (!raf) raf = requestAnimationFrame(place); };
     addEventListener('wheel', e => {
       if (!active() || opening) return;
-      pos = Math.max(0, Math.min(N - 1, pos + (e.deltaY + e.deltaX) * 0.0035));
+      pos = Math.max(0, Math.min(N - 1, pos + (e.deltaY + e.deltaX) * 0.0028));
       req();
     }, { passive: true });
     addEventListener('keydown', e => {
@@ -854,7 +856,7 @@ html.view-list .pg-home .collage{display:none!important}
     addEventListener('mousemove', e => {
       x = e.clientX; y = e.clientY; c.classList.add('on');
       c.classList.toggle('link', !!e.target.closest('a,button'));
-      const ct = e.target.closest('.collage .thumb');
+      const ct = e.target.closest('.collage .thumb, .deck .dk');
       if (ct) { if (cap.textContent !== ct.dataset.cap) cap.textContent = ct.dataset.cap; cap.classList.add('on'); c.classList.remove('link'); }
       else cap.classList.remove('on');
       if (!capLoop) capLoop = requestAnimationFrame(trail);
