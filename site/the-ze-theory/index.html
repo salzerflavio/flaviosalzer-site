@@ -343,16 +343,16 @@ html.view-list .pg-home .collage{display:none!important}
   html:not(.view-list) .pg-home main{padding:0}
   html:not(.view-list) body.pg-home{overflow:hidden;height:100svh}
 }
-.deck{position:fixed;inset:0;z-index:1;perspective:1700px;perspective-origin:62% 30%;overflow:hidden;
+.deck{position:fixed;inset:0;z-index:1;perspective:1400px;perspective-origin:50% 50%;overflow:hidden;
   background:linear-gradient(118deg,transparent 0 30%,rgba(0,0,0,.01) 30.5% 38%,transparent 38.5% 62%,rgba(0,0,0,.008) 62.5% 70%,transparent 70.5%)}
-.dk{position:absolute;left:0;top:0;width:var(--cw,26vw);aspect-ratio:1891/1479;transform-style:preserve-3d;will-change:transform,opacity;cursor:pointer}
+.dk{position:absolute;left:0;top:0;width:var(--cw,26vw);aspect-ratio:3/4;transform-style:preserve-3d;will-change:transform,opacity;cursor:pointer}
 .dk-face{position:absolute;inset:0;display:block;overflow:hidden;background:rgba(235,238,238,.35);opacity:.9;
   border-top:1px solid rgba(255,255,255,.9);box-shadow:inset 0 2px 0 rgba(255,255,255,.35),inset 0 -1px 0 rgba(0,0,0,.08),0 30px 60px -28px rgba(0,0,0,.28);transition:box-shadow .6s var(--ease),opacity .6s}
 /* glass: the image melts softly toward the lower edge, a light sheen runs over the top */
 .dk-face img,.dk-face video{-webkit-mask:linear-gradient(180deg,#000 0,#000 62%,rgba(0,0,0,.55) 100%);mask:linear-gradient(180deg,#000 0,#000 62%,rgba(0,0,0,.55) 100%)}
 .dk-face::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,.28) 0,rgba(255,255,255,0) 18%),linear-gradient(100deg,rgba(255,255,255,.14),transparent 45%)}
 .dk-face::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;z-index:3;background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(190,215,215,.35));pointer-events:none}
-.dk img,.dk video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:left top;display:block}
+.dk img,.dk video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block}
 .dk video{opacity:0;transition:opacity .4s}
 .dk video.on{opacity:1}
 .dk-cap{display:none;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;white-space:nowrap;text-align:center;font:500 13px/1.3 var(--f);letter-spacing:.04em;text-transform:uppercase;color:#fff;
@@ -780,7 +780,7 @@ html.view-list .pg-home .collage{display:none!important}
     const place = () => {
       raf = 0;
       if (!active()) return;
-      const W = innerWidth, H = innerHeight, cw = Math.min(W * 0.25, H * 0.48);
+      const W = innerWidth, H = innerHeight, cw = Math.min(W * 0.24, H * 0.39), ch = cw * 4 / 3;   // 3:4 cards, about half the screen tall
       deckEl.style.setProperty('--cw', cw + 'px');
       cur += (pos - cur) * 0.06;
       let moving = Math.abs(pos - cur) > 0.0005;
@@ -790,10 +790,11 @@ html.view-list .pg-home .collage{display:none!important}
         if (Math.abs((i === hot ? 1 : 0) - lift[i]) > 0.002) moving = true;
         if (opening) return;
         // along the diagonal: each step goes right, up and away
-        const x = W * 0.4 + d * W * 0.07, y = H * 0.5 - d * H * 0.088, z = -d * 70;   // the stack runs through the middle of the screen
-        const ly = -lift[i] * cw * 0.16, lz = lift[i] * 30;
+        const x = W * 0.5 - cw / 2 + d * W * 0.068, y = H * 0.5 - ch / 2 - d * H * 0.115, z = -d * 40;   // diagonal through the centre
+        const ly = -lift[i] * ch * 0.1, lz = lift[i] * 30;
         const op = d < -4.5 ? Math.max(0, 1 + (d + 4.5) / 1.2) : d > 4.5 ? Math.max(0, 1 - (d - 4.5) / 2.5) : 1;
-        c.style.transform = `translate3d(${x.toFixed(1)}px,${(y + ly - cw * 0.39).toFixed(1)}px,${(z + lz).toFixed(1)}px) rotateY(24deg)`;
+        // each card gets its own perspective, so every card converges on its own centre (as in the ref)
+        c.style.transform = `translate3d(${x.toFixed(1)}px,${(y + ly).toFixed(1)}px,0) perspective(${(ch * 2.6).toFixed(0)}px) rotateY(40deg) translateZ(${(lz * 2).toFixed(1)}px)`;
         c.style.opacity = op.toFixed(3);
         c.style.zIndex = 1000 - i;
         c.style.pointerEvents = op > 0.5 ? 'auto' : 'none';
@@ -826,8 +827,8 @@ html.view-list .pg-home .collage{display:none!important}
         e.preventDefault();
         opening = true; c.classList.add('picked'); deckEl.classList.add('opening');
         const W = innerWidth, H = innerHeight, cw = parseFloat(deckEl.style.getPropertyValue('--cw')) || 300;
-        const s = Math.min(1.5, (H * 0.62) / (cw / (1891 / 1479)));
-        c.style.transform = `translate3d(${(W - cw) / 2}px,${(H - cw / (1891 / 1479)) / 2}px,0) rotateY(0deg) scale(${s.toFixed(3)})`;
+        const ch = cw * 4 / 3, s = Math.min(1.3, (H * 0.62) / ch);
+        c.style.transform = `translate3d(${(W - cw) / 2}px,${(H - ch) / 2}px,0) rotateY(0deg) scale(${s.toFixed(3)})`;
         setTimeout(() => { location.href = c.href; }, 850);
       });
     });

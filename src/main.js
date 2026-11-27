@@ -389,7 +389,7 @@
     const place = () => {
       raf = 0;
       if (!active()) return;
-      const W = innerWidth, H = innerHeight, cw = Math.min(W * 0.25, H * 0.48);
+      const W = innerWidth, H = innerHeight, cw = Math.min(W * 0.24, H * 0.39), ch = cw * 4 / 3;   // 3:4 cards, about half the screen tall
       deckEl.style.setProperty('--cw', cw + 'px');
       cur += (pos - cur) * 0.06;
       let moving = Math.abs(pos - cur) > 0.0005;
@@ -399,10 +399,11 @@
         if (Math.abs((i === hot ? 1 : 0) - lift[i]) > 0.002) moving = true;
         if (opening) return;
         // along the diagonal: each step goes right, up and away
-        const x = W * 0.4 + d * W * 0.07, y = H * 0.5 - d * H * 0.088, z = -d * 70;   // the stack runs through the middle of the screen
-        const ly = -lift[i] * cw * 0.16, lz = lift[i] * 30;
+        const x = W * 0.5 - cw / 2 + d * W * 0.068, y = H * 0.5 - ch / 2 - d * H * 0.115, z = -d * 40;   // diagonal through the centre
+        const ly = -lift[i] * ch * 0.1, lz = lift[i] * 30;
         const op = d < -4.5 ? Math.max(0, 1 + (d + 4.5) / 1.2) : d > 4.5 ? Math.max(0, 1 - (d - 4.5) / 2.5) : 1;
-        c.style.transform = `translate3d(${x.toFixed(1)}px,${(y + ly - cw * 0.39).toFixed(1)}px,${(z + lz).toFixed(1)}px) rotateY(24deg)`;
+        // each card gets its own perspective, so every card converges on its own centre (as in the ref)
+        c.style.transform = `translate3d(${x.toFixed(1)}px,${(y + ly).toFixed(1)}px,0) perspective(${(ch * 2.6).toFixed(0)}px) rotateY(40deg) translateZ(${(lz * 2).toFixed(1)}px)`;
         c.style.opacity = op.toFixed(3);
         c.style.zIndex = 1000 - i;
         c.style.pointerEvents = op > 0.5 ? 'auto' : 'none';
@@ -435,8 +436,8 @@
         e.preventDefault();
         opening = true; c.classList.add('picked'); deckEl.classList.add('opening');
         const W = innerWidth, H = innerHeight, cw = parseFloat(deckEl.style.getPropertyValue('--cw')) || 300;
-        const s = Math.min(1.5, (H * 0.62) / (cw / (1891 / 1479)));
-        c.style.transform = `translate3d(${(W - cw) / 2}px,${(H - cw / (1891 / 1479)) / 2}px,0) rotateY(0deg) scale(${s.toFixed(3)})`;
+        const ch = cw * 4 / 3, s = Math.min(1.3, (H * 0.62) / ch);
+        c.style.transform = `translate3d(${(W - cw) / 2}px,${(H - ch) / 2}px,0) rotateY(0deg) scale(${s.toFixed(3)})`;
         setTimeout(() => { location.href = c.href; }, 850);
       });
     });
