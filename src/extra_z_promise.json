@@ -44,12 +44,18 @@
     "type": "image",
     "big": "local:promise-kv",
     "w": 1920
+   },
+   {
+    "type": "image",
+    "big": "local:promise-joao",
+    "w": 1920
    }
   ]
  },
  "nameMap": {
   "local:promise-cover": "promise-cover",
-  "local:promise-kv": "promise-kv"
+  "local:promise-kv": "promise-kv",
+  "local:promise-joao": "promise-joao"
  },
  "manifest": {
   "promise-cover": {
@@ -63,6 +69,12 @@
    "src": "promise-kv.webp",
    "w": 1920,
    "h": 1080
+  },
+  "promise-joao": {
+   "type": "image",
+   "src": "promise-joao.webp",
+   "w": 1920,
+   "h": 1280
   }
  }
 }
