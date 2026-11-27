@@ -317,6 +317,12 @@ html.view-list .pg-home .collage{display:none!important}
 .cur path,.cur .xh::before,.cur .xh::after{fill:#0d0d0d;background:#0d0d0d}
 .cur-cap{color:#0d0d0d;text-shadow:none}
 .bd{background:#0d0d0d}
+
+/* clients logos (About) */
+.logos{display:grid;grid-template-columns:repeat(7,1fr);gap:clamp(28px,4vw,64px) clamp(20px,3vw,48px);align-items:center;justify-items:center;padding:clamp(8px,1vw,16px) 0}
+.lg{display:block;height:calc(var(--lh,30px) / sqrt(var(--a)) * 1.6);max-height:56px;max-width:100%;aspect-ratio:var(--a);background:var(--tx);-webkit-mask:var(--u) center/contain no-repeat;mask:var(--u) center/contain no-repeat;opacity:.9}
+@media (max-width:900px){.logos{grid-template-columns:repeat(4,1fr)}}
+@media (max-width:560px){.logos{grid-template-columns:repeat(3,1fr);--lh:24px}}
 </style>
 </head>
 <body class="pg-home" id="top">

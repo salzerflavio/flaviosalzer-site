@@ -533,6 +533,15 @@ for m in about:
         parts.append(render_image(m))
 _pimg = asset(about[0]['children'][1]['mods'][0].get('big')) if about and about[0]['type']=='tree' and len(about[0]['children'])>1 else None
 if _pimg: make_og(_pimg['src'], 'about.jpg', focus_left=False)
+# clients: the logo picture becomes a responsive grid of traced SVG logos, coloured with the text colour
+import re as _re
+_LOGOS = ['heineken','skol','ze-delivery','corona','brahma','ambev','johnnie-walker','new-balance','amazon','prime-video','samsung','mercado-pago','santander','trident','azul','compass-uol','cadillac','o-boticario','natura','ambipar','pao-de-acucar']
+def _logo(n):
+    vb = _re.search(r'viewBox="0 0 (\d+) (\d+)"', open(os.path.join(OUT, 'img', 'logos', n + '.svg')).read())
+    w, h = int(vb.group(1)), int(vb.group(2))
+    return f'<span class="lg" role="img" aria-label="{n.replace("-", " ").title()}" style="--u:url(/img/logos/{n}.svg);--a:{w / h:.3f}"></span>'
+_grid = '<div class="logos reveal-m">' + ''.join(_logo(n) for n in _LOGOS) + '</div>'
+parts = [_re.sub(r'<figure class="mod img reveal-m"><img class="m " src="/media/38cfec25-e63f-47c8-8ebe-eadf89bdf148_rw_1920\.webp"[^>]*></figure>', _grid, p) for p in parts]
 write('flavio/index.html', page('About — Flávio Salzer', f'<article class="about">{"".join(parts)}</article>', 'pg-about', path='/flavio/', og='og/about.jpg' if _pimg else 'og/home.jpg'))
 
 # ---------- netlify config ----------
