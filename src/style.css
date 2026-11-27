@@ -262,16 +262,9 @@ main.vswap-in{opacity:0;transition:none}
 
 /* desktop mosaic as a loose collage (after davidwilliambaum.com); positions come from main.js */
 .collage{display:none;position:relative;z-index:0;isolation:isolate;height:100svh;min-height:600px;margin:-120px 0 0;overflow:visible}
-@media (hover:hover) and (pointer:fine) and (min-width:900px){
-  .collage{display:block}
-  .masonry,.masonry.m2,.masonry.m3{display:none!important}
-}
+/* collage switched off: the home mosaic is the masonry again */
 html.view-list .pg-home .collage{display:none!important}
-@media (hover:hover) and (pointer:fine) and (min-width:900px){
-  html:not(.view-list) .pg-home .site-foot{display:none}
-  html:not(.view-list) .pg-home main{padding-bottom:0}
-  html:not(.view-list) body.pg-home{overflow:hidden}
-}
+
 .collage .thumb{position:absolute;left:0;top:0;width:var(--w,200px);transform:translate(var(--x,0),var(--y,0));transform-origin:center;z-index:var(--z,1);overflow:visible;will-change:transform}
 .js .collage .thumb .frame{transition:clip-path 1.1s var(--ease),transform .6s var(--ease),opacity .5s ease;transition-delay:calc(var(--d,0) * 60ms),0s,0s}
 .collage .t-title{display:none}
@@ -293,16 +286,16 @@ html.view-list .pg-home .collage{display:none!important}
 .cur.x.link .xh{width:34px;height:34px}
 
 /* ===== TESTE: tema claro (fundo off-white #f6f5ed, texto preto 95%) — apagar este bloco para voltar ao escuro ===== */
-:root{--bg:#f6f5ed;--tx:#0d0d0d;--hi:#0d0d0d}
+:root{--bg:#fffef6;--tx:#0d0d0d;--hi:#0d0d0d}
 .site-head,.site-head .logo,.site-head nav{color:#fff}           /* menu keeps its difference blend: reads dark on light */
-.m,.m[style*="background-image"],.vplayer,.vplayer iframe{background-color:#e9e8e0}
-.thumb .frame,.collage .thumb .frame,.pr-img{background:#e9e8e0}
+.m,.m[style*="background-image"],.vplayer,.vplayer iframe{background-color:#f0efe6}
+.thumb .frame,.collage .thumb .frame,.pr-img{background:#f0efe6}
 .p-head h1,.p-desc,.statement p,.t-lg,.pn a{color:#0d0d0d}
 .credits{color:rgba(13,13,13,.85)}
 .pn{border-top-color:rgba(13,13,13,.4)}
 .prow{border-top-color:rgba(13,13,13,.22)}.plist .prow:last-child{border-bottom-color:rgba(13,13,13,.22)}
 .vp-tl::before{background:rgba(13,13,13,.25)}.vp-tl i,.loadbar i{background:#0d0d0d}
-::view-transition-group(root){background:#f6f5ed}
+::view-transition-group(root){background:#fffef6}
 .cur path,.cur .xh::before,.cur .xh::after{fill:#0d0d0d;background:#0d0d0d}
 .cur-cap{color:#0d0d0d;text-shadow:none}
 .bd{background:#0d0d0d}
