@@ -384,7 +384,8 @@
     const cards = [...deckEl.querySelectorAll('.dk')];
     const N = cards.length;
     const lift = cards.map(() => 0);
-    let pos = 4, cur = 4, hot = -1, raf = 0, opening = false;
+    let pos = 4, cur = 4, hot = -1, raf = 0, opening = false, mx = -1, my = -1;
+    const geo = cards.map(() => null);   // each card's resting parallelogram, for steady hover hit-testing
     const active = () => getComputedStyle(deckEl).display !== 'none';
     const place = () => {
       raf = 0;
@@ -396,17 +397,19 @@
       const SK = Math.tan(12 * Math.PI / 180), SX = 0.8, pw = cw * SX;   // near-isometric: parallel edges, no vanishing point
       cards.forEach((c, i) => {
         let d = ((i - cur) % N + N) % N; if (d >= N / 2) d -= N;
-        lift[i] += ((i === hot ? 1 : 0) - lift[i]) * 0.09;
+        lift[i] += ((i === hot ? 1 : 0) - lift[i]) * 0.14;
         if (Math.abs((i === hot ? 1 : 0) - lift[i]) > 0.002) moving = true;
         if (opening) return;
         // centres run along a diagonal through the middle of the screen
         const cx = W * 0.5 + d * W * 0.062, cy = H * 0.5 - d * H * 0.11;
-        const x = cx - pw / 2, y = cy - ch / 2 - pw / 2 * SK + lift[i] * ch * 0.28;   // hovered card slides down out of the stack
+        const sl = lift[i] * pw * 0.42;   // hovered card slides sideways along its own plane, staying in its layer
+        const x = cx - pw / 2 + sl, y = cy - ch / 2 - pw / 2 * SK + sl * SK;
         const op = d < -5 ? Math.max(0, 1 + (d + 5) / 1.2) : d > 4.5 ? Math.max(0, 1 - (d - 4.5) / 2.5) : 1;
         c.style.transform = `translate(${x.toFixed(1)}px,${y.toFixed(1)}px) skewY(12deg) scaleX(${SX})`;
         c.style.opacity = op.toFixed(3);
-        c.style.zIndex = i === hot ? 2000 : Math.round(1000 - d * 10);
-        c.style.pointerEvents = op > 0.5 ? 'auto' : 'none';
+        c.style.zIndex = Math.round(1000 - d * 10);
+        c.style.pointerEvents = 'none';
+        geo[i] = { x: cx - pw / 2, y: cy - ch / 2 - pw / 2 * SK, w: pw, h: ch, sk: SK, z: Math.round(1000 - d * 10), on: op > 0.5 };
       });
       if (moving) raf = requestAnimationFrame(place);
     };
@@ -421,26 +424,45 @@
       if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { pos = Math.round(pos) + 1; req(); }
       if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { pos = Math.round(pos) - 1; req(); }
     });
-    cards.forEach((c, i) => {
-      const v = c.querySelector('video');
-      c.addEventListener('mouseenter', () => {
-        hot = i; c.classList.add('hot'); req();
-        if (v) { if (!v.src) v.src = v.dataset.src; v.play().then(() => v.classList.add('on')).catch(() => {}); }
+    const setHot = n => {
+      if (n === hot) return;
+      if (hot >= 0) { const c = cards[hot], v = c.querySelector('video'); c.classList.remove('hot'); if (v) { v.pause(); v.classList.remove('on'); } }
+      hot = n;
+      if (hot >= 0) { const c = cards[hot], v = c.querySelector('video'); c.classList.add('hot'); if (v) { if (!v.src) v.src = v.dataset.src; v.play().then(() => v.classList.add('on')).catch(() => {}); } }
+      document.body.style.cursor = hot >= 0 ? 'pointer' : '';
+      req();
+    };
+    const hit = () => {
+      let best = -1, bz = -1;
+      geo.forEach((g, i) => {
+        if (!g || !g.on || g.z <= bz) return;
+        const dx = mx - g.x;
+        if (dx < 0 || dx > g.w) return;
+        const top = g.y + dx * g.sk;
+        if (my >= top && my <= top + g.h) { best = i; bz = g.z; }
       });
-      c.addEventListener('mouseleave', () => {
-        if (hot === i) hot = -1; c.classList.remove('hot'); req();
-        if (v) { v.pause(); v.classList.remove('on'); }
-      });
-      c.addEventListener('click', e => {
-        if (!active() || e.metaKey || e.ctrlKey || e.shiftKey) return;
-        e.preventDefault();
-        opening = true; c.classList.add('picked'); deckEl.classList.add('opening');
-        const W = innerWidth, H = innerHeight, cw = parseFloat(deckEl.style.getPropertyValue('--cw')) || 300;
-        const ch = cw * 1479 / 1891, s = Math.min(1.3, (H * 0.62) / ch);
-        c.style.transformOrigin = '50% 50%';
-        c.style.transform = `translate(${(W - cw) / 2}px,${(H - ch) / 2}px) skewY(0deg) scaleX(1) scale(${s.toFixed(3)})`;
-        setTimeout(() => { location.href = c.href; }, 850);
-      });
+      return best;
+    };
+    addEventListener('mousemove', e => {
+      if (!active() || opening) return;
+      mx = e.clientX; my = e.clientY;
+      setHot(e.target.closest('.site-head') ? -1 : hit());
+      // caption under the cursor
+      const cap = document.querySelector('.cur-cap');
+      if (cap) { if (hot >= 0) { cap.textContent = cards[hot].dataset.cap; cap.classList.add('on'); } else cap.classList.remove('on'); }
+    });
+    addEventListener('wheel', () => { if (active()) requestAnimationFrame(() => setHot(hit())); }, { passive: true });
+    document.addEventListener('mouseleave', () => setHot(-1));
+    deckEl.addEventListener('click', e => {
+      if (!active() || hot < 0) return;
+      const c = cards[hot];
+      if (e.metaKey || e.ctrlKey || e.shiftKey) { open(c.href, '_blank'); return; }
+      opening = true; c.classList.add('picked'); deckEl.classList.add('opening');
+      const W = innerWidth, H = innerHeight, cw = parseFloat(deckEl.style.getPropertyValue('--cw')) || 300;
+      const ch = cw * 1479 / 1891, s = Math.min(1.3, (H * 0.62) / ch);
+      c.style.transformOrigin = '50% 50%';
+      c.style.transform = `translate(${(W - cw) / 2}px,${(H - ch) / 2}px) skewY(0deg) scaleX(1) scale(${s.toFixed(3)})`;
+      setTimeout(() => { location.href = c.href; }, 850);
     });
     addEventListener('resize', req);
     addEventListener('pageshow', () => { opening = false; deckEl.classList.remove('opening'); cards.forEach(c => c.classList.remove('picked')); req(); });
@@ -469,7 +491,7 @@
     addEventListener('mousemove', e => {
       x = e.clientX; y = e.clientY; c.classList.add('on');
       c.classList.toggle('link', !!e.target.closest('a,button'));
-      const ct = e.target.closest('.collage .thumb, .deck .dk');
+      const ct = e.target.closest('.collage .thumb') || document.querySelector('.deck .dk.hot');
       if (ct) { if (cap.textContent !== ct.dataset.cap) cap.textContent = ct.dataset.cap; cap.classList.add('on'); c.classList.remove('link'); }
       else cap.classList.remove('on');
       if (!capLoop) capLoop = requestAnimationFrame(trail);
