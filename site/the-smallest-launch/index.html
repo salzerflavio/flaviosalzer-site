@@ -199,9 +199,11 @@ html:not(.js) .split .ln>span{transform:none}
 .vplayer.sound:hover .vp-label{opacity:1}
 
 /* anterior / próximo: discreto, no pé do case */
-.pn{display:flex;justify-content:space-between;padding:var(--s4) var(--edge) 0;font:400 17px/1 var(--f)}
-.pn a{color:var(--hi);opacity:.85;transition:opacity .2s}
-.pn a:hover{opacity:1}
+.pn{display:flex;justify-content:space-between;margin:var(--s4) var(--edge) 0;padding-top:clamp(20px,2vw,36px);border-top:1px solid rgba(255,255,255,.4);font:400 clamp(18px,1.53vw,28px)/1.2 var(--f);letter-spacing:.008em}
+.pn a{color:#fff;display:inline-flex;align-items:center;gap:.35em}
+.pn .ar{display:inline-block;transition:transform .3s var(--ease)}
+.pn a[rel=prev]:hover .ar{transform:translateX(-4px)}
+.pn a[rel=next]:hover .ar{transform:translateX(4px)}
 @media (prefers-reduced-motion:reduce){.split .ln>span{transform:none!important;transition:none!important}}
 .vplayer .ratio{position:relative;height:0}
 .vplayer iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
@@ -289,7 +291,7 @@ main.vswap-in{opacity:0;transition:none}
 <figure class="mod img reveal-m"><img class="m " src="/media/21e8f182-ff93-4789-a4fa-fa834a21cb0d_rw_1920.webp" width="1920" height="2720" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRtwAAABXRUJQVlA4INAAAACQBQCdASoUABwAPu1qrFEppaQiqAqpMB2JbACdDiAN5oAYtvKUME+9uhXHbe9Lq8v4dBF+AAD+i7IqPtNVPZeysQsbPLhd46ZDJa9oqg6NlfLjtI0LOS/xTp/s2RQfCscr20Alwx53PITmEXoeErd+dQAvhOAB64Ks/7bfjwUp5pU0F5h3uIjEQTk3UQPaLQnhi4lw6HxzUMdoZVzvDqzL+SJBbmt87imxqX44V4Daqorb8Tdf4kowUFh0NU6f74ZI/NCH+KkgwfvDHAERQAAA)"></figure>
 <figure class="mod img reveal-m"><img class="m " src="/media/9668e1b1-9252-4a72-a021-93f5ded7b620_rw_1920.webp" width="1920" height="1440" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRqoAAABXRUJQVlA4IJ4AAADQBACdASoUAA8APu1iqU2ppaOiMAgBMB2JbACdMoR8msAA39f3jOLh/AhHXSH3EAD+xEh1NWHUo48txHi88HKY3n7cu+T2ilI6J/mw1VWvq2XQVWRG5hv5OnSFIcHLdYgTqiBrNdfckrsrW1SyXfbDV5qnJB01qyfZQp2c099/gjXO8Ictj/girwE5RutbItWBRwj494luwOK8EVgAAA==)"></figure>
 <figure class="mod img reveal-m"><img class="m " src="/media/c433fe61-a318-4888-a537-78f88d379b30_rw_1920.webp" width="1920" height="2515" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRn4AAABXRUJQVlA4IHIAAABwBACdASoUABoAPu1mq06ppaOiKA1RMB2JbADIXBDezBjqRKkYNB0e2zpjAAD+8ECUTfyMPWDsyOEx2AZynKMBvke9t6fWFEBRKFDiXcQq2BKBuhcSAQHy16QISYn1sAwkIR/yJZImZQTZCph18uAAAAA=)"></figure>
-<figure class="mod img reveal-m"><img class="m " src="/media/87560180-873b-48ce-906e-0167dd6e9c66_rw_1920.webp" width="1920" height="5" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAACwAgCdASoUAAEAPu1iqU2ppaOiMAgBMB2JaQAAeyAA/vCfnTzAAAAA)"></figure></div><nav class="pn" aria-label="More projects"><a href="/ze-salva/" rel="prev">← Previous</a><a href="/delivery-pool/" rel="next">Next →</a></nav></article>
+<figure class="mod img reveal-m"><img class="m " src="/media/87560180-873b-48ce-906e-0167dd6e9c66_rw_1920.webp" width="1920" height="5" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAACwAgCdASoUAAEAPu1iqU2ppaOiMAgBMB2JaQAAeyAA/vCfnTzAAAAA)"></figure></div><nav class="pn" aria-label="More projects"><a href="/ze-salva/" rel="prev"><span class="ar">←</span> Previous Page</a><a href="/delivery-pool/" rel="next">Next Page <span class="ar">→</span></a></nav></article>
 </main>
 <footer class="site-foot">
   <span class="social"><a href="https://www.linkedin.com/in/flaviosalzer" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ic ic-li"></i></a><a href="https://instagram.com/flaviosalzer" target="_blank" rel="noopener" aria-label="Instagram"><i class="ic ic-ig"></i></a></span>

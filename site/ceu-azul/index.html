@@ -199,9 +199,11 @@ html:not(.js) .split .ln>span{transform:none}
 .vplayer.sound:hover .vp-label{opacity:1}
 
 /* anterior / próximo: discreto, no pé do case */
-.pn{display:flex;justify-content:space-between;padding:var(--s4) var(--edge) 0;font:400 17px/1 var(--f)}
-.pn a{color:var(--hi);opacity:.85;transition:opacity .2s}
-.pn a:hover{opacity:1}
+.pn{display:flex;justify-content:space-between;margin:var(--s4) var(--edge) 0;padding-top:clamp(20px,2vw,36px);border-top:1px solid rgba(255,255,255,.4);font:400 clamp(18px,1.53vw,28px)/1.2 var(--f);letter-spacing:.008em}
+.pn a{color:#fff;display:inline-flex;align-items:center;gap:.35em}
+.pn .ar{display:inline-block;transition:transform .3s var(--ease)}
+.pn a[rel=prev]:hover .ar{transform:translateX(-4px)}
+.pn a[rel=next]:hover .ar{transform:translateX(4px)}
 @media (prefers-reduced-motion:reduce){.split .ln>span{transform:none!important;transition:none!important}}
 .vplayer .ratio{position:relative;height:0}
 .vplayer iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
@@ -291,7 +293,7 @@ main.vswap-in{opacity:0;transition:none}
 <figure class="mod img reveal-m"><img class="m " src="/media/3c35ae9a-3ed3-4898-913a-a7d90f9b297c_rw_1920.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAACwAwCdASoUAAsAPu1iqU2ppaQiMAgBMB2JQBOgAxXNJFIJ0OmAAAD+37O9wVO51r8JvZ+ygjyL+ynUoeHWoc549d8i6AbGSwKtH/6B8aLC/QDH9XHMEv5nEzBRzgU68F3as+xyEQAAAA==)"></figure>
 <div class="mod embed reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe src="https://www.youtube.com/embed/ZPWp2oCXvUU?autoplay=1&amp;mute=1&amp;controls=0&amp;loop=1&amp;playlist=ZPWp2oCXvUU&amp;modestbranding=1&amp;rel=0" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></div>
 <figure class="mod img reveal-m"><img class="m " src="/media/6230cd3f-06a3-4ecb-9268-4e8ab4283a9e_rw_1920.webp" width="1919" height="1080" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAADQAwCdASoUAAsAPu1iqk2ppaQiMAgBMB2JaAAALhiX43Y7WGoMRwAA/tHJE+dLhQfGsyGib2xD0dAXWn6HFwXR/VUsmm0qi5Z1FBUtT3gWum0pJPrvZY+UL3x6Su1J0AJLxuPGTY+4PR2BicA4gnpXQECoacAAAAA=)"></figure>
-<div class="mod embed reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe src="https://www.youtube.com/embed/xr1dCU71e7A?autoplay=1&amp;mute=1&amp;controls=0&amp;loop=1&amp;playlist=xr1dCU71e7A&amp;modestbranding=1&amp;rel=0" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></div></div><nav class="pn" aria-label="More projects"><a href="/shadow-delivery/" rel="prev">← Previous</a><a href="/perrengue/" rel="next">Next →</a></nav></article>
+<div class="mod embed reveal-m"><div class="ratio" style="padding-bottom:56.27%"><iframe src="https://www.youtube.com/embed/xr1dCU71e7A?autoplay=1&amp;mute=1&amp;controls=0&amp;loop=1&amp;playlist=xr1dCU71e7A&amp;modestbranding=1&amp;rel=0" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></div></div><nav class="pn" aria-label="More projects"><a href="/shadow-delivery/" rel="prev"><span class="ar">←</span> Previous Page</a><a href="/perrengue/" rel="next">Next Page <span class="ar">→</span></a></nav></article>
 </main>
 <footer class="site-foot">
   <span class="social"><a href="https://www.linkedin.com/in/flaviosalzer" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ic ic-li"></i></a><a href="https://instagram.com/flaviosalzer" target="_blank" rel="noopener" aria-label="Instagram"><i class="ic ic-ig"></i></a></span>

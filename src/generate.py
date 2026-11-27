@@ -274,7 +274,7 @@ def next_block(slug):
     k = order.index(slug)
     prv, nxt = order[k - 1], order[(k + 1) % len(order)]
     return (f'<nav class="pn" aria-label="More projects">'
-            f'<a href="/{prv}/" rel="prev">← Previous</a><a href="/{nxt}/" rel="next">Next →</a></nav>')
+            f'<a href="/{prv}/" rel="prev"><span class="ar">←</span> Previous Page</a><a href="/{nxt}/" rel="next">Next Page <span class="ar">→</span></a></nav>')
 
 def _ogv(og):
     import hashlib
