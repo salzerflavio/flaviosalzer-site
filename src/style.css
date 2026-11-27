@@ -286,16 +286,16 @@ html.view-list .pg-home .collage{display:none!important}
 .cur.x.link .xh{width:34px;height:34px}
 
 /* ===== TESTE: tema claro (fundo off-white #f6f5ed, texto preto 95%) — apagar este bloco para voltar ao escuro ===== */
-:root{--bg:#fffef6;--tx:#0d0d0d;--hi:#0d0d0d}
+:root{--bg:#ffffff;--tx:#0d0d0d;--hi:#0d0d0d}
 .site-head,.site-head .logo,.site-head nav{color:#fff}           /* menu keeps its difference blend: reads dark on light */
-.m,.m[style*="background-image"],.vplayer,.vplayer iframe{background-color:#f0efe6}
-.thumb .frame,.collage .thumb .frame,.pr-img{background:#f0efe6}
+.m,.m[style*="background-image"],.vplayer,.vplayer iframe{background-color:#f2f2f2}
+.thumb .frame,.collage .thumb .frame,.pr-img{background:#f2f2f2}
 .p-head h1,.p-desc,.statement p,.t-lg,.pn a{color:#0d0d0d}
 .credits{color:rgba(13,13,13,.85)}
 .pn{border-top-color:rgba(13,13,13,.4)}
 .prow{border-top-color:rgba(13,13,13,.22)}.plist .prow:last-child{border-bottom-color:rgba(13,13,13,.22)}
 .vp-tl::before{background:rgba(13,13,13,.25)}.vp-tl i,.loadbar i{background:#0d0d0d}
-::view-transition-group(root){background:#fffef6}
+::view-transition-group(root){background:#fff}
 .cur path,.cur .xh::before,.cur .xh::after{fill:#0d0d0d;background:#0d0d0d}
 .cur-cap{color:#0d0d0d;text-shadow:none}
 .bd{background:#0d0d0d}
