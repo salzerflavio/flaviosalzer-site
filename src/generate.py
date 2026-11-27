@@ -473,10 +473,8 @@ def collage():
         name = NAMES.get(c['slug']) or clean_name(c['title']); client, year = project_meta(c['slug'])
         caps[c['slug']] = name + (' — ' + ', '.join(x for x in (client, year) if x) if (client or year) else '')
     out = ''
-    for it in json.load(open('collage.json')):
-        if it['slug'] not in caps: continue
-        out += (f'<a class="thumb" href="/{it["slug"]}/" data-cap="{html.escape(caps[it["slug"]])}" data-ar="{it["ar"]}">'
-                f'<div class="frame"><img class="m" src="/media/{it["src"]}" alt="" loading="lazy" decoding="async"></div></a>')
+    for i, c in enumerate(covers):
+        out += thumb(c, i).replace('<a class="thumb"', f'<a class="thumb" data-cap="{html.escape(caps[c["slug"]])}" data-ar="{STD:.3f}"', 1)
     return f'<section class="collage">{out}</section>'
 home = collage() + masonry(3, [1.1, STD, 1.18]) + masonry(2, [1.1, STD]) + f'<section class="stack">{flat}</section>' + plist
 if os.path.exists('og-home.jpg'):
