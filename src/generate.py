@@ -491,6 +491,8 @@ for p in D['pages']:
     if slug == 'flavio':
         continue
     title, head = project_header(mods[0], clean_name(titles.get(slug, '')))
+    if AWARDS.get(slug):   # award badges on the right of the title line
+        head = head.replace('</h1>', f'</h1><div class="p-awards reveal-s" style="--d:0">{badges(slug)}</div>', 1)
     if slug in NAMES:
         head = re.sub(r'(<h1 class="split">)[^<]*', lambda m: m.group(1) + html.escape(NAMES[slug]), head, count=1); title = NAMES[slug]
     rest = render_mods(mods[1:])

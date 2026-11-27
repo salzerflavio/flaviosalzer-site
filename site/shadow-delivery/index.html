@@ -327,6 +327,12 @@ html.view-list .pg-home .collage{display:none!important}
 .cur,.cur-cap{mix-blend-mode:difference}
 .cur path,.cur .xh::before,.cur .xh::after{fill:#fff;background:#fff}
 .cur-cap{color:#fff}
+
+/* award badges on project pages, right of the title */
+.p-awards{grid-area:t;justify-self:end;align-self:center;display:flex;gap:clamp(14px,1.4vw,22px);align-items:center;color:var(--tx)}
+.p-awards .bd{height:clamp(30px,2.6vw,44px);opacity:1}
+.p-awards .bd-clube{height:clamp(28px,2.4vw,40px)}
+@media (max-width:800px){.p-awards{grid-area:b;justify-self:start;align-self:end}.p-awards .bd{height:26px}}
 </style>
 </head>
 <body class="proj" id="top">
