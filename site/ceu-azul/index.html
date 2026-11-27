@@ -686,18 +686,19 @@ html.view-list .pg-home .collage{display:none!important}
         if (lensOn) {
           const dx = B.x + B.w / 2 - (mx - cam.x), dy = B.y + B.h / 2 - (my - cam.y), d = Math.hypot(dx, dy) || 1;
           const f = Math.exp(-(d * d) / (2 * (0.12 * W) ** 2));
-          S.vx = (S.vx || 0) + (dx / d * 2.2 * speed + mvx * 0.06) * f;
-          S.vy = (S.vy || 0) + (dy / d * 2.2 * speed + mvy * 0.06) * f;
+          S.vx = (S.vx || 0) + (dx / d * 1.5 * speed + mvx * 0.045) * f;
+          S.vy = (S.vy || 0) + (dy / d * 1.5 * speed + mvy * 0.045) * f;
         }
         // a very faint pull toward the middle, so stirred tiles don't end up stacked on the edges
         if (lensOn) { S.vx = (S.vx || 0) + (W / 2 - B.x - B.w / 2) * 0.00003; S.vy = (S.vy || 0) + (H / 2 - B.y - B.h / 2) * 0.00003; }
-        S.vx = (S.vx || 0) * 0.92; S.vy = (S.vy || 0) * 0.92;
+        S.vx = (S.vx || 0) * 0.94; S.vy = (S.vy || 0) * 0.94;
         B.x += S.vx; B.y += S.vy;
-        // keep inside the screen (a little spill allowed), sliding along the edge
-        if (B.x < -0.35 * B.w) { B.x = -0.35 * B.w; S.vx *= -0.3; }
-        if (B.x > W - 0.65 * B.w) { B.x = W - 0.65 * B.w; S.vx *= -0.3; }
-        if (B.y < 96) { B.y = 96; S.vy *= -0.3; }
-        if (B.y > H - B.h - 24) { B.y = H - B.h - 24; S.vy *= -0.3; }
+        // soft edges: tiles can glide past the screen edge, then a gentle spring eases them back
+        const lx = -0.6 * B.w, rx2 = W - 0.4 * B.w, ty2 = 96, by = H - 0.5 * B.h;
+        if (B.x < lx) S.vx += (lx - B.x) * 0.012;
+        if (B.x > rx2) S.vx -= (B.x - rx2) * 0.012;
+        if (B.y < ty2) S.vy += (ty2 - B.y) * 0.02;
+        if (B.y > by) S.vy -= (B.y - by) * 0.012;
         if (Math.abs(S.vx) + Math.abs(S.vy) > 0.05) busy = true;
       });
       // tiles never pile up: overlapping pairs ease apart
@@ -727,10 +728,10 @@ html.view-list .pg-home .collage{display:none!important}
         const S = st[i];
         // cascade: a new size is taken up after a delay that grows with distance from the cursor
         const hov = t.matches(':hover');
-        if (Math.abs(ts - S.pend) > 0.015) { S.pend = ts; S.at = hov ? now : now + dist * 220 + S.jit * 40; }
+        if (Math.abs(ts - S.pend) > 0.015) { S.pend = ts; S.at = hov ? now : now + dist * 380 + S.jit * 80; }
         if (now >= S.at) S.tgt = S.pend;
         // soft spring: picks up right away, settles smoothly with no bounce
-        S.s += (S.tgt - S.s) * 0.08; S.x += (tx - S.x) * 0.08; S.y += (ty - S.y) * 0.08;   // smooth exponential ease
+        S.s += (S.tgt - S.s) * 0.045; S.x += (tx - S.x) * 0.08; S.y += (ty - S.y) * 0.08;   // smooth exponential ease
         if (Math.abs(S.tgt - S.s) > 0.002 || Math.abs(tx - S.x) + Math.abs(ty - S.y) > 0.3 || S.tgt !== S.pend) busy = true;
         t.style.transform = `translate(${(B.x + cam.x + S.x).toFixed(1)}px,${(B.y + cam.y + S.y).toFixed(1)}px) scale(${S.s.toFixed(3)})`;
         t.style.zIndex = t.matches(':hover') ? 300 : Math.round(S.s * 100) + B.z;
