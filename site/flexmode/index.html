@@ -317,6 +317,9 @@ html.view-list .pg-home .collage{display:none!important}
 .cur path,.cur .xh::before,.cur .xh::after{fill:#0d0d0d;background:#0d0d0d}
 .cur-cap{color:#0d0d0d;text-shadow:none}
 .bd{background:#0d0d0d}
+/* list: images (and their loops) in black & white, washed toward the background so the big name reads on top */
+.pr-img img,.pr-img video{filter:grayscale(1) contrast(.9) brightness(1.08)}
+.pr-img::after{content:"";position:absolute;inset:0;z-index:2;background:var(--bg);opacity:.42;pointer-events:none}
 </style>
 </head>
 <body class="proj" id="top">
