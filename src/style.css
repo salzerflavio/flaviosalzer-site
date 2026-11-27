@@ -266,10 +266,8 @@ main.vswap-in{opacity:0;transition:none}
   .masonry,.masonry.m2,.masonry.m3{display:none!important}
 }
 html.view-list .pg-home .collage{display:none!important}
-.collage .thumb{position:absolute;left:0;top:0;width:var(--w,200px);transform:translate(var(--x,0),var(--y,0));z-index:var(--z,1);overflow:visible}
-.collage .thumb:hover{z-index:200}
+.collage .thumb{position:absolute;left:0;top:0;width:var(--w,200px);transform:translate(var(--x,0),var(--y,0));transform-origin:center;z-index:var(--z,1);overflow:visible;will-change:transform}
 .js .collage .thumb .frame{transition:clip-path 1.1s var(--ease),transform .6s var(--ease),opacity .5s ease;transition-delay:calc(var(--d,0) * 60ms),0s,0s}
-.collage .thumb:hover .frame{transform:scale(1.45)}
 .collage .t-title{display:none}
 .collage:not(.laid) .thumb{visibility:hidden}
 .cur-cap{position:fixed;left:0;top:0;z-index:9998;pointer-events:none;white-space:nowrap;font:400 14px/1.2 var(--f);color:#fff;opacity:0;transition:opacity .25s;will-change:transform;text-shadow:0 0 12px rgba(0,0,0,.25)}
