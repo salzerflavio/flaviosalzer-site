@@ -699,10 +699,10 @@ html.view-list .pg-home .collage{display:none!important}
         S.vx = (S.vx || 0) * 0.94; S.vy = (S.vy || 0) * 0.94;
         B.x += S.vx; B.y += S.vy;
         // soft edges: tiles can glide past the screen edge, then a gentle spring eases them back
-        const lx = -0.6 * B.w, rx2 = W - 0.4 * B.w, ty2 = 96, by = H - 0.5 * B.h;
+        const lx = -0.6 * B.w, rx2 = W - 0.4 * B.w, ty2 = -0.5 * B.h, by = H - 0.5 * B.h;   // top too: they can drift up behind the menu and back
         if (B.x < lx) S.vx += (lx - B.x) * 0.012;
         if (B.x > rx2) S.vx -= (B.x - rx2) * 0.012;
-        if (B.y < ty2) S.vy += (ty2 - B.y) * 0.02;
+        if (B.y < ty2) S.vy += (ty2 - B.y) * 0.012;
         if (B.y > by) S.vy -= (B.y - by) * 0.012;
         if (Math.abs(S.vx) + Math.abs(S.vy) > 0.05) busy = true;
       });
