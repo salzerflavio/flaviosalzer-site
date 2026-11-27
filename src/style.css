@@ -72,14 +72,14 @@ body.pg-home .site-head nav a[href="/"],body.pg-about .site-head nav a[href="/fl
 .p-head h1{grid-area:t}.p-head .back{position:fixed;z-index:50;top:104px;left:var(--edge);display:block;padding:8px 0;color:#fff;mix-blend-mode:difference;transition:transform .3s var(--ease)}
 .p-head .back .arr{display:block;fill:currentColor}.p-head .back:hover{transform:translateX(-6px)}
 .p-head::before{content:"";grid-area:b;height:41px;margin-bottom:var(--s1)}.p-desc{grid-area:d}.credits{grid-area:c}
-.p-head h1{margin:0;align-self:end;max-width:none;font:400 clamp(48px,6.2vw,104px)/1.05 var(--f);color:#fff;letter-spacing:-.02em;text-wrap:balance}
+.p-head h1{margin:0;align-self:end;max-width:none;font:400 clamp(52px,7vw,132px)/1.1 var(--f);color:#fff;letter-spacing:0;text-wrap:balance}
 /* text flows over two columns, credits in the third (head layout after chicomedeiros.com) */
-.p-desc{columns:2;column-gap:clamp(24px,3.2vw,56px);align-self:start;font:400 clamp(17px,1.4vw,21px)/1.45 var(--f);color:#fff}
+.p-desc{columns:2;column-gap:clamp(24px,3.2vw,56px);align-self:start;font:400 clamp(18px,1.53vw,28px)/1.35 var(--f);letter-spacing:.008em;color:#fff}
 .p-desc>*{margin:0 0 1em}.p-desc>:last-child{margin-bottom:0}
-.credits{margin:0;display:grid;gap:2px;align-content:start;font:400 13px/1.5 var(--f);color:var(--tx)}
+.credits{margin:0;display:grid;gap:0;align-content:start;font:400 clamp(13px,.88vw,16px)/1.5 var(--f);color:rgba(255,255,255,.85)}
 .credits div{break-inside:avoid}
 .credits dt,.credits dd{display:inline;margin:0}
-.credits dt{font-weight:400;color:var(--hi)}
+.credits dt{font-weight:400;color:inherit}
 .credits dt::after{content:': '}
 .p-body{display:flex;flex-direction:column;gap:var(--g);padding:0 var(--g)}
 .mod{margin:0}
