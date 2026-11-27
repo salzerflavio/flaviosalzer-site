@@ -389,24 +389,23 @@
     const place = () => {
       raf = 0;
       if (!active()) return;
-      const W = innerWidth, H = innerHeight, cw = Math.min(W * 0.24, H * 0.39), ch = cw * 4 / 3;   // 3:4 cards, about half the screen tall
+      const W = innerWidth, H = innerHeight, ch = H * 0.46, cw = ch * 1891 / 1479;   // whole covers, about half the screen tall
       deckEl.style.setProperty('--cw', cw + 'px');
       cur += (pos - cur) * 0.06;
       let moving = Math.abs(pos - cur) > 0.0005;
+      const SK = Math.tan(12 * Math.PI / 180), SX = 0.8, pw = cw * SX;   // near-isometric: parallel edges, no vanishing point
       cards.forEach((c, i) => {
-        // endless loop: each card sits at its shortest distance from the current position
         let d = ((i - cur) % N + N) % N; if (d >= N / 2) d -= N;
-        lift[i] += ((i === hot ? 1 : 0) - lift[i]) * 0.08;
+        lift[i] += ((i === hot ? 1 : 0) - lift[i]) * 0.09;
         if (Math.abs((i === hot ? 1 : 0) - lift[i]) > 0.002) moving = true;
         if (opening) return;
-        // along the diagonal: each step goes right, up and away
-        const x = W * 0.5 - cw / 2 + d * W * 0.068, y = H * 0.5 - ch / 2 - d * H * 0.115, z = -d * 40;   // diagonal through the centre
-        const ly = -lift[i] * ch * 0.1, lz = lift[i] * 30;
-        const op = d < -4.5 ? Math.max(0, 1 + (d + 4.5) / 1.2) : d > 4.5 ? Math.max(0, 1 - (d - 4.5) / 2.5) : 1;
-        // each card gets its own perspective, so every card converges on its own centre (as in the ref)
-        c.style.transform = `translate3d(${x.toFixed(1)}px,${(y + ly).toFixed(1)}px,0) perspective(${(ch * 2.6).toFixed(0)}px) rotateY(40deg) translateZ(${(lz * 2).toFixed(1)}px)`;
+        // centres run along a diagonal through the middle of the screen
+        const cx = W * 0.5 + d * W * 0.062, cy = H * 0.5 - d * H * 0.11;
+        const x = cx - pw / 2, y = cy - ch / 2 - pw / 2 * SK + lift[i] * ch * 0.28;   // hovered card slides down out of the stack
+        const op = d < -5 ? Math.max(0, 1 + (d + 5) / 1.2) : d > 4.5 ? Math.max(0, 1 - (d - 4.5) / 2.5) : 1;
+        c.style.transform = `translate(${x.toFixed(1)}px,${y.toFixed(1)}px) skewY(12deg) scaleX(${SX})`;
         c.style.opacity = op.toFixed(3);
-        c.style.zIndex = Math.round(1000 - d * 10);
+        c.style.zIndex = i === hot ? 2000 : Math.round(1000 - d * 10);
         c.style.pointerEvents = op > 0.5 ? 'auto' : 'none';
       });
       if (moving) raf = requestAnimationFrame(place);
@@ -437,8 +436,9 @@
         e.preventDefault();
         opening = true; c.classList.add('picked'); deckEl.classList.add('opening');
         const W = innerWidth, H = innerHeight, cw = parseFloat(deckEl.style.getPropertyValue('--cw')) || 300;
-        const ch = cw * 4 / 3, s = Math.min(1.3, (H * 0.62) / ch);
-        c.style.transform = `translate3d(${(W - cw) / 2}px,${(H - ch) / 2}px,0) rotateY(0deg) scale(${s.toFixed(3)})`;
+        const ch = cw * 1479 / 1891, s = Math.min(1.3, (H * 0.62) / ch);
+        c.style.transformOrigin = '50% 50%';
+        c.style.transform = `translate(${(W - cw) / 2}px,${(H - ch) / 2}px) skewY(0deg) scaleX(1) scale(${s.toFixed(3)})`;
         setTimeout(() => { location.href = c.href; }, 850);
       });
     });

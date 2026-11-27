@@ -334,7 +334,7 @@ html.view-list .pg-home .collage{display:none!important}
 .p-awards .bd-clube{height:clamp(28px,2.4vw,40px)}
 @media (max-width:800px){.p-awards{grid-area:b;justify-self:start;align-self:end}.p-awards .bd{height:26px}}
 
-/* ===== home (desktop): 3D deck of covers ===== */
+/* ===== home (desktop): stack of covers, near-isometric (after unveil.fr) ===== */
 .deck{display:none}
 @media (hover:hover) and (pointer:fine) and (min-width:900px){
   html:not(.view-list) .pg-home .deck{display:block}
@@ -343,24 +343,21 @@ html.view-list .pg-home .collage{display:none!important}
   html:not(.view-list) .pg-home main{padding:0}
   html:not(.view-list) body.pg-home{overflow:hidden;height:100svh}
 }
-.deck{position:fixed;inset:0;z-index:1;perspective:1400px;perspective-origin:50% 50%;overflow:hidden;
-  background:linear-gradient(118deg,transparent 0 30%,rgba(0,0,0,.01) 30.5% 38%,transparent 38.5% 62%,rgba(0,0,0,.008) 62.5% 70%,transparent 70.5%)}
-.dk{position:absolute;left:0;top:0;width:var(--cw,26vw);aspect-ratio:3/4;transform-style:preserve-3d;will-change:transform,opacity;cursor:pointer}
-.dk-face{position:absolute;inset:0;display:block;overflow:hidden;background:rgba(235,238,238,.35);opacity:.9;
-  border-top:1px solid rgba(255,255,255,.9);box-shadow:inset 0 2px 0 rgba(255,255,255,.35),inset 0 -1px 0 rgba(0,0,0,.08),0 30px 60px -28px rgba(0,0,0,.28);transition:box-shadow .6s var(--ease),opacity .6s}
-/* glass: the image melts softly toward the lower edge, a light sheen runs over the top */
-.dk-face img,.dk-face video{-webkit-mask:linear-gradient(180deg,#000 0,#000 62%,rgba(0,0,0,.55) 100%);mask:linear-gradient(180deg,#000 0,#000 62%,rgba(0,0,0,.55) 100%)}
-.dk-face::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,.28) 0,rgba(255,255,255,0) 18%),linear-gradient(100deg,rgba(255,255,255,.14),transparent 45%)}
-.dk-face::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;z-index:3;background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(190,215,215,.35));pointer-events:none}
-.dk img,.dk video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.deck{position:fixed;inset:0;z-index:1;overflow:hidden}
+.dk{position:absolute;left:0;top:0;width:var(--cw,30vw);aspect-ratio:1891/1479;transform-origin:0 0;will-change:transform,opacity;cursor:pointer}
+/* glass plate: whole cover (no crop), soft frosting from the top, thin bright rim, 5px corners, no shadow */
+.dk-face{position:absolute;inset:0;display:block;overflow:hidden;border-radius:5px;background:rgba(240,242,242,.5);opacity:.93;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.55),inset 0 1px 0 rgba(255,255,255,.95);transition:opacity .5s}
+.dk-face::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+  background:linear-gradient(180deg,rgba(255,255,255,.42) 0,rgba(255,255,255,.1) 22%,rgba(255,255,255,0) 40%)}
+.dk img,.dk video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .dk video{opacity:0;transition:opacity .4s}
 .dk video.on{opacity:1}
-.dk-cap{display:none;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;white-space:nowrap;text-align:center;font:500 13px/1.3 var(--f);letter-spacing:.04em;text-transform:uppercase;color:#fff;
-  text-shadow:0 1px 10px rgba(0,0,0,.45);opacity:0;transition:opacity .35s}
-.dk-cap i{display:block;font-style:normal;font-weight:400;opacity:.8}
-.dk.hot .dk-face{opacity:1;box-shadow:inset 0 2px 0 rgba(255,255,255,.35),0 44px 80px -26px rgba(0,0,0,.35)}
+.dk-cap{display:none}
+.dk.hot .dk-face{opacity:1}
 .deck.opening .dk:not(.picked){opacity:0!important;transition:opacity .45s ease}
 .deck.opening .dk.picked{transition:transform .9s cubic-bezier(.7,0,.2,1)}
+.pg-home .cur-cap{text-transform:uppercase;font-size:12px;letter-spacing:.02em}
 </style>
 </head>
 <body class="pg-about" id="top">
@@ -767,24 +764,23 @@ html.view-list .pg-home .collage{display:none!important}
     const place = () => {
       raf = 0;
       if (!active()) return;
-      const W = innerWidth, H = innerHeight, cw = Math.min(W * 0.24, H * 0.39), ch = cw * 4 / 3;   // 3:4 cards, about half the screen tall
+      const W = innerWidth, H = innerHeight, ch = H * 0.46, cw = ch * 1891 / 1479;   // whole covers, about half the screen tall
       deckEl.style.setProperty('--cw', cw + 'px');
       cur += (pos - cur) * 0.06;
       let moving = Math.abs(pos - cur) > 0.0005;
+      const SK = Math.tan(12 * Math.PI / 180), SX = 0.8, pw = cw * SX;   // near-isometric: parallel edges, no vanishing point
       cards.forEach((c, i) => {
-        // endless loop: each card sits at its shortest distance from the current position
         let d = ((i - cur) % N + N) % N; if (d >= N / 2) d -= N;
-        lift[i] += ((i === hot ? 1 : 0) - lift[i]) * 0.08;
+        lift[i] += ((i === hot ? 1 : 0) - lift[i]) * 0.09;
         if (Math.abs((i === hot ? 1 : 0) - lift[i]) > 0.002) moving = true;
         if (opening) return;
-        // along the diagonal: each step goes right, up and away
-        const x = W * 0.5 - cw / 2 + d * W * 0.068, y = H * 0.5 - ch / 2 - d * H * 0.115, z = -d * 40;   // diagonal through the centre
-        const ly = -lift[i] * ch * 0.1, lz = lift[i] * 30;
-        const op = d < -4.5 ? Math.max(0, 1 + (d + 4.5) / 1.2) : d > 4.5 ? Math.max(0, 1 - (d - 4.5) / 2.5) : 1;
-        // each card gets its own perspective, so every card converges on its own centre (as in the ref)
-        c.style.transform = `translate3d(${x.toFixed(1)}px,${(y + ly).toFixed(1)}px,0) perspective(${(ch * 2.6).toFixed(0)}px) rotateY(40deg) translateZ(${(lz * 2).toFixed(1)}px)`;
+        // centres run along a diagonal through the middle of the screen
+        const cx = W * 0.5 + d * W * 0.062, cy = H * 0.5 - d * H * 0.11;
+        const x = cx - pw / 2, y = cy - ch / 2 - pw / 2 * SK + lift[i] * ch * 0.28;   // hovered card slides down out of the stack
+        const op = d < -5 ? Math.max(0, 1 + (d + 5) / 1.2) : d > 4.5 ? Math.max(0, 1 - (d - 4.5) / 2.5) : 1;
+        c.style.transform = `translate(${x.toFixed(1)}px,${y.toFixed(1)}px) skewY(12deg) scaleX(${SX})`;
         c.style.opacity = op.toFixed(3);
-        c.style.zIndex = Math.round(1000 - d * 10);
+        c.style.zIndex = i === hot ? 2000 : Math.round(1000 - d * 10);
         c.style.pointerEvents = op > 0.5 ? 'auto' : 'none';
       });
       if (moving) raf = requestAnimationFrame(place);
@@ -815,8 +811,9 @@ html.view-list .pg-home .collage{display:none!important}
         e.preventDefault();
         opening = true; c.classList.add('picked'); deckEl.classList.add('opening');
         const W = innerWidth, H = innerHeight, cw = parseFloat(deckEl.style.getPropertyValue('--cw')) || 300;
-        const ch = cw * 4 / 3, s = Math.min(1.3, (H * 0.62) / ch);
-        c.style.transform = `translate3d(${(W - cw) / 2}px,${(H - ch) / 2}px,0) rotateY(0deg) scale(${s.toFixed(3)})`;
+        const ch = cw * 1479 / 1891, s = Math.min(1.3, (H * 0.62) / ch);
+        c.style.transformOrigin = '50% 50%';
+        c.style.transform = `translate(${(W - cw) / 2}px,${(H - ch) / 2}px) skewY(0deg) scaleX(1) scale(${s.toFixed(3)})`;
         setTimeout(() => { location.href = c.href; }, 850);
       });
     });

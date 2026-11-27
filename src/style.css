@@ -316,7 +316,7 @@ html.view-list .pg-home .collage{display:none!important}
 .p-awards .bd-clube{height:clamp(28px,2.4vw,40px)}
 @media (max-width:800px){.p-awards{grid-area:b;justify-self:start;align-self:end}.p-awards .bd{height:26px}}
 
-/* ===== home (desktop): 3D deck of covers ===== */
+/* ===== home (desktop): stack of covers, near-isometric (after unveil.fr) ===== */
 .deck{display:none}
 @media (hover:hover) and (pointer:fine) and (min-width:900px){
   html:not(.view-list) .pg-home .deck{display:block}
@@ -325,21 +325,18 @@ html.view-list .pg-home .collage{display:none!important}
   html:not(.view-list) .pg-home main{padding:0}
   html:not(.view-list) body.pg-home{overflow:hidden;height:100svh}
 }
-.deck{position:fixed;inset:0;z-index:1;perspective:1400px;perspective-origin:50% 50%;overflow:hidden;
-  background:linear-gradient(118deg,transparent 0 30%,rgba(0,0,0,.01) 30.5% 38%,transparent 38.5% 62%,rgba(0,0,0,.008) 62.5% 70%,transparent 70.5%)}
-.dk{position:absolute;left:0;top:0;width:var(--cw,26vw);aspect-ratio:3/4;transform-style:preserve-3d;will-change:transform,opacity;cursor:pointer}
-.dk-face{position:absolute;inset:0;display:block;overflow:hidden;background:rgba(235,238,238,.35);opacity:.9;
-  border-top:1px solid rgba(255,255,255,.9);box-shadow:inset 0 2px 0 rgba(255,255,255,.35),inset 0 -1px 0 rgba(0,0,0,.08),0 30px 60px -28px rgba(0,0,0,.28);transition:box-shadow .6s var(--ease),opacity .6s}
-/* glass: the image melts softly toward the lower edge, a light sheen runs over the top */
-.dk-face img,.dk-face video{-webkit-mask:linear-gradient(180deg,#000 0,#000 62%,rgba(0,0,0,.55) 100%);mask:linear-gradient(180deg,#000 0,#000 62%,rgba(0,0,0,.55) 100%)}
-.dk-face::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,.28) 0,rgba(255,255,255,0) 18%),linear-gradient(100deg,rgba(255,255,255,.14),transparent 45%)}
-.dk-face::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;z-index:3;background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(190,215,215,.35));pointer-events:none}
-.dk img,.dk video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.deck{position:fixed;inset:0;z-index:1;overflow:hidden}
+.dk{position:absolute;left:0;top:0;width:var(--cw,30vw);aspect-ratio:1891/1479;transform-origin:0 0;will-change:transform,opacity;cursor:pointer}
+/* glass plate: whole cover (no crop), soft frosting from the top, thin bright rim, 5px corners, no shadow */
+.dk-face{position:absolute;inset:0;display:block;overflow:hidden;border-radius:5px;background:rgba(240,242,242,.5);opacity:.93;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.55),inset 0 1px 0 rgba(255,255,255,.95);transition:opacity .5s}
+.dk-face::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+  background:linear-gradient(180deg,rgba(255,255,255,.42) 0,rgba(255,255,255,.1) 22%,rgba(255,255,255,0) 40%)}
+.dk img,.dk video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .dk video{opacity:0;transition:opacity .4s}
 .dk video.on{opacity:1}
-.dk-cap{display:none;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;white-space:nowrap;text-align:center;font:500 13px/1.3 var(--f);letter-spacing:.04em;text-transform:uppercase;color:#fff;
-  text-shadow:0 1px 10px rgba(0,0,0,.45);opacity:0;transition:opacity .35s}
-.dk-cap i{display:block;font-style:normal;font-weight:400;opacity:.8}
-.dk.hot .dk-face{opacity:1;box-shadow:inset 0 2px 0 rgba(255,255,255,.35),0 44px 80px -26px rgba(0,0,0,.35)}
+.dk-cap{display:none}
+.dk.hot .dk-face{opacity:1}
 .deck.opening .dk:not(.picked){opacity:0!important;transition:opacity .45s ease}
 .deck.opening .dk.picked{transition:transform .9s cubic-bezier(.7,0,.2,1)}
+.pg-home .cur-cap{text-transform:uppercase;font-size:12px;letter-spacing:.02em}
