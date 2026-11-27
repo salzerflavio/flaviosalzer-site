@@ -119,7 +119,7 @@ def media_tag(url, cls='', sizes='100vw'):
 
 def render_image(m):
     a = asset(m.get('big'))
-    if not a:
+    if not a or (a.get('h') and a['w'] / a['h'] > 30):   # skip the old separator-line images
         return ''
     full = a['w'] >= 1500
     style = '' if full else f' style="max-width:{a["w"]}px"'
