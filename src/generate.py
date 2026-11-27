@@ -466,16 +466,18 @@ def _alt_stills(c, k=2):
     return out
 
 def collage():
-    """desktop: thumbs scattered as a loose collage (positions laid out in main.js); the cursor carries the caption"""
-    out = ''; extra = []
-    for i, c in enumerate(covers):
+    """desktop: a hand-picked set of stills from inside the projects (collage.json), each in its own aspect ratio,
+    scattered by main.js; the cursor carries the project caption"""
+    caps = {}
+    for c in covers:
         name = NAMES.get(c['slug']) or clean_name(c['title']); client, year = project_meta(c['slug'])
-        cap = name + (' — ' + ', '.join(x for x in (client, year) if x) if (client or year) else '')
-        out += thumb(c, i).replace('<a class="thumb"', f'<a class="thumb" data-cap="{html.escape(cap)}"', 1)
-        # a second, still tile per project (a picture from inside the project) so the cloud is denser, like the ref
-        for alt in _alt_stills(c, 1):
-            extra.append(f'<a class="thumb" href="/{c["slug"]}/" data-cap="{html.escape(cap)}"><div class="frame"><img class="m" src="/media/{alt}" alt="" loading="lazy" decoding="async"></div></a>')
-    return f'<section class="collage">{out}{"".join(extra)}</section>'
+        caps[c['slug']] = name + (' — ' + ', '.join(x for x in (client, year) if x) if (client or year) else '')
+    out = ''
+    for it in json.load(open('collage.json')):
+        if it['slug'] not in caps: continue
+        out += (f'<a class="thumb" href="/{it["slug"]}/" data-cap="{html.escape(caps[it["slug"]])}" data-ar="{it["ar"]}">'
+                f'<div class="frame"><img class="m" src="/media/{it["src"]}" alt="" loading="lazy" decoding="async"></div></a>')
+    return f'<section class="collage">{out}</section>'
 home = collage() + masonry(3, [1.1, STD, 1.18]) + masonry(2, [1.1, STD]) + f'<section class="stack">{flat}</section>' + plist
 if os.path.exists('og-home.jpg'):
     os.makedirs(os.path.join(OUT, 'og'), exist_ok=True); shutil.copy('og-home.jpg', os.path.join(OUT, 'og', 'home.jpg'))
