@@ -171,7 +171,7 @@
       vh = innerHeight;
       const W = parseFloat(getComputedStyle(rows[0].querySelector('.pr-img')).width) || 320;
       H0 = Math.max(96, Math.min(124, vh * 0.13));
-      const open = W * 0.6 + 48;                     // horizontal image when open
+      const open = W * 0.6 + 72;   // image + equal room above and below                     // horizontal image when open
       E = Math.max(0, open - H0) / PEAK;
       top = plistEl.getBoundingClientRect().top + scrollY;
     };
