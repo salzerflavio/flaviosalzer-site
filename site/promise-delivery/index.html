@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Promise Delivery — Flávio Salzer</title>
+<meta name="description" content="Right after winning the Swiss Indoors Basel, João Fonseca publicly revealed he’d made a promise: he would shave his head if he won the title. And since a promise is a promise, Merc">
+<meta property="og:title" content="Promise Delivery — Flávio Salzer">
+<meta property="og:description" content="Right after winning the Swiss Indoors Basel, João Fonseca publicly revealed he’d made a promise: he would shave his head if he won the title. And since a promise is a promise, Merc">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://flaviosalzer.com/promise-delivery/">
+<meta property="og:image" content="https://flaviosalzer.com/og/promise-delivery.jpg?v=b4157e4c">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://flaviosalzer.com/promise-delivery/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🫀</text></svg>">
+<script>document.documentElement.classList.add('js');try{var v=localStorage.getItem('fs-view');if(v==='list'||location.hash==='#list'||(!v&&matchMedia('(max-width:700px)').matches))document.documentElement.classList.add('view-list')}catch(e){}</script>
+<style>/* ==========================================================
+   f* — GUIA PADRÃO
+   COR      fundo #000 · texto #bcbcbc · destaque #eeeeee
+   FONTE    Helvetica Neue (fallback Helvetica, Arial)
+   PESOS    700 título de projeto · 500 título de página e UI
+            400 textos do projeto · 400/700 textos pequenos (valor/rótulo)
+   TAMANHOS 78 título de projeto · 32 título de página · 26 frase de destaque
+            16 texto corrido · 14 UI (menu, thumbs) · 13 textos pequenos
+   CRÉDITOS rótulo 700 / valor 400, sem linhas
+   ESPAÇO   10 gutter · 20 · 40 · 80 · 120
+   ========================================================== */
+:root{
+  --bg:#000; --tx:#bcbcbc; --hi:#eeeeee;
+  --f:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --fs-xl:clamp(46px,5.4vw,78px);
+  --fs-lg:clamp(24px,2.3vw,32px);
+  --fs-md:clamp(20px,1.85vw,26px);
+  --fs-body:16px; --fs-ui:14px; --fs-sm:13px;
+  --g:10px; --edge:35px; --s1:20px; --s2:40px; --s3:80px; --s4:120px;
+  --ease:cubic-bezier(.2,.7,.1,1);
+  color-scheme:dark;
+}
+*{box-sizing:border-box;min-width:0}
+html{background:var(--bg);scroll-behavior:smooth;scrollbar-gutter:stable}
+p,dd,li{text-wrap:pretty}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 var(--fs-body)/1.5 var(--f);-webkit-font-smoothing:antialiased;overflow-x:clip}
+a{color:inherit;text-decoration:none}
+p{margin:0}
+strong{font-weight:700;color:var(--hi)}
+img,video{display:block;max-width:100%}
+.m{width:100%;height:auto;background:#0b0b0b}
+
+/* ---------- topo (igual ao atual) ---------- */
+.site-head{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:0 var(--edge);height:80px;mix-blend-mode:difference;pointer-events:none}
+.site-head a{pointer-events:auto}
+main{padding-top:80px}
+.logo{font:700 23.5px/1 var(--f);color:var(--hi);letter-spacing:-.01em}
+.site-head nav{display:flex;gap:26px;font:400 20.5px/1 var(--f);color:var(--hi)}
+.site-head nav a{opacity:.85;transition:opacity .2s}
+.site-head nav a:hover{opacity:1}
+body.pg-home .site-head nav a[href="/"],body.pg-about .site-head nav a[href="/flavio/"]{opacity:1;font-weight:500;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+
+/* ---------- home: 2 colunas intercaladas, sem respiro ---------- */
+.masonry{display:flex}
+.masonry.m2{display:none}
+@media (max-width:1000px){.masonry.m3{display:none}.masonry.m2{display:flex}}
+.mcol{flex:1 1 0;display:flex;flex-direction:column}
+.stack{display:none}
+.thumb{position:relative;display:block;overflow:hidden}
+.thumb .frame{position:relative;aspect-ratio:1891/1479;overflow:hidden;background:#000;margin-bottom:-1px}
+.thumb .m{position:absolute;inset:-2px;width:calc(100% + 4px);height:calc(100% + 4px);max-width:none;object-position:left top;object-fit:cover;transition:transform 1.2s var(--ease),opacity .35s;transform-origin:left top}
+.thumb .hover{opacity:0}
+/* a loop only shows once it is really playing (Low Power Mode blocks autoplay; an unplayed video would be a black box) */
+.thumb:hover img.hover,.thumb:hover video.hover.on,.thumb.playing video.hover.on{opacity:1}
+.t-title{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;text-align:left;padding:var(--s1) 24px 22px;font:500 var(--fs-ui)/1.3 var(--f);color:#fff;
+  background:rgba(0,0,0,.4);opacity:0;transition:opacity .35s var(--ease)}
+.thumb:hover .t-title,.thumb:focus-visible .t-title{opacity:1}
+.thumb .hover{transition:opacity .3s ease-out}
+.t-title b{font-weight:500;color:#fff;font-size:clamp(17px,1.5vw,22px);line-height:1.2;margin-bottom:2px}
+.t-title i{font-style:normal;font-weight:400;color:rgba(255,255,255,.75)}
+.t-title{z-index:2}
+@media (max-width:700px){
+  :root{--edge:20px}
+  .masonry,.masonry.m2{display:none}
+  .stack{display:block}
+  .thumb.playing .t-title{opacity:1}
+}
+
+/* ---------- projeto ---------- */
+.p-head{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-areas:'b b b' 't t t' 'd d c';gap:var(--s2) clamp(24px,3.2vw,56px);padding:var(--s2) var(--edge) var(--s3)}
+.p-intro{display:contents}
+.p-head h1{grid-area:t}.p-head .back{position:fixed;z-index:50;top:104px;left:var(--edge);display:block;padding:8px 0;color:#fff;mix-blend-mode:difference;transition:transform .3s var(--ease)}
+.p-head .back .arr{display:block;fill:currentColor}.p-head .back:hover{transform:translateX(-6px)}
+.p-head::before{content:"";grid-area:b;height:41px;margin-bottom:var(--s1)}.p-desc{grid-area:d}.credits{grid-area:c}
+.p-head h1{margin:0;align-self:end;max-width:none;font:400 clamp(56px,8vw,150px)/1.08 var(--f);color:#fff;letter-spacing:0;text-wrap:balance}
+/* text flows over two columns, credits in the third (head layout after chicomedeiros.com) */
+.p-desc{display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(24px,3.2vw,56px);align-items:start;align-self:start;font:400 clamp(18px,1.53vw,28px)/1.35 var(--f);letter-spacing:.008em;color:#fff}
+.pcol>p{margin:0 0 1em}.pcol>p:last-child{margin-bottom:0}
+.credits{margin:0;display:grid;gap:0;align-content:start;font:400 clamp(13px,.88vw,16px)/1.5 var(--f);color:rgba(255,255,255,.85)}
+.credits div{break-inside:avoid}
+.credits dt,.credits dd{display:inline;margin:0}
+.credits dt{font-weight:400;color:inherit}
+.credits dt::after{content:': '}
+.p-body{display:flex;flex-direction:column;gap:var(--g);padding:0 var(--g)}
+.mod{margin:0}
+.reveal-m,.thumb .frame{overflow:hidden}
+figure{margin:0}
+.mod.img{width:100%;margin-inline:auto}
+.grid .row{display:flex;gap:var(--g)}
+.grid .row+.row{margin-top:var(--g)}
+.grid .cell .m{width:100%}
+.embed .ratio{position:relative;height:0}
+.embed .ratio iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.embed>iframe{display:block;width:100%;border:0}
+.statement{padding:var(--s3) var(--edge);text-align:center;max-width:900px;margin:0 auto;display:grid;gap:.5em}
+.statement p,.t-lg{font:400 clamp(18px,1.53vw,28px)/1.35 var(--f);letter-spacing:.008em;color:#fff;text-wrap:balance}
+.statement strong{font-weight:700}
+.t-sm{font-size:var(--fs-sm);line-height:1.45}
+.prose{padding:var(--s2) var(--edge);max-width:760px;margin:0 auto;display:grid;gap:1em}
+.cols{display:flex;gap:var(--g)}
+@media (max-width:800px){
+  .p-head{grid-template-columns:1fr;grid-template-areas:'b' 't' 'd' 'c';}.p-desc{grid-template-columns:1fr}.pcol+.pcol{margin-top:1em}.p-head{gap:var(--s1);padding-bottom:var(--s2)}.credits{margin-top:var(--s1)}
+  .grid .row{flex-wrap:wrap}
+  .grid .row .cell{flex-basis:calc(50% - var(--g)/2)!important}
+  .statement{padding:var(--s2) var(--edge)}
+  .cols{flex-direction:column}
+}
+
+/* ---------- about ---------- */
+.about{padding:var(--s2) var(--edge) 0;display:flex;flex-direction:column;gap:var(--s4)}
+.a-row{display:flex;gap:var(--s3);align-items:flex-start}
+.a-row .col{display:flex;flex-direction:column;gap:1em}
+.about .a-title{margin:0 0 var(--s2);font:400 clamp(56px,8vw,150px)/1.08 var(--f);color:var(--hi);letter-spacing:0}
+.about h2{margin:0 0 var(--s1);font:500 var(--fs-lg)/1.05 var(--f);color:var(--hi);text-transform:uppercase;letter-spacing:-.01em}
+.about .col>p .t-lg:first-child{display:block}
+@media (max-width:800px){.a-row{flex-direction:column;gap:var(--s2)}.about{gap:var(--s3)}}
+
+/* ---------- rodapé ---------- */
+.site-foot{display:flex;justify-content:flex-end;padding:var(--s3) var(--edge) var(--edge);font:500 var(--fs-ui)/1 var(--f);color:var(--hi)}
+.site-foot span{display:flex;gap:18px}
+.site-foot a{opacity:.85}.site-foot a:hover{opacity:1}
+.nf{padding:var(--s4) var(--edge)}
+.nf h1{font:700 var(--fs-xl)/1 var(--f);color:var(--hi);margin:0 0 var(--s1)}
+
+/* ---------- animações de scroll ---------- */
+.js .reveal-t{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform 1.1s var(--ease)}
+.js .reveal-m{opacity:0;transform:translateY(40px);transition:transform 1s ease-in-out,opacity .8s ease-in-out}
+.js .thumb .frame{clip-path:inset(0 0 100% 0);transition:clip-path 1.1s var(--ease);transition-delay:calc(var(--d,0) * 90ms)}
+.js .thumb .cover{transform:scale(1.08)}
+.js .in.reveal-t{opacity:1;transform:none}
+.js .in.reveal-m{opacity:1;transform:none}
+/* project header: title, then text, then credits — same soft rise as the images */
+.js .reveal-s{opacity:0;transform:translateY(40px);transition:transform 1.3s cubic-bezier(.25,.1,.25,1),opacity 1.1s ease-out;transition-delay:calc(var(--d,0) * 220ms + 100ms)}
+.js .in.reveal-s{opacity:1;transform:none}
+.js .thumb.in .frame{clip-path:inset(0)}
+.js .thumb.in .cover{transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .reveal-t,.js .reveal-m,.js .reveal-s,.js .thumb .frame{opacity:1!important;transform:none!important;clip-path:none!important;transition:none!important}
+  .js .thumb .cover{transform:none!important}
+}
+
+/* cursor: asterisco do logo, contorno branco; preenchido sobre links */
+@media (hover:hover) and (pointer:fine){
+  html.has-cur,html.has-cur *{cursor:none!important}
+  html.has-cur iframe{cursor:auto!important}
+}
+.cur{view-transition-name:cursor;position:fixed;left:0;top:0;z-index:9999;pointer-events:none;opacity:0;transition:opacity .2s;will-change:transform}
+.cur svg{display:block;overflow:visible}
+.cur.on{opacity:1}
+.cur path{fill:#fff;fill-rule:evenodd;transition:opacity .18s ease}
+.cur .f{opacity:0}
+.cur.link .f{opacity:1}
+.cur.link .o{opacity:0}
+
+/* transição entre páginas (como a do Elvis): a página atual sobe e a nova entra de baixo */
+@view-transition{navigation:auto}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.9s;animation-timing-function:cubic-bezier(.87,0,.13,1);animation-fill-mode:both;mix-blend-mode:normal}
+::view-transition-old(root){animation-name:vt-out}
+::view-transition-new(root){animation-name:vt-in}
+::view-transition-group(root){background:#000}
+@keyframes vt-out{to{transform:translateY(-100%)}}
+@keyframes vt-in{from{transform:translateY(100%)}}
+@media (prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root){animation:none}}
+::view-transition-group(cursor){animation:none}
+
+/* imagens: versão desfocada da própria imagem enquanto carrega */
+.m[style*="background-image"]{background-size:cover;background-position:center;background-color:#0b0b0b}
+
+/* títulos entrando por linha */
+.split .ln{display:block;overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
+.split .ln>span{display:block;transform:translateY(105%);transition:transform 1.1s var(--ease);transition-delay:calc(var(--l,0) * 90ms + 80ms)}
+.split.in .ln>span{transform:none}
+html:not(.js) .split .ln>span{transform:none}
+
+/* player próprio */
+.vplayer{position:relative;background:#0b0b0b}
+.vplayer iframe{pointer-events:none}
+.vp-hit{position:absolute;inset:0;width:100%;border:0;padding:0;background:transparent;color:#fff;display:flex;align-items:flex-end;justify-content:flex-start}
+.vp-label{margin:0 0 22px 24px;font:500 var(--fs-ui)/1 var(--f);padding:10px 14px;border-radius:99px;background:rgba(0,0,0,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:opacity .3s}
+.vplayer.sound .vp-label{opacity:0}
+.vplayer.sound:hover .vp-label{opacity:1}
+
+/* anterior / próximo: discreto, no pé do case */
+.pn{display:flex;justify-content:space-between;margin:var(--s4) var(--edge) 0;padding-top:clamp(20px,2vw,36px);border-top:1px solid rgba(255,255,255,.4);font:400 clamp(18px,1.53vw,28px)/1.2 var(--f);letter-spacing:.008em}
+.pn a{color:#fff;display:inline-flex;align-items:center;gap:.35em}
+.pn .ar{display:inline-block;transition:transform .3s var(--ease)}
+.pn a[rel=prev]:hover .ar{transform:translateX(-4px)}
+.pn a[rel=next]:hover .ar{transform:translateX(4px)}
+@media (prefers-reduced-motion:reduce){.split .ln>span{transform:none!important;transition:none!important}}
+.vplayer .ratio{position:relative;height:0}
+.vplayer iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+/* ícones sociais (arquivos do Flavio) */
+.social{align-items:center}
+.ic{display:block;width:18px;height:18px;background:currentColor;-webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat}
+.ic-li{--i:url(/img/linkedin.png)}
+.ic-ig{--i:url(/img/instagram.png)}
+
+/* barra de carregamento no topo; a página só rola quando o primeiro trecho está pronto */
+.loadbar{position:fixed;top:0;left:0;right:0;height:2px;z-index:10000;pointer-events:none;transition:opacity .5s .1s}
+.loadbar i{display:block;height:100%;background:#fff;transform-origin:0 50%;transform:scaleX(0)}
+.loadbar.done{opacity:0}
+html.loading,html.loading body{overflow:hidden}
+.vplayer iframe{background:#0b0b0b}
+
+
+/* alternar mosaico / lista */
+.site-head nav{align-items:center}
+.vt{pointer-events:auto;display:block;padding:0;margin:0;border:0;background:none;color:inherit;opacity:.85;transition:opacity .2s}
+.vt:hover{opacity:1}
+.vt svg{display:block;fill:currentColor}
+.vt .i-grid{display:none}
+html.view-list .vt .i-grid{display:block}
+html.view-list .vt .i-list{display:none}
+.plist{display:none;padding:var(--s2) var(--edge) var(--s3)}
+html.view-list .pg-home .masonry,html.view-list .pg-home .stack{display:none!important}
+html.view-list .pg-home .plist{display:block}
+/* lista: a linha no centro da tela abre, o nome aparece atrás da imagem */
+.plist{padding-bottom:var(--s3)}
+.prow{display:block;position:relative;height:var(--h,16vh);opacity:var(--o,1);border-top:1px solid rgba(255,255,255,.22);color:var(--tx);overflow:hidden;contain:layout paint}
+.pr-meta{position:absolute;top:9px;left:0;right:0;z-index:3;display:flex;justify-content:space-between;align-items:center;gap:16px;font:400 13px/1.2 var(--f);transition:color .25s}
+.pr-r{display:flex;align-items:center;gap:16px}
+.prow:hover .pr-meta{color:var(--hi)}
+.pr-stage{position:absolute;inset:36px 0 36px;display:flex;align-items:center;justify-content:center}
+.pr-big{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font:400 clamp(56px,8vw,150px)/1 var(--f);letter-spacing:0;white-space:nowrap;color:var(--hi);opacity:var(--a,0);pointer-events:none;z-index:1}
+.pr-img{position:relative;z-index:2;height:100%;width:clamp(200px,24vw,400px);overflow:hidden;background:#111}
+.pr-img img,.pr-img video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.pr-img video{opacity:0;transition:opacity .4s}
+.pr-img video.on{opacity:1}
+.pr-bd{display:flex;align-items:center;gap:10px}
+.plist .prow:last-child{border-bottom:1px solid rgba(255,255,255,.22)}
+.bd{display:block;height:15px;background:currentColor;-webkit-mask:var(--b) center/contain no-repeat;mask:var(--b) center/contain no-repeat;opacity:.7;transition:opacity .25s}
+.prow:hover .bd{opacity:1}
+.bd-lion{--b:url(/img/badge-lion.png);aspect-ratio:88/96}
+.bd-effie{--b:url(/img/badge-effie.png);aspect-ratio:96/87}
+.bd-head{--b:url(/img/badge-head.png);aspect-ratio:82/96}
+.bd-clube{--b:url(/img/badge-clube.png);aspect-ratio:96/92;height:14px}
+@media (max-width:700px){
+  .pr-meta{font-size:12px}
+  .pr-bd{display:none}
+  .pr-img{width:24vw}
+  .pr-big{font-size:10.5vw}
+}
+
+/* respiro entre o menu e o mosaico */
+.pg-home main{padding-top:120px}
+.pg-home .plist{padding-top:0}
+
+/* linha do tempo dos filmes: branca, simples, clicável e arrastável */
+.vp-tl{position:relative;height:18px;margin-top:2px;cursor:pointer;touch-action:none}
+.vp-tl::before{content:"";position:absolute;left:0;right:0;top:8px;height:2px;background:rgba(255,255,255,.25)}
+.vp-tl i{position:absolute;left:0;top:8px;height:2px;width:calc(var(--p,0) * 100%);background:#fff}
+.vp-tl:hover::before,.vp-tl:hover i{top:7px;height:4px}
+.vplayer iframe{opacity:0;transition:opacity .4s}
+.vplayer.ready iframe{opacity:1}
+
+/* grid <-> list toggle: a soft swap under the fixed menu */
+main{transition:opacity .5s ease}
+main.vswap-out{opacity:0;transition-duration:.25s}
+main.vswap-in{opacity:0;transition:none}
+
+/* desktop mosaic as a loose collage (after davidwilliambaum.com); positions come from main.js */
+.collage{display:none;position:relative;z-index:0;isolation:isolate;height:100svh;min-height:600px;margin:-120px 0 0;overflow:visible}
+/* collage switched off: the home mosaic is the masonry again */
+html.view-list .pg-home .collage{display:none!important}
+
+.collage .thumb{position:absolute;left:0;top:0;width:var(--w,200px);transform:translate(var(--x,0),var(--y,0));transform-origin:center;z-index:var(--z,1);overflow:visible;will-change:transform}
+.js .collage .thumb .frame{transition:clip-path 1.1s var(--ease),transform .6s var(--ease),opacity .5s ease;transition-delay:calc(var(--d,0) * 60ms),0s,0s}
+.collage .t-title{display:none}
+.collage .thumb .frame{aspect-ratio:var(--ar,1.28);background:#111}
+.collage .thumb .m{object-position:center;inset:0;width:100%;height:100%}
+.collage:not(.laid) .thumb{visibility:hidden}
+.cur-cap{position:fixed;left:0;top:0;z-index:9998;pointer-events:none;white-space:nowrap;font:400 14px/1.2 var(--f);color:#fff;opacity:0;transition:opacity .25s;will-change:transform;text-shadow:0 0 12px rgba(0,0,0,.25)}
+.cur-cap.on{opacity:1}
+/* over the collage the asterisk becomes a thin cross; difference blend flips it black/white over the images */
+.cur .xh{position:absolute;left:50%;top:50%;width:24px;height:24px;transform:translate(-50%,-50%);opacity:0;transition:opacity .18s}
+.cur .xh::before,.cur .xh::after{content:"";position:absolute;background:#fff}
+.cur .xh::before{left:0;right:0;top:50%;height:1px;margin-top:-.5px}
+.cur .xh::after{top:0;bottom:0;left:50%;width:1px;margin-left:-.5px}
+.cur.x svg{opacity:0}.cur.x .xh{opacity:1}
+.cur svg{transition:opacity .18s}
+
+/* over links the cross opens up a little */
+.cur.x .xh{transition:opacity .18s,width .25s var(--ease),height .25s var(--ease)}
+.cur.x.link .xh{width:34px;height:34px}
+
+/* ===== tema preto (fundo #000, texto branco 95%) ===== */
+:root{--bg:#000;--tx:#f2f2f2;--hi:#f2f2f2}
+html,body{background:#000}
+.m,.m[style*="background-image"],.vplayer,.vplayer iframe{background-color:#121212}
+.thumb .frame,.collage .thumb .frame,.pr-img{background:#121212}
+.p-head h1,.p-desc,.statement p,.t-lg,.pn a{color:#f2f2f2}
+.credits{color:rgba(242,242,242,.85)}
+.pn{border-top-color:rgba(242,242,242,.4)}
+.prow{border-top-color:rgba(242,242,242,.22)}.plist .prow:last-child{border-bottom-color:rgba(242,242,242,.22)}
+.vp-tl::before{background:rgba(242,242,242,.25)}.vp-tl i,.loadbar i{background:#f2f2f2}
+.bd{background:#f2f2f2}
+::view-transition-group(root){background:#000}
+.cur-cap{text-shadow:none}
+
+/* clients logos (About) */
+.logos{display:grid;grid-template-columns:repeat(7,1fr);gap:clamp(28px,4vw,64px) clamp(20px,3vw,48px);align-items:center;justify-items:center;padding:clamp(8px,1vw,16px) 0}
+.lg{display:block;height:calc(var(--lh,30px) / sqrt(var(--a)) * 1.6);max-height:56px;max-width:100%;aspect-ratio:var(--a);background:var(--tx);-webkit-mask:var(--u) center/contain no-repeat;mask:var(--u) center/contain no-repeat;opacity:.9}
+@media (max-width:900px){.logos{grid-template-columns:repeat(4,1fr)}}
+@media (max-width:560px){.logos{grid-template-columns:repeat(3,1fr);--lh:24px}}
+/* cursor + caption invert over whatever is behind them, like the menu */
+.cur,.cur-cap{mix-blend-mode:difference}
+.cur path,.cur .xh::before,.cur .xh::after{fill:#fff;background:#fff}
+.cur-cap{color:#fff}
+
+/* award badges on project pages, right of the title */
+.p-awards{grid-area:t;justify-self:end;align-self:center;display:flex;gap:clamp(14px,1.4vw,22px);align-items:center;color:var(--tx)}
+.p-awards .bd{height:clamp(30px,2.6vw,44px);opacity:1}
+.p-awards .bd-clube{height:clamp(28px,2.4vw,40px)}
+@media (max-width:800px){.p-awards{grid-area:b;justify-self:start;align-self:end}.p-awards .bd{height:26px}}
+
+/* ===== home (desktop): stack of covers, near-isometric (after unveil.fr) ===== */
+.deck{display:none}
+@media (hover:hover) and (pointer:fine) and (min-width:900px){
+  html:not(.view-list) .pg-home .deck{display:block}
+  html:not(.view-list) .pg-home .masonry{display:none!important}
+  html:not(.view-list) .pg-home .site-foot{display:none}
+  html:not(.view-list) .pg-home main{padding:0}
+  html:not(.view-list) body.pg-home{overflow:hidden;height:100svh}
+}
+.deck{position:fixed;inset:0;z-index:1;overflow:hidden}
+.dk{position:absolute;left:0;top:0;width:var(--cw,30vw);aspect-ratio:1891/1479;transform-origin:0 0;will-change:transform,opacity;cursor:pointer}
+/* glass plate: whole cover (no crop), soft frosting from the top, thin bright rim, 5px corners, no shadow */
+.dk-face{position:absolute;inset:0;display:block;overflow:hidden;border-radius:5px;background:rgba(240,242,242,.5);opacity:.93;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.55),inset 0 1px 0 rgba(255,255,255,.95);transition:opacity .5s}
+.dk-face::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+  background:linear-gradient(180deg,rgba(255,255,255,.42) 0,rgba(255,255,255,.1) 22%,rgba(255,255,255,0) 40%)}
+.dk img,.dk video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.dk video{opacity:0;transition:opacity .4s}
+.dk video.on{opacity:1}
+.dk-cap{display:none}
+.dk.hot .dk-face{opacity:1}
+.dk.hot .dk-face::after{opacity:0;transition:opacity .4s}
+.dk-face::after{transition:opacity .4s}
+.deck.opening .dk:not(.picked){opacity:0!important;transition:opacity .45s ease}
+.deck.opening .dk.picked{transition:transform .9s cubic-bezier(.7,0,.2,1)}
+.pg-home .cur-cap{text-transform:uppercase;font-size:12px;letter-spacing:.02em}
+/* tema preto: capas da pilha */
+.dk-face{background:rgba(30,30,30,.5);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18),inset 0 1px 0 rgba(255,255,255,.45)}
+.dk-face::after{background:linear-gradient(180deg,rgba(255,255,255,.16) 0,rgba(255,255,255,.04) 22%,rgba(255,255,255,0) 40%)}
+/* menu sempre branco puro, sem blend */
+.site-head{mix-blend-mode:normal}
+.site-head,.site-head .logo,.site-head nav,.site-head nav a{color:#fff}
+.site-head nav a{opacity:1}
+/* glass slab, like unveil: two rounded copies of the plate sit just behind the face, nudged up and to the right.
+   Only a 2-3px sliver of each shows, so the top and right edges read as one continuous extrusion with rounded
+   corners, tinted by the cover's own (blurred) edge colours: the top lit, the side in shade. */
+.dk-b{position:absolute;inset:0;border-radius:5px;overflow:hidden;pointer-events:none;background:#222}
+.dk-b img{display:block;width:100%;height:100%;object-fit:cover;filter:blur(6px) saturate(1.25)}
+.dk-b1{transform:translate(1.5px,-1px)}
+.dk-b1 img{filter:blur(6px) saturate(1.25) brightness(.55)}
+.dk-b2{transform:translate(.5px,-1px)}
+.dk-b2 img{filter:blur(6px) saturate(1.2) brightness(1.3)}
+.dk-b2::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 1px 0 rgba(255,255,255,.35)}
+.dk-face,.dk-face::after{border-radius:5px}
+.dk-face{box-shadow:inset 0 0 0 1px rgba(255,255,255,.16),inset 0 1px 0 rgba(255,255,255,.55),inset 0 -2px 0 rgba(255,255,255,.18),inset 0 -14px 18px -12px rgba(255,255,255,.22)}
+/* legenda do cursor sempre branca */
+.cur-cap{mix-blend-mode:normal;color:#fff;text-shadow:0 0 10px rgba(0,0,0,.35),0 1px 2px rgba(0,0,0,.25)}
+</style>
+</head>
+<body class="proj" id="top">
+<header class="site-head">
+  <a class="logo" href="/">f*</a>
+  <nav><a href="/">Work</a><a href="/flavio/">☺ About</a><button class="vt" type="button" aria-label="Show as list"><svg class="i-list" viewBox="0 0 20 20" width="20.5" height="20.5"><rect x="2" y="4" width="16" height="1.6"/><rect x="2" y="9.2" width="16" height="1.6"/><rect x="2" y="14.4" width="16" height="1.6"/></svg><svg class="i-grid" viewBox="0 0 20 20" width="20.5" height="20.5"><rect x="2" y="2" width="7" height="7"/><rect x="11" y="2" width="7" height="7"/><rect x="2" y="11" width="7" height="7"/><rect x="11" y="11" width="7" height="7"/></svg></button></nav>
+</header>
+<main>
+<article class="project"><header class="p-head"><div class="p-intro"><a class="back" href="/" aria-label="Back to work"><svg class="arr" viewBox="486 353 250 95" width="66" height="25" aria-hidden="true"><polygon points="534.41 445.79 488.14 401.58 532.35 355.3 536.69 359.45 496.62 401.38 538.55 441.45 534.41 445.79"/><rect x="492.38" y="398.48" width="241.62" height="6"/></svg></a><h1 class="reveal-s" style="--d:0">Promise Delivery</h1><div class="p-desc reveal-s" style="--d:1"><div class="pcol"><p>Right after winning the Swiss Indoors Basel, João Fonseca publicly revealed he’d made a promise: he would shave his head if he won the title.</p></div><div class="pcol"><p>And since a promise is a promise, Mercado Livre, which had been waiting for the right moment to announce its sponsorship of the athlete, joined the conversation and made the announcement in a way only the fastest e-commerce in Brazil could: by delivering the hair clipper he would use for the cut.</p></div></div></div><dl class="credits reveal-s" style="--d:2"><div><dt>Role</dt><dd>Art Direction</dd></div><div><dt>With</dt><dd>Bruno Brux, Tiago Abreu, Maurício Dias, Eduardo Nosé, Rafael Miessi, James Döring, Felipe Farah, Mariana Piano, João Siqueira, Diogo Soares</dd></div><div><dt>Agency</dt><dd>GUT</dd></div><div><dt>Client</dt><dd>Mercado Livre</dd></div><div><dt>Year</dt><dd>2025</dd></div></dl></header><div class="p-body"><div class="mod vplayer reveal-m"><div class="ratio" style="padding-bottom:56.25%"><iframe data-src="https://player.vimeo.com/video/1143825424?background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Film"></iframe><button class="vp-hit" type="button" aria-label="Play with sound"><span class="vp-label">Play with sound</span></button></div><div class="vp-tl" role="slider" aria-label="Seek" tabindex="0"><i></i></div></div>
+<figure class="mod img reveal-m"><img class="m " src="/media/promise-kv.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="" style="background-image:url(data:image/webp;base64,UklGRpAAAABXRUJQVlA4IIQAAADwAwCdASoUAAsAPu1iqU2ppaOiMAgBMB2JYgCo9BVSkPNJGuPW7GAAAP7fxhje2MCpHn/tGqF1/qAhq6Cy0Uht3NSJCQ6BpfdV9vjqla1Kdb8UAo66wFnbpE6rlr45aPCE6jhvDup0MMnTa8QN3caId/h2V0yKJvucArIqIVMpqDjWAAA=)"></figure></div><nav class="pn" aria-label="More projects"><a href="/skol-zero-zero/" rel="prev"><span class="ar">←</span> Previous Page</a><a href="/mercadolibrexapple/" rel="next">Next Page <span class="ar">→</span></a></nav></article>
+</main>
+<footer class="site-foot">
+  <span class="social"><a href="https://www.linkedin.com/in/flaviosalzer" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ic ic-li"></i></a><a href="https://instagram.com/flaviosalzer" target="_blank" rel="noopener" aria-label="Instagram"><i class="ic ic-ig"></i></a></span>
+</footer>
+<script src="/js/lenis.min.js"></script>
+<script src="/js/player.min.js"></script>
+<script>{
+  document.documentElement.classList.add('js');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const noHover = matchMedia('(hover: none)').matches;
+
+  const load = v => { if (v.dataset.src && !v.src) { v.src = v.dataset.src; } };
+  const play = v => { load(v); const p = v.play(); if (p) p.catch(() => {}); };
+
+  // reveal on scroll
+  const revealObs = new IntersectionObserver(es => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); } });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+  document.querySelectorAll('.reveal-t,.reveal-m,.reveal-s,.thumb').forEach((el) => {
+    if (el.classList.contains('thumb')) {
+      const col = el.parentElement.classList.contains('mcol') ? [...el.parentElement.parentElement.children].indexOf(el.parentElement) : 0;
+      el.style.setProperty('--d', col);
+    }
+    reduce ? el.classList.add('in') : revealObs.observe(el);
+  });
+
+
+  // smooth (inertial) scrolling
+  let lenis = null;
+  if (!reduce && window.Lenis && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    lenis = new Lenis({ autoRaf: true, lerp: 0.15, wheelMultiplier: 1 });
+  }
+
+
+  // loading bar (top, like Elvis' site) + hold scroll until the first screen is ready
+  (() => {
+    const bar = document.createElement('div'); bar.className = 'loadbar'; bar.innerHTML = '<i></i>';
+    document.body.appendChild(bar);
+    const fill = bar.firstChild;
+    const root = document.documentElement;
+    root.classList.add('loading');
+    if (lenis) lenis.stop();
+    const limit = innerHeight * 1.6;
+    const near = el => { const r = el.getBoundingClientRect(); return r.width && r.top < limit && r.bottom > -10; };
+    const waits = [];
+    document.querySelectorAll('img').forEach(im => {
+      if (!near(im) || im.complete) return;
+      im.loading = 'eager';
+      waits.push(new Promise(res => { im.addEventListener('load', res, { once: true }); im.addEventListener('error', res, { once: true }); }));
+    });
+    document.querySelectorAll('.p-body video, .about video').forEach(v => {
+      if (!near(v)) return;
+      load(v);
+      if (v.readyState >= 2) return;
+      waits.push(new Promise(res => { v.addEventListener('loadeddata', res, { once: true }); v.addEventListener('error', res, { once: true }); }));
+    });
+    // films: all start loading now (so they're ready further down); only the ones on the first screen hold the scroll
+    if (window.Vimeo) document.querySelectorAll('.vplayer').forEach(v => {
+      const f = v.querySelector('iframe');
+      if (!f.src) f.src = f.dataset.src;
+      const pl = f._pl || (f._pl = new Vimeo.Player(f));
+      const p = (new Promise(res => {
+        const ok = () => { v.classList.add('ready'); res(); };
+        pl.on('play', ok); pl.on('playing', ok);
+        pl.ready().then(() => pl.getPaused()).then(p => { if (!p) ok(); }).catch(ok);
+      }));
+      if (near(v)) waits.push(p);
+    });
+    const total = waits.length || 1;
+    let done = 0, shown = 0.08, target = 0.08;
+    const tick = () => { shown += (target - shown) * 0.18; fill.style.transform = `scaleX(${shown})`; if (!finished) requestAnimationFrame(tick); };
+    let finished = false;
+    requestAnimationFrame(tick);
+    waits.forEach(p => p.then(() => { done++; target = 0.08 + 0.92 * (done / total); }));
+    const trickle = setInterval(() => { if (target < 0.9) target += 0.01; }, 200);
+    const finish = () => {
+      if (finished) return; finished = true; clearInterval(trickle);
+      fill.style.transition = 'transform .35s ease-out'; fill.style.transform = 'scaleX(1)';
+      setTimeout(() => { bar.classList.add('done'); root.classList.remove('loading'); if (lenis) lenis.start(); }, 380);
+      setTimeout(() => bar.remove(), 1200);
+    };
+    Promise.race([Promise.all(waits), new Promise(r => setTimeout(r, 8000))]).then(() => setTimeout(finish, 150));
+  })();
+
+  // titles: split into lines and reveal line by line
+  const splitLines = el => {
+    const words = el.textContent.trim().split(/\s+/);
+    el.innerHTML = words.map(w => `<span class="w">${w.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))}</span>`).join(' ');
+    const lines = []; let top = null;
+    el.querySelectorAll('.w').forEach(w => { if (w.offsetTop !== top) { lines.push([]); top = w.offsetTop; } lines[lines.length - 1].push(w.textContent); });
+    el.innerHTML = lines.map((l, i) => `<span class="ln" style="--l:${i}"><span>${l.join(' ')}</span></span>`).join('');
+  };
+  const splits = [...document.querySelectorAll('.split')];
+  const doSplit = () => splits.forEach(splitLines);
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => {
+    doSplit();
+    splits.forEach(el => reduce ? el.classList.add('in') : revealObs.observe(el));
+  });
+  let rw; addEventListener('resize', () => { clearTimeout(rw); rw = setTimeout(() => { splits.forEach(el => { const t = [...el.querySelectorAll('.ln')].map(l => l.textContent).join(' '); el.textContent = t; }); doSplit(); }, 200); });
+
+  // own film player: Vimeo in background mode, click for sound, white timeline to scrub
+  if (window.Vimeo) {
+    document.querySelectorAll('.vplayer').forEach(v => {
+      const f = v.querySelector('iframe'), b = v.querySelector('.vp-hit'), lab = v.querySelector('.vp-label'), tl = v.querySelector('.vp-tl');
+      const ensure = () => { if (!f.src) f.src = f.dataset.src; return f._pl || (f._pl = new Vimeo.Player(f)); };
+      const pl = ensure();
+      pl.on('play', () => v.classList.add('ready'));
+      let dur = 0, dragging = false;
+      pl.getDuration().then(d => { dur = d; }).catch(() => {});
+      pl.on('timeupdate', d => { dur = d.duration || dur; if (!dragging) tl.style.setProperty('--p', d.percent.toFixed(4)); });
+      new IntersectionObserver(es => es.forEach(e => {
+        if (e.isIntersecting) pl.play().catch(() => {}); else pl.pause().catch(() => {});
+      }), { rootMargin: '200px 0px' }).observe(v);
+      const seekTo = x => {
+        const r = tl.getBoundingClientRect(); const p = Math.max(0, Math.min(1, (x - r.left) / r.width));
+        tl.style.setProperty('--p', p.toFixed(4));
+        if (dur) pl.setCurrentTime(p * dur * 0.999).catch(() => {});
+      };
+      tl.addEventListener('pointerdown', e => { dragging = true; tl.setPointerCapture(e.pointerId); seekTo(e.clientX); });
+      tl.addEventListener('pointermove', e => { if (dragging) seekTo(e.clientX); });
+      const up = () => { dragging = false; pl.play().catch(() => {}); };
+      tl.addEventListener('pointerup', up); tl.addEventListener('pointercancel', up);
+      tl.addEventListener('keydown', e => {
+        if (!dur) return;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); pl.getCurrentTime().then(t => pl.setCurrentTime(Math.max(0, Math.min(dur - .1, t + (e.key === 'ArrowRight' ? 5 : -5))))); }
+      });
+      b.addEventListener('click', async () => {
+        if (v.classList.contains('sound')) {
+          v.classList.remove('sound'); lab.textContent = 'Play with sound'; b.setAttribute('aria-label', 'Play with sound');
+          try { await pl.setMuted(true); } catch (e) {}
+        } else {
+          document.querySelectorAll('.vplayer.sound .vp-hit').forEach(o => o.click());
+          v.classList.add('sound'); lab.textContent = 'Mute'; b.setAttribute('aria-label', 'Mute');
+          try { await pl.setCurrentTime(0); await pl.setMuted(false); await pl.setVolume(1); await pl.play(); } catch (e) {}
+        }
+      });
+    });
+  }
+
+
+  // grid / list toggle (home); elsewhere it opens the home in the chosen view
+  const vt = document.querySelector('.vt');
+  if (vt) {
+    const root = document.documentElement;
+    const label = () => vt.setAttribute('aria-label', root.classList.contains('view-list') ? 'Show as grid' : 'Show as list');
+    label();
+    vt.addEventListener('click', () => {
+      const list = !root.classList.contains('view-list');
+      try { localStorage.setItem('fs-view', list ? 'list' : 'grid'); } catch (e) {}
+      if (!document.body.classList.contains('pg-home')) { location.href = '/' + (list ? '#list' : ''); return; }
+      const swap = () => { root.classList.toggle('view-list', list); label(); scrollTo(0, 0); if (lenis) lenis.scrollTo(0, { immediate: true }); };
+      // no page slide here: the content under the menu fades out, swaps, and rises back in
+      const main = document.querySelector('main');
+      if (reduce || !main) return swap();
+      main.classList.add('vswap-out');
+      setTimeout(() => {
+        swap();
+        main.classList.remove('vswap-out');
+        main.classList.add('vswap-in');
+        requestAnimationFrame(() => requestAnimationFrame(() => main.classList.remove('vswap-in')));
+      }, 280);
+    });
+  }
+  // list: the row crossing the middle of the screen opens up and shows its name.
+  // Heights follow a cos² bump that always sums to one row, so the list's total
+  // height never changes and scrolling never fights the layout.
+  const plistEl = document.querySelector('.plist');
+  if (plistEl) {
+    const rows = [...plistEl.querySelectorAll('.prow')];
+    const vids = rows.map(r => r.querySelector('video'));
+    // Each row gets a Gaussian share of one extra "open" height; the shares are
+    // normalised so they always sum to 1 (total list height never changes), and
+    // the open position eases toward the scroll position for a soft hand-off.
+    const SIG = 0.62, PEAK = 1 / (1 + 2 * Math.exp(-1 / (2 * SIG * SIG)) + 2 * Math.exp(-4 / (2 * SIG * SIG)));
+    let H0 = 0, E = 0, top = 0, vh = 0, cur = null, goal = 0, queued = false;
+    const measure = () => {
+      vh = innerHeight;
+      const W = parseFloat(getComputedStyle(rows[0].querySelector('.pr-img')).width) || 320;
+      H0 = Math.max(96, Math.min(124, vh * 0.13));
+      const open = W * 0.6 + 72;   // image + equal room above and below                     // horizontal image when open
+      E = Math.max(0, open - H0) / PEAK;
+      top = plistEl.getBoundingClientRect().top + scrollY;
+    };
+    // the open row stays where the list starts (same gap below the menu as the mosaic)
+    const target = () => {
+      // map the whole page scroll onto the rows, so the last one opens right as the page ends (no empty tail)
+      const max = Math.max(1, document.documentElement.scrollHeight - vh);
+      return Math.min(rows.length - 1, Math.max(0, (rows.length - 1) * scrollY / max));
+    };
+    const paint = () => {
+      queued = false;
+      if (!root.classList.contains('view-list')) return;
+      goal = hoverIdx ?? target();
+      if (cur === null) cur = goal;
+      cur += (goal - cur) * 0.12;
+      if (Math.abs(goal - cur) < 0.001) cur = goal;
+      const w = rows.map((r, i) => Math.exp(-((i - cur) ** 2) / (2 * SIG * SIG)));
+      const sum = w.reduce((s, x) => s + x, 0);
+      rows.forEach((r, i) => {
+        const b = w[i] / sum, k = Math.min(1, b / PEAK);
+        r.style.setProperty('--h', (H0 + E * b).toFixed(1) + 'px');
+        r.style.setProperty('--a', (k * k * k).toFixed(3));
+        // rows already passed fade out fast; the ones coming up dim gradually, like a soft roll
+        { const d = i - cur; r.style.setProperty('--o', (d > 0 ? Math.max(0.1, Math.exp(-(d * d) / 12.5)) : Math.max(0.05, Math.exp(-(d * d) / 1.5))).toFixed(3)); }
+        const v = vids[i];
+        if (!v) return;
+        if (k > 0.75) {
+          if (!v.src) v.src = v.dataset.src;
+          if (v.paused) v.play().then(() => v.classList.add('on')).catch(() => {});
+        } else if (!v.paused) { v.pause(); v.classList.remove('on'); }
+      });
+      if (cur !== goal) req();
+    };
+    // with a mouse, the row under the cursor opens too; scrolling hands control back to the scroll
+    let hoverIdx = null;
+    if (matchMedia('(hover: hover)').matches) {
+      plistEl.addEventListener('mousemove', e => {
+        if (!e.movementX && !e.movementY) return;          // ignore events caused by the rows resizing
+        const r = e.target.closest('.prow');
+        const i = r ? rows.indexOf(r) : -1;
+        if (i >= 0 && i !== hoverIdx) { hoverIdx = i; req(); }
+      });
+      plistEl.addEventListener('mouseleave', () => { hoverIdx = null; req(); });
+      const release = () => { if (hoverIdx !== null) { hoverIdx = null; req(); } };
+      addEventListener('wheel', release, { passive: true });
+      addEventListener('keydown', release);
+    }
+    const req = () => { if (!queued) { queued = true; requestAnimationFrame(paint); } };
+    const root = document.documentElement;
+    measure(); paint();
+    addEventListener('scroll', req, { passive: true });
+    addEventListener('resize', () => { measure(); req(); });
+    new MutationObserver(() => { measure(); req(); }).observe(root, { attributes: true, attributeFilter: ['class'] });
+  }
+
+  // in-page loops (ex-GIFs): load + play only while on screen
+  const vidObs = new IntersectionObserver(es => {
+    es.forEach(e => { const v = e.target; e.isIntersecting ? play(v) : v.pause(); });
+  }, { rootMargin: '200px 0px' });
+  document.querySelectorAll('.p-body video, .about video').forEach(v => vidObs.observe(v));
+
+  // cover hover loops
+  document.querySelectorAll('.thumb').forEach(t => {
+    const v = t.querySelector('video.hover');
+    if (!v) return;
+    v.addEventListener('playing', () => v.classList.add('on'));
+    v.addEventListener('pause', () => v.classList.remove('on'));
+    if (noHover) return;
+    let off;
+    const on = () => { clearTimeout(off); play(v); };
+    const stop = () => { clearTimeout(off); off = setTimeout(() => v.pause(), 350); };
+    t.addEventListener('mouseenter', on);
+    t.addEventListener('mouseleave', stop);
+    t.addEventListener('focus', on);
+    t.addEventListener('blur', stop);
+  });
+
+  // preload cover loops as thumbs come into view
+  const preObs = new IntersectionObserver(es => {
+    es.forEach(e => { if (!e.isIntersecting) return; const v = e.target.querySelector('video.hover'); if (v) { v.preload = 'auto'; load(v); } preObs.unobserve(e.target); });
+  }, { rootMargin: '300px 0px' });
+  document.querySelectorAll('.thumb').forEach(t => { if (!t.closest('.collage')) preObs.observe(t); });
+
+  // touch screens: the thumb in the middle of the screen plays its loop
+  if (noHover) {
+    const midObs = new IntersectionObserver(es => {
+      es.forEach(e => {
+        const v = e.target.querySelector('video.hover');
+        if (!v) return;
+        if (e.isIntersecting) { e.target.classList.add('playing'); play(v); }
+        else { e.target.classList.remove('playing'); v.pause(); }
+      });
+    }, { rootMargin: '-35% 0px -35% 0px' });
+    document.querySelectorAll('.stack .thumb').forEach(t => midObs.observe(t));
+  }
+
+  // collage: scatter the thumbs over the first screen. Seeded, so the layout is the same on every visit;
+  // tiles start around the centre and are pushed apart until they only overlap a little.
+  const col = document.querySelector('.collage');
+  if (col) {
+    const tiles = [...col.querySelectorAll('.thumb')];
+    const layout = () => {
+      const W = col.clientWidth, H = col.clientHeight;
+      if (!W || !H) return;
+      let s = 20241126;
+      const rnd = () => { s |= 0; s = s + 0x6D2B79F5 | 0; let t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+      const R = 1891 / 1479, n = tiles.length;
+      const unit = Math.max(100, 0.085 * W);
+      // best-candidate sampling: random, but each new tile takes the farthest of a few candidate spots,
+      // so the cloud is organic yet evenly spread (no clumps, no big holes), like the ref
+      const top = 96, b = [];
+      for (let i = 0; i < n; i++) {
+        const ar = parseFloat(tiles[i].dataset.ar) || 1.28;               // each still keeps its own proportions
+        const sz = [0.8, 0.9, 1, 1, 1.1, 1.25][Math.floor(rnd() * 6)];     // a gentle variety of sizes
+        const w = unit * sz * Math.sqrt(ar), h = unit * sz / Math.sqrt(ar);
+        let best = null, bestD = -1;
+        for (let c = 0; c < 14; c++) {
+          const x = -0.3 * w + rnd() * (W - 0.4 * w), y = top + rnd() * (H - top - h - 24);
+          let d = Infinity;
+          for (const o of b) d = Math.min(d, Math.hypot((x - o.x) / W * 1.4, (y - o.y) / H));
+          if (d > bestD) { bestD = d; best = { x, y }; }
+        }
+        b.push({ w, h, ar, x: best.x, y: best.y, z: 1 + Math.floor(rnd() * n) });
+      }
+      for (let it = 0; it < 400; it++) {
+        let moved = false;
+        for (let i = 0; i < n; i++) for (let k = i + 1; k < n; k++) {
+          const A = b[i], B = b[k];
+          const ox = Math.min(A.x + A.w, B.x + B.w) - Math.max(A.x, B.x);
+          const oy = Math.min(A.y + A.h, B.y + B.h) - Math.max(A.y, B.y);
+          const ax = -0.14 * Math.min(A.w, B.w), ay = -0.14 * Math.min(A.h, B.h);   // never on top of each other: always a little air
+          if (ox > ax && oy > ay) {
+            moved = true;
+            if (ox - ax < oy - ay) { const d = (ox - ax) / 2 + .5, sg = A.x < B.x ? 1 : -1; A.x -= sg * d; B.x += sg * d; }
+            else { const d = (oy - ay) / 2 + .5, sg = A.y < B.y ? 1 : -1; A.y -= sg * d; B.y += sg * d; }
+          }
+        }
+        b.forEach(t => { t.x = Math.max(-0.3 * t.w, Math.min(W - 0.7 * t.w, t.x)); t.y = Math.max(96, Math.min(H - t.h - 24, t.y)); });   // whole tiles at the bottom: the collage is one screen, no scroll   // at most a third cut by the screen edge
+        if (!moved) break;
+      }
+      // centre the cloud on the page
+      const minX = Math.min(...b.map(t => t.x)), maxX = Math.max(...b.map(t => t.x + t.w));
+      const minY = Math.min(...b.map(t => t.y)), maxY = Math.max(...b.map(t => t.y + t.h));
+      const dx = (W - (maxX + minX)) / 2, dy = (H - (maxY + minY)) / 2;
+      tiles.forEach((t, i) => {
+        t.style.setProperty('--w', b[i].w.toFixed(1) + 'px');
+        t.style.setProperty('--ar', b[i].ar);
+        t.style.setProperty('--x', b[i].x.toFixed(1) + 'px');
+        t.style.setProperty('--y', b[i].y.toFixed(1) + 'px');
+        t.style.setProperty('--z', b[i].z);
+        t.style.setProperty('--d', i % 8);
+      });
+      col.classList.add('laid');
+      tiles.forEach(t => t.classList.add('in'));   // tiles cut by the screen edge still reveal
+      base = b; lens();
+    };
+    // lens: tiles near the cursor grow together (the nearest most) and the cloud bulges away from it
+    let base = null, mx = null, my = null, lensOn = false, lensRaf = 0;
+    // each tile eases at its own pace, so they swell one after another rather than in lockstep
+    const st = tiles.map((_, i) => ({ s: 1, v: 0, tgt: 1, pend: 1, at: 0, x: 0, y: 0, jit: ((i * 7919) % 97) / 97 }));
+    const cam = { x: 0, y: 0 };   // the whole canvas drifts gently toward where things are growing
+    const lens = () => {
+      lensRaf = 0;
+      if (!base) return;
+      const W = col.clientWidth, H = col.clientHeight, rx = 0.19 * W, ry = 0.27 * H, now = performance.now();
+      let busy = false;
+      const camTx = lensOn ? (W / 2 - mx) * 0.08 : 0, camTy = lensOn ? (H / 2 - my) * 0.08 : 0;
+      cam.x += (camTx - cam.x) * 0.03; cam.y += (camTy - cam.y) * 0.03;
+      if (Math.abs(camTx - cam.x) + Math.abs(camTy - cam.y) > 0.2) busy = true;
+      tiles.forEach((t, i) => {
+        const B = base[i], cx = B.x + B.w / 2, cy = B.y + B.h / 2;
+        let ts = 1, dist = 0, tx = 0, ty = 0;
+        if (lensOn) {
+          // square-ish field (not a round bulge): tiles grow in place, the one under the cursor most
+          // fisheye: the closer to the cursor, the bigger; neighbours move aside to make room
+          const dx = cx - (mx - cam.x), dy = cy - (my - cam.y), d2 = dx * dx + dy * dy;
+          const f = Math.exp(-d2 / (2 * (0.13 * W) ** 2));
+          ts = 1 + 0.9 * f + (t.matches(':hover') ? 0.25 : 0);
+          tx = dx * 0.6 * f; ty = dy * 0.6 * f;   // neighbours move aside to make room, then return
+          dist = Math.hypot(cx - mx, cy - my) / W;
+        }
+        const S = st[i];
+        // cascade: a new size is taken up after a delay that grows with distance from the cursor
+        const hov = t.matches(':hover');
+        if (Math.abs(ts - S.pend) > 0.015) { S.pend = ts; S.at = hov ? now : now + dist * 380 + S.jit * 80; }
+        if (now >= S.at) S.tgt = S.pend;
+        // soft spring: picks up right away, settles smoothly with no bounce
+        S.s += (S.tgt - S.s) * 0.045; S.x += (tx - S.x) * 0.08; S.y += (ty - S.y) * 0.08;   // smooth exponential ease
+        if (Math.abs(S.tgt - S.s) > 0.002 || Math.abs(tx - S.x) + Math.abs(ty - S.y) > 0.3 || S.tgt !== S.pend) busy = true;
+        t.style.transform = `translate(${(B.x + cam.x + S.x).toFixed(1)}px,${(B.y + cam.y + S.y).toFixed(1)}px) scale(${S.s.toFixed(3)})`;
+        t.style.zIndex = t.matches(':hover') ? 300 : Math.round(S.s * 100) + B.z;
+      });
+      if (busy) lensRaf = requestAnimationFrame(lens);
+    };
+    col.addEventListener('mousemove', e => {
+      const r = col.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top; lensOn = true;
+      if (!lensRaf) lensRaf = requestAnimationFrame(lens);
+    });
+    col.addEventListener('mouseleave', () => { lensOn = false; if (!lensRaf) lensRaf = requestAnimationFrame(lens); });
+    layout();
+    let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { layout(); lens(); }, 150); });
+    new MutationObserver(layout).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+  }
+
+  // home deck: covers stacked in 3D from the bottom-left (near) to the top-right (far).
+  // The wheel moves along the stack with inertia; the card under the cursor lifts and shows its caption;
+  // a click turns the card to face the viewer, centred, before opening the project.
+  const deckEl = document.querySelector('.deck');
+  if (deckEl) {
+    const cards = [...deckEl.querySelectorAll('.dk')];
+    const N = cards.length;
+    const lift = cards.map(() => 0);
+    let pos = 4, cur = 4, hot = -1, raf = 0, opening = false, mx = -1, my = -1;
+    const geo = cards.map(() => null);   // each card's resting parallelogram, for steady hover hit-testing
+    const active = () => getComputedStyle(deckEl).display !== 'none';
+    const place = () => {
+      raf = 0;
+      if (!active()) return;
+      const W = innerWidth, H = innerHeight, ch = H * 0.368, cw = ch * 1891 / 1479;   // whole covers, about half the screen tall
+      deckEl.style.setProperty('--cw', cw + 'px');
+      cur += (pos - cur) * 0.06;
+      let moving = Math.abs(pos - cur) > 0.0005;
+      const SK = Math.tan(12 * Math.PI / 180), SX = 1, pw = cw * SX;   // near-isometric: parallel edges, no vanishing point
+      cards.forEach((c, i) => {
+        let d = ((i - cur) % N + N) % N; if (d >= N / 2) d -= N;
+        lift[i] += ((i === hot ? 1 : 0) - lift[i]) * 0.14;
+        if (Math.abs((i === hot ? 1 : 0) - lift[i]) > 0.002) moving = true;
+        if (opening) return;
+        // centres run along a diagonal through the middle of the screen
+        const cx = W * 0.5 + d * W * 0.05, cy = H * 0.5 - d * H * 0.088;
+        const sl = lift[i] * pw * 0.42;   // hovered card slides sideways along its own plane, staying in its layer
+        const x = cx - pw / 2 + sl, y = cy - ch / 2 - pw / 2 * SK + sl * SK;
+        const op = d < -6.5 ? Math.max(0, 1 + (d + 6.5) / 1.2) : d > 6 ? Math.max(0, 1 - (d - 6) / 2.5) : 1;
+        c.style.transform = `translate(${x.toFixed(1)}px,${y.toFixed(1)}px) skewY(12deg) scaleX(${SX})`;
+        c.style.opacity = op.toFixed(3);
+        c.style.zIndex = Math.round(1000 - d * 10);
+        c.style.pointerEvents = 'none';
+        geo[i] = { x: cx - pw / 2, y: cy - ch / 2 - pw / 2 * SK, w: pw, h: ch, sk: SK, z: Math.round(1000 - d * 10), on: op > 0.5 };
+      });
+      if (moving) raf = requestAnimationFrame(place);
+    };
+    const req = () => { if (!raf) raf = requestAnimationFrame(place); };
+    addEventListener('wheel', e => {
+      if (!active() || opening) return;
+      pos += (e.deltaY + e.deltaX) * 0.0028;
+      req();
+    }, { passive: true });
+    addEventListener('keydown', e => {
+      if (!active() || opening) return;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { pos = Math.round(pos) + 1; req(); }
+      if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { pos = Math.round(pos) - 1; req(); }
+    });
+    const setHot = n => {
+      if (n === hot) return;
+      if (hot >= 0) { const c = cards[hot], v = c.querySelector('video'); c.classList.remove('hot'); if (v) { v.pause(); v.classList.remove('on'); } }
+      hot = n;
+      if (hot >= 0) { const c = cards[hot], v = c.querySelector('video'); c.classList.add('hot'); if (v) { if (!v.src) v.src = v.dataset.src; v.play().then(() => v.classList.add('on')).catch(() => {}); } }
+      document.body.style.cursor = hot >= 0 ? 'pointer' : '';
+      req();
+    };
+    const hit = () => {
+      let best = -1, bz = -1;
+      geo.forEach((g, i) => {
+        if (!g || !g.on || g.z <= bz) return;
+        const dx = mx - g.x;
+        if (dx < 0 || dx > g.w) return;
+        const top = g.y + dx * g.sk;
+        if (my >= top && my <= top + g.h) { best = i; bz = g.z; }
+      });
+      return best;
+    };
+    addEventListener('mousemove', e => {
+      if (!active() || opening) return;
+      mx = e.clientX; my = e.clientY;
+      setHot(e.target.closest('.site-head') ? -1 : hit());
+      // caption under the cursor
+      const cap = document.querySelector('.cur-cap');
+      if (cap) { if (hot >= 0) { cap.textContent = cards[hot].dataset.cap; cap.classList.add('on'); } else cap.classList.remove('on'); }
+    });
+    addEventListener('wheel', () => { if (active()) requestAnimationFrame(() => setHot(hit())); }, { passive: true });
+    document.addEventListener('mouseleave', () => setHot(-1));
+    deckEl.addEventListener('click', e => {
+      if (!active() || hot < 0) return;
+      const c = cards[hot];
+      if (e.metaKey || e.ctrlKey || e.shiftKey) { open(c.href, '_blank'); return; }
+      opening = true; c.classList.add('picked'); deckEl.classList.add('opening');
+      const W = innerWidth, H = innerHeight, cw = parseFloat(deckEl.style.getPropertyValue('--cw')) || 300;
+      const ch = cw * 1479 / 1891, s = Math.min(1.3, (H * 0.62) / ch);
+      c.style.transformOrigin = '50% 50%';
+      c.style.transform = `translate(${(W - cw) / 2}px,${(H - ch) / 2}px) skewY(0deg) scaleX(1) scale(${s.toFixed(3)})`;
+      setTimeout(() => { location.href = c.href; }, 850);
+    });
+    addEventListener('resize', req);
+    addEventListener('pageshow', () => { opening = false; deckEl.classList.remove('opening'); cards.forEach(c => c.classList.remove('picked')); req(); });
+    new MutationObserver(req).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    place();
+  }
+
+  // custom cursor: Inter's asterisk, outline; filled over links
+  if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    const c = document.createElement('div'); c.className = 'cur'; c.setAttribute('aria-hidden', 'true');
+    c.innerHTML = '<svg viewBox="-54 -59 108 118" width="25" height="27"><path class="o" transform="translate(-786.7 -420.5)" d="M789.4,364.41c1.9,0,3.17,1.27,3.17,3.17v41.2c0,.71.53,1.07,1.07,1.07.18,0,.36-.04.51-.12l37.08-21.23c.51-.31,1.05-.45,1.58-.45,1.12,0,2.21.64,2.85,1.71l2.22,4.44c.95,1.58.32,3.48-1.26,4.44l-36.76,20.91c-.64.32-.64,1.58,0,1.9l36.76,20.91c1.58.96,2.21,2.86,1.26,4.44l-2.22,4.44c-.64,1.07-1.73,1.71-2.85,1.71-.53,0-1.07-.14-1.58-.44l-37.08-21.24c-.15-.08-.33-.11-.51-.11-.54,0-1.07.35-1.07,1.06v41.2c0,1.9-1.27,3.17-3.17,3.17h-5.39c-1.9,0-3.17-1.27-3.17-3.17v-41.2c0-.71-.53-1.06-1.06-1.06-.18,0-.36.03-.52.11l-36.76,21.24c-.51.3-1.05.44-1.58.44-1.12,0-2.21-.64-2.85-1.71l-2.54-4.44c-.95-1.58-.32-3.48,1.27-4.44l36.76-20.91c.63-.32.63-1.58,0-1.9l-36.76-20.91c-1.59-.96-2.22-2.86-1.27-4.44l2.54-4.44c.64-1.07,1.73-1.71,2.85-1.71.53,0,1.07.14,1.58.45l36.76,21.23c.16.08.34.12.52.12.53,0,1.06-.36,1.06-1.07v-41.2c0-1.9,1.27-3.17,3.17-3.17H789.4ZM789.4,362.41h-5.39c-2.99,0-5.17,2.18-5.17,5.17v39.6l-35.34-20.42c-.77-.46-1.67-.71-2.58-.71-1.85,0-3.56,1-4.57,2.68l-2.56,4.48c-1.46,2.44-.6,5.59,1.98,7.14l35.41,20.15-35.37,20.13c-2.62,1.57-3.48,4.72-1.99,7.2l2.51,4.4c1.03,1.72,2.74,2.72,4.59,2.72.91,0,1.81-.25,2.61-.73l35.31-20.4v39.6c0,2.99,2.18,5.17,5.17,5.17h5.39c3,0,5.17-2.18,5.17-5.17v-39.6l35.66,20.42c.77.46,1.67.71,2.58.71,1.85,0,3.56-1,4.57-2.68l.04-.07.03-.07,2.19-4.37c1.43-2.47.56-5.58-1.99-7.11l-35.42-20.15,35.38-20.13c2.59-1.55,3.46-4.66,2.03-7.13l-2.19-4.37-.03-.07-.04-.07c-1.01-1.68-2.72-2.68-4.57-2.68-.91,0-1.81.25-2.61.73l-35.63,20.4v-39.6C794.57,364.59,792.4,362.41,789.4,362.41H789.4Z"/><path class="f" transform="translate(-403.8 -420.5)" d="M397.93,473.42v-41.2c0-.95-.95-1.26-1.58-.95l-36.76,21.24c-1.58.95-3.48.31-4.43-1.27l-2.54-4.44c-.95-1.58-.32-3.48,1.27-4.44l36.76-20.91c.63-.32.63-1.58,0-1.9l-36.76-20.91c-1.59-.96-2.22-2.86-1.27-4.44l2.54-4.44c.95-1.58,2.85-2.22,4.43-1.26l36.76,21.23c.63.31,1.58,0,1.58-.95v-41.2c0-1.9,1.27-3.17,3.17-3.17h5.39c1.9,0,3.17,1.27,3.17,3.17v41.2c0,.95.95,1.26,1.58.95l37.08-21.23c1.58-.96,3.48-.32,4.43,1.26l2.22,4.44c.95,1.58.32,3.48-1.26,4.44l-36.76,20.91c-.64.32-.64,1.58,0,1.9l36.76,20.91c1.58.96,2.21,2.86,1.26,4.44l-2.22,4.44c-.95,1.58-2.85,2.22-4.43,1.27l-37.08-21.24c-.63-.31-1.58,0-1.58.95v41.2c0,1.9-1.27,3.17-3.17,3.17h-5.39C399.2,476.59,397.93,475.32,397.93,473.42Z"/></svg>';
+    const cap = document.createElement('div'); cap.className = 'cur-cap'; cap.setAttribute('aria-hidden', 'true'); document.body.appendChild(cap);
+    // the caption trails the cursor with a soft delay
+    let cx = -100, cy = -100, capLoop = 0;
+    const trail = () => {
+      cx += (x - cx) * 0.12; cy += (y - cy) * 0.12;
+      cap.style.transform = `translate3d(${cx}px,${cy + 26}px,0) translateX(-50%)`;
+      capLoop = (Math.abs(x - cx) + Math.abs(y - cy) > 0.3) ? requestAnimationFrame(trail) : 0;
+    };
+    const xh = document.createElement('i'); xh.className = 'xh'; c.appendChild(xh);
+    c.classList.add('x');   // the thin cross is the cursor everywhere
+    document.body.appendChild(c);
+    document.documentElement.classList.add('has-cur');
+    let x = -100, y = -100, raf = 0;
+    const draw = () => { raf = 0; c.style.transform = `translate3d(${x - 12.5}px,${y - 13.5}px,0)`; };
+    addEventListener('mousemove', e => {
+      x = e.clientX; y = e.clientY; c.classList.add('on');
+      c.classList.toggle('link', !!e.target.closest('a,button'));
+      const ct = e.target.closest('.collage .thumb') || document.querySelector('.deck .dk.hot');
+      if (ct) { if (cap.textContent !== ct.dataset.cap) cap.textContent = ct.dataset.cap; cap.classList.add('on'); c.classList.remove('link'); }
+      else cap.classList.remove('on');
+      if (!capLoop) capLoop = requestAnimationFrame(trail);
+
+      if (!raf) raf = requestAnimationFrame(draw);
+    }, { passive: true });
+    document.addEventListener('mouseleave', () => c.classList.remove('on'));
+    addEventListener('blur', () => c.classList.remove('on'));
+  }
+
+  document.querySelectorAll('a[href="#top"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); lenis ? lenis.scrollTo(0) : scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); }));
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+{
+ "insert_after": "skol-zero-zero",
+ "cover": {
+  "slug": "promise-delivery",
+  "title": "Promise Delivery",
+  "normal": "local:promise-cover",
+  "hover": "local:promise-cover"
+ },
+ "page": {
+  "url": "https://flaviosalzer.com/promise-delivery",
+  "title": "Promise Delivery",
+  "mods": [
+   {
+    "type": "tree",
+    "children": [
+     {
+      "flex": "101 1 0%",
+      "mods": [
+       {
+        "type": "text",
+        "html": "<big><b>PROMISE DELIVERY</b></big>\nRight after winning the Swiss Indoors Basel, João Fonseca publicly revealed he’d made a promise: he would shave his head if he won the title.\nAnd since a promise is a promise, Mercado Livre, which had been waiting for the right moment to announce its sponsorship of the athlete, joined the conversation and made the announcement in a way only the fastest e-commerce in Brazil could: by delivering the hair clipper he would use for the cut.",
+        "align": "left"
+       }
+      ]
+     },
+     {
+      "flex": "99 1 0%",
+      "mods": [
+       {
+        "type": "text",
+        "html": "<small><b>Role</b><br>Art Direction<br><br><b>With</b><br>Bruno Brux, Tiago Abreu, Maurício Dias, Eduardo Nosé, Rafael Miessi, James Döring, Felipe Farah, Mariana Piano, João Siqueira, Diogo Soares</small><br><br><small><b>Agency</b><br>GUT<br><br><b>Client</b><br>Mercado Livre<br><br><b>Year</b><br>2025</small>",
+        "align": ""
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "type": "embed",
+    "src": "https://player.vimeo.com/video/1143825424",
+    "ratio": "56.25%"
+   },
+   {
+    "type": "image",
+    "big": "local:promise-kv",
+    "w": 1920
+   }
+  ]
+ },
+ "nameMap": {
+  "local:promise-cover": "promise-cover",
+  "local:promise-kv": "promise-kv"
+ },
+ "manifest": {
+  "promise-cover": {
+   "type": "image",
+   "src": "promise-cover.webp",
+   "w": 1280,
+   "h": 1002
+  },
+  "promise-kv": {
+   "type": "image",
+   "src": "promise-kv.webp",
+   "w": 1920,
+   "h": 1080
+  }
+ }
+}
